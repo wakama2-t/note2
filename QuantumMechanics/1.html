@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width"/>
+		<link href="../style.css" rel="stylesheet" />
+		<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+		<title>量子力学</title>
+	</head>
+
+	<body>
+    <harder>
+    <div style="text-align: center">
+    <a href="./home.html"><h1 id = "title">量子力学</h1></a>
+    </div>
+
+    <hr id="header">
+    <h2 id =subtitle>1. Schr&ouml;dinger方程式</h2><hr id=header2>
+</header>    <div id="contents">
+		<h3>量子力学における基本法則</h3>
+		<div id="main_text">
+			\(\boldsymbol{F}(\boldsymbol{r},\,t)=-\mathrm{grad}\,V(\boldsymbol{r},\,t)\) の場の中で運動する質量 \(m\) の粒子振る舞いは、
+			\[
+				i\hbar\frac{\partial}{\partial{t}}\psi(\boldsymbol{r},\,t)=\left\{-\frac{\hbar^2}{2m}\nabla^2+V(\boldsymbol{r},\,t)\right\}\psi(\boldsymbol{r},\,t)
+			\]
+			を満たす波動関数 \(\psi(\boldsymbol{r},\,t)\) によって与えられる。
+			この方程式を(時間依存)Schr&ouml;dinger方程式という。
+		</div>
+
+		<div style="line-height: 20pt;">&nbsp;</div>
+
+		<h3>ハミルトニアン</h3>
+		<div id="main_text">
+			一般にSchr&ouml;dinger方程式は、
+			\[
+				\hat{H}:=-\frac{\hbar^2}{2m}\nabla^2+V(\boldsymbol{r},\,t)
+			\]
+			を用いて、
+			\[
+				i\hbar\frac{\partial}{\partial{t}}\psi(\boldsymbol{r},\,t)=\hat{H}\psi(\boldsymbol{r},\,t)
+			\]
+			と表される。<br>
+			そしてこの \(\hat{H}\) をハミルトニアンという。
+		</div>
+
+		<div style="line-height: 20pt;">&nbsp;</div>
+
+		<h3>古典力学との対応</h3>
+		<div id="main_text">
+			ポテンシャル \(V(\boldsymbol{r})\) から導かれる力を受ける古典的粒子のエネルギーは、
+			\[
+				H(\boldsymbol{r})=\frac{m}{2}\left(\left(\frac{dx}{dt}\right)^2+\left(\frac{dy}{dt}\right)^2+\left(\frac{dz}{dt}\right)^2\right)+V(\boldsymbol{r})
+			\]
+			であり、保存則が成り立つ物理量である運動量 \(\displaystyle\boldsymbol{p}=m\frac{d\boldsymbol{r}}{dt}\) を用いると、
+			\[
+				H(\boldsymbol{r})=\frac{1}{2m}(p_x^2+p_y^2+p_z^2)+V(\boldsymbol{r})
+			\]
+			となる。これは古典力学のハミルトン関数 \(H(\boldsymbol{r})\) そのものであるが、ハミルトニアン \(\hat{H}\) と比較すると、
+			\[
+				p_x\rightarrow\frac{\hbar}{i}\frac{\partial}{\partial{x}},\;p_y\rightarrow\frac{\hbar}{i}\frac{\partial}{\partial{y}},\;p_z\rightarrow\frac{\hbar}{i}\frac{\partial}{\partial{z}}
+			\]
+			すなわち、
+			\[
+				\boldsymbol{p}\rightarrow\frac{\hbar}{i}\nabla
+			\]
+			と置き換えを行ったものと考えられる。またSchr&ouml;dinger方程式の左辺は、
+			\[
+				H(\boldsymbol{r})\rightarrow i\hbar\frac{\partial}{\partial{t}}
+			\]
+			としたものと考えられる。<br>
+			つまり、
+			\[
+				\boldsymbol{p}\rightarrow\frac{\hbar}{i}\nabla,\;H\rightarrow i\hbar\frac{\partial}{\partial{t}}
+			\]
+			といった操作で古典力学から量子論の世界を考えることができる。
+		</div>
+
+		<div style="line-height: 20pt;">&nbsp;</div>
+
+		<h3>Bornの確率解釈</h3>
+		<div id="main_text">
+			時刻 \(t\) にその粒子の位置を測定した場合に、点 \(\boldsymbol{r}\) を含む微小体積 \(d\boldsymbol{r}\) 内に粒子が見出される確率は、
+			\[
+				|\psi(\boldsymbol{r},\,t)|^2\,d\boldsymbol{r}
+			\]
+			に比例する。<br>
+			また、
+			\[
+				\iiint|\psi(\boldsymbol{r},\,t)|^2\,d\boldsymbol{r}=1
+			\]
+			と規格化した場合、\(|\psi(\boldsymbol{r},\,t)|^2\) は確率密度関数となる。
+		</div>
+
+		<div style="line-height: 20pt;">&nbsp;</div>
+
+		<h3>定常状態</h3>
+		<div id="main_text">
+			\(\displaystyle\hat{H}=-\frac{\hbar^2}{2m}\nabla^2+V(\boldsymbol{r})\) とする。このとき、
+			\[
+				\psi(\boldsymbol{r},\,t)=\varphi(\boldsymbol{r})\tau(t)
+			\]
+			と表せると仮定するとSchr&ouml;dinger方程式は、
+			\[
+				i\hbar\varphi(\boldsymbol{r})\frac{d\tau(t)}{dt}=\tau(t)\left\{-\frac{\hbar^2}{2m}\nabla^2+V(\boldsymbol{r})\right\}\varphi(\boldsymbol{r})
+			\]
+			となる。変形して、
+			\[
+				\frac{1}{\tau(t)}i\hbar\frac{d\tau(t)}{dt}=\frac{1}{\varphi(\boldsymbol{r})}\left\{-\frac{\hbar^2}{2m}\nabla^2+V(\boldsymbol{r})\right\}\varphi(\boldsymbol{r})
+			\]
+			となるが、両辺は異なる変数のみで表されているため定数となる。これを \(\varepsilon\) とすると、
+			\[
+				\frac{1}{\tau(t)}i\hbar\frac{d\tau(t)}{dt}=\varepsilon\;\Rightarrow\;\tau(t)=Ce^{-i\varepsilon t/\hbar}
+			\]
+			\[
+				\left\{-\frac{\hbar^2}{2m}\nabla^2+V(\boldsymbol{r})\right\}\varphi(\boldsymbol{r})=\varepsilon\varphi(\boldsymbol{r})
+			\]
+			となる。第2式を定常Schr&ouml;dinger方程式という。<br>
+			なぜなら、(\(C\) は規格化で使用して、) 
+			\[
+				|\psi(\boldsymbol{r},\,t)|^2=|\varphi(\boldsymbol{r})e^{-i\varepsilon t/\hbar}|^2=|\varphi(\boldsymbol{r})|^2
+			\]
+			と時間に依存しなくなるからである。
+		</div>
+
+
+
+
+
+
+    </div>
+    <footer>
+    <hr id="header">
+    <div class="parent">
+    &nbsp;<div class=footer_next><a href=./2.html>[next: 2.定常問題]</a></div>    </div>
+    <div style="text-align: right">
+        <a href="../index.html">[homeに戻る]</a>
+    </div>
+</footer>	</body>
+	<script src="../js/details_close.js"></script>
+</html>

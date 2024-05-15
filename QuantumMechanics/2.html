@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width"/>
+		<link href="../style.css" rel="stylesheet" />
+		<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+		<title>量子力学</title>
+	</head>
+
+	<body>
+    <harder>
+    <div style="text-align: center">
+    <a href="./home.html"><h1 id = "title">量子力学</h1></a>
+    </div>
+
+    <hr id="header">
+    <h2 id =subtitle>2. 定常問題</h2><hr id=header2>
+</header>    <div id="contents">
+		<h3>剛体壁ポテンシャル</h3>
+        <div id="main_text">
+			\[
+				\left\{-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial{x}^2}+V(x)\right\}\varphi(x)=\varepsilon\varphi(x)
+			\]
+			\[
+				V(x)=\left\{
+				\begin{aligned}
+					0\;&&|x|&lt;\frac{a}{2}\\
+					\infty&&|x|&gt;\frac{a}{2}
+				\end{aligned}
+				\right.
+			\]
+			を満たす \(\varphi(x)\) 及び \(\varepsilon\) は、
+			\[
+				\begin{aligned}
+					\varphi_n(x)&=
+					\begin{cases}
+						A_n\cos{k_nx}&(n=1,\,3,\,5,\ldots)\\
+						B_n\sin{k_nx}&(n=2,\,4,\,6,\ldots)
+					\end{cases}\\
+					\varepsilon_n&=\frac{\hbar^2\pi^2}{2ma^2}n^2\;\;(n\in\mathbb{N})
+				\end{aligned}
+			\]
+			<details id="white">
+				<summary>導出過程</summary>
+				<div id="main_text">
+					\(\displaystyle|x|>\frac{a}{2}\) では \(\varphi(x)\neq0\) となる解は許されないため考えない。
+					<br><div style="line-height: 5pt;">&nbsp;</div>
+					よって解くべき方程式は、
+					\[
+						-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial{x}^2}\varphi(x)=\varepsilon\varphi(x)
+					\]
+					改め
+					\[
+						\left\{\frac{d^2}{dx^2}+k^2\right\}\varphi(x)=0\;\;\;(ただし、k^2=\frac{2m}{\hbar^2}\varepsilon)
+					\]
+					となる。つまり、
+					\[
+						\varphi(x)=A\cos{kx}+B\sin{kx}
+					\]
+					は解となるが、波動関数に連続性を要求すると、
+					\[\left\{
+						\begin{alignedat}{2}
+							\varphi\left(\frac{a}{2}-0\right)\;\,&=&\varphi\left(\frac{a}{2}+0\right)\;\,=\;0\\
+							\varphi\left(-\frac{a}{2}-0\right)&=\;&\varphi\left(-\frac{a}{2}+0\right)=\;0
+						\end{alignedat}
+					\right.\]
+					すなわち、
+					\[
+						接続条件:\;
+						\left( \left.\left.
+							\begin{alignedat}{2}
+								&\cos{\frac{ka}{2}}& \sin{\frac{ka}{2}}&\\
+								&\cos{\frac{ka}{2}}&\;-\sin{\frac{ka}{2}}&
+							\end{alignedat}
+						\right)
+						\right(
+							\begin{matrix}
+								\!A\\[7pt]
+								\!B
+							\end{matrix}
+						\right)
+						=\,0
+					\]
+					となる。\((A,\,B)\) が非自明解を持つには、
+					\[
+						0=
+						\left|
+						\begin{alignedat}{2}
+							&\cos{\frac{ka}{2}}& \sin{\frac{ka}{2}}&\\
+							&\cos{\frac{ka}{2}}&\;-\sin{\frac{ka}{2}}&
+						\end{alignedat}
+						\right|
+						=-2\cos{\frac{ka}{2}}\sin{\frac{ka}{2}}=-\sin{ka}
+					\]
+					より、
+					\[
+						k=k_n=\frac{\pi}{a}n\;\;(n\in\mathbb{Z})
+					\]
+					を満たす必要がある。
+					<br><div style="line-height: 5pt;">&nbsp;</div>
+					\[\varphi_n(x)=A_n\cos{k_nx}+B_n\sin{k_nx}\]
+					として、\(n=0\) の場合を考えると、
+					\[
+						接続条件:\;
+						\begin{pmatrix}
+							1&0\\
+							1&0
+						\end{pmatrix}
+						\begin{pmatrix}
+							A_0\\B_0
+						\end{pmatrix}
+						=0
+					\]
+					より \(A_0=0\)。よって \(\varphi_0(x)=B_0\sin{k_0x}=0\) となり不適。
+					<br><div style="line-height: 5pt;">&nbsp;</div>
+					\(n=2m-1\;(m\in\mathbb{Z})\) のとき、
+					\[
+						接続条件:\;
+						\begin{pmatrix}
+							\;0&(-1)^{m}\\
+							\;0&(-1)^{m+1}
+						\end{pmatrix}
+						\begin{pmatrix}
+							A_n\\B_n
+						\end{pmatrix}
+						=0
+					\]
+					より \(B_n=0\)。よって \(\varphi_n(x)=A_n\cos{k_nx}\) となる。規格化すると、
+					\[
+						\int_{-\frac{a}{2}}^{\frac{a}{2}}|A_n\cos{k_nx}|^2\,dx=A_n^2\cdot\frac{a}{2}
+					\]
+					となるから \(\displaystyle A_n=\sqrt{\frac{2}{a}}\) となる。
+					<br><div style="line-height: 5pt;">&nbsp;</div>
+					\(n=2m\;(m\in\mathbb{Z})\) のとき、
+					\[
+						接続条件:\;
+						\begin{pmatrix}
+							(-1)^m&0\\
+							(-1)^m&0
+						\end{pmatrix}
+						\begin{pmatrix}
+							A_n\\B_n
+						\end{pmatrix}
+						=0
+					\]
+					より \(A_n=0\)。よって \(\varphi_n(x)=B_n\sin{k_nx}\) となる。規格化すると、
+					\[
+						\int_{-\frac{a}{2}}^{\frac{a}{2}}|B_n\sin{k_nx}|^2\,dx=B_n^2\cdot\frac{a}{2}
+					\]
+					となるから \(\displaystyle B_n=\sqrt{\frac{2}{a}}\) となる。
+					<br><div style="line-height: 5pt;">&nbsp;</div>
+					よって、
+					\[
+						\begin{aligned}
+							\varphi_n(x)&=
+							\begin{cases}
+								A_n\cos{k_nx}&(n=1,\,3,\,5,\ldots)\\
+								B_n\sin{k_nx}&(n=2,\,4,\,6,\ldots)
+							\end{cases}\\
+							k_n&=\frac{\pi}{a}n\;\;(n\in\mathbb{N})\\
+							\varepsilon_n&=\frac{\hbar^2}{2m}k_n^2=\frac{\hbar^2\pi^2}{2ma^2}n^2
+						\end{aligned}
+					\]
+					となる。
+				</div>
+				<div style="text-align: right"><button id="close0">[閉じる]</button></div>
+			</details>
+        </div>
+
+		<div style="line-height: 20pt;">&nbsp;</div>
+
+        <h3>箱型ポテンシャル</h3>
+        <div id="main_text">
+			\[
+				\left\{-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial{x}^2}+V(x)\right\}\varphi(x)=\varepsilon\varphi(x)
+			\]
+			\[
+				V(x)=\left\{
+				\begin{aligned}
+					-V_0&&|x|&lt;\frac{a}{2}\\
+					0\;&&|x|&gt;\frac{a}{2}
+				\end{aligned}
+				\right.
+			\]
+			<h4>束縛問題 \((\varepsilon&lt;0)\)</h4>
+			\[
+				\left\{\begin{aligned}
+					X\tan{X}\;&=Y\\
+					X^2+Y^2&=\frac{m}{2\hbar^2}V_0a^2
+				\end{aligned}\right.
+				\;\;\mathrm{or}\;\;
+				\left\{\begin{aligned}
+					-X\cot{X}\;&=Y\\
+					X^2+Y^2&=\frac{m}{2\hbar^2}V_0a^2
+				\end{aligned}\right.
+			\]
+			\[
+				X=\frac{ka}{2},\;\;Y=\frac{\kappa{a}}{2}
+			\]
+			\[
+				k(\varepsilon)=\sqrt{\frac{2m}{\hbar^2}(\varepsilon+V_0)},\;\;\kappa(\varepsilon)=\sqrt{-\frac{2m}{\hbar^2}\varepsilon}
+			\]
+			<details open id="white">
+				<summary>導出過程</summary>
+				<div id="main_text">
+					
+				</div>
+				<div style="text-align: right"><button id="close1">[閉じる]</button></div>
+			</details>
+        </div>
+
+		<div style="line-height: 20pt;">&nbsp;</div>
+
+		<h3>調和振動子</h3>
+		<div id="main_text">
+			\[
+				\left\{-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial{x}^2}+\frac{1}{2}m\omega^2x^2\right\}\varphi(x)=\varepsilon\varphi(x)
+			\]
+			の固有関数及び固有値は、
+			\begin{align*}			
+				\varphi_n(x)&=\sqrt{\frac{\alpha}{2^nn!\sqrt{\pi}}}H_n(\xi)e^{-\frac{1}{2}\xi^2}\\
+				&\;\;\alpha=\sqrt{\frac{m\omega}{\hbar}},\;\;\xi=\alpha x\\[10pt]
+				\varepsilon_n&=\left(n+\frac{1}{2}\right)\hbar\omega\;\;\;(n\in\mathbb{N})
+			\end{align*}
+			<details open id="white">
+				<summary>導出過程</summary>
+				<div id="main_text">
+					
+				</div>
+				<div style="text-align: right"><button id="close2">[閉じる]</button></div>
+			</details>
+
+			<div style="line-height: 10pt;">&nbsp;</div>
+		
+			<details open id="white">
+				<summary>Hermite多項式などの補足</summary>
+				<div id="main_text">
+					
+				</div>
+				<div style="text-align: right"><button id="close3">[閉じる]</button></div>
+			</details>
+		</div>
+    </div>
+    <footer>
+    <hr id="header">
+    <div class="parent">
+    <div class=footer_prev><a href=./1.html>[prev: 1.Schr&ouml;dinger方程式]</a></div><div class=footer_next><a href=./3.html>[next: 3.物理量]</a></div>    </div>
+    <div style="text-align: right">
+        <a href="../index.html">[homeに戻る]</a>
+    </div>
+</footer>	</body>
+	<script src="../js/details_close.js"></script>
+</html>
