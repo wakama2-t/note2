@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width"/>
+		<link href="../style.css" rel="stylesheet" />
+		<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+		<title>量子力学</title>
+	</head>
+
+	<body>
+    <harder>
+    <div style="text-align: center">
+    <a href="./home.html"><h1 id = "title">量子力学</h1></a>
+    </div>
+
+    <hr id="header">
+    <h2 id =subtitle>波動関数の偶奇性</h2><hr id=header2>
+</header>    <div id="contents">
+        ハミルトニアン \(\hat{H}\) が空間反転 に対して不変なとき、
+        \[
+            \hat{H}\varphi(x)=\varepsilon\varphi(x)
+        \]
+        と
+        \[
+            \hat{H}\varphi(-x)=\varepsilon\varphi(-x)
+        \]
+        が同時に成り立つ。このとき縮退がないとすると、\(\varphi(x),\,\varphi(-x)\) は独立でないため、
+        \[
+            \varphi(x)=p\varphi(-x)\;\;\;(p:位相因子)
+        \]
+        とすることができ、
+        \[
+            \varphi(x)=p\varphi(-x)=p^2\varphi(x)
+        \]
+        より、\(p=\pm1\) となる。よって、
+        \begin{alignat*}{2}
+            \varphi(-x)&=&\varphi(x)&\\[3pt]
+            &\;\mathrm{or}&\\[3pt]
+            \varphi(-x)&=&-\varphi(x)&
+        \end{alignat*}
+        となるため、波動関数は偶関数と奇関数のどちらかとなる。
+
+
+        
+    </div>
+    <footer>
+    <hr id="header">
+    <div class="parent">
+        </div>
+    <div style="text-align: right">
+        <a href="../index.html">[homeに戻る]</a>
+    </div>
+</footer>	</body>
+	<script src="../js/details_close.js"></script>
+</html>
