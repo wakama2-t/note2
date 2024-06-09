@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width"/>
+		<link href="../style.css" rel="stylesheet" />
+		<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+		<title>量子力学</title>
+	</head>
+
+	<body>
+    <harder>
+    <div style="text-align: center">
+    <a href="./home.html"><h1 id = "title">量子力学</h1></a>
+    </div>
+
+    <hr id="header">
+    <h2 id =subtitle>3. 物理量と固有値方程式</h2><hr id=header2>
+</header>    <div id="contents">
+        <h3>物理量の期待値</h3>
+		<div id="main_text">
+			規格化された波動関数 \(\psi(\boldsymbol{r},\,t)\) において、
+			\[
+				|\psi(\boldsymbol{r},\,t)|^2
+			\]
+			は確率密度関数となるので、これを用いて物理量の期待値を定義する。<br>
+			ただし、量子力学において物理量は演算子となるので、
+			\[
+				\overline{F}
+				:=\iiint \psi^*(\boldsymbol{r},\,t)\,\hat{F}(\boldsymbol{r},\,-i\hbar\nabla)\,\psi(\boldsymbol{r},\,t)\;d\boldsymbol{r}
+			\]
+			とする。<br>
+			また内積を
+			\[
+				(\psi_1,\,\psi_2):=\iiint\psi_1^*(\boldsymbol{r})\,\psi_2(\boldsymbol{r})\;d\boldsymbol{r}
+			\]
+			と定義すれば、
+			\[
+				\overline{F}
+				=(\psi,\,\hat{F}\psi)
+			\]
+			となる。
+		</div>
+
+		<div style="line-height: 20pt;">&nbsp;</div>
+
+		<h3>Ehrenfestの定理</h3>
+		<div id="main_text">
+			Schr&ouml;dinger方程式
+			\[
+				i\hbar\frac{\partial}{\partial{t}}\psi(\boldsymbol{r},\,t)=\left\{-\frac{\hbar^2}{2m}\nabla^2+V(\boldsymbol{r},\,t)\right\}\psi(\boldsymbol{r},\,t)
+			\]
+			において、
+			\[
+				m\frac{d}{dt}\overline{\boldsymbol{r}}=\overline{\boldsymbol{p}},\;\;\frac{d}{dt}\overline{\boldsymbol{r}}=-\nabla{V}
+			\]
+			が成り立つ。これらは正準方程式に対応する。
+		</div>
+
+		<div style="line-height: 20pt;">&nbsp;</div>
+
+		<h3>Hermite演算子</h3>
+		<div id="main_text">
+			上で定義した期待値は実は必ずしも実数になるとは限らない。<br>
+			これより観測可能な物理量の期待値は実数となることが要請され、すなわち、
+			\[
+				(\psi,\,\hat{F}\psi)=(\psi,\,\hat{F}\psi)^{\ast}
+			\]
+			となる必要がある。ここで、
+			\[
+				(\hat{F}\psi,\,\psi)=(\psi,\,\hat{F}^{\dagger}\psi)
+			\]
+			と \(\cdot^{\dagger}\) を定義すれば、内積の定義より、
+			\begin{align*}			
+				(\psi,\,\hat{F}\psi)^{\ast}
+				&=\iiint \psi(\boldsymbol{r})\,\left(\hat{F}(\boldsymbol{r})\,\psi(\boldsymbol{r})\right)^*\;d\boldsymbol{r}\\
+				&=\iiint \left(\hat{F}(\boldsymbol{r})\,\psi(\boldsymbol{r})\right)^*\,\psi(\boldsymbol{r})\;d\boldsymbol{r}\\
+				&=(\hat{F}\psi,\,\psi)=(\psi,\,\hat{F}^{\dagger}\psi)
+			\end{align*}
+			となるから、
+			\[
+				(\psi,\,\hat{F}\psi)=(\psi,\,\hat{F}^{\dagger}\psi)
+			\]
+			すなわち、
+			\[
+				\hat{F}=\hat{F}^{\dagger}
+			\]
+			が条件となる。このような演算子をエルミート(Hermite)演算子、\(\hat{F}^{\dagger}\) を \(\hat{F}\) のエルミート共役という。
+			<br><div style="line-height: 10pt;">&nbsp;</div>
+			まとめると、物理量はエルミート演算子になることが要請される。
+		</div>
+
+		<div style="line-height: 20pt;">&nbsp;</div>
+
+		<h3>物理量(エルミート演算子)と固有値方程式</h3>
+		<div id="main_text">
+			エルミート演算子 \(\hat{F}\) に対して、
+			\[
+				固有値方程式:\;\hat{F}u_i(\boldsymbol{r})=\lambda_iu_i(\boldsymbol{r})
+			\]
+			を考える。この問題は非常に重要な意味を持つ。なぜなら、
+			\begin{align*}
+				V[\hat{F}]^2
+				&=\overline{(\hat{F}-\overline{F})^2}\\
+				&=\bigl(\psi,\,(\hat{F}-\overline{F})^2\psi\bigr)\\
+				&=\bigl((\hat{F}-\overline{F})\psi,\,(\hat{F}-\overline{F})\psi\bigr)\\
+				&=\iiint\left|(\hat{F}-\overline{F})\psi(\boldsymbol{r})\right|^2\;d\boldsymbol{r}\;\geq0
+			\end{align*}
+			より \(\overline{F}=\lambda_i\) とすれば、\(u_i\) は \(\hat{F}\) の分散が0になる特別な状態をとる。
+			<br><div style="line-height: 10pt;">&nbsp;</div>
+			また以下の重要な性質を満たす。
+			<div style="font-size: larger;">1. 固有値 \(\lambda_i\) は実数となる。</div>
+			<div id="main_text">
+				\begin{align*}
+					\lambda_i^*(u_i,\,u_i)
+					&=(\hat{F}u_i,\,u_i)\\
+					&=(u_i,\,\hat{F}u_i)\\
+					&=\lambda_i(u_i,\,u_i)
+				\end{align*}
+				より、
+				\[
+					\lambda_i^*=\lambda_i
+				\]
+			</div>
+			<div style="font-size: larger;">2. 異なる固有値に属する固有関数は直交する。</div><div style="line-height: 5pt;">&nbsp;</div>
+			<div id="main_text">
+				\(\lambda_i\neq\lambda_j\) に対して、
+				\begin{align*}
+					\lambda_j(u_i,\,u_j)
+					&=(u_i,\,\hat{F}u_j)\\
+					&=(\hat{F}u_i,\,u_j)\\
+					&=\lambda_i(u_i,\,u_j)
+				\end{align*}
+				より、
+				\[
+					(u_i,\,u_j)=0
+				\]
+			</div><div style="line-height: 5pt;">&nbsp;</div>
+			これより、\((u_i,\,u_j)=1\) となるよう規格化すれば、
+			\[
+				(u_i,\,u_j)=\delta_{ij}
+			\]
+			となり、\(\{u_i\}\) は正規直交系となる。そして任意の \(\psi(\boldsymbol{r})\) に対して、
+			\[
+				\psi(\boldsymbol{r})=\sum_{i}C_iu_i(\boldsymbol{r})
+			\]
+			と書くことができ、(実は証明が必要)
+			\[
+				C_i=(u_i,\,\psi)
+			\]
+			と係数は求められる。またこれより規格化条件は、
+			\begin{align*}
+				1&=\iiint\psi^*(\boldsymbol{r})\psi(\boldsymbol{r})\;d\boldsymbol{r}\\
+				 &=\sum_{i,\,j}C_i^*C_j\iiint u_i^*(\boldsymbol{r})u_j(\boldsymbol{r})\;d\boldsymbol{r}\\
+				 &=\sum_{i,\,j}C_i^*C_j\delta_{ij}\\
+				 &=\sum_{i}|C_i|^2
+			\end{align*}
+			となることがわかる。
+		</div>
+
+		<div style="line-height: 20pt;">&nbsp;</div>
+
+		<h3>角運動量</h3>
+		<div id="main_text">
+			古典力学では角運動量 \(\boldsymbol{l}=\boldsymbol{r}\times\boldsymbol{p}\) となるので、
+			\begin{align*}
+				\hat{\boldsymbol{l}}
+				&:=\hat{\boldsymbol{r}}\times\hat{\boldsymbol{p}}\\
+				&=-i\hbar\boldsymbol{r}\times\nabla\\
+				&=\left(
+				\begin{aligned}
+					-i\hbar\left(y\frac{\partial}{\partial{z}}-z\frac{\partial}{\partial{y}}\right)\\
+					-i\hbar\left(z\frac{\partial}{\partial{x}}-x\frac{\partial}{\partial{z}}\right)\\
+					-i\hbar\left(x\frac{\partial}{\partial{y}}-y\frac{\partial}{\partial{x}}\right)
+				\end{aligned}\right)
+			\end{align*}
+			と角運動量を表す演算子を定義する。
+		</div>
+
+
+
+
+    </div>
+    <footer>
+    <hr id="header">
+    <div class="parent">
+    <div class=footer_prev><a href=./2.html>[prev: 2.定常問題]</a></div><div class=footer_next><a href=./4.html>[next: 4.球面調和関数]</a></div>    </div>
+    <div style="text-align: right">
+        <a href="../index.html">[homeに戻る]</a>
+    </div>
+</footer>	</body>
+	<script src="../js/details_close.js"></script>
+</html>

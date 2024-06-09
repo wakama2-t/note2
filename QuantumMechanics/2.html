@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width"/>
+		<link href="../style.css" rel="stylesheet" />
+		<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+		<title>量子力学</title>
+	</head>
+
+	<body>
+    <harder>
+    <div style="text-align: center">
+    <a href="./home.html"><h1 id = "title">量子力学</h1></a>
+    </div>
+
+    <hr id="header">
+    <h2 id =subtitle>2. 定常問題</h2><hr id=header2>
+</header>    <div id="contents">
+		<h3>剛体壁ポテンシャル</h3>
+        <div id="main_text">
+			\[
+				\left\{-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial{x}^2}+V(x)\right\}\varphi(x)=\varepsilon\varphi(x)
+			\]
+			\[
+				V(x)=\left\{
+				\begin{aligned}
+					0\;&&|x|&lt;\frac{a}{2}\\
+					\infty&&|x|&gt;\frac{a}{2}
+				\end{aligned}
+				\right.
+			\]
+			を満たす \(\varphi(x)\) 及び \(\varepsilon\) は、
+			\[
+				\begin{aligned}
+					\varphi_n(x)&=
+					\begin{cases}
+						\displaystyle\sqrt{\frac{2}{a}}\cos{k_nx}&(n=1,\,3,\,5,\ldots)\\[5pt]
+						\displaystyle\sqrt{\frac{2}{a}}\sin{k_nx}&(n=2,\,4,\,6,\ldots)
+					\end{cases}\\[3pt]
+					\varepsilon_n&=\frac{\hbar^2\pi^2}{2ma^2}n^2\;\;(n\in\mathbb{N})
+				\end{aligned}
+			\]
+			<details id="white">
+				<summary>導出過程</summary>
+				<div id="main_text">
+					\(\displaystyle|x|>\frac{a}{2}\) では \(\varphi(x)\neq0\) となる解は許されないため考えない。
+					<br><div style="line-height: 5pt;">&nbsp;</div>
+					よって解くべき方程式は、
+					\[
+						-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial{x}^2}\varphi(x)=\varepsilon\varphi(x)
+					\]
+					改め
+					\[
+						\left\{\frac{d^2}{dx^2}+k^2\right\}\varphi(x)=0\;\;\;(ただし、k^2=\frac{2m}{\hbar^2}\varepsilon)
+					\]
+					となる。つまり、
+					\[
+						\varphi(x)=A\cos{kx}+B\sin{kx}
+					\]
+					は解となるが、波動関数に連続性を要求すると、
+					\[\left\{
+						\begin{alignedat}{2}
+							\varphi\left(\frac{a}{2}-0\right)\;\,&=&\varphi\left(\frac{a}{2}+0\right)\;\,=\;0\\
+							\varphi\left(-\frac{a}{2}-0\right)&=\;&\varphi\left(-\frac{a}{2}+0\right)=\;0
+						\end{alignedat}
+					\right.\]
+					すなわち、
+					\[
+						接続条件:\;
+						\left( \left.\left.
+							\begin{alignedat}{2}
+								&\cos{\frac{ka}{2}}& \sin{\frac{ka}{2}}&\\
+								&\cos{\frac{ka}{2}}&\;-\sin{\frac{ka}{2}}&
+							\end{alignedat}
+						\right)
+						\right(
+							\begin{matrix}
+								\!A\\[7pt]
+								\!B
+							\end{matrix}
+						\right)
+						=\,0
+					\]
+					となる。\((A,\,B)\) が非自明解を持つには、
+					\[
+						0=
+						\left|
+						\begin{alignedat}{2}
+							&\cos{\frac{ka}{2}}& \sin{\frac{ka}{2}}&\\
+							&\cos{\frac{ka}{2}}&\;-\sin{\frac{ka}{2}}&
+						\end{alignedat}
+						\right|
+						=-2\cos{\frac{ka}{2}}\sin{\frac{ka}{2}}=-\sin{ka}
+					\]
+					より、
+					\[
+						k=k_n=\frac{\pi}{a}n\;\;(n\in\mathbb{Z})
+					\]
+					を満たす必要がある。
+					<br><div style="line-height: 5pt;">&nbsp;</div>
+					\[\varphi_n(x)=A_n\cos{k_nx}+B_n\sin{k_nx}\]
+					として、\(n=0\) の場合を考えると、
+					\[
+						接続条件:\;
+						\begin{pmatrix}
+							1&0\\
+							1&0
+						\end{pmatrix}
+						\begin{pmatrix}
+							A_0\\B_0
+						\end{pmatrix}
+						=0
+					\]
+					より \(A_0=0\)。よって \(\varphi_0(x)=B_0\sin{k_0x}=0\) となり不適。
+					<br><div style="line-height: 5pt;">&nbsp;</div>
+					\(n=2m-1\;(m\in\mathbb{Z})\) のとき、
+					\[
+						接続条件:\;
+						\begin{pmatrix}
+							\;0&(-1)^{m}\\
+							\;0&(-1)^{m+1}
+						\end{pmatrix}
+						\begin{pmatrix}
+							A_n\\B_n
+						\end{pmatrix}
+						=0
+					\]
+					より \(B_n=0\)。よって \(\varphi_n(x)=A_n\cos{k_nx}\) となる。規格化すると、
+					\[
+						\int_{-\frac{a}{2}}^{\frac{a}{2}}|A_n\cos{k_nx}|^2\,dx=A_n^2\cdot\frac{a}{2}
+					\]
+					となるから \(\displaystyle A_n=\sqrt{\frac{2}{a}}\) となる。
+					<br><div style="line-height: 5pt;">&nbsp;</div>
+					\(n=2m\;(m\in\mathbb{Z})\) のとき、
+					\[
+						接続条件:\;
+						\begin{pmatrix}
+							(-1)^m&0\\
+							(-1)^m&0
+						\end{pmatrix}
+						\begin{pmatrix}
+							A_n\\B_n
+						\end{pmatrix}
+						=0
+					\]
+					より \(A_n=0\)。よって \(\varphi_n(x)=B_n\sin{k_nx}\) となる。規格化すると、
+					\[
+						\int_{-\frac{a}{2}}^{\frac{a}{2}}|B_n\sin{k_nx}|^2\,dx=B_n^2\cdot\frac{a}{2}
+					\]
+					となるから \(\displaystyle B_n=\sqrt{\frac{2}{a}}\) となる。
+					<br><div style="line-height: 5pt;">&nbsp;</div>
+					よって、
+					\[
+						\begin{aligned}
+							\varphi_n(x)&=
+							\begin{cases}
+								\displaystyle\sqrt{\frac{2}{a}}\cos{k_nx}&(n=1,\,3,\,5,\ldots)\\[5pt]
+								\displaystyle\sqrt{\frac{2}{a}}\sin{k_nx}&(n=2,\,4,\,6,\ldots)
+							\end{cases}\\
+							k_n&=\frac{\pi}{a}n\;\;(n\in\mathbb{N})\\
+							\varepsilon_n&=\frac{\hbar^2}{2m}k_n^2=\frac{\hbar^2\pi^2}{2ma^2}n^2
+						\end{aligned}
+					\]
+					となる。
+				</div>
+				<div style="text-align: right"><button id="close0">[閉じる]</button></div>
+			</details>
+        </div>
+
+		<div style="line-height: 20pt;">&nbsp;</div>
+
+        <h3>箱型ポテンシャル</h3>
+        <div id="main_text">
+			\[
+				\left\{-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial{x}^2}+V(x)\right\}\varphi(x)=\varepsilon\varphi(x)
+			\]
+			\[
+				V(x)=\left\{
+				\begin{aligned}
+					-V_0&&|x|&lt;\frac{a}{2}\\
+					0\;&&|x|&gt;\frac{a}{2}
+				\end{aligned}
+				\right.
+			\]
+			<h4>束縛問題 \((\varepsilon&lt;0)\)</h4>
+			\[
+				\left\{\begin{aligned}
+					X\tan{X}\;&=Y\\
+					X^2+Y^2&=\frac{m}{2\hbar^2}V_0a^2
+				\end{aligned}\right.
+				\;\;\mathrm{or}\;\;
+				\left\{\begin{aligned}
+					-X\cot{X}\;&=Y\\
+					X^2+Y^2&=\frac{m}{2\hbar^2}V_0a^2
+				\end{aligned}\right.
+			\]
+			\[
+				X=\frac{ka}{2},\;\;Y=\frac{\kappa{a}}{2}
+			\]
+			\[
+				k(\varepsilon)=\sqrt{\frac{2m}{\hbar^2}(\varepsilon+V_0)},\;\;\kappa(\varepsilon)=\sqrt{-\frac{2m}{\hbar^2}\varepsilon}
+			\]
+			<details id="white">
+				<summary>導出過程</summary>
+				<div id="main_text">
+					\(\displaystyle|x|&lt;0\) のとき、
+					\[
+						\left\{-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial{x}^2}-V_0\right\}\varphi(x)=\varepsilon\varphi(x)
+					\]
+					\(\displaystyle k(\varepsilon):=\sqrt{\frac{2m}{\hbar^2}(\varepsilon+V_0)}\) として整理すると、
+					\[
+						\left\{\frac{d^2}{dx^2}+k^2\right\}\varphi(x)=0,\;\;
+					\]
+					\(\displaystyle|x|&gt;0\) のとき、
+					\[
+						\left\{-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial{x}^2}\right\}\varphi(x)=\varepsilon\varphi(x)
+					\]
+					\(\displaystyle \kappa(\varepsilon):=\sqrt{-\frac{2m}{\hbar^2}\varepsilon}\) として整理すると、
+					\[
+						\left\{\frac{d^2}{dx^2}-\kappa^2\right\}\varphi(x)=0
+					\]
+					よって、
+					\[
+						\varphi(x)=\left\{
+						\begin{alignedat}{2}
+							&A_1e^{\kappa{x}}&+&\,B_1e^{-\kappa{x}}&\;\;\;\Bigl(\;x&&lt;\frac{a}{2}&\,\Bigr)\\[3pt]
+							&A_2e^{ikx}&+&\,B_2e^{-ikx}&\;\;\;\Bigl(|x|&&lt;\frac{a}{2}&\,\Bigr)\\[3pt]
+							&A_3e^{\kappa{x}}&+&\,B_3e^{-\kappa{x}}&\;\;\;\Bigl(\;x&&gt;\frac{a}{2}&\,\Bigr)\\
+						\end{alignedat}\right.
+					\]
+					となる。ここで \(\displaystyle\int_{-\infty}^{\infty}|\varphi(x)|^2\,dx&lt;\infty\) より \(\displaystyle\lim_{|x|\rightarrow\infty}\varphi(x)=0\) を満たす必要があるため、
+					\[
+						\varphi(x)=\left\{
+						\begin{alignedat}{2}
+							&Ce^{\kappa{x}}&&&\;\;\;\Bigl(\;x&&lt;\frac{a}{2}&\,\Bigr)\\[3pt]
+							&Ae^{ikx}&+&\,Be^{-ikx}&\;\;\;\Bigl(|x|&&lt;\frac{a}{2}&\,\Bigr)\\[3pt]
+							&De^{-\kappa{x}}&&&\;\;\;\Bigl(\;x&&gt;\frac{a}{2}&\,\Bigr)\\
+						\end{alignedat}\right.
+					\]
+					<a href="http://localhost/note/QuantumMechanics/parity.html" target="_blank" rel="noopener noreferrer">波動関数の偶奇性</a>を用いると、\(\varphi\) は偶関数と奇関数で場合分けすることができる。<br>
+					また接続条件は、
+					\[
+						\left\{
+						\begin{alignedat}{2}					
+							\varphi\left(\frac{a}{2}+0\right)&=\;&\varphi\left(\frac{a}{2}-0\right)&\\
+							\varphi'\!\!\left(\frac{a}{2}+0\right)&=\;&\varphi'\!\!\left(\frac{a}{2}-0\right)&
+						\end{alignedat}\right.
+					\]
+					となる。
+					<br><div style="line-height: 5pt;">&nbsp;</div>
+					偶関数の場合 \(A=B,\,C=D\) となるので接続条件を考えると、
+					\[
+						\left\{
+						\begin{alignedat}{2}					
+							De^{-\kappa{a}/2}&\;=\;&2A\cos{\frac{ka}{2}}&\\
+							-\kappa De^{-\kappa{a}/2}&\;=\;&-2kA\sin{\frac{ka}{2}}&
+						\end{alignedat}\right.
+					\]
+					より、
+					\[
+							k\tan{\frac{ka}{2}}=\kappa\;\Leftrightarrow\;\frac{ka}{2}\tan{\frac{ka}{2}}=\frac{\kappa{a}}{2}
+					\]
+					<br><div style="line-height: 5pt;">&nbsp;</div>
+					奇関数の場合 \(A=-B,\,C=-D\) となるので接続条件を考えると、
+					\[
+						\left\{
+						\begin{alignedat}{2}					
+							De^{-\kappa{a}/2}&\;=\;&2iA\sin{\frac{ka}{2}}&\\
+							-\kappa De^{-\kappa{a}/2}&\;=\;&2ikA\cos{\frac{ka}{2}}&
+						\end{alignedat}\right.
+					\]
+					より、
+					\[
+							k\cot{\frac{ka}{2}}=-\kappa\;\Leftrightarrow\;\frac{ka}{2}\cot{\frac{ka}{2}}=-\frac{\kappa{a}}{2}
+					\]
+					よって \(\displaystyle X:=\frac{ka}{2},\;Y:=\frac{\kappa{a}}{2}\) とすると、
+					\begin{alignat*}{2}
+						X\tan{X}&=\;&Y&\;\;\;(偶関数)\\
+						-X\cot{X}&=\;&Y&\;\;\;(奇関数)
+					\end{alignat*}
+					であり、\(k,\;\kappa\) の関係式
+					\[
+						X^2+Y^2=\left(\frac{a}{2}\right)^2\left(\frac{2m}{\hbar^2}(\varepsilon+V_0)-\frac{2m}{\hbar^2}\varepsilon\right)=\frac{m}{2\hbar^2}V_0a^2
+					\]
+					と合わせて \(\varphi,\;\varepsilon\) を求める。
+				</div>
+				<div style="text-align: right"><button id="close1">[閉じる]</button></div>
+			</details>
+        </div>
+
+		<div style="line-height: 20pt;">&nbsp;</div>
+
+		<h3>調和振動子</h3>
+		<div id="main_text">
+			\[
+				\left\{-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial{x}^2}+\frac{1}{2}m\omega^2x^2\right\}\varphi(x)=\varepsilon\varphi(x)
+			\]
+			の固有関数及び固有値は、
+			\begin{align*}			
+				\varphi_n(x)&=\sqrt{\frac{\alpha}{2^nn!\sqrt{\pi}}}H_n(\xi)e^{-\frac{1}{2}\xi^2}\\
+				&\;\;\alpha=\sqrt{\frac{m\omega}{\hbar}},\;\;\xi=\alpha x\\[10pt]
+				\varepsilon_n&=\left(n+\frac{1}{2}\right)\hbar\omega\;\;\;(n\in\mathbb{N})
+			\end{align*}
+			<details id="white">
+				<summary>導出過程</summary>
+				<div id="main_text">
+					上の定常Schr&ouml;dinger方程式を変形すると、
+					\[
+						\left\{\frac{d^2}{dx^2}+\frac{2m}{\hbar}\left(\varepsilon-\frac{1}{2}m\omega^2x^2\right)\right\}\varphi(x)=0
+					\]
+					無次元化するため、\(\xi:=\alpha{x}\) とおくと、
+					\[
+						\left\{\frac{d^2}{d\xi^2}+\frac{2m\varepsilon}{\alpha^2\hbar^2}-\frac{m^2\omega^2}{\hbar^2\alpha^4}\xi^2\right\}\varphi(x)=0
+					\]
+					\(\displaystyle\alpha=\sqrt{\frac{m\omega}{\hbar}}\) とすれば、
+					\[
+						\left\{\frac{d^2}{d\xi^2}+\frac{2\varepsilon}{\hbar\omega}-\xi^2\right\}\varphi(\xi)=0
+					\]
+					最後に \(\displaystyle\lambda:=\frac{2\varepsilon}{\hbar\omega}\) とすれば、
+					\[
+						\left\{\frac{d^2}{d\xi^2}+(\lambda-\xi^2)\right\}\varphi(\xi)=0
+					\]
+					となる。
+					<br><div style="line-height: 5pt;">&nbsp;</div>
+					ここで、\(|\xi|\rightarrow\infty\) で \(\varphi(\xi)\) が \(0\) に収束して欲しいので、
+					\[
+						\varphi(\xi)=H(\xi)e^{-\frac{1}{2}\xi^2}
+					\]
+					とおき、無次元化した上の方程式に代入すると、
+					\[
+						H''-2\xi H'+(\lambda-1)H=0
+					\]
+					という微分方程式が得られる。そして、
+					\[
+						H(\xi)=\sum_{n=0}^{\infty}a_n\xi^n
+					\]
+					と級数解を仮定すると、(<s>項別微分可能も勿論仮定</s>)
+					\begin{align*}
+						&\sum_{n=0}^\infty\Bigl(n(n-1)a_n\xi^{n-2}-2na_n\xi^n+(\lambda-1)a_n\xi^n\Bigr)\\
+						&=\sum_{n=0}^\infty\bigl((n+2)(n+1)a_{n+2}-2na_n+(\lambda-1)a_n\bigr)\xi^n=0
+					\end{align*}
+					となるので、
+					\[
+						(n+2)(n-1)a_{n+2}=(2n+1-\lambda)a_n
+					\]
+					となる。ただし、波動関数として許される解はこの漸化式が有限で切れる必要があるため、(略)
+					\[
+						\exists{N}\in{\mathbb{N}_0},\;2N+1-\lambda=0
+					\]
+					といった条件が加えられる。
+					<br><div style="line-height: 5pt;">&nbsp;</div>
+					これより、
+					\[
+						\lambda_n=2n+1
+					\]
+					とおけば、\(\displaystyle\lambda:=\frac{2\varepsilon}{\hbar\omega}\) としていたので、
+					\[
+						\varepsilon_n=\hbar\omega\left(n+\frac{1}{2}\right)
+					\]
+					\[
+						H(\xi)=H_n(\xi)=
+						\begin{cases}
+							\displaystyle \sum_{m=0,2,4,\ldots}^{n}a_m\xi^m &(n:偶数)\\
+							\displaystyle \sum_{m=1,3,5,\ldots}^{n}a_m\xi^m &(n:奇数)\\
+						\end{cases}
+					\]
+					となる。この \(H_n(\xi)\) をエルミート多項式という。<a href="http://localhost/note/QuantumMechanics/Hermite_polynomial.html" target="_blank" rel="noopener noreferrer">エルミート多項式の性質</a>
+					\[
+						\int_{-\infty}^{\infty}H_n(\xi)H_m(\xi)e^{-\xi^2}d\xi=2^nn!\sqrt{\pi}\delta_{nm}
+					\]
+					を用いると、
+					\begin{align*}
+						&\int_{-\infty}^{\infty}|\varphi_n(x)|^2\,dx\\
+						&=\int_{-\infty}^{\infty}|H_n(\xi)e^{-\frac{1}{2}\xi^2}|^2\,\frac{d\xi}{\alpha}\\
+						&=\frac{2^nn!\sqrt{\pi}}{\alpha}
+					\end{align*}
+					となるため、規格化された固有関数は、
+					\[
+					\varphi_n(x)=\sqrt{\frac{\alpha}{2^nn!\sqrt{\pi}}}H_n(\xi)e^{-\frac{1}{2}\xi^2}
+					\]
+					となる。
+				</div>
+				<div style="text-align: right"><button id="close2">[閉じる]</button></div>
+			</details>
+
+			<div style="line-height: 10pt;">&nbsp;</div>
+
+			<details id="white">
+				<summary>消滅生成演算子</summary>
+				<div id="main_text">
+					<a href="http://localhost/note/QuantumMechanics/Hermite_polynomial.html" target="_blank" rel="noopener noreferrer">エルミート多項式の性質</a>
+					\begin{alignat*}{2}					
+						H_{n+1}(\xi)e^{-\frac{\xi^2}{2}}&=&\left(\xi-\frac{d}{d\xi}\right)H_n(\xi)e^{-\frac{\xi^2}{2}}\\
+						2nH_{n-1}(\xi)e^{-\frac{\xi^2}{2}}&=&\left(\xi+\frac{d}{d\xi}\right)H_n(\xi)e^{-\frac{\xi^2}{2}}
+					\end{alignat*}
+					及び
+					\[
+						\varphi_n(x)=\sqrt{\frac{\alpha}{2^nn!\sqrt{\pi}}}H_n(\xi)e^{-\frac{1}{2}\xi^2}
+					\]
+					から、
+					\begin{align*}
+						&\left(\xi-\frac{d}{d\xi}\right)\varphi_n(x)=\frac{1}{\sqrt{\hbar}}\left(\sqrt{m\omega}\,\hat{x}-\frac{\hbar}{\sqrt{m\omega}}\frac{d}{dx}\right)\varphi_n(x)\\
+						&=\sqrt{\frac{\alpha}{2^nn!\sqrt{\pi}}}H_{n+1}(\xi)e^{-\frac{\xi^2}{2}}\\
+						&=\sqrt{2}\sqrt{n+1}\sqrt{\frac{\alpha}{2^{n+1}(n+1)!\sqrt{\pi}}}H_{n+1}(\xi)e^{-\frac{\xi^2}{2}}\\
+						&=\sqrt{2}\sqrt{n+1}\;\varphi_{n+1}(x)\\[15pt]
+						&\left(\xi+\frac{d}{d\xi}\right)\varphi_n(x)=\frac{1}{\sqrt{\hbar}}\left(\sqrt{m\omega}\,\hat{x}+\frac{\hbar}{\sqrt{m\omega}}\frac{d}{dx}\right)\varphi_n(x)\\
+						&=\sqrt{\frac{\alpha}{2^nn!\sqrt{\pi}}}2nH_{n-1}(\xi)e^{-\frac{\xi^2}{2}}\\
+						&=\sqrt{2}\sqrt{n}\sqrt{\frac{\alpha}{2^{n-1}(n-1)!\sqrt{\pi}}}H_{n-1}(\xi)e^{-\frac{\xi^2}{2}}\\
+						&=\sqrt{2}\sqrt{n}\;\varphi_{n-1}(x)
+					\end{align*}
+					となるので、
+					\begin{align*}
+						\frac{1}{\sqrt{2\hbar}}\left(\sqrt{m\omega}\,\hat{x}-\frac{\hbar}{\sqrt{m\omega}}\frac{d}{dx}\right)\varphi_n(x)
+						&=\sqrt{n+1}\;\varphi_{n+1}(x)\\
+						\frac{1}{\sqrt{2\hbar}}\left(\sqrt{m\omega}\,\hat{x}+\frac{\hbar}{\sqrt{m\omega}}\frac{d}{dx}\right)\varphi_n(x)
+						&=\sqrt{n}\;\varphi_{n-1}(x)
+					\end{align*}
+					となる。また \(\displaystyle\hat{p}=\frac{\hbar}{i}\frac{d}{dx}\) を用いれば、
+					\begin{align*}
+						\frac{1}{\sqrt{2\hbar}}\left(\sqrt{m\omega}\,\hat{x}-\frac{i}{\sqrt{m\omega}}\hat{p}\right)\varphi_n(x)
+						&=\sqrt{n+1}\;\varphi_{n+1}(x)\\
+						\frac{1}{\sqrt{2\hbar}}\left(\sqrt{m\omega}\,\hat{x}+\frac{i}{\sqrt{m\omega}}\hat{p}\right)\varphi_n(x)
+						&=\sqrt{n}\;\varphi_{n-1}(x)
+					\end{align*}
+					これより、
+					\begin{align*}
+						\hat{a}\;&=\frac{1}{\sqrt{2\hbar}}\left(\sqrt{m\omega}\,\hat{x}+\frac{i}{\sqrt{m\omega}}\hat{p}\right)\\
+						\hat{a}^{\dagger}&=\frac{1}{\sqrt{2\hbar}}\left(\sqrt{m\omega}\,\hat{x}-\frac{i}{\sqrt{m\omega}}\hat{p}\right)
+					\end{align*}
+					とすると、(\(\cdot^{\dagger}\)の定義は後のお話。)
+					\begin{align*}
+						\hat{a}^{\dagger}\varphi_n(x)&=\sqrt{n+1}\;\varphi_{n+1}(x)\\
+						\hat{a}\;\varphi_n(x)&=\sqrt{n}\;\varphi_{n-1}(x)
+					\end{align*}
+					となる。そしてこの \(\hat{a}\) を消滅(下降)演算子、\(\hat{a}^{\dagger}\) を生成(上昇)演算子という。
+					<br><div style="line-height: 10pt;">&nbsp;</div>
+					ちなみに、
+					\begin{align*}
+						\hat{a}^{\dagger}\hat{a}\;\varphi_n(x)
+						&=\hat{a}^{\dagger}\sqrt{n}\varphi_{n-1}(x)\\
+						&=\sqrt{n}\left\{\hat{a}^{\dagger}\varphi_{n-1}(x)\right\}\\
+						&=\sqrt{n}\left\{\sqrt{n}\,\varphi_{n}(x)\right\}\\
+						&=n\,\varphi_n(x)\\[5pt]
+						\hat{a}\hat{a}^{\dagger}\varphi_n(x)
+						&=\hat{a}\sqrt{n+1}\;\varphi_{n+1}(x)\\
+						&=\sqrt{n+1}\Bigl\{\hat{a}\,\varphi_{n+1}(x)\Bigr\}\\
+						&=\sqrt{n+1}\Bigl\{\sqrt{n+1}\,\varphi_{n}(x)\Bigr\}\\
+						&=(n+1)\varphi_n(x)
+					\end{align*}
+					から、
+					\[
+						[\hat{a},\,\hat{a}^\dagger]=\hat{I}
+					\]
+					がわかる。<br>
+					また、
+					\begin{align*}
+						\hat{a}^\dagger\hat{a}
+						&=\frac{1}{2\hbar}\left(\sqrt{m\omega}\,\hat{x}-\frac{\hbar}{\sqrt{m\omega}}\frac{d}{dx}\right)\left(\sqrt{m\omega}\,\hat{x}+\frac{\hbar}{\sqrt{m\omega}}\frac{d}{dx}\right)\\
+						&=\frac{1}{2\hbar}\left[m\omega{x^2}+\hbar{x}\frac{d}{dx}-\hbar\left(1+x\frac{d}{dx}\right)-\frac{\hbar^2}{m\omega}\frac{d^2}{dx^2}\right]\\
+						&=\frac{m\omega}{2\hbar}x^2+-\frac{1}{2}-\frac{1}{2}\frac{\hbar}{m\omega}\frac{d^2}{dx^2}
+					\end{align*}
+					より、
+					\[
+						\hbar\omega\left(\hat{a}^\dagger\hat{a}+\frac{1}{2}\right)=-\frac{\hbar^2}{2m}\frac{d^2}{dx^2}+\frac{1}{2}m\omega^2x^2=\hat{H}
+					\]
+					また \(\hat{a}^{\dagger}\hat{a}\;\varphi_n(x)=n\,\varphi_n(x)\) であったので、
+					\[
+						\hat{H}\varphi_n(x)=\left(n+\frac{1}{2}\right)\hbar\omega\varphi_n(x)
+					\]
+					と先ほど示した結果を得ることもできる。
+				</div>
+				<div style="text-align: right"><button id="close3">[閉じる]</button></div>
+			</details>
+		</div>
+    </div>
+    <footer>
+    <hr id="header">
+    <div class="parent">
+    <div class=footer_prev><a href=./1.html>[prev: 1.Schr&ouml;dinger方程式]</a></div><div class=footer_next><a href=./3.html>[next: 3.物理量と固有値方程式]</a></div>    </div>
+    <div style="text-align: right">
+        <a href="../index.html">[homeに戻る]</a>
+    </div>
+</footer>	</body>
+	<script src="../js/details_close.js"></script>
+</html>

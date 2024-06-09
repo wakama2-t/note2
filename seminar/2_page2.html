@@ -1,0 +1,960 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width"/>
+		<link href="../style.css" rel="stylesheet" />
+		<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+		<title>箱玉系の数理</title>
+	</head>
+
+	<body>
+    <harder>
+    <div style="text-align: center">
+    <a href="./home.html"><h1 id = "title">箱玉系の数理</h1></a>
+    </div>
+
+    <hr id="header">
+    <h2 id =subtitle>第2章 ソリトン</h2><hr id=header2>
+</header>    <div id="contents">
+        <h3>戸田格子</h3>
+            \[m\frac{d^2}{dt^2}y_{n}=\phi'(r_{n+1})-\phi'(r_n)\]
+            \[\phi(r)=\frac{a}{b}e^{-br}+ar-\frac{a}{b}\]
+            <div style="text-align: center;"><img src="./image/im7.png" alt="戸田格子" width="80%"></div>
+        <div id="main_text">
+            <p>・非線形ポテンシャル(戸田ポテンシャル)からなる1次格子</p>
+            <p>・\(n\) 番目のばねの力 \(f_n(t)=-\phi'(r_n)\) を用いると、</p>
+            <div id="main_text">
+                \[\frac{d^2}{dt^2}\log(1+f_n)=f_{n+1}+f_{n-1}-2f_n\]
+                <details id="white"> <!-- 無次元化の確認 -->
+                    <summary>確認</summary>
+                    <div id="main_text">
+                        \begin{alignat}{2}
+                            &m\frac{d^2}{dt^2}y_{n}&=\;\;&\phi'(r_{n+1})&\;-\;\;&\phi'(r_n)&\;\;\;\cdots(1)\\
+                            &m\frac{d^2}{dt^2}y_{n-1}&=\;\;&\phi'(r_{n})&\;-\;\;&\phi'(r_{n-1})&\;\;\;\cdots(2)\\
+                        \end{alignat}
+                        (1)式から(2)式を引いて、
+                        \begin{align*}
+                            m\frac{d^2}{dt^2}r_n
+                            &=\phi'(r_{n+1})+\phi'(r_{n-1})-2\phi'(r_{n})\\
+                            &=-(f_{n+1}+f_{n-1}-2f_n)
+                        \end{align*}
+                        ここで、
+                        \[
+                            r_n=-\frac{1}{b}\log\left[1+\frac{f_n}{a}\right]
+                        \]
+                        <details id="gray"> <!-- 確認 -->
+                            <summary>確認</summary>
+                            <div id="main_text">
+                                \(\displaystyle\phi(r)=\frac{a}{b}e^{-br}+ar-\frac{a}{b}\) なので、
+                                \[
+                                    f_n=-\phi'(r_n)=ae^{-br_n}-a=a(e^{-br_n}-1)
+                                \]
+                                より、
+                                \begin{gather*}                    
+                                    \frac{f_n}{a}=e^{-br_n}-1\\
+                                    1+\frac{f_n}{a}=e^{-br_n}\\
+                                    \log\left[1+\frac{f_n}{a}\right]=-br_n
+                                \end{gather*}
+                                \[
+                                    r_n=-\frac{1}{b}\log\left[1+\frac{f_n}{a}\right]
+                                \]
+                            </div>
+                        <div style="text-align: right"><button id="close1">[閉じる]</button></div>
+                        </details>
+                        となるため、
+                        \[
+                            m\frac{d^2}{dt^2}\left(-\frac{1}{b}\log\left[1+\frac{f_n}{a}\right]\right)=-(f_{n+1}+f_{n-1}-2f_n)
+                        \]
+                        変形して、
+                        \[
+                            \frac{d^2}{dt^2}\left(\log\left[1+\frac{f_n}{a}\right]\right)=\frac{ab}{m}\left(\frac{f_{n+1}}{a}+\frac{f_{n-1}}{a}-2\frac{f_n}{a}\right)
+                        \]
+                        そして、
+                        \[
+                            \frac{f_n}{a}\rightarrow{f_n},\;\sqrt{\frac{ab}{m}}t\rightarrow{t}
+                        \]
+                        と変数変換すれば、
+                        \[
+                            \frac{d^2}{dt^2}\log(1+f_n)=f_{n+1}+f_{n-1}-2f_n
+                        \]
+                        となる。
+                        <br><div style="line-height: 5pt;">&nbsp;</div>
+                        ちなみに、
+                        \begin{align*}
+                            &a:\,[MLT^{-2}]\\
+                            &b:\,[L^{-1}]
+                        \end{align*}
+                        なので、書き改めた \(f_n,\,t\) はともに無次元量となる。
+                    </div>
+                    <div style="text-align: right"><button id="close0">[閉じる]</button></div>
+                </details>
+                <div style="line-height: 5pt;">&nbsp;</div>
+            </div>
+            <p>・連続体近似でKdV方程式に帰着</p>
+            <div id="main_text">
+                <details id="white"> <!-- 連続体近似 -->
+                    <summary>証明</summary>
+                    <div id="main_text">
+                        \[\frac{d^2}{dt^2}\log(1+f_n)=f_{n+1}+f_{n-1}-2f_n\;\;\;\cdots(\ast)\]
+                        からKdV方程式を連続体近似で導く。
+                        <br><div style="line-height: 5pt;">&nbsp;</div>
+                        \((ソリトンの幅)\gg(格子間隔)\) の場合、離散変数 \(n\) を連続変数 \(x\) に変えてもよさそうである。<br>
+                        そして格子間隔を \(1\) とすれば \(f_n(t)=f(x,\,t)\) とすることができる。<br>
+                        \(\log(1+f_n)\) を \(1\) まわりでテイラー展開すると、
+                        \[\log(1+f_n)=\log(1+f)=f-\frac{f^2}{2}+\frac{f^3}{3}-\cdots\]
+                        \(f_{n\pm1}=f(x\pm1,\,t)\) を \(x\) まわりでテイラー展開すると、
+                        \[f_{n+1}=f+\frac{\partial{f}}{\partial{x}}+\frac{1}{2!}\frac{\partial^2f}{\partial{x}^2}+\frac{1}{3!}\frac{\partial^3f}{\partial{x}^3}+\frac{1}{4!}\frac{\partial^4f}{\partial{x}^4}+\cdots\]
+                        \[f_{n-1}=f-\frac{\partial{f}}{\partial{x}}+\frac{1}{2!}\frac{\partial^2f}{\partial{x}^2}-\frac{1}{3!}\frac{\partial^3f}{\partial{x}^3}+\frac{1}{4!}\frac{\partial^4f}{\partial{x}^4}-\cdots\]
+                        となるため、これらを\((\ast)\)に代入すると、
+                        \begin{align*}
+                            \frac{\partial^2}{\partial t^2}\left(f-\frac{f^2}{2}+\frac{f^3}{3}-\cdots\right)
+                            &=\frac{2}{2!}\frac{\partial^2f}{\partial{x}^2}+\frac{2}{4!}\frac{\partial^4f}{\partial{x}^4}+\frac{2}{6!}\frac{\partial^6f}{\partial{x}^6}+\cdots\\
+                            &=\frac{\partial^2f}{\partial{x}^2}+\frac{1}{12}\frac{\partial^4f}{\partial{x}^4}+\frac{1}{360}\frac{\partial^6f}{\partial{x}^6}+\cdots
+                        \end{align*}
+                        となる。そして\(f\) の摂動展開及び空間座標 \(\xi,\) 時間座標 \(\tau\) を、
+                        \[
+                            f=\varepsilon{f^{(1)}}+\varepsilon^2{f^{(2)}}+\varepsilon^3{f^{(3)}}+\cdots
+                        \]
+                        \[
+                            \xi=\varepsilon^{\frac{1}{2}}(x-t),\;\tau=\varepsilon^{\frac{3}{2}}t
+                        \]
+                        <details id="gray"> <!-- Gardner-Morikawa -->
+                            <summary>補足(Gardner-Morikawa変換)</summary>
+                            <div id="main_text">
+                                線型格子(ポテンシャル \(\phi(r)=\frac{1}{2}\chi{r^2}\))では、<br>
+                                波長が大きいとき (波数 \(k\) が小さいとき)、適当に規格化すると、
+                                \[
+                                    \omega=2\sin{\frac{k}{2}}\simeq 2\left(\frac{k}{2}-\frac{1}{6}\left(\frac{k}{2}\right)^3\right)=k-ck^3
+                                \]
+                                となるから、波の位相は、
+                                \[
+                                    kx-\omega{t}=kx-(k-ck^3)t=k(x-t)+ck^3t
+                                \]
+                                ここで、
+                                \[
+                                    k=\varepsilon^{\frac{1}{2}}    
+                                \]
+                                とすれば、(こう置くと後の展開式が少しきれいに)
+                                \[
+                                    \omega=\varepsilon^{\frac{1}{2}}(x-t)+c\varepsilon^{\frac{3}{2}}t
+                                \]
+                                ここから
+                                \[
+                                    \xi= \varepsilon^{\frac{1}{2}}(x-t),\;\tau=   \varepsilon^{\frac{3}{2}}t
+                                \]
+                                の形が出てくる。<br>
+                                そしてこのように変数変換することで、\(k=\varepsilon^{\frac{1}{2}}\,(\ll1)\) を空間変数、時間変数に含めることができ、
+                                小さなスケールでの関係式を導けるようになる。<br>
+                                <div style="line-height: 5pt;">&nbsp;</div>
+                                また、導出したいKdV方程式
+                                \[
+                                    (f_n)_t-3(f_n^2)_x+(f_n)_{xxx}=0    
+                                \]
+                                は非線形項と分散項がつり合う、すなわち、
+                                \[
+                                    \frac{\partial^2}{\partial{x}^2} \varpropto f_n   
+                                \]
+                                となるが、これを
+                                \[
+                                    \left(f_n^{(1)}\right)_\tau-3\left({f_n^{(1)}}^2\right)_{\xi}+\left(f_n^{(1)}\right)_{\xi\xi\xi}=0
+                                \]
+                                でも成り立たせるには、
+                                \[
+                                    f_n^{(1)}\varpropto\frac{\partial^2}{\partial{\xi}^2}\varpropto\frac{1}{\varepsilon}\frac{\partial^2}{\partial{x}^2}\varpropto\frac{1}{\varepsilon}f_n  
+                                \]
+                                すなわち、
+                                \[
+                                    f_n^{(1)}\varpropto\frac{1}{\varepsilon}f_n   
+                                \]
+                                となる必要があるため、
+                                \[
+                                    f_n=\varepsilon f_n^{(1)}+\varepsilon^2f_n^{(2)}+\cdots
+                                \]
+                                という展開式を用いた。
+                                <br><div style="line-height: 5pt;">&nbsp;</div>
+                                ちなみにもし \(k=\varepsilon^{\frac{1}{2}}\) とせず \(k=\varepsilon\) としていたら、展開式は
+                                \[
+                                    f_n=\varepsilon^2f_n^{(1)}+\varepsilon^4f_n^{(2)}+\cdots
+                                \]
+                                となっていた。
+                            </div>
+                            <div style="text-align: right"><button id="close3">[閉じる]</button></div>
+                        </details>
+                        とすると、
+                        \begin{align*}
+                            \frac{\partial}{\partial{t}}&=-\varepsilon^{\frac{1}{2}}\frac{\partial}{\partial\xi}+\varepsilon^{\frac{3}{2}}\frac{\partial}{\partial\tau}\\
+                            \frac{\partial}{\partial{x}}&=\varepsilon^{\frac{1}{2}}\frac{\partial}{\partial\xi}
+                        \end{align*}
+                        <details id="gray"> <!-- 確認 -->
+                            <summary>確認</summary>
+                            <div id="main_text">
+                                \(\xi=\varepsilon^{\frac{1}{2}}(x-t),\;\tau=\varepsilon^{\frac{3}{2}}t\) より、
+                                \begin{align*}
+                                    \frac{\partial}{\partial{t}}
+                                    &=\frac{\partial}{\partial\xi}\frac{\partial{\xi}}{\partial{t}}+\frac{\partial}{\partial\tau}\frac{\partial{\tau}}{\partial{t}}\\
+                                    &=\frac{\partial}{\partial\xi}\left(-\varepsilon^{\frac{1}{2}}\right)+\frac{\partial}{\partial\tau}\left(\varepsilon^{\frac{3}{2}}\right)\\
+                                    &=-\varepsilon^{\frac{1}{2}}\frac{\partial}{\partial\xi}+\varepsilon^{\frac{3}{2}}\frac{\partial}{\partial\tau}\\
+                                    \frac{\partial}{\partial{x}}
+                                    &=\frac{\partial}{\partial\xi}\frac{\partial{\xi}}{\partial{x}}\\
+                                    &=\frac{\partial}{\partial\xi}\left(\varepsilon^{\frac{1}{2}}\right)\\
+                                    &=\varepsilon^{\frac{1}{2}}\frac{\partial}{\partial\xi}
+                                \end{align*}
+                            </div>
+                            <div style="text-align: right"><button id="close4">[閉じる]</button></div>
+                        </details>
+                        となる。これより、
+                        \[
+                            \frac{\partial^2}{\partial t^2}\left(f-\frac{f^2}{2}+\frac{f^3}{3}-\cdots\right)=\frac{\partial^2f}{\partial{x}^2}+\frac{1}{12}\frac{\partial^4f}{\partial{x}^4}+\frac{1}{360}\frac{\partial^6f}{\partial{x}^6}+\cdots
+                        \]
+                        の3次の項を考えると、( \(\varepsilon^2\) では意味のある式は得られない)
+                        <div id="long_mjx">
+                        \begin{align*}
+                            &(左辺)\\
+                            &=-\varepsilon^{\frac{1}{2}}\frac{\partial}{\partial\xi}\left(\varepsilon^{\frac{3}{2}}\frac{\partial}{\partial\tau}\varepsilon f^{(1)}\right)
+                            +\varepsilon^{\frac{3}{2}}\frac{\partial}{\partial\tau}\left(-\varepsilon^{\frac{1}{2}}\frac{\partial}{\partial\xi}\varepsilon f^{(1)}\right)
+                            -\varepsilon^{\frac{1}{2}}\frac{\partial}{\partial\xi}\left\{-\varepsilon^{\frac{1}{2}}\frac{\partial}{\partial\xi}\left(-\frac{(\varepsilon f^{(1)})^2}{2}\right)\right\}\\
+                            &=\varepsilon^3\left(-2\frac{\partial^2f^{(1)}}{\partial\tau\partial\xi}-\frac{1}{2}\frac{\partial^2}{\partial\xi^2}(f^{(1)})^2\right)\\
+                            &(右辺)\\
+                            &=\frac{1}{12}\left(\varepsilon^{\frac{1}{2}}\frac{\partial}{\partial\xi}\right)^4\varepsilon f^{(1)}\\
+                            &=\varepsilon^3\cdot\frac{1}{12}\frac{\partial^4f^{(1)}}{\partial\xi^4}
+                        \end{align*}
+                        </div>
+                        より、
+                        \[
+                            -2\frac{\partial^2f^{(1)}}{\partial\tau\partial\xi}-\frac{1}{2}\frac{\partial^2}{\partial\xi^2}(f^{(1)})^2=\frac{1}{12}\frac{\partial^4f^{(1)}}{\partial\xi^4}
+                        \]
+                        両辺 \(\xi\) で積分すると、
+                        \[
+                            -2\frac{\partial f^{(1)}}{\partial\tau}-f^{(1)}\frac{\partial}{\partial\xi}f^{(1)}=\frac{1}{12}\frac{\partial^3f^{(1)}}{\partial\xi^3}
+                        \]
+                        整理して、
+                        \[
+                            \frac{\partial f^{(1)}}{\partial\tau}+\frac{1}{2}f^{(1)}\frac{\partial}{\partial\xi}f^{(1)}+\frac{1}{24}\frac{\partial^3f^{(1)}}{\partial\xi^3}=0
+                        \]
+                        \(t=\tau,\;x=2\sqrt[3]{3}\xi,\;u(x,\,t)=\frac{6}{\sqrt[3]{3}}f^{(1)}(\xi,\,\tau)\) とすれば、
+                        \[
+                            \frac{\partial u(x,\,t)}{\partial t}+6u(x,\,t)\frac{\partial u(x,\,t)}{\partial{x}}+\frac{\partial^3 u(x,\,t)}{\partial{x}^3}=0
+                        \]
+                    </div>
+                    <div style="text-align: right"><button id="close2">[閉じる]</button></div>
+                </details>
+                <div style="line-height: 5pt;">&nbsp;</div>
+            </div>
+            <p>・梯子型非線形LC回路の電流電圧方程式と同等</p>
+            <div style="text-align: center;"><img src="./image/im8.png" alt="ラダーLC回路" width="80%"></div>
+            <div id="main_text">
+                <details id="white"> <!-- LC -->
+                    <summary>確認</summary>
+                    <div id="main_text">
+                        コイル(インダクタ)のインダクタンス: \(L\) とすると、
+                        \[
+                            L\frac{dI_n}{dt}=v_n-v_{n+1}
+                        \]
+                        が成り立つ。添え字をずらして、
+                        \[
+                            L\frac{dI_{n-1}}{dt}=v_{n-1}-v_{n}
+                        \]
+                        から、
+                        \[
+                            L\frac{d}{dt}(I_{n-1}-I_n)=v_{n+1}+v_{n-1}-2v_n
+                        \]
+                        を得る。<br>
+                        またキャパシタに流れる電流は、そのキャパシタにたまる電荷 \(q_n\) を用いて、
+                        \[
+                            \frac{dq_n}{dt}=I_{n-1}-I_n
+                        \]
+                        となるから、
+                        \[
+                            L\frac{d^2q_n}{dt^2}=v_{n+1}+v_{n-1}-2v_n
+                        \]
+                        となる。<br>
+                        ここで \(q\) と \(v\) の関係、すなわちキャパシタを考える。非線形キャパシタとすると、
+                        \[
+                            C(V)=\frac{Q(V_0)}{F(V_0)+V-V_0}
+                        \]
+                        \begin{align*}
+                            C&:\,キャパシタの容量\\
+                            V_0&:\,キャパシタに加えた直流電圧(直流バイアス電圧)\\
+                            Q(V_0),\;F(V_0)&:\;非線形キャパシタの特性によって決まる量
+                        \end{align*}
+                        となる。一般にキャパシタに加えられる電圧 \(v_n\) と蓄えられる電荷 \(q_n\) を用いて
+                        \[
+                            q_n=\int_0^{v_n}C(V)\,dV
+                        \]
+                        となるため、\(v_n:=V_0+V_n\) とし、電圧の交流成分 \(V_n\) を定義すると、
+                        \begin{align*}
+                            q_n
+                            &=\int_{0}^{V_0+V_n}\frac{Q(V_0)}{F(V_0)+V-V_0}dV\\
+                            &=\int_{0}^{V_0}\frac{Q(V_0)}{F(V_0)+V-V_0}dV+\int_{V_0}^{V_0+V_n}\frac{Q(V_0)}{F(V_0)+V-V_0}dV
+                        \end{align*}
+                        第1項は時間に依存せず \(\frac{d^2}{dt^2}\) で消えるため考えない。第2項は、
+                        \begin{align*}
+                            &\int_{V_0}^{V_0+V_n}\frac{Q(V_0)}{F(V_0)+V-V_0}dV\\
+                            &=Q(V_0)\Bigl[\log\bigl(F(V_0)+V-V_0\bigr)\Bigr]_{V_0}^{V_0+V_n}\\
+                            &=Q(V_0)\log\left[\frac{F(V_0)+V_n}{F(V_0)}\right]\\
+                            &=Q(V_0)\log\left[1+\frac{V_n}{F(V_0)}\right]
+                        \end{align*}
+                        となるため、
+                        \[
+                            L\frac{d^2q_n}{dt^2}=v_{n+1}+v_{n-1}-2v_n
+                        \]
+                        は、
+                        \[
+                            \frac{d^2}{dt^2}\left(\log\left[1+\frac{V_n}{F(V_0)}\right]\right)=\frac{1}{LQ(V_0)}(V_{n+1}+V_{n-1}-2V_n)
+                        \]
+                        となる。これは無次元化する前の戸田格子の運動方程式
+                        \[
+                            \frac{d^2}{dt^2}\left(\log\left[1+\frac{f_n}{a}\right]\right)=\frac{b}{m}\left(f_{n+1}+f_{n-1}-2f_n\right)
+                        \]
+                        と同じ形になる。
+                    </div>
+                    <div style="text-align: right"><button id="close5">[閉じる]</button></div>
+                </details>
+            </div>
+            <div style="line-height: 5pt;">&nbsp;</div>
+            <p>・1-ソリトン解</p>
+            <div id="main_text">
+                \begin{gather*}
+                    f_n(t)=\frac{d^2}{dt^2}\log\tau_n(t)\\
+                    \tau_n(t)=1+e^{2\eta_n}
+                \end{gather*}
+                \[\left\{\begin{aligned}
+                    \eta_n&=kn-\omega t+\theta\\
+                    \omega\,&=\pm{\sinh{k}}
+                \end{aligned}\right.\]
+                <details id="white"> <!-- 1-ソリトン解 -->
+                    <summary>導出</summary>
+                    <div id="main_text">
+                        KdV方程式同様、
+                        \[
+                            f_n=\frac{d^2}{dt^2}\log\tau_n
+                        \]
+                        とおくと、(方程式の形から定数倍は無し)
+                        \begin{align*}                    
+                            \frac{d^2}{dt^2}\log\left(1+\frac{d^2}{dt^2}\log\tau_n\right)
+                            &=\frac{d^2}{dt^2}\log\tau_{n+1}+\frac{d^2}{dt^2}\log\tau_{n^2}-2\frac{d^2}{dt^2}\log\tau_n\\
+                            &=\frac{d^2}{dt^2}\log\left(\frac{\tau_{n+1}\tau_{n-1}}{\tau_n^2}\right)
+                        \end{align*}
+                        \[
+                            \frac{d^2}{dt^2}\log\tau_n=\frac{\tau_n''\tau_n-\tau_n'^2}{\tau_n^2}
+                        \]
+                        より、
+                        \[
+                            1+\frac{\tau_n''\tau_n-\tau_n'^2}{\tau_n^2}=\frac{\tau_{n+1}\tau_{n-1}}{\tau_n^2}
+                        \]
+                        整理すると、
+                        \[
+                            \tau_n''\tau_n-\tau_n'^2=\tau_{n+1}\tau_{n-1}-\tau_n^2
+                        \]
+                        広田のD-operatorを用いると、(\(\displaystyle e^{\delta D_x}f(x)\cdot g(x):=f(x+\delta)g(x-\delta)\))
+                        \[
+                            \frac{1}{2}D_t^2\,\tau_n\cdot\tau_n=(e^{D_n}-1)\,\tau_n\cdot\tau_n\;\;\cdots(\ast)
+                        \]
+                        と双線型形式で表せる。
+                        <br><div style="line-height: 5pt;">&nbsp;</div>
+                        摂動法を用いる。\(\tau_n=1\) は \((\ast)\) を満たすため、
+                        \[
+                            \tau_n=1+\varepsilon\tau_n^{(1)}+\varepsilon^2\tau_n^{(2)}+\varepsilon^3\tau_n^{(3)}+\cdots\;\;\;(n\in\mathbb{Z})
+                        \]
+                        とし、\(\varepsilon\) の次数ごとに考える。
+                        \begin{alignat}{2}
+                            \varepsilon\;&:\;\bigl(\frac{1}{2}D_t^2-(e^{D_n}-1)\bigr)\,\bigl(\tau_n^{(1)}\cdot1+1\cdot\tau_n^{(1)}\bigr)=0&\;\;\;\cdots(\ast_1)\\
+                            \varepsilon^2&:\;\bigl(\frac{1}{2}D_t^2-(e^{D_n}-1)\bigr)\,\bigl(\tau_n^{(2)}\cdot1+\tau_n^{(1)}\cdot\tau_n^{(1)}+1\cdot\tau_n^{(2)}\bigr)=0&\;\;\;\cdots(\ast_2)\\
+                            \varepsilon^2&:\;\bigl(\frac{1}{2}D_t^2-(e^{D_n}-1)\bigr)\,\bigl(\tau_n^{(3)}\cdot1+\tau_n^{(2)}\cdot\tau_n^{(1)}+\tau_n^{(1)}\cdot\tau_n^{(2)}+1\cdot\tau_n^{(3)}\bigr)=0&\;\;\;\cdots(\ast_3)\\
+                            \vdots
+                        \end{alignat}
+                        <p>\((\ast_1)\) を満たす \(\tau_n^{(1)}\) を考える。</p>
+                        <div id="main_text">
+                            \begin{align*}
+                                \frac{1}{2}D_t^2\,\bigl(\tau_n^{(1)}\cdot1+1\cdot\tau_n^{(1)}\bigr)
+                                &=\partial_t^2\tau_n^{(1)}\\
+                                e^{D_n}\bigl(\tau_n^{(1)}\cdot1+1\cdot\tau_n^{(1)}\bigr)
+                                &=\tau_{n+1}^{(1)}+\tau_{n-1}^{(1)}\\
+                                1\;\;\bigl(\tau_n^{(1)}\cdot1+1\cdot\tau_n^{(1)}\bigr)
+                                &=2\tau_n^{(1)}\\
+                            \end{align*}
+                            より、
+                            \[
+                                \partial_t^2\tau_n^{(1)}-(\tau_{n+1}^{(1)}+\tau_{n-1}^{(1)}-2\tau_n^{(1)})=0
+                            \]
+                            ここでKdV方程式同様、
+                            \[
+                                \tau_n^{(1)}=e^{2(kn-\omega{t}+\theta)}
+                            \]
+                            とすると、(2倍すると後々うれしい)
+                            \[
+                                \left(4\omega^2-(e^{2k}+e^{-2k}-2)\right)e^{2(kn-\omega{t}+\theta)}=0
+                            \]
+                            分散関係を求めると、
+                            \begin{align*}
+                                4\omega^2&-(e^{2k}+e^{-2k}-2)=0\\
+                                \omega^2&=\frac{e^{2k}-2+e^{-2k}}{4}\\
+                                &=\frac{e^{2k}-2e^{k}e^{-k}+e^{-2k}}{4}\\
+                                &=\left(\frac{e^k-e^{-k}}{2}\right)^2\;\;\leftarrow うれしい㌽\\
+                                &=\sinh^2{k}
+                            \end{align*}
+                            となるため、
+                            \[
+                                \tau_n^{(1)}=e^{2(kn-\omega{t}+\theta)},\;\omega=\pm\sinh{k}
+                            \]
+                            は \((\ast_1)\) を満たすため、これを \(\tau_n^{(1)}\) とする。
+                        </div>
+                        <p>\((\ast_2)\) を満たす \(\tau_n^{(2)}\) を考える。</p>
+                        <div id="main_text">
+                            \begin{align*}
+                                \frac{1}{2}D_t^2\,\bigl(\tau_n^{(2)}\cdot1+\tau_n^{(1)}\cdot\tau_n^{(1)}+1\cdot\tau_n^{(2)}\bigr)
+                                &=\partial_t^2\tau_n^{(2)}\\
+                                e^{D_n}\bigl(\tau_n^{(2)}\cdot1+\tau_n^{(1)}\cdot\tau_n^{(1)}+1\cdot\tau_n^{(2)}\bigr)
+                                &=\tau_{n+1}^{(2)}+\tau_{n+1}^{(1)}\tau_{n-1}^{(1)}+\tau_{n-1}^{(2)}\\
+                                &=\tau_{n+1}^{(2)}+\tau_n^{(1)}e^{2k}\tau_n^{(1)}e^{-2k}+\tau_{n-1}^{(2)}\\
+                                &=\tau_{n+1}^{(2)}+{\tau_n^{(1)}}^2+\tau_{n-1}^{(2)}\\
+                                1\;\;\bigl(\tau_n^{(2)}\cdot1+\tau_n^{(1)}\cdot\tau_n^{(1)}+1\cdot\tau_n^{(2)}\bigr)
+                                &=2\tau_n^{(2)}+{\tau_n^{(1)}}^2\\
+                            \end{align*}
+                            より、
+                            \begin{align*}
+                                0
+                                &=\partial_t^2\tau_n^{(2)}-\bigl((\tau_{n+1}^{(2)}+{\tau_n^{(1)}}^2+\tau_{n-1}^{(2)})-(2\tau_n^{(2)}+{\tau_n^{(1)}}^2)\bigr)\\
+                                &=\partial_t^2\tau_n^{(2)}-(\tau_{n+1}^{(2)}+\tau_{n-1}^{(2)}-2\tau_n^{(2)})
+                            \end{align*}
+                            となるため、
+                            \[
+                                \tau_n^{(2)}=0
+                            \]
+                            は \((\ast_2)\) を満たすため、これを \(\tau_n^{(2)}\) とする。
+                        </div>
+                        <p>\((\ast_m)\;(m\geq{3})\) を満たす \(\tau_n^{(m)}\) を考える。</p>
+                        <div id="main_text">
+                            \(\tau_n^{(1)}=\tau_n^{(2)}=\cdots=\tau_n^{(m-1)}=0\) とすると、\((\ast_m)\) は、
+                            \[
+                                \partial_t^2\tau_n^{(m)}-(\tau_{n+1}^{(m)}+\tau_{n-1}^{(m)}-2\tau_n^{(m)})=0
+                            \]
+                            となり、
+                            \[
+                                \tau_n^{(m)}=0
+                            \]
+                            とできるため、任意の \(m\geq{3}\) に対して、\(\tau_n^{(m)}=0\) となる。
+                        </div>
+                        <div style="line-height: 5pt;">&nbsp;</div>
+                        よって、
+                        \[
+                            \tau_n=1+e^{kn-\omega{t}+\theta},\;\omega=\pm\sinh{k}
+                        \]
+                    </div>
+                    <div style="text-align: right"><button id="close6">[閉じる]</button></div>
+                </details>
+            </div>
+            <div style="line-height: 5pt;">&nbsp;</div>
+            <p>・2-ソリトン解</p>
+            <div id="main_text">
+                \begin{gather*}
+                    f_n(t)=\frac{d^2}{dt^2}\log\tau_n(t)\\
+                    \tau_n(t)=1+e^{2{\eta_1}_n}+e^{2{\eta_2}_n}+e^{2{\eta_1}_n+2{\eta_2}_n+A_{12}}
+                \end{gather*}
+                \[\left\{\begin{aligned}
+                    {\eta_i}_n&=k_in-\omega_it+\theta_i\\
+                    \omega_i\,&=\pm{\sinh{k_i}}\\
+                    e^{A_{12}}&=\frac{\sinh^2(k_1-k_2)-(\omega_1-\omega_2)^2}{(\omega_1+\omega_2)^2-\sinh^2(k_1+k_2)}
+                \end{aligned}\right.\]
+            </div>
+            <div style="line-height: 5pt;">&nbsp;</div>
+            <p>・2-ソリトン解のシミュレーション</p>
+            <div id="main_text">
+                <div class="parent2">
+                    <div id="child">
+                        -追い越し衝突-
+                        <div style="text-align: center;">
+                            <video controls loop width="90%">
+                                <source src="./image/1.webm" type="video/webm">
+                            </video>
+                        </div>
+                    </div>
+                <div style="line-height: 5pt;">&nbsp;</div>
+                    <div id="child">
+                        -正面衝突-
+                        <div style="text-align: center;">
+                            <video controls loop width="90%">
+                                <source src="./image/2.webm" type="video/webm">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                ※ 黒縦線は離散変数 \(n\) の場合、青線は連続変数 \(x\) に拡張した場合
+            </div>
+            <p>・Lax形式</p>
+            <div id="main_text">
+                戸田格子の運動方程式(無次元)は、\(P_n:=\dot{y}_n,\;F_n:=e^{-(y_{n+1}-y_n)}\) とすると、
+                \[\left\{
+                    \begin{aligned}    
+                        \frac{d}{dt}P_n&=F_{n-1}-F_n\\
+                        \frac{d}{dt}F_n&=(P_n-P_{n+1})F_n  
+                    \end{aligned}
+                \right.\]
+                <details id="white"> <!-- 確認 -->
+                    <summary>確認</summary>
+                    <div id="main_text">
+                        \(r_n=y_n-y_{n-1}\) なので、
+                        \begin{align*}
+                            m\frac{d^2}{dt^2}y_n
+                            &=\phi'(r_{n+1})-\phi'(r_{n})\\
+                            &=-a\left(e^{-br_{n+1}}-e^{-br_{n}}\right)\\
+                            &=a\left(e^{-b(y_{n}-y_{n-1})}-e^{-b(y_{n+1}-y_n)}\right)
+                        \end{align*}
+                        となる。
+                        \[
+                            b y_n\rightarrow y_n,\;\;\sqrt{\frac{ab}{m}}t\rightarrow{t}    
+                        \]
+                        と変数変換し無次元化すると、
+                        \[
+                            \frac{d^2}{dt^2}y_n=e^{-(y_{n}-y_{n-1})}-e^{-(y_{n+1}-y_n)}
+                        \]
+                        となる。<br>
+                        \(\displaystyle P_n:=\frac{d}{dt}y_n\) とすると、
+                        \[\left\{
+                            \begin{aligned}    
+                                P_n&=\frac{d}{dt}y_n\\
+                                \frac{d}{dt}P_n&=e^{-(y_{n}-y_{n-1})}-e^{-(y_{n+1}-y_n)}
+                            \end{aligned}
+                        \right.\]
+                        \(\displaystyle F_n:=e^{-(y_{n+1}-y_n)}\) とすれば、
+                        \begin{align*}
+                            \frac{d}{dt}F_n
+                            &=-\frac{d}{dt}(y_{n+1}-y_n)e^{-(y_{n+1}-y_n)}\\
+                            &=-\frac{d}{dt}(y_{n+1}-y_n)F_n\\
+                            &=(P_n-P_{n+1})F_n
+                        \end{align*}
+                        より、
+                        \[\left\{
+                        \begin{aligned}    
+                            \frac{d}{dt}P_n&=F_{n-1}-F_n\\
+                            \frac{d}{dt}F_n&=(P_n-P_{n+1})F_n  
+                        \end{aligned}
+                        \right.\]
+                    </div>
+                    <div style="text-align: right"><button id="close7">[閉じる]</button></div>
+                </details>
+                と変形できる。また \(\displaystyle a_n:=\frac{1}{2}\sqrt{F_n},\;b_n:=\frac{1}{2}P_n\) とすると、
+                \[\left\{
+                    \begin{aligned}    
+                        \frac{d}{dt}a_n&=a_n(b_n-b_{n+1})\\
+                        \frac{d}{dt}b_n&=2(a_{n-1}^2-a_n^2)  
+                    \end{aligned}
+                \right.\]
+                であり、
+                \begin{align*}
+                    L(t)&:=
+                    \begin{pmatrix}
+                        b_1&a_1&0&&&&\huge{O}\\
+                        a_1&b_2&a_2&\ddots&&&\\
+                        0  &a_2&b_3&\ddots&\ddots&&\\
+                        &\ddots&\ddots&\ddots&\ddots&\ddots&\\
+                        &&\ddots&\ddots&b_{N-2}&a_{N-2}&0\\
+                        &&&\ddots&a_{N-2}&b_{N-1}&a_{N-1}\\
+                        \huge{O}&&&&0&a_{N-1}&b_N\\
+                    \end{pmatrix}\\
+                    M(t)&:=
+                    \begin{pmatrix}
+                        0&-a_1&0&&&&\huge{O}\\
+                        a_1&0&-a_2&\ddots&&&\\
+                        0  &a_2&0&\ddots&\ddots&&\\
+                        &\ddots&\ddots&\ddots&\ddots&\ddots&\\
+                        &&\ddots&\ddots&0&-a_{N-2}&0\\
+                        &&&\ddots&a_{N-2}&0&-a_{N-1}\\
+                        \huge{O}&&&&0&a_{N-1}&0\\
+                    \end{pmatrix}
+                \end{align*}
+                とすると、
+                \[
+                    L_t=[M,\,L]
+                \]
+                を満たす。
+                <details id="white"> <!-- 確認 -->
+                    <summary>確認</summary>
+                    <div  id="main_text">
+                        <div id="long_mjx">
+                            \begin{align*}
+                                ML
+                                &=
+                                \begin{pmatrix}
+                                    -a_1^2&-a_1b_2&-a_1a_2&&&&\huge{O}\\
+                                    a_1b_1&a_1^2-a_2^2&-a_2b_3&-a_2a_3&&&\\
+                                    a_1a_2&a_2b_2&a_2^2-a_3^2&\ddots&\ddots&&\\
+                                    &a_2a_3&\ddots&\ddots&\ddots&-a_{N-3}a_{N-2}&\\
+                                    &&\ddots&\ddots&a_{N-3}^2-a_{N-2}^2&-a_{N-2}b_{N-1}&-a_{N-2}a_{N-1}\\
+                                    &&&a_{N-3}a_{N-2}&a_{N-2}b_{N-2}&a_{N-2}^2-a_{N-1}^2&-a_{N-1}b_N\\
+                                    \huge{O}&&&&a_{N-2}a_{N-1}&a_{N-1}b_{N-1}&a_{N-1}^2
+                                \end{pmatrix}\\
+                                LM
+                                &=
+                                \begin{pmatrix}
+                                    a_1^2&-a_1b_1&-a_1a_2&&&&\huge{O}\\
+                                    a_1b_2&a_2^2-a_1^2&-a_2b_2&-a_2a_3&&&\\
+                                    a_1a_2&a_2b_3&a_3^2-a_2^2&\ddots&\ddots&&\\
+                                    &a_2a_3&\ddots&\ddots&\ddots&-a_{N-3}a_{N-2}&\\
+                                    &&\ddots&\ddots&a_{N-2}^2-a_{N-3}^2&-a_{N-2}b_{N-2}&-a_{N-2}a_{N-1}\\
+                                    &&&a_{N-3}a_{N-2}&a_{N-2}b_{N-1}&a_{N-1}^2-a_{N-2}^2&-a_{N-1}b_{N-1}\\
+                                    \huge{O}&&&&a_{N-2}a_{N-1}&a_{N-1}b_{N}&-a_{N-1}^2
+                                \end{pmatrix}
+                            \end{align*}
+                        </div>
+                        より、
+                        <div id="long_mjx">
+                            \begin{align*}
+                                [M,\,L]
+                                &=
+                                \begin{pmatrix}
+                                    -2a_1^2&a_1(b_1-b_2)&0&&&&\huge{O}\\
+                                    a_1(b_1-b_2)&2(a_1^2-a_2^2)&a_2(b_2-b_3)&\ddots&&\\
+                                    0&a_2(b_2-b_3)&2(a_2^2-a_3^2)&\ddots&\ddots&\\
+                                    &\ddots&\ddots&\ddots&\ddots&\ddots&\\
+                                    &&\ddots&\ddots&2(a_{N-3}^2-a_{N-2}^2)&a_{N-3}(b_{N-3}-b_{N-2})&0\\
+                                    &&&\ddots&a_{N-3}(b_{N-3}-b_{N-2})&2(a_{N-2}^2-a_{N-1}^2)&a_{N-2}(b_{N-2}-b_{N-1})\\
+                                    \huge{O}&&&&0&a_{N-2}(b_{N-2}-b_{N-1})&2a_{N-1}^2
+                                \end{pmatrix}
+                            \end{align*}
+                        </div>
+                        となる。格子の両端が固定されている場合、
+                        \[
+                            a_0=a_N=0
+                        \]
+                        と境界条件を定めると、対角成分は、
+                        \[
+                            2(a_{n-1}^2-a_{n}^2)=\frac{d}{dt}b_n
+                        \]
+                        その上下の成分は、
+                        \[
+                            a_{n}(b_n-b_{n+1})=\frac{d}{dt}a_n
+                        \]
+                        となり、
+                        \[
+                            L_t=[M,\,L]
+                        \]
+                        が確認できる。
+                        <br><div style="line-height: 5pt;">&nbsp;</div>
+                        ちなみに周期境界条件を課したいときは、
+                        \begin{align*}
+                            L(t)&:=
+                            \begin{pmatrix}
+                                b_1&a_1&0&&&&a_N\\
+                                a_1&b_2&a_2&\ddots&&&\\
+                                0  &a_2&b_3&\ddots&\ddots&&\\
+                                &\ddots&\ddots&\ddots&\ddots&\ddots&\\
+                                &&\ddots&\ddots&b_{N-2}&a_{N-2}&0\\
+                                &&&\ddots&a_{N-2}&b_{N-1}&a_{N-1}\\
+                                a_N&&&&0&a_{N-1}&b_N\\
+                            \end{pmatrix}\\
+                            M(t)&:=
+                            \begin{pmatrix}
+                                0&-a_1&0&&&&a_N\\
+                                a_1&0&-a_2&\ddots&&&\\
+                                0  &a_2&0&\ddots&\ddots&&\\
+                                &\ddots&\ddots&\ddots&\ddots&\ddots&\\
+                                &&\ddots&\ddots&0&-a_{N-2}&0\\
+                                &&&\ddots&a_{N-2}&0&-a_{N-1}\\
+                                -a_N&&&&0&a_{N-1}&0\\
+                            \end{pmatrix}
+                        \end{align*}
+                        とすれば、
+                        <div id="long_mjx">
+                            \begin{align*}
+                                ML
+                                &=
+                                \begin{pmatrix}
+                                    a_N^2-a_1^2&-a_1b_2&-a_1a_2&&&a_{N-1}a_N&a_Nb_N\\
+                                    a_1b_1&a_1^2-a_2^2&-a_2b_3&-a_2a_3&&&\\
+                                    a_1a_2&a_2b_2&a_2^2-a_3^2&\ddots&\ddots&&\\
+                                    &a_2a_3&\ddots&\ddots&\ddots&-a_{N-3}a_{N-2}&\\
+                                    &&\ddots&\ddots&a_{N-3}^2-a_{N-2}^2&-a_{N-2}b_{N-1}&-a_{N-2}a_{N-1}\\
+                                    &&&a_{N-3}a_{N-2}&a_{N-2}b_{N-2}&a_{N-2}^2-a_{N-1}^2&-a_{N-1}b_N\\
+                                    -a_Nb_1&-a_1a_N&&&a_{N-2}a_{N-1}&a_{N-1}b_{N-1}&a_{N-1}^2-a_{N}^2
+                                \end{pmatrix}\\
+                                LM
+                                &=
+                                \begin{pmatrix}
+                                    a_1^2-a_{N}^2&-a_1b_1&-a_1a_2&&&a_{N-1}a_N&a_Nb_1\\
+                                    a_1b_2&a_2^2-a_1^2&-a_2b_2&-a_2a_3&&&\\
+                                    a_1a_2&a_2b_3&a_3^2-a_2^2&\ddots&\ddots&&\\
+                                    &a_2a_3&\ddots&\ddots&\ddots&-a_{N-3}a_{N-2}&\\
+                                    &&\ddots&\ddots&a_{N-2}^2-a_{N-3}^2&-a_{N-2}b_{N-2}&-a_{N-2}a_{N-1}\\
+                                    &&&a_{N-3}a_{N-2}&a_{N-2}b_{N-1}&a_{N-1}^2-a_{N-2}^2&-a_{N-1}b_{N-1}\\
+                                    -a_Nb_N&-a_1a_N&&&a_{N-2}a_{N-1}&a_{N-1}b_{N}&a_N^2-a_{N-1}^2
+                                \end{pmatrix}
+                            \end{align*}
+                        </div>
+                        より、
+                        <div id="long_mjx">
+                            \begin{align*}
+                                [M,\,L]
+                                &=
+                                \begin{pmatrix}
+                                    2(a_N-a_1^2)&a_1(b_1-b_2)&0&&&&a_N(b_N-b_1)\\
+                                    a_1(b_1-b_2)&2(a_1^2-a_2^2)&a_2(b_2-b_3)&\ddots&&\\
+                                    0&a_2(b_2-b_3)&2(a_2^2-a_3^2)&\ddots&\ddots&\\
+                                    &\ddots&\ddots&\ddots&\ddots&\ddots&\\
+                                    &&\ddots&\ddots&2(a_{N-3}^2-a_{N-2}^2)&a_{N-3}(b_{N-3}-b_{N-2})&0\\
+                                    &&&\ddots&a_{N-3}(b_{N-3}-b_{N-2})&2(a_{N-2}^2-a_{N-1}^2)&a_{N-2}(b_{N-2}-b_{N-1})\\
+                                    a_N(b_N-b_1)&&&&0&a_{N-2}(b_{N-2}-b_{N-1})&2(a_{N-1}^2-a_{N}^2)
+                                \end{pmatrix}
+                            \end{align*}
+                        </div>
+                        となり、
+                        \[
+                            a_N=a_0,\;b_N=b_0
+                        \]
+                        の条件下で、
+                        \[
+                            L_t=[M,\,L]
+                        \]
+                        が確認できる。
+                    </div>
+                    <div style="text-align: right"><button id="close8">[閉じる]</button></div>
+                </details>
+            </div>
+            <p>・保存量</p>
+            <div id="main_text">
+                \(m\in\mathbb{N}_0\) に対して、
+                \[
+                    \mathrm{Tr}\,L^m
+                \]
+                は保存量となる。
+                <details id="white"> <!-- 保存量 -->
+                    <summary>証明＆補足</summary>
+                    <div id="main_text">
+                        \begin{align*}
+                            \frac{d}{dt}\mathrm{Tr}\,L^m
+                            &=\mathrm{Tr}\,\left(\frac{d}{dt}L^m\right)\\
+                            &=\mathrm{Tr}\,\left(mL^{m-1}L_t\right)\\
+                            &=m\mathrm{Tr}\,\left(L^{m-1}L_t\right)\\
+                            &=m\mathrm{Tr}\,\left(L^{m-1}[M,\,L]\right)\\
+                            &=m\mathrm{Tr}\,\left(L^{m-1}(ML-LM)\right)\\
+                            &=m\mathrm{Tr}\,\left(L^{m-1}(ML-ML)\right)\\
+                            &=0\\
+                        \end{align*}
+                        となり示せた。
+                        <details id="gray"> <!-- 行列の微分 -->
+                            <summary>対角和、行列の微分について確認</summary>
+                            <div id="main_text">
+                                \(A,\,B:\,n\times{n}\) 行列, \((A)_{ij}=a_{ij},\;(B)_{ij}=b_{ij}\) とする。
+                                <br><div style="line-height: 5pt;">&nbsp;</div>
+                                ・対角和と微分の交換
+                                    \[
+                                        \frac{d}{dt}\mathrm{Tr}A=\frac{d}{dt}\sum_{i=1}^{n}a_{ii}=\sum_{i=1}^{n}\frac{d}{dt}a_{ii}=\mathrm{Tr}A_t
+                                    \]
+                                    <div style="line-height: 10pt;">&nbsp;</div>
+                                ・積の微分
+                                <div id="main_text">
+                                    \[
+                                        (AB)_{ij}=\sum_{k=1}^{n}a_{ik}b_{kj}
+                                    \]
+                                    より、
+                                    \begin{align*}                                
+                                        \left(\frac{d}{dt}AB\right)_{ij}
+                                        &=\frac{d}{dt}\sum_{k=1}^{n}a_{ik}b_{kj}\\
+                                        &=\sum_{k=1}^{n}\left(\frac{da_{ik}}{dt}b_{kj}+a_{ik}\frac{db_{kj}}{dt}\right)\\
+                                        &=\sum_{k=1}^{n}\frac{da_{ik}}{dt}b_{kj}+\sum_{k=1}^{n}a_{ik}\frac{db_{kj}}{dt}\\
+                                        &=(A_tB)_{ij}+(AB_t)_{ij}
+                                    \end{align*}
+                                    \[
+                                        \frac{d}{dt}AB=\frac{dA}{dt}B+A\frac{dB}{dt}
+                                    \]
+                                </div><div style="line-height: 10pt;">&nbsp;</div>
+                                ・べき乗の微分
+                                <div id="main_text">
+                                    \[
+                                        \frac{d}{dt}A^m=mA^{m-1}A_t
+                                    \]
+                                    帰納法で示す。<br>
+                                    \(m=1\) のときは明らか。<br>
+                                    \(m=k\) のとき成り立つと仮定して \(m=k+1\) を考えると、
+                                    \begin{align*}
+                                        \frac{d}{dt}A^{k+1}
+                                        &=\frac{d}{dt}AA^k\\
+                                        &=A_tA^k+AkA^{k-1}A_t\\
+                                        &=A^{k}A_t+kA^kA_t\\
+                                        &=(k+1)A^kA_t
+                                    \end{align*}
+                                    となり示せた。
+                                </div>
+
+                            </div>
+                            <div style="text-align: right"><button id="close10">[閉じる]</button></div>
+                        </details><div style="line-height: 5pt;">&nbsp;</div>
+                        また\(L(t)\) は実対称行列なので対角化可能である。なので、
+                        \[
+                            Q^{-1}LQ=\mathrm{diag}(\lambda_1,\ldots,\,\lambda_N)=:A(t)
+                        \]
+                        となる \(Q\in{\mathrm{GL}(\mathbb{R})}\) 及び固有値 \(\lambda_1,\ldots,\,\lambda_N\in\mathbb{R}\) が存在する。これより、
+                        \[
+                            \mathrm{Tr}\,L=\mathrm{Tr}(LQ^{-1}Q)=\mathrm{Tr}(Q^{-1}LQ)=\mathrm{Tr}\,A=\sum_{i=1}^{N}\lambda_{i}
+                        \]
+                        となるため、
+                        
+                        固有値 \(\lambda_1,\ldots,\,\lambda_N\) を用いて、
+                        \[
+                            \mathrm{Tr}\,L^m=\sum_{i=1}^{N}\lambda_i^m
+                        \]
+                        も保存量となり、固有値 \(\lambda_1,\ldots,\,\lambda_N\) を用いた任意の対称多項式は時間依存しないことがわかる。<br>
+                        <details id="gray">
+                            <summary>証明</summary>
+                            <div id="main_text">
+                                \(k\) 次基本対称多項式 \(e_k\) を
+                                \[
+                                    \prod_{i=1}^N(x+\lambda_i)=x^N+e_1x^{N-1}+e_2x^{N-2}+\cdots+e_N
+                                \]
+                                によって定義する。 また、 
+                                \[
+                                    S_k:=\sum_{i=1}^{N}\lambda_i^k
+                                \]
+                                とする。
+                                <br><div style="line-height: 10pt;">&nbsp;</div>
+                                1. \(e_k\) が \(S_i\;(1\leq{i}\leq{k})\) の多項式で表されること<br>
+                                2. \(\lambda_1,\ldots,\,\lambda_N\) を用いた任意の対称多項式が \(e_k\;(1\leq{k}\leq{N})\) の多項式で表されること<br>
+                                <div style="line-height: 5pt;">&nbsp;</div>
+                                の2つを示すことで、\(\lambda_1,\ldots,\,\lambda_N\) を用いた任意の対称多項式が、保存量である
+                                \[
+                                    \;S_m=\sum_{i=1}^{N}\lambda_i^m
+                                \]
+                                の多項式で表されることを示す。
+                                <br><div style="line-height: 10pt;">&nbsp;</div>
+                                1.
+                                \begin{align*}
+                                    \prod_{i=1}^{N}(x+\lambda_i)
+                                    &=\exp\left[\sum_{i=1}^{N}\log(x+\lambda_i)\right]\\
+                                    &=x^N\exp\left[\sum_{i=1}^{N}\log\left(1+\frac{\lambda_i}{x}\right)\right]
+                                \end{align*}
+                                ここで、\(\log(1+x)\) のマクローリン展開
+                                \[
+                                    \log(1+x)=x-\frac{1}{2}x^2+\frac{1}{3}x^3-\cdots
+                                \]
+                                を用いて、
+                                \begin{align*}                                
+                                    \prod_{i=1}^{N}(x+\lambda_i)
+                                    &=x^N\exp\left[\sum_{i=1}^{N}\sum_{k=1}^{\infty}\frac{(-1)^{k-1}}{k}\left(\frac{\lambda_i}{x}\right)^k\right]\\
+                                    &=x^N\exp\left[\sum_{k=1}^{\infty}\left(\frac{(-1)^{k-1}}{kx^k}\sum_{i=1}^{N}\lambda_i^k\right)\right]\\
+                                    &=x^N\exp\left[\sum_{k=1}^{\infty}\frac{(-1)^{k-1}}{kx^{k}}S_k\right]
+                                \end{align*}
+                                また \(\displaystyle e^{x}=\sum_{n=1}^{\infty}\frac{x^n}{n!}\) を用いて、
+                                \begin{align*}                                
+                                    \prod_{i=1}^{N}(x+\lambda_i)
+                                    &=x^N\sum_{n=1}^{\infty}\frac{1}{n!}\left(\sum_{k=1}^{\infty}\frac{(-1)^{k-1}}{kx^{k}}S_k\right)^n\\
+                                    &=\sum_{n=1}^{\infty}\sum_{k=1}^{\infty}\frac{(-1)^{n(k-1)}S_k^n}{k^nn!}x^{N-kn}
+                                \end{align*}
+                                \[
+                                    x^N+e_1x^{N-1}+e_2x^{N-2}+\cdots+e_N=\sum_{n=1}^{\infty}\sum_{k=1}^{\infty}\frac{(-1)^{n(k-1)}S_k^n}{k^nn!}x^{N-kn}
+                                \]
+                                よって、
+                                \[
+                                    e_m=\sum_{nk=m}\frac{(-1)^{m-n}}{k^nn!}S_k^n
+                                \]
+                                より示せた。
+                                <br><div style="line-height: 10pt;">&nbsp;</div>
+                                2.<br>
+                                帰納法を用いる。\(N=1\) のとき、
+                                \[
+                                    \prod_{i=1}^{N}(x+\lambda_i)=x+\lambda_1=x+e_1
+                                \]
+                                より明らかに成り立つ。<br>
+                                \(N=k\) まで成り立つと仮定して \(N=k+1\) の場合を考える。
+                                \begin{align*}
+                                    \prod_{i=1}^{k+1}(x+\lambda_i)&=x^{k+1}+e_1x^{k}+e_2x^{k-1}+\cdots+e_{k+1}\\
+                                    \prod_{i=1}^k(x+\lambda_i)&=x^k+e'_1x^{k-1}+e'_2x^{k-2}+\cdots+e'_k
+                                \end{align*}
+                                と \(N=k,\,N=k+1\) における基本対称多項式を区別すると、
+                                \[
+                                    \prod_{i=1}^{k+1}(x+\lambda_i)=\prod_{i=1}^k(x+\lambda_i)\cdot(x+\lambda_{k+1})
+                                \]
+                                より、
+                                \begin{align*}
+                                    &x^{k+1}+e_1x^{k}+e_2x^{k-1}+\cdots+e_{k+1}\\[3pt]
+                                    &=(x^k+e'_1x^{k-1}+e'_2x^{k-2}+\cdots+e'_k)(x+\lambda_{k+1})\\[3pt]
+                                    &=x^{k+1}+(e'_1+\lambda_{k+1})x^{k}+(e'_2+\lambda_{k+1}e'_1)x^{k-1}+\cdots+(e'_{k}+\lambda_{k+1}e'_{k-1})x+\lambda_{k+1}e'_k
+                                \end{align*}
+                                が成り立つ。\(e'_0=e_0=1\) とおけば、
+                                \[
+                                    e'_i=e_i-\lambda_{k+1}e'_{i-1}\;\;(1\leq{i}\leq{k})
+                                \]
+                                となる。これより、
+                                \begin{align*}                                
+                                    e'_i&=e_i-\lambda_{k+1}e'_{i-1}\\
+                                        &=e_i-\lambda_{k+1}(e_{i-1}-\lambda_{k+1}e'_{i-2})\\
+                                        &\;\;\vdots\\
+                                        &=e_i-\lambda_{k+1}(e_{i-1}-\lambda_{k+1}(e_{i-2}-\lambda_{k+1}(\cdots(e_{1}-\lambda_{k+1})\cdots))\\
+                                        &=\sum_{n=0}^{i}(-1)^{n}\lambda_{k+1}^ne_{i-n}
+                                \end{align*}
+                                となり、\(e'_i\;(1\leq{i}\leq{k})\) は \(\lambda_{k+1},\;e_j\;(1\leq{j}\leq{k})\) の整数係数の多項式となる。<br>
+                                ここで、任意の \(M\) 次の対称多項式 \(F=F(\lambda_1,\,\lambda_2,\ldots,\,\lambda_{k+1})\) を \(\lambda_{k+1}\) についての多項式としてみると、その係数は \(\lambda_1,\,\lambda,\ldots,\,\lambda_k\) の対称多項式となる。
+                                \(\lambda_{k+1}\) の \(n\) 次の係数を \(c_n(\lambda_1,\,\lambda_2,\ldots,\,\lambda_k)\) とすると、
+                                \[
+                                    F(\lambda_1,\,\lambda_2,\ldots,\,\lambda_{k+1})=\sum_{n=0}^{M}c_n(\lambda_1,\,\lambda_2,\ldots,\,\lambda_k)\lambda_{k+1}^n
+                                \]
+                                となるが、仮定より \(c_n(\lambda_1,\,\lambda_2,\ldots,\,\lambda_k)\) は \(e'_i\;(1\leq{i}\leq{k})\) の多項式で表せるので、先の結果と合わせて、
+                                \[
+                                    F(\lambda_1,\,\lambda_2,\ldots,\,\lambda_{k+1})=\sum_{n=0}^{M}C_n(e_1,\,e_2,\ldots,\,e_k)\lambda_{k+1}^n
+                                \]
+                                と \(e_j\;(1\leq{j}\leq{k})\) の整数係数の多項式 \(C_n\) を用いて表せる。<br>
+                                しかし左辺は対称多項式なので、例えば \(\lambda_{k+1}\) と \(\lambda_1\) を入れ替えても成り立つ必要があり、
+                                \[
+                                    F(\lambda_1,\,\lambda_2,\ldots,\,\lambda_{k+1})=C_0(e_1,\,e_2,\ldots,\,e_k)
+                                \]
+                                となる。よって \(N=k\) での仮定の下、 \(N=k+1\) で \(\lambda_1,\ldots,\,\lambda_N\) を用いた任意の対称多項式が \(e_k\;(1\leq{k}\leq{N})\) の多項式で表されることが示せた。<br>
+                                よって任意の \(N\) について成り立つことが示せた。
+                            </div>
+                            <div style="text-align: right"><button id="close11">[閉じる]</button></div>
+                        </details>
+                        <div style="line-height: 5pt;">&nbsp;</div>
+                        例えば、
+                        \[
+                            F(\lambda):=\det(\lambda{E}+L)
+                        \]
+                        とすると、\(\lambda=-\lambda_i\;\;(1\leqq{i}\leqq{N})\) のとき、
+                        \[
+                            \det(L-\lambda_i{E})=0\;\;( \because 固有値方程式)
+                        \]
+                        となるため因数定理より、
+                        \[
+                            F(\lambda)=\prod_{i=1}^{N}(\lambda+\lambda_i)
+                        \]
+                        となると同時に、\(\lambda\) の係数は保存量となることがわかる。
+                        <details id="gray">
+                            <summary>証明</summary>
+                            <div id="main_text">
+                            \[
+                                F(\lambda)=\prod_{i=1}^{N}(\lambda+\lambda_i)
+                            \]
+                            は上の証明で \(k\) 次基本対称多項式 \(e_k\) を定義するときに用いた式であり、\(k\) 次の係数は \(e_{N-k}\)である。<br>
+                            また上の証明で \(e_k\) は、保存量である
+                            \[
+                                S_m=\sum_{i=1}^{N}\lambda_i^m
+                            \]
+                            の多項式で表されることを示したので、これで示せた。
+                            </div>
+                            <div style="text-align: right"><button id="close11">[閉じる]</button></div>
+                        </details>
+                        <div style="line-height: 5pt;">&nbsp;</div>
+                        つまり、
+                        \[
+                            F(\lambda)=\sum_{i=0}^{N}c_i\lambda^{i}
+                        \]
+                        と展開したとき、係数 \(c_i\) は保存量、すなわち、
+                        \[
+                            \frac{d}{dt}c_i=0\;\;\;(1\leq{i}\leq{N})
+                        \]
+                        を満たす。
+                    </div>
+                    <div style="text-align: right"><button id="close9">[閉じる]</button></div>
+                </details>
+            </div>
+        </div>
+    </div>
+    <div style="text-align: center"><a href="./2.html">[前ページ]</a></div>
+    <footer>
+    <hr id="header">
+    <div class="parent">
+    <div class=footer_prev><a href=./1.html>[prev: 第1章 セルオートマトン]</a></div><div class=footer_next><a href=./3.html>[next: 第3章 箱玉系]</a></div>    </div>
+    <div style="text-align: right">
+        <a href="../index.html">[homeに戻る]</a>
+    </div>
+</footer>	</body>
+	<script src="../js/details_close.js"></script>
+</html>

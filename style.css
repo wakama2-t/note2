@@ -1,0 +1,134 @@
+h1,h2{
+    margin: 0;
+    padding : 0;
+}
+
+h3{
+    font-size: larger;
+}
+
+h1#title{
+    margin-top: 2%;
+}
+
+h2#subtitle{
+    margin-left: 5%;
+}
+
+a,a:hover,a:visited{
+    color: blue;
+    text-decoration: none;
+}
+
+hr#header{
+    border: 0cap;
+    border-top: 2px solid #7c849c;
+}
+
+hr#header2{
+    margin-top: 3pt;
+    border: 0cap;
+    border-top: 2px solid #7c849c;
+}
+
+body{
+    background-color: rgb(173, 223, 248);
+}
+
+div#home_contents{
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    /* background-color: white; */
+    min-height: 90vh;
+}
+
+div#contents{
+    margin-left: 5%;
+    margin-right: 5%;
+    /* background-color: white; */
+    min-height: 90vh;
+}
+
+div#main_text{
+    margin-left: 2%;
+    margin-right: 2%;
+    /* background-color: white; */
+}
+
+/* フッター関連 */
+.footer_prev{
+    text-align: left;
+}
+
+.footer_next{
+    text-align: right;
+}
+
+.parent{
+    display: flex;
+    justify-content: space-between;
+}
+/* フッター関連 */
+
+details#white[open] {
+    background-blend-mode: normal;
+    background-color: rgb(243, 251, 255);
+}
+
+details#gray[open] {
+    background-blend-mode: normal;
+    background-color: rgb(218, 218, 218);
+}
+
+button[id^="close"]{
+    background-color: rgba(255, 255, 255, 0);
+    /* border: 1pt solid black;  */
+    border: none;
+}
+
+button[id^="hakotama"]{
+    width: 2.5%;
+    aspect-ratio: 1;
+    border: 1pt;
+    border-style: solid;
+}
+
+div#long_mjx{
+	overflow-x: auto;
+	overflow-y: hidden;
+	max-width: 100%;
+}
+
+span.MJXc-display{
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+div#underline_math{
+    border-bottom: 1px normal black;
+}
+
+
+div.parent2{
+    display: flex;
+    justify-content: space-between;
+}
+div[id^=child]{
+    min-width: 50%;
+}
+
+
+div#child1{
+    border-bottom: dotted;
+}
+
+@media (max-width:1200pt){ 
+    div.parent2{
+        display: block;
+    }
+}
+
+p{
+    font-size: larger;
+}

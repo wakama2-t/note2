@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width"/>
+		<link href="../style.css" rel="stylesheet" />
+		<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+		<title>箱玉系の数理</title>
+	</head>
+
+	<body>
+    <harder>
+    <div style="text-align: center">
+    <a href="./home.html"><h1 id = "title">箱玉系の数理</h1></a>
+    </div>
+
+    <hr id="header">
+    <h2 id =subtitle>第3章 箱玉系</h2><hr id=header2>
+</header>		<div id="contents">
+			<h3>箱玉系</h3>
+			<div id="main_text">
+				<p>・1次元2値セルオートマトン</p>
+				<p>・規則</p>
+				\[
+					\begin{array}{cl}
+						(\mathrm{i})&初期状態で1番目に左側にある玉を右側で一番近い空き箱に移す。\\
+						(\mathrm{ii})&初期状態で2番目に左側にある玉を右側で一番近い空き箱に移す。\\
+						(\mathrm{iii})&初期状態で3番目に左側にある玉を右側で一番近い空き箱に移す。\\
+						(\mathrm{iv})&すべての玉を1回ずつ動かすまで同様の操作を行う。\\
+					\end{array}
+				\]
+				<p>・シミュレーション</p>
+			</div>
+			<script type="text/javascript">
+				for(var i=0;i<40;i++){
+					document.write("<button id="+"hakotama"+i+"></button>");
+				}
+			</script>
+			<div style="text-align: center;"><button id="prev">prev</button> <button id="next">next</button></div>
+		</div>
+
+
+    <footer>
+    <hr id="header">
+    <div class="parent">
+    <div class=footer_prev><a href=./2.html>[prev: 第2章 ソリトン]</a></div><div class=footer_next><a href=./4.html>[next: 第4章 KP階層の理論]</a></div>    </div>
+    <div style="text-align: right">
+        <a href="../index.html">[homeに戻る]</a>
+    </div>
+</footer>	</body>
+	<script src="../js/details_close.js"></script>
+	<script src="http://localhost/note/js/3.js"></script>
+</html>

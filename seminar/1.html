@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width"/>
+		<link href="../style.css" rel="stylesheet" />
+		<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+		<title>箱玉系の数理</title>
+	</head>
+
+	<body>
+    <harder>
+    <div style="text-align: center">
+    <a href="./home.html"><h1 id = "title">箱玉系の数理</h1></a>
+    </div>
+
+    <hr id="header">
+    <h2 id =subtitle>第1章 セルオートマトン</h2><hr id=header2>
+</header>		<div id="contents">
+			<h3>セルオートマトン (cellular automaton, CA)</h3>
+			<div id="main_text">
+
+			・有限個の状態を取るセルで構成される。
+			<div style="text-align: center"><p></p>
+			<img src="./image/im1.bmp" alt="1次元2値セルオートマトン" width="80%">
+			</div>
+			<div style="text-align: center">ex. 1次元2値セルオートマトン</div>
+			<p></p>
+			・時間発展規則に従って変化する。<p></p>
+			<div style="text-align: center">
+				<img src="./image/im2.bmp" alt="時間発展の例" width="80%">
+				</div>
+				<div style="text-align: center">ex. 時間発展の例</div>
+				<p></p>
+			</div>
+
+			<br>
+			<h3>エレメンタリーセルオートマトン (elementary cellular automaton, ECA)</h3>
+			<div id="main_text">
+				・1次元2値セルオートマトンでかつ時間発展規則が自分自身とその両隣の計3つから成るもの。
+				<p></p>
+				・2値3近傍CAともいう。
+				<p></p>
+				・セルの2状態を0, 1で表現すると、
+				\[(時刻\,t\,における\,n\,番目のセルの値):= u_n^t\in\{0,\,1\}\]
+				・\(u_{n}^{t+1}=F(u_{n-1}^t,\,u_n^t,\,u_{n+1}^t)\) と表すことができ、
+				\begin{align*}
+				(u_{n-1}^t,\,u_n^t,\,u_{n+1}^t)\in\{&(0,0,0),\,(0,0,1),\,(0,1,0),\,(0,1,1),\\&(1,0,0),\,(1,0,1),\,(1,1,0),\,(1,1,1)\}
+				\end{align*}
+				<font size="+3">&#10547;</font> \((u_{n-1}^t,\,u_n^t,\,u_{n+1}^t)\) に対して 0,1 を割り振るため、ECAは \(2^8=256\) 通り存在し、
+				\[n_F:=\sum_{i,\,j,\,k}F(i,\,j,\,k)2^{4i+2j+k}\;\;\;\;(i,\,j,\,k)\in\{0,\,1\}^3\]
+				とすると0から255の整数値で区別することができる。
+				<p></p>
+				<details id="white">
+					<summary>計算例</summary>
+						<div id="main_text">
+							<div style="text-align: center">
+							<img src="./image/im3.bmp" alt="時間発展の例" width="80%">
+							</div>
+							\((i,j,k)=(0,0,1),\,(0,1,1),\,(1,0,1),\,(1,1,1)\) のときに \(F(i,\,j,\,k)=1\) になるため、
+							\begin{gather*}
+								001_2=1_{10},\,011_2=3_{10},\,101_2=5_{10},\,111_2=7_{10}\\
+								n_{F}=2^1+2^3+2^5+2^7=170
+							\end{gather*}
+						</div>
+						<div style="text-align: right"><button id="close0">[閉じる]</button></div>
+				</details>
+				
+			</div>
+			<br>
+			<h3>ECAと交通量モデル</h3>
+			<div id="main_text">
+				<div style="text-align: center">
+					<img src="./image/im4.bmp" alt="ルール184のECA" width="100%"><br>
+					ルール184のECA (\(n_F=184\))
+				</div>
+				<p>・前が空いているなら進む、空いていなければとどまる \(\rightarrow\) 交通流の単純なモデル</p>
+				<p>・簡素化されたモデルだが渋滞現象を再現する。</p>
+				<details id ="A">
+					<summary>もう少し詳しい話</summary>
+					<div id="main_text">
+						\begin{align*}
+							L&:\,想定する道の長さ\,(セルの総数)\\
+							N&:\,車の数\\
+							x_n^t&:\,時間ステップ\,t\,における\,n\,番目の車の位置\\
+							&(1\leq{x_1^0}&lt;x_2^0&lt;\cdots&lt;x_N^0\leq{L})\\
+							M&:\,一度のステップで進めるセル数の最大
+						\end{align*}
+						とすると、\(2\,値(2M+1)近傍\mbox{CA}\)を考えるということになる。
+						<br>
+						また周期的な境界条件を与える(mod \(L\) を考えるなど)と、
+						\[x_n^{t+1}=x_n^t+\min\Bigl\{M,\,x_{n+1}^t-x_n^t-1\Bigr\}\]
+						という運動方程式に従う。また任意の \(n\) に対して、
+						\[x_n^t=-t+\min_{k}\Bigl\{x_{n+k}^0+(t-k)(M+1)\Bigr\}\;\;(k=0,\,1,\,2,\ldots,\,t)\]
+						<details id="white"><summary>証明</summary>
+						<div id="main_text">
+							\(t=0\) のとき、
+								\[x_n^0=\min_{k=0}\Bigl\{x_{n+k}^0+(t-k)(M+1)\Bigr\}=x_n^0\]
+							より成り立つ。また \(t=\tau\) のとき成り立つと仮定すると、
+							\begin{align*}
+								x_n^{\tau+1}&=x_n^\tau+\min\Bigl\{M,\,x_{n+1}^\tau-x_n^\tau-1\Bigr\}\\
+								&=\min\Bigl\{x_n^\tau+M,\,x_{n+1}^\tau-1\Bigr\}
+							\end{align*}
+							第1項は、
+							\begin{align*}
+								x_n^\tau+M&=-\tau+\min_{k}\Bigl\{x_{n+k}^0+(\tau-k)(M+1)\Bigr\}+M\\
+								&=-(\tau+1)+\min_{k}\Bigl\{x_{n+k}^0+(\tau-k)(M+1)\Bigr\}+(M+1)\\
+								&=-(\tau+1)+\min_{k}\Bigl\{x_{n+k}^0+(\tau+1-k)(M+1)\Bigr\}\\
+							\end{align*}
+							\begin{gather*}
+								\therefore x_n^\tau+M=-(\tau+1)+\min_{k}\Bigl\{x_{n+k}^0+(\tau+1-k)(M+1)\Bigr\}\\
+								(k=0,\,1,\,2,\ldots,\,\tau)
+							\end{gather*}
+							第2項は、
+							\begin{align*}
+								x_{n+1}^\tau-1&=-\tau+\min_{k}\Bigl\{x_{n+1+k}^0+(\tau-k)(M+1)\Bigr\}-1\\
+								&=-(\tau+1)+\min_{k}\Bigl\{x_{n+1+k}^0+(\tau-k)(M+1)\Bigr\}\\
+								&=-(\tau+1)+\min_{k}\Bigl\{x_{n+k}^0+(\tau+1-k)(M+1)\Bigr\}
+							\end{align*}
+							\begin{gather*}
+								\therefore x_{n+1}^\tau-1=-(\tau+1)+\min_{k}\Bigl\{x_{n+k}^0+(\tau+1-k)(M+1)\Bigr\}\\
+								(k=1,\,2,\ldots,\,\tau+1)
+							\end{gather*}
+							よって、
+							\begin{gather*}
+								x_n^{\tau+1}=-(\tau+1)+\min_{k}\Bigl\{x_{n+k}^0+(\tau+1-k)(M+1)\Bigr\}\\
+								(k=0,\,1,\,2,\ldots,\,\tau+1)
+							\end{gather*}
+							これより任意の \(t\) に対して上式が成り立つ。
+						</div>
+						<div style="text-align: right"><button id="close2">[閉じる]</button></div>
+						</details>
+						<br>
+						が成り立つため、十分に時間が経過したとき、(\(t\geq{N}\))    (?)
+						\begin{align*}
+						(M+1)N\leq{L}\;\Rightarrow\;&x_n^t=x_n^{t-1}+M\\
+						(M+1)N&gt;{L}\;\Rightarrow\;&x_n^t=-1+x_{n+1}^{t-1}	
+						\end{align*}
+						となる。ここで
+						\[流量\,Q(t):=\frac{1}{L}\sum_{n=1}^{N}\Bigl(x_n^t-x_n^{t-1}\Bigr)\]
+						とすると、車の密度 \(\rho=\frac{N}{L}\) を用いると、
+						\[
+							Q(t)=
+							\begin{cases}
+							\frac{NM}{L}\\
+							\frac{-N+x_{N+1}^{t-1}-x_{1}^{t-1}}{L}=\frac{-N+L}{L}
+							\end{cases}
+							=
+							\begin{cases}
+							\rho&(M+1)N\leq{L}\\
+							1-\rho&(M+1)N&gt;{L}
+							\end{cases}
+						\]
+					</div>
+
+					<div style="text-align: right"><button id="close1">[閉じる]</button></div>
+				</details>
+
+			</div>
+		</div>
+    <footer>
+    <hr id="header">
+    <div class="parent">
+    &nbsp;<div class=footer_next><a href=./2.html>[next: 第2章 ソリトン]</a></div>    </div>
+    <div style="text-align: right">
+        <a href="../index.html">[homeに戻る]</a>
+    </div>
+</footer>	</body>
+	<script src="../js/details_close.js"></script>
+</html>
