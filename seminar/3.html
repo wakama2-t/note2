@@ -37,6 +37,368 @@
 				}
 			</script>
 			<div style="text-align: center;"><button id="prev">prev</button> <button id="next">next</button></div>
+			<div id="main_text">
+				<p>・連続した玉の列を「ソリトン」、その列の長さを「ソリトンの振幅」という。</p>
+				<p>・KdV方程式のソリトンと似たような性質を持つ。</p>
+				<div id="main_text">
+					1. 振幅 \(k\) のソリトンは速度 \(k\) で進む<br>
+					2. 衝突すると位相は変化するがソリトンは変化しない<br>
+				</div>
+			</div>
+			<br>
+			<h3>箱玉系の運動方程式</h3>
+			<div id="main_text">
+				<p>・時刻 \(t\) における \(n\) 番目の箱にある玉の数 \(u_n^t\in\{0,\,1\}\) を用いると、</p>
+				<div id="main_text">
+					\[
+						u_{n}^{t+1}=
+						\left\{
+						\begin{aligned}
+							1&&&u_n^t=0\;\;\wedge\\[5pt]
+							0&&&\mathrm{otherwise}\\
+						\end{aligned}
+						\right.
+						\begin{aligned}
+							\sum_{k=-\infty}^{n-1}u_k^t&gt;\sum_{k=-\infty}^{n-1}u_{k}^{t+1}\\[5pt]
+							{}
+						\end{aligned}
+					\]
+					<details id="white">
+						<summary>解釈</summary>
+						<div id="main_text">
+							時刻 \(t\) で玉が入っている場合、規則より次の時刻において玉は必ず入らない。
+							<div style="text-align: center;"><img src="./image/im9.bmp" alt="箱玉系" width="100%"></div>
+							<div style="text-align: center;">
+								\(\displaystyle\sum_{k=-\infty}^{n-1}u_k^t,\;\sum_{k=-\infty}^{n-1}u_{k}^{t+1}:\) 時刻 \(t,\,t+1\) における橙色線より左側にある玉の総数
+							</div><div style="line-height: 5pt;">&nbsp;</div>
+							と考えられるので、
+							\[
+								\sum_{k=-\infty}^{n-1}u_k^t&gt;\sum_{k=-\infty}^{n-1}u_{k}^{t+1}
+							\]
+							が成り立つとき、橙色線を跨いだ玉が存在することを意味する。<br>
+							このとき規則より、\(n\) 番目の箱に玉が入らず橙色線を跨ぐことは不可能なので、\(u_n^{t+1}=1\) となる。
+						</div>
+						<div style="text-align: right;"><button id=close0>[閉じる]</button></div>
+					</details>
+				</div>
+				<p>・箱玉系の運動方程式</p>
+				<div id="main_text">
+					\[
+						u_n^{t+1}=\min\left[1-u_n^t,\;\sum_{k=-\infty}^{n-1}u_k^t-\sum_{k=-\infty}^{n-1}u_k^{t+1}\right]
+					\]
+					<details id="white">
+						<summary>解釈</summary>
+						<div id="main_text">
+							<div style="text-align: center;"><img src="./image/im9.bmp" alt="箱玉系" width="100%"></div>
+							橙色線を跨ぐ玉が存在するとき、
+							\[
+								\sum_{k=-\infty}^{n-1}u_k^t-\sum_{k=-\infty}^{n-1}u_k^{t+1}\geq{1}
+							\]
+							存在しないとき、
+							\[
+								\sum_{k=-\infty}^{n-1}u_k^t=\sum_{k=-\infty}^{n-1}u_k^{t+1}
+							\]
+							となるため、
+							\[
+								u_{n}^{t+1}=
+								\left\{
+								\begin{aligned}
+									1&&&u_n^t=0\;\;\wedge\\[5pt]
+									0&&&\mathrm{otherwise}\\
+								\end{aligned}
+								\right.
+								\begin{aligned}
+									\sum_{k=-\infty}^{n-1}u_k^t&gt;\sum_{k=-\infty}^{n-1}u_{k}^{t+1}\\[5pt]
+									{}
+								\end{aligned}
+							\]
+							より、\(u_n^{t+1}=1\) となるとき、
+							\[
+								1-u_n^t=1\;\;\mathrm{and}\;\sum_{k=-\infty}^{n-1}u_k^t-\sum_{k=-\infty}^{n-1}u_k^{t+1}\geq{1}
+							\]
+							であり、
+							\[
+								\min\left[1-u_n^t,\;\sum_{k=-\infty}^{n-1}u_k^t-\sum_{k=-\infty}^{n-1}u_k^{t+1}\right]=1
+							\]
+							\(u_n^{t+1}=0\) となるとき、
+							\[
+								1-u_n^t=0\;\;\mathrm{or}\;\sum_{k=-\infty}^{n-1}u_k^t-\sum_{k=-\infty}^{n-1}u_k^{t+1}=0
+							\]
+							となるため、
+							\[
+								\min\left[1-u_n^t,\;\sum_{k=-\infty}^{n-1}u_k^t-\sum_{k=-\infty}^{n-1}u_k^{t+1}\right]=0
+							\]
+							が確認できる。
+						</div>
+						<div style="text-align: right;"><button id=close1>[閉じる]</button></div>
+					</details>
+				</div>
+				<p>・等価な表現</p>
+				<div id="main_text">
+					\[
+						\left\{
+						\begin{aligned}
+							Q_n^{t+1}&=\min\smash{\left[\sum_{j=1}^nQ_j^t-\sum_{j=1}^{n-1}Q_j^{t+1},\;E_n^t\right]}\\[13pt]
+							E_n^{t+1}&=Q_{n+1}^t+E_n^t-Q_n^{t+1}
+						\end{aligned}
+						\right.
+					\]
+					\begin{align*}
+						Q_n^t&:\,時刻\,t\,における\,n\,番目のソリトンの振幅\\
+						E_n^t&:\,時刻\,t\,における\,n\,番目のソリトンと\,(n+1)\,番目のソリトンの間にある空き箱の数
+					\end{align*}
+					<details id="white">
+						<summary>解釈</summary>
+						<div id="main_text">
+							<div style="text-align: center;"><img src="./image/im10.png" alt="箱玉系" width="100%"></div>
+							\[
+								\sum_{j=1}^nQ_j^t,\;\sum_{j=1}^{n-1}Q_j^{t+1}:\;時刻\,t,\,t+1\,における橙色線より左側にある玉の総数
+							\]
+							であり、
+							\[
+								\sum_{j=1}^nQ_j^t-\sum_{j=1}^{n-1}Q_j^{t+1}:\;橙色線を跨ぐ玉の総数
+							\]
+							となる。そして上図のように、それらの玉(上図では3個)が \(E_n^t\) より多いときは、
+							\[
+								Q_n^{t+1}=E_n^t
+							\]
+							となる他なく、
+							<div style="text-align: center;"><img src="./image/im11.png" alt="箱玉系" width="100%"></div>
+							のように \(E_n^t\) に橙色線を跨いだ玉の全てが入る余裕があるときは、
+							\[
+								Q_n^{t+1}=\sum_{j=1}^nQ_j^t-\sum_{j=1}^{n-1}Q_j^{t+1}
+							\]
+							となる。<br>
+							これらの結果をまとめると、
+							\[
+								Q_n^{t+1}=\min\left[\sum_{j=1}^nQ_j^t-\sum_{j=1}^{n-1}Q_j^{t+1},\;E_n^t\right]
+							\]
+							となる。
+							<br><div style="line-height: 5pt;">&nbsp;</div>
+							また離散変数2つに対して1つの関係式では一意に定まらないため、
+							<div style="text-align: center;"><img src="./image/im12.png" alt="箱玉系" width="100%"></div>
+							青線に注目して、
+							\[
+								E_n^t+Q_{n+1}^t=E_n^{t+1}+Q_n^{t+1}
+							\]
+							を得る。この関係式は、
+							\[
+								(時刻\,t\,におけるソリトンの右端)+1\;=(時刻\,(t+1)\,におけるソリトンの左端)
+							\]
+							が成り立つことから、
+							<div style="line-height: 5pt;">&nbsp;</div>
+							<div style="text-align: center;">
+								時刻 \(t\) における、\(n\) 番目のソリトンの右端から \((n+1)\) 番目のソリトンの右端までの長さ
+							</div>
+							<div style="line-height: 5pt;">&nbsp;</div>
+							と
+							<div style="line-height: 5pt;">&nbsp;</div>
+							<div style="text-align: center;">
+								時刻 \((t+1)\) における、\(n\) 番目のソリトンの左端から \((n+1)\) 番目のソリトンの左端までの長さ
+							</div>
+							<div style="line-height: 5pt;">&nbsp;</div>
+							が等しくなるためである。
+						</div>
+						<div style="text-align: right;"><button id=close2>[閉じる]</button></div>
+					</details><div style="line-height: 5pt;">&nbsp;</div>
+					<details open id="white">
+						<summary>本当に等価か</summary>
+						<div id="main_text">
+							a
+						</div>
+						<div style="text-align: right;"><button id=close3>[閉じる]</button></div>
+					</details>
+				</div>
+			</div>
+			<br>
+			<h3>箱玉系の別表現</h3>
+			<div id="main_text">
+				<p>・等価な表現1</p>
+				<div id="main_text">
+					\[
+						\begin{array}{cl}
+							(\mathrm{i})&初期状態における全ての玉のコピーを作成する。\\
+							(\mathrm{ii})&任意の1つのコピーを選び、右側で一番近い空き箱に移す。\\
+							(\mathrm{iii})&すべてのコピーを動かすまで同様の操作を行う。\\
+							(\mathrm{iv})&初期状態で存在した玉を消し、コピーを次の時刻の玉とする。\\
+						\end{array}
+					\]
+					・例
+					<div id="main_text">
+					<div style="text-align: center;"><img src="./image/im13.png" alt="箱玉系" width="100%"></div>
+					</div>
+					<details id ="white">
+						<summary>補足</summary>
+						<div id="main_text">
+							<div id="main_text">
+								\(\mathrm{(iii)}\)の操作後、コピー玉が入っているか否かを 0,1 で表した関数、
+								\[
+									u_n^{\mathrm{copy}}=
+									\begin{cases}
+										1&n\,番目の箱にコピー玉が入っている\\
+										0&n\,番目の箱にコピー玉が入っていない
+									\end{cases}
+								\]
+								を定義する。<br>
+								\(\mathrm{(i)}\) の操作後を考える。もっとも左にある玉の位置を \(x_0\) として、
+								\[
+									S_n:=\sum_{k=x_0}^{n-1}u_k^t
+								\]
+								を定義する。これは \(x_0\) から \((n-1)\) 番目に存在するコピー玉の総数を意味する。<br>
+								これらを用いると、
+								\begin{align*}							
+									&u_n^{\mathrm{copy}}=1\\
+									&\Leftrightarrow\;u_n^t=0\;\mathrm{and}\;\underset{空き箱の総数}{\left(n-x_0-S_n\right)}&lt;\underset{コピー玉の総数}{S_n}
+								\end{align*}
+								となり、コピー玉を移動する順番は結果に影響しないことがわかる。
+								<br><div style="line-height: 5pt;">&nbsp;</div>
+								これより、コピー玉を左にあるものから順に動かすとすれば、規則より、
+								\[
+									u_n^{\mathrm{copy}}=\min\left[1-u_n^t,\;\sum_{k=-\infty}^{n-1}u_k^t-\sum_{k=-\infty}^{n-1}u_k^{\mathrm{copy}}\right]
+								\]
+								によって \(u_n^{\mathrm{copy}}\) が \(n\)が小さい順に決まっていく。<br>
+								そして \(\mathrm{(iv)}\) によって \(u_n^{\mathrm{copy}}\) が \(u_n^{t+1}\) となり、箱玉系の操作と等価であることがわかる。
+							</div>
+						</div>
+						<div style="text-align: right;"><button id=close4>[閉じる]</button></div>
+					</details>
+				</div><div style="line-height: 5pt;">&nbsp;</div>
+				<p>・等価な表現2</p>
+				<div id="main_text">
+					初期状態における空き箱を \(0\)、玉の入っている箱を \(1\) として \(0,1\) で考える。
+					\[
+						\begin{array}{cl}
+							(\mathrm{i})&\,10\,対の\,1,\,0\,を線で結ぶ。\\
+							(\mathrm{ii})&結ばれた\,10\,対を除いた列から再度\,10\,対の\,1,0\,を線で結ぶ。\\
+							(\mathrm{iii})&すべての\,1\,が\,0\,と結ばれるまで同様の操作を繰り返す。\\
+							(\mathrm{iv})&結ばれた\,1,\,0\,を入れ替えた\,1,0\,列を次の時刻の状態とする。
+						\end{array}
+					\]
+					\[
+						10\,対:\;\{1,\,0\}^*\underline{10}\{1,\,0\}^*
+					\]
+					・保存量
+					\[
+						p_n:\;n\,回目の\mathrm{(ii)}によって結ばれた\,10\,対の個数
+					\]
+					・例
+					<div id="main_text">
+						<div style="text-align: center;"><img src="./image/im14.png" alt="箱玉系" width="100%"></div>
+						\[
+							p_1=4,\,p_2=2,\,p_3=1
+						\]
+					</div><div style="line-height: 10pt;">&nbsp;</div>
+					<details id="white">
+						<summary>\(p_n\) が保存量であることの証明</summary>
+						<div id="main_text">
+							<div style="margin-left: 10%;margin-right: 10%;margin-top: 5pt;margin-bottom: 5pt;">
+								1. 10対の総数と01対の総数は等しい。<br>
+								2. 10対を消去する操作と時間発展させる操作は可換。
+							</div>
+							を示すことができれば、
+							\begin{align*}
+								p_1(t)
+								&=(時刻\,t\,における\,10\,対の総数)\\
+								&=(時刻\,(t+1)\,における\,01\,対の総数)\;\;(\because{規則})\\
+								&=(時刻\,(t+1)\,における\,10\,対の総数)\;\;(\because{1.})
+							\end{align*}
+							より、
+							\[
+								p_1(t)=p_1(t+1)
+							\]
+							がわかる。また、
+							\[
+								p_2(t)=(時刻\,t,\,10\,対を消去した\,1,0\,列における\,10\,対の総数)
+							\]
+							であるが、
+							\[
+								x(t):=(時刻\,t,\,10\,対を消去した\,1,0\,列)
+							\]
+							として \(p_1(t)=p_1(t+1)\) を用いると、
+							\begin{align*}
+								p_2(t)
+								&=(x(t)\,における\,10\,対の総数)\\
+								&=(x(t)\,を時間発展させた\,1,0\,列における10対の総数)\\
+								&=(時刻\,(t+1),\,10対を消去した状態における\,10\,対の総数)\;\;(\because{2.})\\
+								&=p_2(t+1)
+							\end{align*}
+							となり、同様の操作によって \(p_3,\,p_4,\ldots\) が保存量であることが示せる。
+							<br><div style="line-height: 10pt;">&nbsp;</div>
+							1.<br>
+							<div id="main_text">
+								任意の \(1,0\) 列 \(x\,(\,\neq1^*)\) は、
+								\[
+									x=\{01^*\}^*=\{1^*0\}^*
+								\]
+								と表せるので10対の総数と01対の総数は等しくなる。
+							</div>
+
+
+							<br><div style="line-height: 10pt;">&nbsp;</div>
+							2.<br>
+							<div id="main_text">
+								10対を消去したものと01対を消去したものは等しいことを先に示す。<br>
+								任意の \(1,0\) 列 \(x\,(\,\neq1^*)\) は、
+								\[
+									x=0^*01^{n_1}00^*01^{n_2}00^*\cdots
+								\]
+								と書くことができる。また箱は無限個存在するので一番左の \(0^*0\) は \(0^{\infty}\) となり、
+								\begin{align*}								
+									(x\,から\,10\,対を消去したもの)&=0^\infty1^{n_1-1}0^*01^{n_2-1}0^*0\cdots\\
+									(x\,から\,01\,対を消去したもの)&=0^\infty1^{n_1-1}00^*1^{n_2-1}00^*\cdots\\
+																  &=0^\infty1^{n_1-1}0^*01^{n_2-1}0^*0\cdots
+								\end{align*}
+								となり、 示せた。<br>
+								また、
+								\[
+									\left\{
+									\begin{aligned}
+										Q_n^{t+1}&=\min\smash{\left[\sum_{j=1}^nQ_j^t-\sum_{j=1}^{n-1}Q_j^{t+1},\;E_n^t\right]}\\[13pt]
+										E_n^{t+1}&=Q_{n+1}^t+E_n^t-Q_n^{t+1}
+									\end{aligned}
+									\right.
+								\]
+								で考えると、<br>
+								10対を消去する操作は、
+								\[
+									Q_n^t\rightarrow Q_n^t-1,\,E_n^t\rightarrow E_n^t-1
+								\]
+								となり、
+								10対を消去した後に時間発展したときの \(Q_n^{t+1},\,E_n^{t+1}\) は、
+								\begin{align*}
+									Q_n^{t+1}
+									&=\min\left[\sum_{j=1}^n\left(Q_j^t-1\right)-\sum_{j=1}^{n-1}Q_j^{t+1},\;E_n^t-1\right]\\
+									&=\min\left[\sum_{j=1}^nQ_j^t-\sum_{j=1}^{n-1}Q_j^{t+1}-n,\;E_n^t-1\right]\\[5pt]
+									E_n^{t+1}+Q_n^{t+1}
+									&=\left(Q_{n+1}^t-1\right)+\left(E_n^t-1\right)\\
+									&=Q_{n+1}^t+E_n^t-2\\
+								\end{align*}
+								時間発展した後に10対(01対)を消去したときの \(Q_n^{t+1},\,E_n^{t+1}\) は、
+								\begin{align*}
+									Q_n^{t+1}
+									&=\min\left[\sum_{j=1}^nQ_j^t-\sum_{j=1}^{n-1}\left(Q_j^{t+1}-1\right),\;E_n^t\right]-1\\
+									&=\min\left[\sum_{j=1}^nQ_j^t-\sum_{j=1}^{n-1}Q_j^{t+1}-n,\;E_n^t-1\right]\\[5pt]
+									E_n^{t+1}+Q_n^{t+1}
+									&=\left(Q_{n+1}^t+E_n^t\right)-2\\
+									&=Q_{n+1}^t+E_n^t-2
+								\end{align*}
+								より、10対を消去する操作と時間発展させる操作は可換なことが示せた。
+							</div>	
+
+						</div>
+						<div style="text-align: right;"><button id=close5>[閉じる]</button></div>
+					</details>
+					<div style="line-height: 5pt;">&nbsp;</div>
+					<details open id="white">
+						<summary>補足</summary>
+						<div id="main_text">
+							等価な表現1において、空き箱に近い順にコピー玉を移動させると \(1,0\) を結ぶ線がコピー玉の軌道そのものとなり、
+							等価であることがわかる。
+						</div>
+						<div style="text-align: right;"><button id=close6>[閉じる]</button></div>
+					</details>
+				</div>
+			</div>
 		</div>
 
 

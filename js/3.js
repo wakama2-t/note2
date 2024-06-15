@@ -17,8 +17,7 @@ for (let i = 0; i < N; i++) {
 
 const next_button = document.getElementById("next");
 const prev_button = document.getElementById("prev");
-let hakotama = Array(N);
-let j, k;
+let hakotama = Array(2*N);
 
 next_button.addEventListener('click', () => { 
     let k = 1;
@@ -47,63 +46,91 @@ prev_button.addEventListener('click', () => {
 }, false)
 
 function next_step() {
+    let flag = 0; //右端→左端へ跨ぐ玉が存在するか
+    let flag2 = 0;//玉の移動先が2Nを超えているかどうか(超えてたら玉を消す操作のみでよい)
+    let j;
     for (let i = 0; i < N; i++){
         if (hako[i].value == 1) {
             hakotama[i] = 1;
+            hakotama[i+N] = 1;
         } else {
             hakotama[i] = 0;
+            hakotama[i+N] = 0;
         }
     }
-    let s = 0;
-    if (hakotama[0] * hakotama[N - 1] == 1) {
-        s = 1;
-        while (hakotama[N - s - 1] == 1){
-            s++;
+    for (let i = 0; i < 2 * N; i++){
+        if (i == N && flag == 0) {
+            return;
         }
-    }
-    for (let i = 0; i < N; i++){
-        if (i - s < 0) {
-            k = i - s + N;
-        } else {
-            k = i - s;
-        }
-        if (hako[k].value == 1) {
-            j = (k + 1) % N;
-            while (hakotama[j] == 1) {
-                j = (j + 1) % N;
+        if (hako[i%N].value == 1) {
+            if (N == i + 1) {
+                flag = 1;
             }
-            hakotama[k] = 0;
-            hakotama[j] = 1;
+            j = (i + 1);
+            while (hakotama[j] == 1) {
+                j++;
+                if (N == j) {
+                    flag = 1;
+                }
+                if (j >= 2 * N) {
+                    flag2 = 1;
+                    break;
+                }
+            }
+            hakotama[i] = 0;
+            if (flag2 == 0) {
+                hakotama[j] = 1;                
+            }
+        }
+    }
+    if (flag == 1) {
+        for (let i = 0; i < N; i++){
+            hakotama[i] = hakotama[i + N];
         }
     }
 }
 
 function prev_step() {
+    let flag = 0; //右端→左端へ跨ぐ玉が存在するか
+    let flag2 = 0;//玉の移動先が2Nを超えているかどうか(超えてたら玉を消す操作のみでよい)
+    let j;
     for (let i = 0; i < N; i++){
         if (hako[i].value == 1) {
             hakotama[i] = 1;
+            hakotama[i+N] = 1;
         } else {
             hakotama[i] = 0;
+            hakotama[i+N] = 0;
         }
     }
-    let s = 0;
-    if (hakotama[0] * hakotama[N - 1] == 1) {
-        s = 1;
-        while (hakotama[s] == 1){
-            s++;
+    for (let i = 2 * N - 1; i >= 0; i--){
+        if (i == N-1 && flag == 0) {
+            break;
         }
-    }
-    for (let i = N - 1; i >= 0; i--){
-        k = (i + s) % N;
-        if (hako[k].value == 1) {
-            j = (k - 1);
-            if (j < 0) { j += N; }
-            while (hakotama[j] == 1) {
-                j = (j - 1) % N;
-                if (j < 0) { j += N; }
+        if (hako[i%N].value == 1) {
+            if (N-1 == i - 1) {
+                flag = 1;
             }
-            hakotama[k] = 0;
-            hakotama[j] = 1;
+            j = (i - 1);
+            while (hakotama[j] == 1) {
+                j--;
+                if (N-1 == j) {
+                    flag = 1;
+                }
+                if (j < 0) {
+                    flag2 = 1;
+                    break;
+                }
+            }
+            hakotama[i] = 0;
+            if (flag2 == 0) {
+                hakotama[j] = 1;                
+            }
+        }
+    }
+    if (flag == 0) {
+        for (let i = 0; i < N; i++) {
+            hakotama[i] = hakotama[i + N];
         }
     }
 }
