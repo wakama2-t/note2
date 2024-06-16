@@ -129,6 +129,12 @@ div#child1{
     }
 }
 
+@media (max-width:1200pt){ 
+    div.parent2{
+        display: block;
+    }
+}
+
 p{
     font-size: larger;
 }

@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width"/>
+		<link href="../style.css" rel="stylesheet" />
+		<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+		<title>ソリトンの数理</title>
+	</head>
+
+	<body>
+    <harder>
+    <div style="text-align: center">
+    <a href="./home.html"><h1 id = "title">箱玉系の数理</h1></a>
+    </div>
+
+    <hr id="header">
+    <h2 id =subtitle>ソリトンの数理</h2><hr id=header2>
+</header>    <div id="contents">
+        <h3>Burgers方程式</h3>
+        <div id="main_text">
+            \[
+                \mathrm{Burgers\,方程式}:\;u_t+uu_x=\nu u_{xx}
+            \]
+            \(u=-2\nu(\log{f})_x\) とすると、(Cole-Hopf 変換)
+            \[
+                -2\nu(\log{f})_{xt}+\frac{1}{2}\Bigl[\bigl(-2\nu(\log{f})_x\bigr)^2\Bigr]_x=\nu\bigl(-2\nu(\log{f})_{xxx}\bigr)
+            \]
+            両辺 \(x\) で積分して、
+            \[
+                -2\nu(\log{f})_{t}+2\nu^2\bigl((\log{f})_x\bigr)^2=-2\nu^2(\log{f})_{xx}
+            \]
+            \(\displaystyle(\log{f})_x=\frac{f_x}{f},\;(\log{f})_{xx}=\frac{f_{xx}f-f_x^2}{f^2}\) より、
+            \[
+                \frac{f_t}{f}-\nu\left(\frac{f_x}{f}\right)^2=\nu\frac{f_{xx}f-f_x^2}{f^2}
+            \]
+            整理して、
+            \[
+                f_t=f_{xx}
+            \]
+            と、拡散方程式の形になる。
+        </div>
+        <br>
+        <h3>Burgers階層</h3>
+        <div id="main_text">
+            \(u=-2w,\,\nu=1\) として、
+            \[
+                \mathrm{Burgers\,方程式}:\;w_t-2ww_x-x_{xx}=0
+            \]
+            を考える。Cole-Hopf変換は、
+            \[
+                u=-2w=-2\nu(\log{f})_x=-2(\log{f})_x
+            \]
+            より、
+            \[
+                w=(\log{f})_x
+            \]
+            となる。この式は、\(\displaystyle (\log{f})_x=\frac{f_x}{f}\) より、
+            \[
+                f_x=wf
+            \]
+            であり、先に示した拡散方程式と併せて、
+            \[
+                \left\{
+                \begin{aligned}
+                    f_x&=wf\\
+                    f_t&=f_{xx}
+                \end{aligned}
+                \right.
+            \]
+            はBurgers方程式と等価な表現となる。
+            <details id="white"> <!-- 確認 -->
+                <summary>確認</summary>
+                <div id="main_text">
+                    \[
+                        (f_x)_t=(f_t)_x
+                    \]
+                    を考えると、
+                    <div class="parent2">
+                        <div id="child1">
+                            \begin{align*}
+                                (左辺)
+                                &=(wf)_t\\
+                                &=w_tf+wf_t\\
+                                &=w_tf+wf_{xx}\\
+                                &=w_tf+w(wf)_x\\
+                                &=w_tf+ww_xf+w^2f_x\\
+                                &=w_tf+ww_xf+w^3f\\
+                                &=(w_t+ww_x+w^3)f
+                            \end{align*}
+                        </div>
+                        <div id="child">
+                            \begin{align*}
+                                (右辺)
+                                &=(f_{xx})_x\\
+                                &=(wf)_{xx}\\
+                                &=(w_xf+wf_x)_x\\
+                                &=(w_xf+w^2f)_x\\
+                                &=w_{xx}f+w_xf_x+2ww_xf+w^2f_x\\
+                                &=w_{xx}f+ww_xf+2ww_xf+w^3f\\
+                                &=(w_{xx}+3ww_x+w^3)f
+                            \end{align*}
+                        </div>
+                    </div>
+                    <br>
+                    より、
+                    \[
+                        (f_x)_t=(f_t)_x\;\Leftrightarrow\;w_t-2ww_x-w_{xx}=0
+                    \]
+                </div>
+                <div style="text-align: right;"><button id=close0>[閉じる]</button></div>
+            </details>
+            <div style="line-height: 5pt;">&nbsp;</div>
+            そして Burgers階層を、
+            \[
+                \left\{
+                    \begin{aligned}
+                        f_x\,&=wf\\
+                        f_{t_n}&=\partial_x^nf
+                    \end{aligned}
+                \right.
+            \]
+            とする。\(n=2\) のとき Burgers方程式となり、一般に
+            \[
+                w_{t_n}=\frac{\partial}{\partial{x}}\left(\frac{\partial}{\partial{x}}+w\right)^n1
+            \]
+            と等価になる。
+            <details id="white"> <!-- n=2 -->
+                <summary>例 (\(n=2\))</summary>
+                <div id="main_text">
+                    \(n=2\) のときBurgers方程式となり、
+                    \begin{align*}
+                        w_{t_2}
+                        &=2ww_x+w_{xx}\\
+                        &=(w^2)_x+w_{xx}\\
+                        &=\left(w^2+w_x\right)_x\\
+                        &=\Bigl(\bigl(\partial_x+w\bigr)w\Bigr)_x\\
+                        &=\Bigl(\bigl(\partial_x+w\bigr)\bigl(\partial_x+w\bigr)1\Bigr)_x\\
+                        &=\frac{\partial}{\partial{x}}\left(\frac{\partial}{\partial{x}}+w\right)^21
+                    \end{align*}
+                </div>
+                <div style="text-align: right;"><button id=close1>[閉じる]</button></div>
+            </details>
+            <div style="line-height: 5pt;">&nbsp;</div>
+            <details id="white">
+                <summary>例 (\(n=3\))</summary>
+                <div id="main_text">
+                    \(n=3\) のとき、
+                    \[
+                        \left\{
+                            \begin{aligned}
+                                f_x\,&=wf\\
+                                f_{t_3}&=f_{xxx}
+                            \end{aligned}
+                        \right.
+                    \]
+                    であり、
+                    \[
+                        (f_x)_{t_3}=(f_{t_3})_x
+                    \]
+                    から、
+                    <div class="parent2">
+                        <div id="child1">
+                            \begin{align*}
+                                (左辺)
+                                &=(wf)_{t_3}\\
+                                &=w_{t_3}f+wf_{t_3}\\
+                                &=w_{t_3}f+wf_{xxx}
+                            \end{align*}
+                        </div>
+                        <div id="child">
+                            \begin{align*}
+                                (右辺)
+                                &=(f_{xxx})_x\\
+                                &=(wf)_{xxx}\\
+                                &=w_{xxx}f+3w_{xx}f_x+3w_xf_{xx}+wf_{xxx}\\
+                                &=w_{xxx}f+3ww_{xx}f+3w_x(wf)_x+wf_{xxx}\\
+                                &=w_{xxx}f+3ww_{xx}f+3w_x(w_xf+wf_x)+wf_{xxx}\\
+                                &=w_{xxx}f+3ww_{xx}f+3w_x(w_x+w^2)f+wf_{xxx}
+                            \end{align*}
+                        </div>
+                    </div>
+                    <br>
+                    より、
+                    \begin{align*}
+                        w_{t_3}
+                        &=w_{xxx}+3ww_{xx}+3w_x^2+3w^2w_x\\
+                        &=\Bigl(w_{xx}+3ww_x+w^3\Bigr)_x\\
+                        &=\Bigl(\bigl(\partial_x+w\bigr)\bigl(w_x+w^2\bigr)\Bigr)_x\\
+                        &=\Bigl(\bigl(\partial_x+w\bigr)\bigl(\partial_x+w\bigr)w\Bigr)_x\\
+                        &=\Bigl(\bigl(\partial_x+w\bigr)\bigl(\partial_x+w\bigr)\bigl(\partial_x+w\bigr)1\Bigr)_x\\
+                        &=\frac{\partial}{\partial{x}}\left(\frac{\partial}{\partial{x}}+w\right)^31
+                    \end{align*}
+                </div> 
+                <div style="text-align: right;"><button id=close2>[閉じる]</button></div>
+            </details>
+        </div>
+        <br>
+        <h3>Burgers階層からKP方程式へ</h3>
+        <div id="main_text">
+            \[
+                \left\{
+                    \begin{aligned}
+                        f_x\,&=wf\\
+                        f_{t_2}&=f_{xx}\\
+                        f_{t_3}&=f_{xxx}
+                    \end{aligned}
+                \right.
+            \]
+            を考える。
+            \begin{alignat*}{3}
+                &\left\{
+                    \begin{aligned}
+                        f_x\,&=wf\\
+                        f_{t_2}&=f_{xx}
+                    \end{aligned}
+                \right.
+                &&\;\Leftrightarrow\;w_{t_2}=(w_x+w^2)_x\;\;\mathrm{(Burgers方程式)}\\
+                &\left\{
+                    \begin{aligned}
+                        f_x\,&=wf\\
+                        f_{t_3}&=f_{xxx}
+                    \end{aligned}
+                \right.
+                &&\;\Leftrightarrow\;w_{t_3}=(w_{xx}+3ww_x+w^3)_x
+            \end{alignat*}
+            より、
+            \begin{align*}
+                w_{t_2t_2}
+                &=(w_x+w^2)_{xt_2}\\
+                &=(w_{xt_2}+2ww_{t_2})_x\\
+                &=\bigl((w_x+w^2)_{xx}+2w(w_x+w^2)_x\bigr)_x\\
+                &=\bigl(w_{xxx}+(2ww_x)_x+2ww_{xx}+4w^2w_x\bigr)_x\\
+                &=\bigl(w_{xxx}+2w_x^2+4ww_{xx}+4w^2w_x\bigr)_x\\[5pt]
+                w_{xt_3}
+                &=(w_{xx}+3ww_x+w^3)_{xx}\\
+                &=(w_{xxx}+3w_x^2+3ww_{xx}+3w^2w_x)_x
+            \end{align*}
+            これより、
+            \begin{align*}
+                &3w_{t_2t_2}-4w_{xt_3}\\
+                &=\Bigr(3\bigl(w_{xxx}+2w_x^2+4ww_{xx}+4w^2w_x\bigr)-4\bigl(w_{xxx}+3w_x^2+3ww_{xx}+3w^2w_x\bigr)\Bigr)_x\\
+                &=\bigl(-w_{xxx}-6w_{x}^2\bigr)_x\\
+                &=-w_{xxxx}-6\left(w_x^2\right)_x
+            \end{align*}
+            となり、
+            \[
+                3w_{t_2t_2}-4w_{xt_3}+w_{xxxx}+6\left(w_x^2\right)_x=0
+            \]
+            を得る。両辺を \(x\) で微分し、
+            \[
+                3w_{xt_2t_2}-4w_{xxt_3}+w_{xxxxx}+6\left(w_x^2\right)_{xx}=0  
+            \]
+            ここで、\(u=2w_x(=2(\log{f})_{xx})\) とすれば、
+            \[
+                \frac{3}{2}u_{t_2t_2}-2u_{xt_3}+\frac{1}{2}u_{xxxx}+\frac{3}{2}\left(u^2\right)_{xx}=0
+            \]
+            すなわち、
+            \[
+                \Bigl(\underset{\mathrm{KdV方程式}}{\underline{-4u_{t_3}+u_{xxx}+3(u^2)_x}}\Bigr)_x+3u_{t_2t_2}=0
+            \]
+            となる。
+            \[
+                t_3\,\rightarrow\,-t,\;t_2\,\rightarrow\,y
+            \]
+            とすれば、
+            \[
+                \mathrm{KP\,方程式}:\;\Bigl(4u_{t}+6uu_x+u_{xxx}\Bigr)_x+3u_{yy}=0
+            \]
+            となる。\(w,\,f\) で表すと、
+            \[
+                \left\{
+                    \begin{aligned}
+                        f_{x}\,&=wf=(\log{f})_xf\\
+                        f_{y}&=f_{xx}\\
+                        f_{t}&=-f_{xxx}
+                    \end{aligned}
+                \right.
+            \]
+            となり、これより解の形は、
+            \[
+                u(x,\,y,\,t)=2(\log{f})_{xx}
+            \]
+            \[
+                f(x,\,y,\,t)=\sum_{j=1}^{M}\exp\left[\kappa_jx+\kappa_j^2y-\kappa_j^3t+\theta_j^{(0)}\right]
+            \]
+            となる。
+        </div>
+        <br>
+        <h3>KP方程式</h3>
+        \[
+            \mathrm{KP\,方程式}:\;\Bigl(4u_{t}+6uu_x+u_{xxx}\Bigr)_x+3u_{yy}=0
+        \]
+        <div id="main_text">
+            \(M=2\) のとき、
+            \begin{align*}            
+                \theta_j\;&:=\,\kappa_jx+\kappa_j^2y-\kappa_j^3t\\
+                \tilde{\theta}_j\;&:=\,\theta_j+\theta_j^{(0)}\\
+                \theta_{[i,j]}^{(0)}&:=\,\theta_i^{(0)}-\theta_j^{(0)}
+            \end{align*}
+            とすると、
+            \begin{align*}
+                f&=e^{\theta_1+\theta_1^{(0)}}+e^{\theta_2+\theta_2^{(0)}}\\
+                 &=e^{\frac{1}{2}(\theta_1+\theta_1^{(0)}+\theta_2+\theta_2^{(0)})}\left(e^{\frac{1}{2}(\theta_1+\theta_1^{(0)}-\theta_2-\theta_2^{(0)})}+e^{\frac{1}{2}(\theta_2+\theta_2^{(0)}-\theta_1-\theta_1^{(0)})}\right)\\
+                 &=e^{\frac{1}{2}(\tilde{\theta}_1+\tilde{\theta}_2)}\left(e^{\frac{1}{2}(\tilde{\theta}_1-\tilde{\theta}_2)}+e^{\frac{1}{2}(\tilde{\theta}_2-\tilde{\theta}_1)}\right)\\
+                 &=e^{\frac{1}{2}(\tilde{\theta}_1+\tilde{\theta}_2)}\cdot2\cosh\frac{\tilde{\theta}_1-\tilde{\theta}_2}{2}\\
+                 &=2e^{\frac{1}{2}(\tilde{\theta}_1+\tilde{\theta}_2)}\cosh\frac{\theta_1-\theta_2+\theta_{[1,2]}^{(0)}}{2}\\
+            \end{align*}
+            \(w=(\log{f})_x,\;u=2w_x\) より、
+            \begin{align*}
+                w&=\left(\frac{1}{2}\left(\tilde{\theta}_1+\tilde{\theta}_2\right)+\log{2}+\log\left[\cosh\frac{\theta_1-\theta_2+\theta_{[1,2]}^{(0)}}{2}\right]\right)_x\\
+                 &=\left(\frac{1}{2}\left(\tilde{\theta}_1+\tilde{\theta}_2\right)+\log\left[\cosh\frac{\theta_1-\theta_2+\theta_{[1,2]}^{(0)}}{2}\right]\right)_x\\
+                 &=\frac{1}{2}\left(\tilde{\theta}_1+\tilde{\theta}_2\right)_x+\tanh\frac{\theta_1-\theta_2+\theta_{[1,2]}^{(0)}}{2}\cdot\left(\frac{\theta_1-\theta_2+\theta_{[1,2]}^{(0)}}{2}\right)_x\\
+                 &=\frac{\kappa_1+\kappa_2}{2}+\frac{\kappa_1-\kappa_2}{2}\,\tanh\frac{(\kappa_1-\kappa_2)x+(\kappa_1^2-\kappa_2^2)y-(\kappa_1^3-\kappa_2^3)t+\theta_{[1,2]}^{(0)}}{2}\\[10pt]
+                u&=2\left(\frac{\kappa_1+\kappa_2}{2}+\frac{\kappa_1-\kappa_2}{2}\,\tanh\frac{\theta_1-\theta_2+\theta_{[1,2]}^{(0)}}{2}\right)_x\\
+                 &=2\left(\frac{\kappa_1-\kappa_2}{2}\,\tanh\frac{\theta_1-\theta_2+\theta_{[1,2]}^{(0)}}{2}\right)_x\\
+                 &=(\kappa_1-\kappa_2)\,\mathrm{sech}^2\frac{\theta_1-\theta_2+\theta_{[1,2]}^{(0)}}{2}\cdot\left(\frac{\theta_1-\theta_2+\theta_{[1,2]}^{(0)}}{2}\right)_x\\
+                 &=\frac{(\kappa_1-\kappa_2)^2}{2}\,\mathrm{sech}^2\frac{(\kappa_1-\kappa_2)x+(\kappa_1^2-\kappa_2^2)y-(\kappa_1^3-\kappa_2^3)t+\theta_{[1,2]}^{(0)}}{2}
+            \end{align*}
+            <br>
+            ・例
+            <div style="text-align: center;margin-left: 5%;margin-right: 5%;max-width: 700pt;">
+                <div class="parent">
+                    <div style="text-align: left;">左: \(w\)</div>
+                    <div style="text-align: right;">右: \(u\)</div>
+                </div>
+                <video controls loop width="100%">
+                    <source src="./image/3.webm" type="video/webm">
+                </video>
+                <div style="text-align: left;">
+                    ・\(w(x,\,y,\,t)\) は衝撃波, \(u(x,\,y,\,t)\) はソリトン(line-soliton)となっている。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+    <hr id="header">
+    <div class="parent">
+        </div>
+    <div style="text-align: right">
+        <a href="../index.html">[homeに戻る]</a>
+    </div>
+</footer>	</body>
+	<script src="../js/details_close.js"></script>
+</html>
