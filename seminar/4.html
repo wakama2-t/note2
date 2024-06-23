@@ -17,8 +17,154 @@
     <hr id="header">
     <h2 id =subtitle>第4章 KP階層の理論</h2><hr id=header2>
 </header>		<div id="contents">
+			<h3>KP(Kadomtsev-Petviashvili)方程式</h3>
+			<div id="main_text">
+				\[
+					\Bigl(4u_t-12uu_x-u_{xxx}\Bigr)_x-3u_{yy}=0
+				\]
+				<p>・\(u(x,\,y,\,t)\) の \(y\) 依存性をなくすとKdV方程式になる。</p>
+				<p>・ロンスキー行列式型の解をもつ</p>
+				<div id="main_text">
+					\(\displaystyle\left\{\begin{aligned}(f_i)_{y}&=(f_i)_{xx}\\(f_i)_{t}&=(f_i)_{xxx}\end{aligned}\right.\) を満たす
+					\(\boldsymbol{f}={}^t(f_1,\,f_2,\ldots,\,f_{N-1})\) について、
+					\begin{align*}
+						u(x,\,y,\,t)&=(\log{\tau})_{xx}\\[5pt]
+						\tau(x,\,y,\,t)&=\det(\boldsymbol{f},\,\boldsymbol{f}_x,\ldots,\,\boldsymbol{f}_{(N-1)x})
+					\end{align*}
+					<details open id="white">
+						<summary>証明</summary>
+						<div id="main_text">
+							双線型形式を用いた証明(\(N=2\))は<a href="./soliton.html#">ソリトンの数理</a>にあり。(途中)
+							<br><div style="line-height: 10pt;">&nbsp;</div>
+							独立変数 \(x\), パラメータ \(y,\,t\) を引数にもつ関数 \(f(x;\,y,\,t)\) についての2階線型常微分方程式
+							\[
+								\frac{d^2f}{dx^2}+a(x;\,y,\,t)\frac{df}{dx}+b(x;\,y,\,t)f=0
+							\]
+							を考える。パラメータと独立変数の間には以下の関係が成り立つとする。
+							\[
+								\left\{
+									\begin{aligned}
+										f_{y}&=f_{xx}\\
+										f_{t}&=f_{xxx}
+									\end{aligned}
+								\right.
+							\]
+							このとき、考える微分方程式は2階線型常微分方程式なので独立な解 \(f_1,\,f_2\) が存在する。<br>
+							この \(f_1,\,f_2\) を上の微分方程式に代入して並べると、
+							\[
+								\left\{
+									\begin{aligned}
+										&\frac{\partial^2f_1}{\partial{x}^2}+a\frac{\partial{f_1}}{\partial{x}}+bf_1=0\\
+										&\frac{\partial^2f_2}{\partial{x}^2}+a\frac{\partial{f_2}}{\partial{x}}+bf_2=0
+									\end{aligned}
+								\right.
+								\Leftrightarrow\,
+								\begin{pmatrix}
+									f_1&(f_1)_x\\
+									f_2&(f_2)_x
+								\end{pmatrix}
+								\begin{pmatrix}
+									b\\
+									a
+								\end{pmatrix}
+								=-
+								\begin{pmatrix}
+									(f_1)_{xx}\\
+									(f_2)_{xx}
+								\end{pmatrix}
+							\]
+							となり、クラメルの公式より、
+							\[
+								a(x;\,y,\,t)=-\frac{\begin{vmatrix}f_1&(f_1)_{xx}\\f_2&(f_2)_{xx}\end{vmatrix}}{\begin{vmatrix}f_1&(f_1)_x\\f_2&(f_2)_x\end{vmatrix}},\;
+								b(x;\,y,\,t)=\frac{\begin{vmatrix}(f_1)_x&(f_1)_{xx}\\(f_2)_x&(f_2)_{xx}\end{vmatrix}}{\begin{vmatrix}f_1&(f_1)_x\\f_2&(f_2)_x\end{vmatrix}}
+							\]
+							となる。また、
+							\[
+								\hat{W}:=\partial_x^2+a(x;\,y,\,t)\partial_x+b(x;\,y,\,t)
+							\]
+							とすると \(\hat{W}f_i=0\;(i=1,\,2)\) となるが、この式の両辺を \(y\) で偏微分すると、
+							\begin{align*}
+								0=\partial_{y}\left(\hat{W}f_i\right)
+								&=\left(\partial_y\hat{W}\right)f_i+\hat{W}(f_i)_y\\
+								&=\bigl(\hat{W}\bigr)_y\,f_i+\hat{W}(f_i)_{xx}\\
+								&=\left(\bigl(\hat{W}\bigr)_y+\hat{W}\partial_{x}^2\right)f_i
+							\end{align*}
+							となる。また \(\hat{W}f_i=0\;(i=1,\,2)\) なので、
+							\begin{align*}
+								\bigl(\hat{W}\bigr)_y+\hat{W}\partial_{x}^2
+								&=a_y\partial_x+b_y+\partial_x^4+a\partial_x^3+b\partial_x^2\\
+								&=\hat{B}_2(\partial_x^2+a\partial_x+b)=\hat{B}_2\hat{W}
+							\end{align*}
+							を満たす \(x\) についての2階微分演算 \(\hat{B}_2\) が存在し、
+							\[
+								\hat{B}_2:=\partial_x^2+\alpha_2(x;\,y,\,t)+\beta_2(x;\,y,\,t)
+							\]
+							として具体的な形を求める。
+							\begin{align*}
+								&\bigl(\hat{W}\bigr)_y+\hat{W}\partial_{x}^2\\
+								&=a_y\partial_x+b_y+\partial_x^4+a\partial_x^3+b\partial_x^2\\
+								&=\partial_x^4+a\partial_x^3+b\partial_x^2+a_y\partial_x+b_y\\[10pt]
+								&\hat{B}_2\hat{W}\\
+								&=(\partial_x^2+\alpha_2\partial_x+\beta_2)(\partial_x^2+a\partial_x+b)\\
+								&=\partial_x^4+(a_{xx}+2a_x\partial_{x}+a\partial_x^2)\partial_x+(b_{xx}+2b_x\partial_x+b\partial_x^2)\\
+								&\;\;\;\;\,+\alpha_2\partial_x^3+\alpha_2(a_x+a\partial_x)\partial_x+\alpha_2(b_x+b\partial_x)\\
+								&\;\;\;\;\,+\beta_2(\partial_x^2+a\partial_x+b)\\
+								&=\partial_x^4+(a+\alpha_2)\partial_x^3+(2a_x+b+\alpha_2a+\beta_2)\partial_x^2\\
+								&\;\;\;\;\,+(a_{xx}+2b_x+\alpha_2a_x+\alpha_2b+\beta_2a)\partial_x\\
+								&\;\;\;\;\,+b_{xx}+\alpha_2b_x+\beta_2b
+							\end{align*}
+							となるので、
+							\[
+								\left\{
+								\begin{aligned}
+									a\;&=a+\alpha_2\\
+									b\;&=2a_x+b+\alpha_2a+\beta_2\\
+									a_y&=a_{xx}+2b_x+\alpha_2a_x+\alpha_2b+\beta_2a\\
+									b_y&=b_{xx}+\alpha_2b_x+\beta_2b
+								\end{aligned}
+								\right.
+							\]
+							第1式より \(\alpha_2=0\)、第2式より \(\beta_2=-2a_x\) となり、
+							\[
+								\left\{
+								\begin{aligned}
+									a_y&=a_{xx}-2aa_x+2b_x\\
+									b_y&=b_{xx}-2a_xb
+								\end{aligned}
+								\right.
+							\]
+							という関係式が得られる。これより、
+							\begin{gather*}
+								\hat{W}=\partial_x^2+a(x;\,y,\,t)\partial_x+b(x;\,y,\,t)\\[5pt]
+								\left\{
+									\begin{aligned}
+										&\hat{W}f=0\\
+										&f_{y}=f_{xx}\\
+										&f_{t}=f_{xxx}
+									\end{aligned}
+								\right.
+							\end{gather*}
+							となるとき、
+							\[
+								\left\{
+								\begin{aligned}
+									a_y&=a_{xx}-2aa_x+2b_x\\
+									b_y&=b_{xx}-2a_xb
+								\end{aligned}
+								\right.
+							\]
+							という連立非線形連立微分方程式が得られ、その解は、
+							\[
+								a(x;\,y,\,t)=-\frac{\begin{vmatrix}f_1&(f_1)_{xx}\\f_2&(f_2)_{xx}\end{vmatrix}}{\begin{vmatrix}f_1&(f_1)_x\\f_2&(f_2)_x\end{vmatrix}},\;
+								b(x;\,y,\,t)=\frac{\begin{vmatrix}(f_1)_x&(f_1)_{xx}\\(f_2)_x&(f_2)_{xx}\end{vmatrix}}{\begin{vmatrix}f_1&(f_1)_x\\f_2&(f_2)_x\end{vmatrix}}
+							\]
+							と行列式を用いて表されることがわかった。
+						</div>
+						<div style="text-align: right;"><button id=close0>[閉じる]</button></div>
+					</details>
+				</div>
+			</div>
 
-			a
 		</div>
 
 

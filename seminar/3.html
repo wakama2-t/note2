@@ -384,16 +384,115 @@
 								\end{align*}
 								より、10対を消去する操作と時間発展させる操作は可換なことが示せた。
 							</div>	
-
 						</div>
 						<div style="text-align: right;"><button id=close5>[閉じる]</button></div>
 					</details>
 					<div style="line-height: 5pt;">&nbsp;</div>
-					<details open id="white">
+					<details id="white">
 						<summary>補足</summary>
 						<div id="main_text">
 							等価な表現1において、空き箱に近い順にコピー玉を移動させると \(1,0\) を結ぶ線がコピー玉の軌道そのものとなり、
 							等価であることがわかる。
+							<br><div style="line-height: 5pt;">&nbsp;</div>
+							また \((p_1,\,p_2,\,p_3,\ldots)\) に対応するヤング図形を考えると、その各行の長さ \(q_1,\,q_2,\,q_3,\ldots\) について、
+							<br>
+							<div style="text-align: center;margin-top: 5pt;margin-bottom: 5pt;">
+								十分時間が経過したとき、ソリトンは振幅の大きい順に並び、その長さは \(q_1,\,q_2,\,q_3\ldots\) となる
+							</div>
+							ことが成り立つ。
+							<br><div style="line-height: 5pt;">&nbsp;</div>
+							・例<br>
+							<div id="main_text">
+								上の例のように \(p_1=4,\,p_2=2,\,p_3=1\) のときヤング図形は、
+								<div style="text-align: center;"><img src="./image/im15.bmp" alt="箱玉系" width="20%"></div>
+								となり、
+								\[
+									q_1=3,\,q_2=2,\,q_3=q_4=1
+								\]
+								がわかる。実際、
+								<div style="text-align: center;"><img src="./image/im16.png" alt="箱玉系" width="100%"></div>
+								となり、ソリトンの振幅と一致していることがわかる。
+							</div>
+							<br>
+							・証明
+							<div id="main_text">
+								\begin{align*}
+									N&:\;ヤング図形の行の数\\
+									L&:\;ヤング図形の列の数\\
+								\end{align*}
+								\[
+									q_1>q_2>\cdots>q_N
+								\]
+								とする。また \(q_N=1\) の場合を示すと、\(q_N>1\) の場合も示せるためこれを示す。
+								<details id="gray">
+									<summary>何故か</summary>
+									<div id="main_text">
+										\(q_N>1\) のとき、
+										\[
+											(q_N\,を\,1\,にする操作)=(q_N-1)回\,10\,対を削除
+										\]
+										であり、任意の \(0,1\) 列 \(x=\{0,\,1\}^*\neq\{1\}^*\) に対して、
+										\[
+											x_{\infty}:=(x\,を十分時間発展させたもの)
+										\]
+										とすると、
+										\begin{align*}
+											x_{\infty}
+											&=(x_\infty\,から\,(q_N-1)回\,10\,対を削除し、(q_N-1)回\,10\,対を挿入したもの)\\
+											&=(x\,から\,(q_N-1)回\,10\,対を削除し、\\
+											&\;\;\;\;\;\;十分時間発展させた後、(q_N-1)回\,10\,対を挿入したもの)
+										\end{align*}
+										となるから \(q_N=1\) の場合のみ示せばよい。<br>
+										ちなみに \(10\) 対を削除する操作はヤング図形の最も左の列を削除する操作であり、挿入する操作は最も左の列と同数の列を左に付け加える操作となる。
+									</div>
+									<div style="text-align: right;"><button id=close7>[閉じる]</button></div>	
+								</details><div style="line-height: 5pt;">&nbsp;</div>
+								\(N=1\) のとき、 振幅 \(a\) のソリトンが1つ存在するとすると、
+								\[
+									p_1=p_2=\cdots=p_a=1
+								\] 
+								であり、\(q_1=a\) となるため満たされる。
+								<br><div style="line-height: 5pt;">&nbsp;</div>
+								\(N=2\) のとき、
+								\[
+									\left\{
+									\begin{aligned}
+										Q_n^{t+1}&=\min\smash{\left[\sum_{j=1}^nQ_j^t-\sum_{j=1}^{n-1}Q_j^{t+1},\;E_n^t\right]}\\[13pt]
+										E_n^{t+1}&=Q_{n+1}^t+E_n^t-Q_n^{t+1}
+									\end{aligned}
+									\right.
+								\]
+								で表現すると、\(q_1>q_2=1\) であり、
+								\begin{alignat*}{3}
+									a)&\;\;\;\;Q_1^0=1,&E_1^0\geq1,&\;\;Q_2^0=q_1&\\
+									b)&\;2\geq{Q_1^0}\geq{q_1},\;\;&E_1^0=1,&\;\;Q_2^0=q_1+1-Q_1^0&\\
+									c)&\;\;\;\;Q_1^0=q_1,&E_1^0\geq2,&\;\;Q_2^0=1&
+								\end{alignat*}
+								の3パターンに分類することができる。<br>
+								・例
+								<div style="text-align: center;"><img src="./image/im17.png" alt="箱玉系" width="100%"></div>
+								そして \(a)\) から \(b)\)、\(b)\) から \(c)\) へと変化し、\(c)\) はこれ以上相互作用しないことがわかる。<br>
+								これより \(N=2\) のとき成り立つことが示せた。
+								<br><div style="line-height: 5pt;">&nbsp;</div>
+								\(N=m\;(1\leq{m}\leq{k})\) のとき成り立つと仮定して \(N=k+1\) を考える。<br>
+								\(t=0\) において \(10\) 対を消すと \(q_{k+1}=1\) より、\(q\) 個のソリトンが存在する状態になる。<br>
+								このとき、仮定より時間を十分経過させると \(k\) 個のソリトンは振幅の大きい順に並ぶ。<br>
+								時間発展と \(10\) 対を削除する操作は可換だったため、この状態に \(10\) 対を挿入したものを考えればよい。<br>
+								ただし、1つソリトンを増やさないといけないため、
+								\begin{alignat*}{3}
+									\alpha)\;&0\,の後ろに追加\\
+									\beta)\;&1\,と\,1\,の間に追加
+								\end{alignat*}
+								のどちらかが必要となる。<br>
+								まず \(\beta)\) は時間経過で\(\alpha)\) と同じ状態となる。<br>
+								・例
+								<div style="text-align: center;"><img src="./image/im18.png" alt="箱玉系" width="80%"></div>
+								\(\alpha)\) は追加した位置より左にあるソリトンとそれぞれ \(N=2\) と同様の振る舞いをするため、
+								十分時間を経過させると他のソリトンの振幅を変化させることなく最後尾へ移動する。<br>
+								これより \(N=m\;(1\leq{m}\leq{k})\) のとき成り立つと仮定すると \(N=k+1\) も成り立つ。
+								<br><div style="line-height: 5pt;">&nbsp;</div>
+								よって任意の \(N\in\mathbb{N}\) で成り立つことが示せた。
+							</div>
 						</div>
 						<div style="text-align: right;"><button id=close6>[閉じる]</button></div>
 					</details>

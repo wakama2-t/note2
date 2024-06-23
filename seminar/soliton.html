@@ -329,8 +329,123 @@
                 </video>
                 <div style="text-align: left;">
                     ・\(w(x,\,y,\,t)\) は衝撃波, \(u(x,\,y,\,t)\) はソリトン(line-soliton)となっている。
+                    <br><div style="line-height: 5pt;">&nbsp;</div>
+                    ・\(u(x,\,,\,t)\) においてソリトンの頂点は、
+                    \[
+                        (\kappa_1-\kappa_2)x+(\kappa_1^2-\kappa_2^2)y-(\kappa_1^3-\kappa_2^3)t+\theta_{[1,2]}^{(0)}=0
+                    \]
+                    上に位置する。
+                </div>
+            </div><div style="line-height: 10pt;">&nbsp;</div>
+            また、
+            \begin{alignat*}{3}
+                振幅\;\;\;\;\;&:\;&A_{[1,2]}&=\frac{(\kappa_1-\kappa_2)^2}{2}\\
+                波数ベクトル&:\;&\boldsymbol{K}_{[1,2]}&=\left(\kappa_1-\kappa_1,\,\kappa_1^2-\kappa_2^2\right)=\left(K_{[1,2]}^x,\,K_{[1,2]}^y\right)\\
+                周波数\;\;\;\;&:\;&\Omega_{[1,2]}\,&=\kappa_1^3-\kappa_2^3
+            \end{alignat*}
+            とすると、
+            \[
+                u(x,\,y,\,t)=A_{[1,2]}\,\mathrm{sech}\frac{\boldsymbol{K}_{[1,2]}\cdot\boldsymbol{r}-\Omega_{[1,2]}t+\theta_{[1,2]}^{(0)}}{2}
+            \]
+            であり、満たすべき分散関係は
+            \[
+                -4\Omega_{[1,2]}K_{[1,2]}^x+(K_{[1,2]}^x)^4+3(K_{[1,2]}^y)^2=0
+            \]
+            となるが、これは恒等的に満たされる。
+            <br><div style="line-height: 10pt;">&nbsp;</div>
+            \(M=3\) のときは、
+            \begin{align*}            
+                f&=e^{\tilde{\theta}_1}+e^{\tilde{\theta}_2}+e^{\tilde{\theta}_3}\\
+                 &=\rho_1e^{\theta_1}+\rho_2e^{\theta_2}+\rho_3e^{\theta_3}\\
+                 &=\rho_1E_1+\rho_2E_2+\rho_3E_3
+            \end{align*}
+            として、\(\kappa_1&lt;\kappa_2&lt;\kappa_3\) とすると、
+            \[
+                w(x,\,y,\,t)=(\log{f})_x=\frac{\rho_1\kappa_1E_1+\rho_2\kappa_2E_2+\rho_3\kappa_3E_3}{\rho_1E_1+\rho_2E_2+\rho_3E_3}
+            \]
+            であり、3つのソリトンの交点から十分離れた位置では、(\(\kappa_i,\,\kappa_j\) が支配的な領域の境界に位置するソリトン)
+            \[
+                u_{[i,j]}(x,\,y,\,t)=A_{[i,j]}\,\mathrm{sech}\frac{\boldsymbol{K}_{[i,j]}\cdot\boldsymbol{r}-\Omega_{[i,j]}t+\theta_{[i,j]}^{(0)}}{2}
+            \]
+            となる。また、
+            \begin{alignat*}{3}
+                K_{[1,2]}^x+K_{[2,3]}^x&=(\kappa_1-\kappa_2)-(\kappa_2-\kappa_3)&=\kappa_1-\kappa_3&=K_{[1,3]}^x\\
+                K_{[1,2]}^y+K_{[2,3]}^y&=(\kappa_1^2-\kappa_2^2)-(\kappa_2^2-\kappa_3^2)&=\kappa_1^2-\kappa_3^2&=K_{[1,3]}^y\\
+                \Omega_{[1,2]}+\Omega_{[2,3]}&=(\kappa_1^3-\kappa_2^3)-(\kappa_2^3-\kappa_3^3)&=\kappa_1^3-\kappa_3^3&=\Omega_{[1,3]}
+            \end{alignat*}
+            と共鳴条件を満たし、\(u_{[1,3]}\) の振幅は非常に大きくなる。
+            <br><div style="line-height: 5pt;">&nbsp;</div>
+            ・例 \(u(x,\,y,\,t)\)
+            <div style="text-align: center;margin-left: 5%;margin-right: 5%;max-width: 700pt;">
+                <video controls loop width="70%">
+                    <source src="./image/4.webm" type="video/webm">
+                </video>
+                <div style="text-align: left;">
+                    ・Y-shape soliton という。
                 </div>
             </div>
+        </div>
+        <br>
+        <h3>ロンスキアン解</h3>
+        <div id="main_text">
+            Burgers階層を次のように拡張すると、
+            \[
+                \left\{
+                    \begin{aligned}
+                        f_x\,&=wf\\
+                        f_{t_n}&=\partial_x^nf
+                    \end{aligned}
+                \right.
+                \;\rightarrow\;\,
+                \left\{
+                    \begin{aligned}
+                        f_{xx}\,&=w_1f_x+w_2f\\
+                        f_{t_n}\,&=\partial_x^nf
+                    \end{aligned}
+                \right.
+            \]
+            第1式は2階線型常微分方程式となり、基本解 \(f_1,\,f_2\) を用いて、
+            \[
+                f=c_1f_1+c_2f_2
+            \]
+            と表せる。また \(f=f_1,\,f_2\) を第1式に代入して並べると、
+            \[
+                \left\{
+                    \begin{aligned}
+                        \frac{\partial^2f_1}{\partial{x}^2}&=w_1\frac{\partial{f_1}}{\partial{x}}+w_2f_1\\
+                        \frac{\partial^2f_2}{\partial{x}^2}&=w_1\frac{\partial{f_2}}{\partial{x}}+w_2f_2
+                    \end{aligned}
+                \right.
+                \Leftrightarrow\,
+                \begin{pmatrix}
+                    f_1&(f_1)_x\\
+                    f_2&(f_2)_x
+                \end{pmatrix}
+                \begin{pmatrix}
+                    w_2\\
+                    w_1
+                \end{pmatrix}
+                =
+                \begin{pmatrix}
+                    (f_1)_{xx}\\
+                    (f_2)_{xx}
+                \end{pmatrix}
+            \]
+            となり、クラメルの公式より、
+            \[
+                w_1=\frac{\begin{vmatrix}f_1&(f_1)_{xx}\\f_2&(f_2)_{xx}\end{vmatrix}}{\begin{vmatrix}f_1&(f_1)_x\\f_2&(f_2)_x\end{vmatrix}}
+            \]
+            となる。また、
+            \begin{align*}                
+                \frac{d}{dx}\begin{vmatrix}f_1&(f_1)_x\\f_2&(f_2)_x\end{vmatrix}
+                &=\begin{vmatrix}(f_1)_x&(f_1)_x\\(f_2)_x&(f_2)_x\end{vmatrix}+\begin{vmatrix}f_1&(f_1)_{xx}\\f_2&(f_2)_{xx}\end{vmatrix}\\
+                &=\begin{vmatrix}f_1&(f_1)_{xx}\\f_2&(f_2)_{xx}\end{vmatrix}
+            \end{align*}
+            であるから、\(\displaystyle\tau(x,\,y,\,t):=\begin{vmatrix}f_1&(f_1)_x\\f_2&(f_2)_x\end{vmatrix}=\mathrm{Wr}(\boldsymbol{f},\,\boldsymbol{f}_x)\) とすると、
+            \[
+                w_1=\frac{\tau_x}{\tau}=(\log\tau)_x
+            \]
+            となる。
         </div>
     </div>
 

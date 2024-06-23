@@ -89,6 +89,37 @@
 				\iiint|\psi(\boldsymbol{r},\,t)|^2\,d\boldsymbol{r}=1
 			\]
 			と規格化した場合、\(|\psi(\boldsymbol{r},\,t)|^2\) は確率密度関数となる。
+			<br><div style="line-height: 5pt;">&nbsp;</div>
+			これより \(\displaystyle\iiint|\psi(\boldsymbol{r},\,t)|^2\,d\boldsymbol{r}\) は時間依存しないため、
+			\begin{align*}
+				\frac{\partial}{\partial{t}}\psi(\boldsymbol{r},\,t)&=\frac{1}{i\hbar}\left\{-\frac{\hbar^2}{2m}\nabla^2+V(\boldsymbol{r},\,t)\right\}\psi(\boldsymbol{r},\,t)\\
+				\frac{\partial}{\partial{t}}\psi^*(\boldsymbol{r},\,t)&=\frac{-1}{i\hbar}\left\{-\frac{\hbar^2}{2m}\nabla^2+V(\boldsymbol{r},\,t)\right\}\psi^*(\boldsymbol{r},\,t)
+			\end{align*}
+			を用いて、
+			\begin{align*}
+				0=\frac{d}{dt}\iiint_V|\psi(\boldsymbol{r},\,t)|^2\,d\boldsymbol{r}
+				&=\iiint_V\left(\psi^*\frac{\partial\psi}{\partial{t}}+\frac{\partial\psi^*}{\partial{t}}\psi\right)d\boldsymbol{r}\\
+				&=\frac{i\hbar}{2m}\iiint_V\Bigl(\psi^*\nabla^2\psi-(\nabla^2\psi^*)\psi\Bigr)d\boldsymbol{r}\\
+				&=\frac{i\hbar}{2m}\iiint_V\nabla\cdot\Bigl(\psi^*\nabla\psi-(\nabla\psi^*)\psi\Bigr)d\boldsymbol{r}\\
+				&=\frac{i\hbar}{2m}\iint_A\Bigl(\psi^*\nabla\psi-(\nabla\psi^*)\psi\Bigr)dA
+			\end{align*}
+			となる。いま、
+			\[
+				\boldsymbol{S}(\boldsymbol{r},\,t):=\frac{\hbar}{2im}\Bigl(\psi^*\nabla\psi-(\nabla\psi^*)\psi\Bigr)
+			\]
+			とすると、
+			\[
+				0=\frac{d}{dt}\iiint_V|\psi(\boldsymbol{r},\,t)|^2\,d\boldsymbol{r}=-\iiint_V\nabla\cdot\boldsymbol{S}\,d\boldsymbol{r}=-\iint_A\boldsymbol{S}\,dA
+			\]
+			であり、
+			\[
+				\frac{d}{dt}|\psi(\boldsymbol{r},\,t)|^2+\nabla\cdot\boldsymbol{S}(\boldsymbol{r},\,t)=0
+			\]
+			とお馴染みの形が出てくる。これより、
+			\[
+				\boldsymbol{S}(\boldsymbol{r},\,t)=\frac{\hbar}{2im}\Bigl(\psi^*\nabla\psi-(\nabla\psi^*)\psi\Bigr)
+			\]
+			を確率の流れの密度と解釈できる。
 		</div>
 
 		<div style="line-height: 20pt;">&nbsp;</div>
@@ -120,7 +151,19 @@
 				|\psi(\boldsymbol{r},\,t)|^2=|\varphi(\boldsymbol{r})Ce^{-i\varepsilon t/\hbar}|^2=|C\varphi(\boldsymbol{r})|^2
 			\]
 			と時間に依存しなくなるからである。<br>
-			また一般に定常Schr&ouml;dinger方程式を満たす \(\varepsilon\) は離散的な値をとる。
+			また、
+			\[
+				\psi(\boldsymbol{r},\,t)=\varphi(\boldsymbol{r})e^{-i\varepsilon t/\hbar}
+			\]
+			はSchr&ouml;dinger方程式の特解となることがわかり、両辺を \(t\) で微分すると、
+			\[
+				i\hbar\frac{\partial}{\partial{t}}\psi(\boldsymbol{r},\,t)=\varepsilon\psi(\boldsymbol{r},\,t)
+			\]
+			となり、全エネルギー \(\displaystyle H\rightarrow i\hbar\frac{\partial}{\partial{t}}\) と考えていたので、
+			\[
+				\varepsilon:\,上式の固有値,\,エネルギーを意味する
+			\]
+			と考えられる。
 		</div>
     </div>
     <footer>
