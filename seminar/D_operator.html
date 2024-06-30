@@ -44,6 +44,34 @@
                 \[F(D_x,\,D_t)e^{\eta_1}\cdot{e^{\eta_2}}=F(P_1-P_2,\,Q_1-Q_2)e^{\eta_1}{e^{\eta_2}}\]
                 と考えることもできる。
             </div>
+            <br>
+            <h3>指数関数のD-operator</h3>
+            \begin{align*}    
+                e^{\delta\frac{\partial}{\partial{x}}}f(x)
+                &=\left(1+\delta\frac{\partial}{\partial{x}}+\frac{1}{2!}\left(\delta\frac{\partial}{\partial{x}}\right)^2+\frac{1}{3!}\left(\delta\frac{\partial}{\partial{x}}\right)^3+\cdots\right)f(x)\\
+                &=\sum_{k=0}^\infty\frac{1}{k!}\delta^k\frac{\partial^kf}{\partial{x}^k}\\
+                &=\sum_{k=0}^\infty\frac{\delta^k}{k!}\frac{\partial^k}{\partial{x}^k}f(x+\delta-\delta)=f(x+\delta)
+            \end{align*}
+            となるから、
+            \[
+                e^{\delta{D_x}}f\cdot{g}=f(x+\delta)g(x-\delta)
+            \]
+            また、
+            \[
+                2\cosh\left(\delta\frac{\partial}{\partial{x}}\right)\log{\tau}(x)=\log\bigl[\cosh(\delta{D_x})\,\tau(x)\cdot\tau(x)\bigr]
+            \]
+            が成り立つ。
+            \begin{align*}
+                \because)\;
+                (左辺)
+                &=\left(e^{\delta\partial_x}+e^{-\delta\partial_x}\right)\log{\tau}\\
+                &=\log{\tau}(x+\delta)+\log{\tau}(x-\delta)\\
+                &=\log\bigl[\tau(x+\delta)\tau(x-\delta)\bigr]\\[3pt]
+                (右辺)
+                &=\log\left[\frac{e^{\delta{D_x}}+e^{-\delta{D_x}}}{2}\,\tau(x)\cdot\tau(x)\right]\\
+                &=\log\left[\frac{1}{2}\tau(x+\delta)\tau(x-\delta)+\frac{1}{2}\tau(x-\delta)\tau(x+\delta)\right]\\
+                &=\log\bigl[\tau(x+\delta)\tau(x-\delta)\bigr]
+            \end{align*}
 		</div>
     <footer>
     <hr id="header">

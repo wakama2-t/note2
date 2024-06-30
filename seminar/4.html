@@ -23,18 +23,22 @@
 					\Bigl(4u_t-12uu_x-u_{xxx}\Bigr)_x-3u_{yy}=0
 				\]
 				<p>・\(u(x,\,y,\,t)\) の \(y\) 依存性をなくすとKdV方程式になる。</p>
+				<p>・双線型形式</p>
+				\[
+					(D_x^4+3D_y^2-4D_xD_t)\tau\cdot\tau=0
+				\]
 				<p>・ロンスキー行列式型の解をもつ</p>
 				<div id="main_text">
 					\(\displaystyle\left\{\begin{aligned}(f_i)_{y}&=(f_i)_{xx}\\(f_i)_{t}&=(f_i)_{xxx}\end{aligned}\right.\) を満たす
 					\(\boldsymbol{f}={}^t(f_1,\,f_2,\ldots,\,f_{N-1})\) について、
 					\begin{align*}
-						u(x,\,y,\,t)&=(\log{\tau})_{xx}\\[5pt]
+						u(x,\,y,\,t)&=-(\log{\tau})_{xx}\\[5pt]
 						\tau(x,\,y,\,t)&=\det(\boldsymbol{f},\,\boldsymbol{f}_x,\ldots,\,\boldsymbol{f}_{(N-1)x})
 					\end{align*}
-					<details open id="white">
+					<details id="white">
 						<summary>証明</summary>
 						<div id="main_text">
-							双線型形式を用いた証明(\(N=2\))は<a href="./soliton.html#">ソリトンの数理</a>にあり。(途中)
+							双線型形式を用いた証明は<a href="./soliton.html#">ソリトンの数理</a>にあり。(途中)
 							<br><div style="line-height: 10pt;">&nbsp;</div>
 							独立変数 \(x\), パラメータ \(y,\,t\) を引数にもつ関数 \(f(x;\,y,\,t)\) についての2階線型常微分方程式
 							\[
@@ -74,10 +78,12 @@
 								\end{pmatrix}
 							\]
 							となり、クラメルの公式より、
+							<div id="math_box">
 							\[
 								a(x;\,y,\,t)=-\frac{\begin{vmatrix}f_1&(f_1)_{xx}\\f_2&(f_2)_{xx}\end{vmatrix}}{\begin{vmatrix}f_1&(f_1)_x\\f_2&(f_2)_x\end{vmatrix}},\;
 								b(x;\,y,\,t)=\frac{\begin{vmatrix}(f_1)_x&(f_1)_{xx}\\(f_2)_x&(f_2)_{xx}\end{vmatrix}}{\begin{vmatrix}f_1&(f_1)_x\\f_2&(f_2)_x\end{vmatrix}}
 							\]
+							</div>
 							となる。また、
 							\[
 								\hat{W}:=\partial_x^2+a(x;\,y,\,t)\partial_x+b(x;\,y,\,t)
@@ -89,13 +95,37 @@
 								&=\bigl(\hat{W}\bigr)_y\,f_i+\hat{W}(f_i)_{xx}\\
 								&=\left(\bigl(\hat{W}\bigr)_y+\hat{W}\partial_{x}^2\right)f_i
 							\end{align*}
-							となる。また \(\hat{W}f_i=0\;(i=1,\,2)\) なので、
-							\begin{align*}
-								\bigl(\hat{W}\bigr)_y+\hat{W}\partial_{x}^2
-								&=a_y\partial_x+b_y+\partial_x^4+a\partial_x^3+b\partial_x^2\\
-								&=\hat{B}_2(\partial_x^2+a\partial_x+b)=\hat{B}_2\hat{W}
-							\end{align*}
-							を満たす \(x\) についての2階微分演算 \(\hat{B}_2\) が存在し、
+							となる。ここで、\(\bigl(\hat{W}\bigr)_y+\hat{W}\partial_{x}^2\) は4階の微分演算子なので、
+							\[
+								(\hat{W})_y+\hat{W}\partial_x^2=\hat{B}_2\hat{W}+\hat{r}_1
+							\]
+							を満たす \(2\) 階の微分演算子 \(\hat{B}_2\), \(1\) 階の微分演算子 \(\hat{r}_1\) が存在する。
+							<details id="gray">
+								<summary>補足</summary>
+								<div id="main_text">
+									\begin{align*}    
+										\hat{B}_2\hat{W}
+										&=\partial_x^4+(a+\alpha_2)\partial_x^3+(2a_x+b+\alpha_2a+\beta_2)\partial_x^2\\
+										&\;\;\;\;+(a_{xx}+2b_x+\alpha_2a_x+\alpha_2b+\beta_2a)\partial_x\\
+										&\;\;\;\;+b_{xx}+\alpha_2b_x+\beta_2b
+									\end{align*}
+									であり、任意の \(4\) 階の微分演算子を表すには文字があと2つ必要となり、
+									\[
+										\hat{r}_1=\gamma\partial_x+\delta
+									\]
+									という1階の微分演算子を付け加えている。
+								</div>
+								<div style="text-align: right;"><button id=close1>[閉じる]</button></div>
+							</details><div style="line-height: 5pt;">&nbsp;</div>
+							また \(\hat{W}f_i=0\;(i=1,\,2)\) なので、
+							\[
+								0=(\hat{B}_2\hat{W}+\hat{r}_1)f_i=\hat{r}_1f_i
+							\]
+							となり、\(\hat{r}_1\) は \(\hat{0}\) となる。以降
+							\[
+								(\hat{W})_y+\hat{W}\partial_x^2=\hat{B}_2\hat{W}
+							\]
+							を考える。
 							\[
 								\hat{B}_2:=\partial_x^2+\alpha_2(x;\,y,\,t)+\beta_2(x;\,y,\,t)
 							\]
@@ -133,18 +163,18 @@
 								\end{aligned}
 								\right.
 							\]
-							という関係式が得られる。これより、
-							\begin{gather*}
+							という関係式が得られる。<br>
+							これより、
+							<div id="math_box">
+								\begin{gather*}
 								\hat{W}=\partial_x^2+a(x;\,y,\,t)\partial_x+b(x;\,y,\,t)\\[5pt]
-								\left\{
-									\begin{aligned}
-										&\hat{W}f=0\\
-										&f_{y}=f_{xx}\\
-										&f_{t}=f_{xxx}
-									\end{aligned}
-								\right.
+								\hat{W}f=0
 							\end{gather*}
-							となるとき、
+							の基本解 \(f_1,\,f_2\) について、
+							\[						
+								(f_i)_{y}=f_{xx}
+							\]
+							となるとき、	
 							\[
 								\left\{
 								\begin{aligned}
@@ -153,18 +183,283 @@
 								\end{aligned}
 								\right.
 							\]
-							という連立非線形連立微分方程式が得られ、その解は、
+							という連立非線形連立微分方程式が得られる。また、
 							\[
-								a(x;\,y,\,t)=-\frac{\begin{vmatrix}f_1&(f_1)_{xx}\\f_2&(f_2)_{xx}\end{vmatrix}}{\begin{vmatrix}f_1&(f_1)_x\\f_2&(f_2)_x\end{vmatrix}},\;
-								b(x;\,y,\,t)=\frac{\begin{vmatrix}(f_1)_x&(f_1)_{xx}\\(f_2)_x&(f_2)_{xx}\end{vmatrix}}{\begin{vmatrix}f_1&(f_1)_x\\f_2&(f_2)_x\end{vmatrix}}
+								(\hat{W})_y+\hat{W}\partial_x^2=\hat{B}_2\hat{W}
 							\]
-							と行列式を用いて表されることがわかった。
+							をみたす \(2\) 階の微分演算子
+							\[
+								\hat{B}_2=\partial_x^2-2a_x
+							\]
+							が存在する。
+							</div>
+							<br><div style="line-height: 5pt;">&nbsp;</div>
+							次に、\(\hat{W}f_i=0\;(i=1,\,2)\) の両辺を \(t\) で偏微分すると、
+							\begin{align*}
+								0=\partial_{t}\left(\hat{W}f_i\right)
+								&=\left(\partial_t\hat{W}\right)f_i+\hat{W}(f_i)_t\\
+								&=\bigl(\hat{W}\bigr)_t\,f_i+\hat{W}(f_i)_{xxx}\\
+								&=\left(\bigl(\hat{W}\bigr)_t+\hat{W}\partial_{x}^3\right)f_i
+							\end{align*}
+							となり、
+							\[
+								(\hat{W})_t+\hat{W}\partial_x^3=\hat{B}_3\hat{W}
+							\]
+							を考える。
+							\[
+								\hat{B}_3:=\partial_x^3+\alpha_3(x;\,y,\,t)\partial_x^2+\beta_3(x;\,y,\,t)\partial_x+\gamma_3(x;\,y,\,t)
+							\]
+							とすれば、
+							\begin{align*}
+								&(\hat{W})_t+\hat{W}\partial_x^3\\
+								&=a_t\partial_x+b_t+\partial_x^5+a\partial_x^4+b\partial_x^3\\
+								&=\partial_x^5+a\partial_x^4+b\partial_x^3+a_t\partial_x+b_t\\[10pt]
+								&\hat{B}_3\hat{W}\\
+								&=(\partial_x^3+\alpha_3\partial_x^2+\beta_3\partial_x+\gamma_3)(\partial_x^2+a\partial_x+b)\\
+								&=\partial_x^5+(a_{xxx}+3a_{xx}\partial_x+3a_{x}\partial_x^2+a\partial_x^3)\partial_x\\
+								&\;\;\;\;\,+(b_{xxx}+3b_{xx}\partial_x+3b_x\partial_x^2+b\partial_x^3)\\[2pt]
+								&\;\;\;\;\,+\alpha_3\partial_x^4+\alpha_3(a_{xx}+2a_x\partial_x+a\partial_x^2)\partial_x\\
+								&\;\;\;\;\,+\alpha_3(b_{xx}+2b_x\partial_x+b\partial_x^2)\\[2pt]
+								&\;\;\;\;\,+\beta_3\partial_x^3+\beta_3(a_x+a\partial_x)\partial_x+\beta_3(b_x+b\partial_x)\\[2pt]
+								&\;\;\;\;\,+\gamma_3(\partial_x^2+a\partial_x+b)\\[4pt]
+								&=\partial_x^5+(a+\alpha_3)\partial_x^4+(3a_x+b+\alpha_3a+\beta_3)\partial_x^3\\
+								&\;\;\;\;\,+(3a_{xx}+3b_x+2\alpha_3a_x+\alpha_3b+\beta_3a+\gamma_3)\partial_x^2\\
+								&\;\;\;\;\,+(a_{xxx}+3b_{xx}+\alpha_3a_{xx}+2\alpha_3b_x+\beta_3a_x+\beta_3b+\gamma_3a)\partial_x\\
+								&\;\;\;\;\,+b_{xxx}+\alpha_3b_{xx}+\beta_3b_x+\gamma_3b
+							\end{align*}
+							より、
+							\[
+								\left\{
+								\begin{aligned}
+									a\;&=a+\alpha_3\\
+									b\;&=3a_x+b+\alpha_3a+\beta_3\\
+									0\;&=3a_{xx}+3b_x+2\alpha_3a_x+\alpha_3b+\beta_3a+\gamma_3\\
+									a_t&=a_{xxx}+3b_{xx}+\alpha_3a_{xx}+2\alpha_3b_x+\beta_3a_x+\beta_3b+\gamma_3a\\
+									b_t&=b_{xxx}+\alpha_3b_{xx}+\beta_3b_x+\gamma_3b
+								\end{aligned}
+								\right.
+							\]
+							第1式より \(\alpha_3=0\)、第2式より \(\beta_3=-3a_x\)、第3式より、
+							\[
+								\gamma_3=-3a_{xx}+3aa_x-3b_x
+							\]
+							がわかり、
+							\begin{align*}
+								a_t
+								&=a_{xxx}+3b_{xx}+\alpha_3a_{xx}+2\alpha_3b_x+\beta_3a_x+\beta_3b+\gamma_3a\\
+								&=a_{xxx}+3b_{xx}-3a_x^2-3ba_x-3aa_{xx}+3a^2a_x-3ab_x\\
+								&=a_{xxx}+3b_{xx}-3a(a_{xx}+b_x)-3a_x^2-3ba_x+3a^2a_x\\[5pt]
+								b_t
+								&=b_{xxx}+\alpha_3b_{xx}+\beta_3b_x+\gamma_3b\\
+								&=b_{xxx}-3a_xb_x-3a_{xx}b+3aa_xb-3bb_x
+							\end{align*}
+							より、
+							\[
+								\left\{
+								\begin{aligned}
+									a_t&=a_{xxx}+3b_{xx}-3a(a_{xx}+b_x)-3a_x^2-3ba_x+3a^2a_x\\
+									b_t&=b_{xxx}-3a_xb_x-3a_{xx}b+3aa_xb-3bb_x
+								\end{aligned}
+								\right.
+							\]
+							を得る。<br>
+							これより、
+							<div id="math_box">
+							\begin{gather*}
+								\hat{W}=\partial_x^2+a(x;\,y,\,t)\partial_x+b(x;\,y,\,t)\\[5pt]
+								\hat{W}f=0
+							\end{gather*}
+							の基本解 \(f_1,\,f_2\) について、
+							\[						
+								(f_i)_{t}=f_{xxx}
+							\]
+							となるとき、
+							\[
+								\left\{
+								\begin{aligned}
+									a_t&=a_{xxx}+3b_{xx}-3a(a_{xx}+b_x)-3a_x^2-3ba_x+3a^2a_x\\
+									b_t&=b_{xxx}-3a_xb_x-3a_{xx}b+3aa_xb-3bb_x
+								\end{aligned}
+								\right.
+							\]
+							という連立非線形連立微分方程式が得られる。また、
+							\[
+								(\hat{W})_t+\hat{W}\partial_x^3=\hat{B}_3\hat{W}
+							\]
+							をみたす \(3\) 階の微分演算子
+							\[
+								\hat{B}_3=\partial_x^3-3a_x\partial_x-3a_{xx}+3aa_x-3b_x
+							\]
+							が存在する。
+							</div><br>
+							ここまでの話を一般化する。 独立変数を \(\boldsymbol{x}=(x_1,\,x_2,\ldots)\) とすれば、
+							\begin{gather*}
+								\hat{W}_N=\partial_x^N+a_1(\boldsymbol{x})\partial_x^{N-1}+a_2(\boldsymbol{x})\partial_x^{N-2}+\cdots+a_N(\boldsymbol{x})\\[5pt]
+								\hat{W}_Nf=0
+							\end{gather*}
+							の基本解 \(f_1,\,f_2,\ldots,\,f_N\) について、
+							\[
+								(f_i)_{x_k}=\partial_x^kf
+							\]
+							となるとき、\(\hat{W}_Nf_i=0\) であり、
+							\begin{align*}
+								&\left\{
+								\begin{aligned}
+									-\partial_{x}^Nf_1\,&=a_1\partial_{x}^{N-1}f_1+a_2\partial_x^{N-2}f_1+\cdots+a_Nf_1\\
+									-\partial_{x}^Nf_2\,&=a_1\partial_{x}^{N-1}f_2+a_2\partial_x^{N-2}f_2+\cdots+a_Nf_2\\
+									\vdots\;\;\;\;&\\
+									-\partial_{x}^Nf_N\,&=a_1\partial_{x}^{N-1}f_N+a_2\partial_x^{N-2}f_N+\cdots+a_Nf_N
+								\end{aligned}
+								\right.\\[10pt]
+								&\Leftrightarrow\;
+								\begin{pmatrix}
+									f_1&\partial_xf_1&\partial_x^2f_1&\cdots&\partial_x^{N-1}f_1\\
+									f_2&\partial_xf_2&\partial_x^2f_2&\cdots&\partial_x^{N-1}f_2\\
+									\vdots&\vdots&\vdots&\ddots&\vdots\\
+									f_N&\partial_xf_N&\partial_x^2f_N&\cdots&\partial_x^{N-1}f_N\\
+								\end{pmatrix}
+								\begin{pmatrix}
+									a_N\\[2pt]a_{N-1}\\[2pt]\vdots\\a_1
+								\end{pmatrix}
+								=-
+								\begin{pmatrix}
+									\partial_x^{N}f_1\\[2pt]\partial_x^{N}f_2\\[2pt]\vdots\\[2pt]\partial_x^{N}f_N\\
+								\end{pmatrix}
+							\end{align*}
+							となるから、
+							\[
+								a_k=-\frac{
+								\begin{vmatrix}
+									f_1&\partial_xf_1&\cdots&\partial_x^{N-k-1}f_1&\partial_x^{N}f_1&\partial_x^{N-k+1}f_1&\cdots&\partial_x^{N-1}f_1\\
+									f_2&\partial_xf_2&\cdots&\partial_x^{N-k-1}f_2&\partial_x^{N}f_2&\partial_x^{N-k+1}f_2&\cdots&\partial_x^{N-1}f_2\\
+									\vdots&\vdots&&\vdots&\vdots&\vdots&&\vdots\\
+									f_N&\partial_xf_N&\cdots&\partial_x^{N-k-1}f_N&\partial_x^{N}f_N&\partial_x^{N-k+1}f_N&\cdots&\partial_x^{N-1}f_N\\
+								\end{vmatrix}
+								}{
+								\begin{vmatrix}
+									f_1&\partial_xf_1&\partial_x^2f_1&\cdots&\partial_x^{N-1}f_1\\
+									f_2&\partial_xf_2&\partial_x^2f_2&\cdots&\partial_x^{N-1}f_2\\
+									\vdots&\vdots&\vdots&\ddots&\vdots\\
+									f_N&\partial_xf_N&\partial_x^2f_N&\cdots&\partial_x^{N-1}f_N\\
+								\end{vmatrix}
+								}
+							\]
+							となる。特に \(k=1\) のとき、
+							\[
+								a_1=-\frac{
+								\begin{vmatrix}
+									f_1&\partial_xf_1&\partial_x^2f_1&\cdots&\partial_x^{N-2}f_1&\partial_x^{N}f_1\\
+									f_2&\partial_xf_2&\partial_x^2f_2&\cdots&\partial_x^{N-2}f_2&\partial_x^{N}f_2\\
+									\vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+									f_N&\partial_xf_N&\partial_x^2f_N&\cdots&\partial_x^{N-2}f_N&\partial_x^{N}f_N\\
+								\end{vmatrix}
+								}{
+								\begin{vmatrix}
+									f_1&\partial_xf_1&\partial_x^2f_1&\cdots&\partial_x^{N-1}f_1\\
+									f_2&\partial_xf_2&\partial_x^2f_2&\cdots&\partial_x^{N-1}f_2\\
+									\vdots&\vdots&\vdots&\ddots&\vdots\\
+									f_N&\partial_xf_N&\partial_x^2f_N&\cdots&\partial_x^{N-1}f_N\\
+								\end{vmatrix}
+								}
+								=-\frac{\tau_x}{\tau}=-(\log\tau)_x
+							\]
+							\[
+								\tau:=
+								\begin{vmatrix}
+									f_1&\partial_xf_1&\partial_x^2f_1&\cdots&\partial_x^{N-1}f_1\\
+									f_2&\partial_xf_2&\partial_x^2f_2&\cdots&\partial_x^{N-1}f_2\\
+									\vdots&\vdots&\vdots&\ddots&\vdots\\
+									f_N&\partial_xf_N&\partial_x^2f_N&\cdots&\partial_x^{N-1}f_N\\
+								\end{vmatrix}
+							\]
+							となる。また、
+							\begin{align*}
+								0=\partial_{x_k}\bigl(\hat{W}_Nf_i\bigr)
+								&=\bigl(\hat{W}_N\bigr)_{x_k}f_i+\hat{W}_N\partial_x^kf_i\\
+								&=\Bigl(\bigl(\hat{W}_N\bigr)_{x_k}+\hat{W}_N\partial_x^k\Bigr)f_i
+							\end{align*}
+							となり、
+							\[
+								\bigl(\hat{W}_N\bigr)_{x_k}+\hat{W}_N\partial_x^k=\hat{B}_k\hat{W}_N
+							\]
+							をみたす \(k\) 階の微分演算子 \(\hat{B}_k\) が存在する。そして、
+							\[
+								(\hat{W}_N)_{x_kx_l}=(\hat{W}_N)_{x_lx_k}
+							\]
+							から、
+							\begin{align*}
+								(左辺)
+								&=\bigl(\hat{B}_k\hat{W}_N-\hat{W}_N\partial_x^k\bigr)_{x_l}\\
+								&=\bigl(\hat{B}_k\bigr)_{x_l}\hat{W}_N+\hat{B}_k\bigl(\hat{W}_N\bigr)_{x_l}-\bigl(\hat{W}_N\bigr)_{x_l}\partial_x^k\\
+								&=\bigl(\hat{B}_k\bigr)_{x_l}\hat{W}_N+\hat{B}_k\bigl(\hat{B}_l\hat{W}_N-\hat{W}_N\partial_x^l\bigr)-\bigl(\hat{B}_l\hat{W}_N-\hat{W}_N\partial_x^l\bigr)\partial_x^k\\
+								&=\bigl(\hat{B}_k\bigr)_{x_l}\hat{W}_N+\hat{B}_k\hat{B}_l\hat{W}_N-\hat{B}_k\hat{W}_N\partial_x^l-\hat{B}_l\hat{W}_N\partial_x^k+\hat{W}_N\partial_x^{k+l}\\[5pt]
+								(右辺)
+								&=\bigl(\hat{B}_l\bigr)_{x_k}\hat{W}_N+\hat{B}_l\hat{B}_k\hat{W}_N-\hat{B}_l\hat{W}_N\partial_x^k-\hat{B}_k\hat{W}_N\partial_x^l+\hat{W}_N\partial_x^{k+l}\\[5pt]
+							\end{align*}
+							より、
+							\[
+								\bigl(\hat{B}_k\bigr)_{x_l}-\bigl(\hat{B}_l\bigr)_{x_k}=\hat{B}_l\hat{B}_k-\hat{B}_k\hat{B}_l
+							\]
+							\(\left\{\begin{alignedat}{3}x_k&=x_2&=&\,y\\x_l\,&=x_3&=&\;t\end{alignedat}\right.\) とすれば、\((a_1)_y=(a_1)_{xx}-2a_1(a_1)_x+2(a_2)_x\) より、
+							\begin{align*}					
+								\hat{B}_2&=\partial_x^2-2(a_1)_x\\[5pt]
+								\hat{B}_3&=\partial_x^3-3(a_1)_x\partial_x-3(a_1)_{xx}+3a_1(a_1)_x-3(a_2)_x\\
+										 &=\partial_x^3-3(a_1)_x\partial_x+\frac{3}{2}\bigl((a_1)_{xx}-(a_1)_y\bigr)
+							\end{align*}
+							から、
+							\begin{align*}
+								&\bigl(\hat{B}_2\bigr)_t\\
+								&=-2(a_1)_{xt}\\[5pt]
+								&\bigl(\hat{B}_3\bigr)_y\\
+								&=-3(a_1)_{xy}\partial_x+\frac{3}{2}\bigl((a_1)_{xxy}-(a_1)_{yy}\bigr)\\[5pt]
+								&\hat{B}_3\hat{B}_2\\
+								&=\Bigl(\partial_x^3-3(a_1)_x\partial_x+\frac{3}{2}\bigl((a_1)_{xx}-(a_1)_y\bigr)\Bigr)\Bigl(\partial_x^2-2(a_1)_x\Bigr)\\
+								&=\partial_x^5-2\Bigl((a_1)_{xxxx}+3(a_1)_{xxx}\partial_x+3(a_1)_{xx}\partial_x^2+(a_1)_x\partial_x^3\Bigr)\\
+								&\;\;\;\;-3(a_1)_x\partial_x^3+6(a_1)_x\Bigl((a_1)_{xx}+(a_1)_x\partial_x\Bigr)\\
+								&\;\;\;\;+\frac{3}{2}\bigl((a_1)_{xx}-(a_1)_y\bigr)\partial_x^2-3\Bigl((a_1)_x(a_1)_{xx}-(a_1)_x(a_1)_y\Bigr)\\
+								&=\partial_x^5-5(a_1)_x\partial_x^3-\Bigl(\frac{9}{2}(a_1)_{xx}+\frac{3}{2}(a_1)_y\Bigr)\partial_x^2-6\Bigl((a_1)_{xxx}-(a_1)_x^2\Bigr)\partial_x\\
+								&\;\;\;\;-2(a_1)_{xxxx}+3\Bigl((a_1)_x(a_1)_{xx}+(a_1)_x(a_1)_y\Bigr)\\[5pt]
+								&\hat{B}_2\hat{B}_3\\
+								&=\Bigl(\partial_x^2-2(a_1)_x\Bigr)\Bigl(\partial_x^3-3(a_1)_x\partial_x+\frac{3}{2}\bigl((a_1)_{xx}-(a_1)_y\bigr)\Bigr)\\
+								&=\partial_x^5-3\Bigl((a_1)_{xxx}\partial_x+2(a_1)_{xx}\partial_x^2+(a_1)_{x}\partial_x^3\Bigr)\\
+								&\;\;\;\;-\frac{3}{2}\bigl((a_1)_{xxxx}-(a_1)_{xxy}\bigr)\Bigr)-3\bigl((a_1)_{xxx}-(a_1)_{xy}\bigr)\Bigr)\partial_x-\frac{3}{2}\bigl((a_1)_{xx}-(a_1)_y\bigr)\Bigr)\partial_x^2\\
+								&\;\;\;\;-2(a_1)_x\partial_x^3+6(a_1)^2\partial_x-3(a_1)_x\bigl((a_1)_{xx}-(a_1)_y\bigr)\\
+								&=\partial_x^5-5(a_1)_x\partial_x^3-\Bigl(\frac{9}{2}(a_1)_{xx}+\frac{3}{2}(a_1)_y\Bigr)\partial_x^2-\Bigl(6(a_1)_{xxx}+3(a_1)_{xy}-6(a_1)_x^2\Bigr)\partial_x\\
+								&\;\;\;\;-\frac{3}{2}\bigl((a_1)_{xxxx}-(a_1)_{xxy}\bigr)\Bigr)-3\bigl((a_1)_x(a_1)_{xx}-(a_1)_x(a_1)_y\bigr)
+							\end{align*}
+							となり、
+							\begin{align*}
+								&\bigl(\hat{B}_2\bigr)_t-\bigl(\hat{B}_3\bigr)_y\\
+								&=-2(a_1)_{xt}+3(a_1)_{xy}\partial_x-\frac{3}{2}\bigl((a_1)_{xxy}-(a_1)_{yy}\bigr)\\[5pt]
+								&\hat{B}_3\hat{B}_2-\hat{B}_2\hat{B}_3\\
+								&=3(a_1)_{xy}\partial_x-\frac{1}{2}(a_1)_{xxxx}-\frac{3}{2}(a_1)_{xxy}+6(a_1)_x(a_1)_{xx}
+							\end{align*}
+							となる。よって、
+							\[
+								-2(a_1)_{xt}+\frac{3}{2}(a_1)_{yy}=-\frac{1}{2}(a_1)_{xxxx}+6(a_1)_x(a_1)_{xx}
+							\]
+							であり、\(u(\boldsymbol{x})=-(a_1)_x\) とおけば、
+							\[
+								\Bigl(4u_t-12uu_x-u_{xxx}\Bigr)_x-3u_{yy}=0
+							\]
+							とKP方程式が導出される。
 						</div>
 						<div style="text-align: right;"><button id=close0>[閉じる]</button></div>
 					</details>
 				</div>
+			</div><div style="line-height: 5pt;">&nbsp;</div>
+			<h3>KP階層</h3>
+			<div id="main_text">
+				\[
+					N\,階の微分作用素:\,\hat{W}_N(\partial)=\partial^N+a_1\partial^{N-1}+a_2\partial^{N-2}+\cdots+a_{N}
+				\]
+				は、
+				\begin{gather*}
+					\hat{W}_N(\partial)=\hat{W}_N(\partial^{-1})\partial^N\\
+					\hat{W}(\partial^{-1})=1+a_1\partial^{-1}+a_2\partial^{-2}+\cdots+a_N\partial^{-N}
+				\end{gather*}
+				と解釈できる。
 			</div>
-
 		</div>
 
 

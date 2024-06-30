@@ -138,3 +138,7 @@ div#child1{
 p{
     font-size: larger;
 }
+
+div#math_box{
+    border: 1pt solid red;
+}

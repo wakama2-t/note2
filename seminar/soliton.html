@@ -76,33 +76,24 @@
                         (f_x)_t=(f_t)_x
                     \]
                     を考えると、
-                    <div class="parent2">
-                        <div id="child1">
-                            \begin{align*}
-                                (左辺)
-                                &=(wf)_t\\
-                                &=w_tf+wf_t\\
-                                &=w_tf+wf_{xx}\\
-                                &=w_tf+w(wf)_x\\
-                                &=w_tf+ww_xf+w^2f_x\\
-                                &=w_tf+ww_xf+w^3f\\
-                                &=(w_t+ww_x+w^3)f
-                            \end{align*}
-                        </div>
-                        <div id="child">
-                            \begin{align*}
-                                (右辺)
-                                &=(f_{xx})_x\\
-                                &=(wf)_{xx}\\
-                                &=(w_xf+wf_x)_x\\
-                                &=(w_xf+w^2f)_x\\
-                                &=w_{xx}f+w_xf_x+2ww_xf+w^2f_x\\
-                                &=w_{xx}f+ww_xf+2ww_xf+w^3f\\
-                                &=(w_{xx}+3ww_x+w^3)f
-                            \end{align*}
-                        </div>
-                    </div>
-                    <br>
+                    \begin{align*}
+                        (左辺)
+                        &=(wf)_t\\
+                        &=w_tf+wf_t\\
+                        &=w_tf+wf_{xx}\\
+                        &=w_tf+w(wf)_x\\
+                        &=w_tf+ww_xf+w^2f_x\\
+                        &=w_tf+ww_xf+w^3f\\
+                        &=(w_t+ww_x+w^3)f\\[5pt]
+                        (右辺)
+                        &=(f_{xx})_x\\
+                        &=(wf)_{xx}\\
+                        &=(w_xf+wf_x)_x\\
+                        &=(w_xf+w^2f)_x\\
+                        &=w_{xx}f+w_xf_x+2ww_xf+w^2f_x\\
+                        &=w_{xx}f+ww_xf+2ww_xf+w^3f\\
+                        &=(w_{xx}+3ww_x+w^3)f
+                    \end{align*}
                     より、
                     \[
                         (f_x)_t=(f_t)_x\;\Leftrightarrow\;w_t-2ww_x-w_{xx}=0
@@ -386,6 +377,65 @@
             </div>
         </div>
         <br>
+        <h3>KP方程式の双線型形式</h3>
+        <div id="main_text">
+            \[
+                \mathrm{KP方程式}:\,(4u_t+6uu_x+u_{xxx})_x+3u_{yy}=0
+            \]
+            \(u=2(\log{\tau})_{xx}\) とすれば、
+            \[
+                \Bigl(8(\log{\tau})_{xxt}+3\left(\bigl(2(\log{\tau})_{xx}\bigr)^2\right)_x+2(\log{\tau})_{xxxxx}\Bigr)_x+6(\log{\tau})_{xxyy}=0
+            \]
+            両辺 \(x\) で二回積分して、(積分定数は0とする)
+            \begin{gather*}    
+                8(\log{\tau})_{xt}+3\bigl(2(\log{\tau})_{xx}\bigr)^2+2(\log\tau)_{xxxx}+6(\log\tau)_{yy}=0\\
+                8\frac{\tau\tau_{xt}-\tau_x\tau_t}{\tau^2}+3\left(2\frac{\tau\tau_{xx}-\tau_x^2}{\tau^2}\right)^2+2(\log\tau)_{xxxx}+6\frac{\tau\tau_{yy}+\tau_y^2}{\tau^2}=0\\
+                4\frac{D_xD_t\,\tau\cdot\tau}{\tau^2}+3\left(\frac{D_x^2\,\tau\cdot\tau}{\tau^2}\right)^2+2(\log\tau)_{xxxx}+3\frac{D_y^2\,\tau\cdot\tau}{\tau^2}=0\\
+            \end{gather*}
+            ここで、
+            \[
+                2(\log\tau)_{xxxx}=\frac{D_x^4\,\tau\cdot\tau}{\tau^2}-3\left(\frac{D_x^2\,\tau\cdot\tau}{\tau^2}\right)^2
+            \]
+            <details id="white">
+                <summary>計算過程</summary>
+                <div id="main_text">
+                    公式(証明は<a href="./D_operator.html" target="_blank" rel="noopener noreferrer">こちら</a>)
+                    \[
+                        2\cosh\left(\delta\frac{\partial}{\partial{x}}\right)\log{\tau}(x)=\log\bigl[\cosh(\delta{D_x})\,\tau(x)\cdot\tau(x)\bigr]
+                    \]
+                    を用いる。この式の両辺を \(\delta\) について展開すれば、
+                    \begin{align*}
+                        (左辺)
+                        &=2\left(1+\frac{(\delta\partial_x)^2}{2!}+\frac{(\delta\partial_x)^4}{4!}+\frac{(\delta\partial_x)^6}{6!}+\cdots\right)\log{\tau}(x)\\
+                        &=2\log\tau+(\log{\tau})_{xx}\delta^2+\frac{2}{4!}(\log\tau)_{xxxx}\delta^4+\frac{2}{6!}(\log\tau)_{xxxxxx}\delta^6+\cdots\\[5pt]
+                        (右辺)
+                        &=\log\left[\left(1+\frac{(\delta{D_x})^2}{2!}+\frac{(\delta{D_x})^4}{4!}+\frac{(\delta{D_x})^6}{6!}+\cdots\right)\tau\cdot\tau\right]\\
+                        &=\log\left[\tau^2+\left(\frac{(\delta{D_x})^2}{2!}+\frac{(\delta{D_x})^4}{4!}+\frac{(\delta{D_x})^6}{6!}+\cdots\right)\tau\cdot\tau\right]\\
+                        &=\log\tau^2+\left(\frac{(\delta{D_x})^2}{2!\tau^2}+\frac{(\delta{D_x})^4}{4!\tau^2}+\frac{(\delta{D_x})^6}{6!\tau^2}+\cdots\right)\tau\cdot\tau\\
+                        &\;\;\;\;-\frac{1}{2}\left(\left(\frac{(\delta{D_x})^2}{2!\tau^2}+\frac{(\delta{D_x})^4}{4!\tau^2}+\frac{(\delta{D_x})^6}{6!\tau^2}+\cdots\right)\tau\cdot\tau\right)^2\\
+                        &\;\;\;\;+\frac{1}{3}\left(\left(\frac{(\delta{D_x})^2}{2!\tau^2}+\frac{(\delta{D_x})^4}{4!\tau^2}+\frac{(\delta{D_x})^6}{6!\tau^2}+\cdots\right)\tau\cdot\tau\right)^3\\
+                        &\;\;\;\;\;\,\vdots
+                    \end{align*}
+                    となり \(\delta^4\) の係数を比較すると、
+                    \begin{align*}
+                        \delta^4:\;
+                        &\frac{2}{4!}(\log\tau)_{xxxx}=\frac{D_x^4\,\tau\cdot\tau}{4!\tau^2}-\frac{1}{2}\left(\frac{D_x^2\,\tau\cdot\tau}{2!\tau^2}\right)^2\\
+                        &\Leftrightarrow2(\log\tau)_{xxxx}=\frac{D_x^4\,\tau\cdot\tau}{\tau^2}-3\left(\frac{D_x^2\,\tau\cdot\tau}{\tau^2}\right)^2
+                    \end{align*}    
+                </div>
+                <div style="text-align: right;"><button id=close3>[閉じる]</button></div>
+            </details>
+            となるので、
+            \[
+                4\frac{D_xD_t\,\tau\cdot\tau}{\tau^2}+\frac{D_x^4\,\tau\cdot\tau}{\tau^2}+3\frac{D_y^2\,\tau\cdot\tau}{\tau^2}=0
+            \]
+            よって双線型形式
+            \[
+                (4D_xD_t+D_x^4+3D_y^2)\,\tau\cdot\tau=0
+            \]
+            を得る。
+        </div>
+        <br>
         <h3>ロンスキアン解</h3>
         <div id="main_text">
             Burgers階層を次のように拡張すると、
@@ -445,7 +495,233 @@
             \[
                 w_1=\frac{\tau_x}{\tau}=(\log\tau)_x
             \]
-            となる。
+            となる。そしてこの \(\tau\) は \(\left\{\begin{aligned}t_2&\,\rightarrow\,\;y\\t_3&\,\rightarrow\,-t\end{aligned}\right.\) とすれば双線型形式
+            \[
+                (4D_xD_t+D_x^4+3D_y^2)\,\tau\cdot\tau=0
+            \]
+            をみたす。
+            <details id="white">
+                <summary>確認</summary>
+                <div id="main_text">
+                    \[
+                        \begin{vmatrix}f_1&(f_1)_x\\f_2&(f_2)_x\end{vmatrix}=|0,1|,\;\begin{vmatrix}(f_1)_{nx}&(f_1)_{mx}\\(f_2)_{nx}&(f_2)_{mx}\end{vmatrix}=|n,m|
+                    \]
+                    のように簡略化する。
+                    \begin{align*}
+                        &|n,n|=0\\
+                        &|n,m|=-|m,n|\\
+                        &\partial_x|n,m|=|n+1,m|+|n,m+1|\\
+                        &\partial_y|n,m|=|n+2,m|+|n,m+2|\\
+                        &\partial_t|n,m|=-|n+3,m|-|n,m+3|
+                    \end{align*}
+                    となるので、
+                    \begin{align*}
+                        \tau&=|0,1|\\[2pt]
+                        \tau_x&=|0,2|\\[2pt]
+                        \tau_{xx}&=|0,3|+|1,2|\\[2pt]
+                        \tau_{xxx}&=|0,4|+2\,|1,3|\\[2pt]
+                        \tau_{xxxx}&=|0,5|+|1,4|+2(|1,4|+|2,3|)\\
+                                   &=|0,5|+3\,|1,4|+2\,|2,3|\\[2pt]
+                        \tau_{t}&=-|3,1|-|0,4|\\
+                                &=-|0,4|+|1,3|\\[2pt]
+                        \tau_{xt}&=-|3,2|-|0,5|\\
+                                 &=-|0,5|+|2,3|\\[2pt]
+                        \tau_{y}&=|2,1|+|0,3|\\
+                                &=|0,3|-|1,2|\\[2pt]
+                        \tau_{yy}&=|2,3|+|0,5|-(|3,2|+|1,4|)\\
+                                 &=|0,5|-|1,4|+2\,|2,3|
+                    \end{align*}
+                    \begin{align*}
+                        4D_xD_t\,\tau\cdot\tau
+                        &=8(\tau\tau_{xt}-\tau_x\tau_t)\\
+                        &=8\Bigl(|0,1|(-|0,5|+|2,3|)-|0,2|(-|0,4|+|1,3|)\Bigr)\\
+                        &=8\Bigl(-|0,1||0,5|+|0,1||2,3|+|0,2||0,4|-|0,2||1,3|\Bigr)\\[5pt]
+                        D_x^4\,\tau\cdot\tau
+                        &=2(\tau\tau_{xxxx}-4\tau_{x}\tau_{xxx}+3\tau_{xx}^2)\\
+                        &=2\Bigl(|0,1|(|0,5|+3\,|1,4|+2\,|2,3|)\\
+                        &\;\;\;\;\;\;\;\;\;\;-4\bigl(|0,2|(|0,4|+2\,|1,3|)\bigr)+3(|0,3|+|1,2|)^2\Bigr)\\
+                        &=2\,|0,1||0,5|+6\,|0,1||1,4|+4\,|0,1||2,3|\\
+                        &\;\;\;\;-8\,|0,2||0,4|-16\,|0,2||1,3|+6(|0,3|+|1,2|)^2\\[5pt]
+                        3D_y^2\,\tau\cdot\tau
+                        &=6(\tau\tau_{yy}-\tau_y^2)\\
+                        &=6\Bigl(|0,1|(|0,5|-|1,4|+2\,|2,3|)-(|0,3|-|1,2|)^2\Bigr)\\
+                        &=6\,|0,1||0,5|-6\,|0,1||1,4|+12\,|0,1||2,3|\\
+                        &\;\;\;\;-6(|0,3|+|1,2|)^2+24\,|0,3||1,2|
+                    \end{align*}
+                    となる。これより、
+                    \begin{align*}
+                        &(4D_xD_t+D_x^4+3D_y^2)\,\tau\cdot\tau\\
+                        &=24(|0,1||2,3|-|0,2||1,3|+|0,3||1,2|)
+                    \end{align*}
+                    となる。<br>
+                    ここで、
+                    \[
+                        A:=
+                        \begin{vmatrix}
+                            f_1&(f_1)_x&(f_1)_{xx}&(f_1)_{xxx}\\
+                            f_2&(f_2)_x&(f_2)_{xx}&(f_2)_{xxx}\\
+                            0  &(f_1)_x&(f_1)_{xx}&(f_1)_{xxx}\\
+                            0  &(f_2)_x&(f_2)_{xx}&(f_2)_{xxx}\\
+                        \end{vmatrix}
+                        =
+                        \begin{vmatrix}
+                            f_1&0&0&0\\
+                            f_2&0&0&0\\
+                            0  &(f_1)_x&(f_1)_{xx}&(f_1)_{xxx}\\
+                            0  &(f_2)_x&(f_2)_{xx}&(f_2)_{xxx}\\
+                        \end{vmatrix}
+                        =0
+                    \]
+                    を考えると、
+                    \begin{align*}
+                        0=A&=
+                        \begin{vmatrix}
+                            f_1&(f_1)_x\\
+                            f_2&(f_2)_x
+                        \end{vmatrix}
+                        \begin{vmatrix}
+                            (f_1)_{xx}&(f_1)_{xxx}\\
+                            (f_2)_{xx}&(f_2)_{xxx}
+                        \end{vmatrix}\\
+                        &\;\;\;\;-
+                        \begin{vmatrix}
+                            f_1&(f_1)_{xx}\\
+                            f_2&(f_2)_{xx}
+                        \end{vmatrix}
+                        \begin{vmatrix}
+                            (f_1)_x&(f_1)_{xxx}\\
+                            (f_2)_x&(f_2)_{xxx}
+                        \end{vmatrix}\\
+                        &\;\;\;\;+
+                        \begin{vmatrix}
+                            f_1&(f_1)_{xxx}\\
+                            f_2&(f_2)_{xxx}
+                        \end{vmatrix}
+                        \begin{vmatrix}
+                            (f_1)_x&(f_1)_{xx}\\
+                            (f_2)_x&(f_2)_{xx}
+                        \end{vmatrix}\\
+                        &=|0,1||2,3|-|0,2||1,3|+|0,3||1,2|
+                    \end{align*}
+                    となる。よって、
+                    \[
+                        (4D_xD_t+D_x^4+3D_y^2)\,\tau\cdot\tau=0
+                    \]
+                    をみたす。
+                </div>
+                <div style="text-align: right;"><button id=close4>[閉じる]</button></div>
+            </details>
+            <div style="line-height: 5pt;">&nbsp;</div>
+            一般化すると、
+            \[
+                \left\{
+                    \begin{aligned}
+                        f_x\,&=wf\\
+                        f_{t_n}&=\partial_x^nf
+                    \end{aligned}
+                \right.
+                \;\rightarrow\;\,
+                \left\{
+                    \begin{aligned}
+                        \partial_{x}^Nf\,&=w_1\partial_{x}^{N-1}f+w_2\partial_x^{N-2}f+\cdots+w_Nf\\
+                        f_{t_n}&=\partial_x^nf
+                    \end{aligned}
+                \right.
+            \]
+            第1式は \(N\) 階線型常微分方程式となり、基本解系 \(\{f_1,\,f_2,\ldots,\,f_N\}\) は、
+            \begin{align*}
+                    &\left\{
+                    \begin{aligned}
+                        \partial_{x}^Nf_1\,&=w_1\partial_{x}^{N-1}f_1+w_2\partial_x^{N-2}f_1+\cdots+w_Nf_1\\
+                        \partial_{x}^Nf_2\,&=w_1\partial_{x}^{N-1}f_2+w_2\partial_x^{N-2}f_2+\cdots+w_Nf_2\\
+                        \vdots\;\;\;&\\
+                        \partial_{x}^Nf_N\,&=w_1\partial_{x}^{N-1}f_N+w_2\partial_x^{N-2}f_N+\cdots+w_Nf_N
+                    \end{aligned}
+                    \right.\\[10pt]
+                    &\Leftrightarrow\;
+                    \begin{pmatrix}
+                        f_1&\partial_xf_1&\partial_x^2f_1&\cdots&\partial_x^{N-1}f_1\\
+                        f_2&\partial_xf_2&\partial_x^2f_2&\cdots&\partial_x^{N-1}f_2\\
+                        \vdots&\vdots&\vdots&\ddots&\vdots\\
+                        f_N&\partial_xf_N&\partial_x^2f_N&\cdots&\partial_x^{N-1}f_N\\
+                    \end{pmatrix}
+                    \begin{pmatrix}
+                        w_N\\[2pt]w_{N-1}\\[2pt]\vdots\\w_1
+                    \end{pmatrix}
+                    =
+                    \begin{pmatrix}
+                        \partial_x^{N}f_1\\[2pt]\partial_x^{N}f_2\\[2pt]\vdots\\[2pt]\partial_x^{N}f_N\\
+                    \end{pmatrix}
+            \end{align*}
+            をみたす。また同様にクラメルの公式を用いて、
+            \[
+                w_1=\frac{
+                \begin{vmatrix}
+                    f_1&\partial_xf_1&\partial_x^2f_1&\cdots&\partial_x^{N-2}f_1&\partial_x^{N}f_1\\
+                    f_2&\partial_xf_2&\partial_x^2f_2&\cdots&\partial_x^{N-2}f_2&\partial_x^{N}f_2\\
+                    \vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+                    f_N&\partial_xf_N&\partial_x^2f_N&\cdots&\partial_x^{N-2}f_N&\partial_x^{N}f_N\\
+                \end{vmatrix}
+                }{
+                \begin{vmatrix}
+                    f_1&\partial_xf_1&\partial_x^2f_1&\cdots&\partial_x^{N-1}f_1\\
+                    f_2&\partial_xf_2&\partial_x^2f_2&\cdots&\partial_x^{N-1}f_2\\
+                    \vdots&\vdots&\vdots&\ddots&\vdots\\
+                    f_N&\partial_xf_N&\partial_x^2f_N&\cdots&\partial_x^{N-1}f_N\\
+                \end{vmatrix}
+                }
+                =\frac{\tau_x}{\tau}=(\log\tau)_x
+            \]
+            となる。またこの \(\tau\) も同様に \(\left\{\begin{aligned}t_2&\,\rightarrow\,\;y\\t_3&\,\rightarrow\,-t\end{aligned}\right.\) とすれば双線型形式
+            \[
+                (4D_xD_t+D_x^4+3D_y^2)\,\tau\cdot\tau=0
+            \]
+            をみたす。
+            <details open id="white">
+                <summary>確認</summary>
+                <div id="main_text">
+                    \begin{align*}
+                        &
+                        \begin{vmatrix}
+                            f_1&\partial_xf_1&\partial_x^2f_1&\cdots&\partial_x^{N-1}f_1\\
+                            f_2&\partial_xf_2&\partial_x^2f_2&\cdots&\partial_x^{N-1}f_2\\
+                            \vdots&\vdots&\vdots&\ddots&\vdots\\
+                            f_N&\partial_xf_N&\partial_x^2f_N&\cdots&\partial_x^{N-1}f_N\\
+                        \end{vmatrix}
+                        =|\widehat{N-1}|\\[5pt]
+                        &
+                        \begin{vmatrix}
+                            f_1&\partial_xf_1&\partial_x^2f_1&\cdots&\partial_x^{N-2}f_1&\partial_x^{N}f_1\\
+                            f_2&\partial_xf_2&\partial_x^2f_2&\cdots&\partial_x^{N-2}f_2&\partial_x^{N}f_2\\
+                            \vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+                            f_N&\partial_xf_N&\partial_x^2f_N&\cdots&\partial_x^{N-2}f_N&\partial_x^{N}f_N\\
+                        \end{vmatrix}
+                        =|\widehat{N-2},\,N|
+                    \end{align*}
+                    のように簡略化する。
+                    \begin{align*}
+                        \tau
+                        &=|\widehat{N-1}|\\[2pt]
+                        \tau_x
+                        &=|\widehat{N-2},\,N|\\[2pt]
+                        \tau_{xx}
+                        &=|\widehat{N-3},\,N-1,\,N|+|\widehat{N-2},\,N+1|\\[2pt]
+                        \tau_{xxx}
+                        &=|\widehat{N-4},\,N-2,\,N-1,\,N|+|\widehat{N-3},\,N-1,\,N+1|\\
+                        &\;\;\;\;\;+|\widehat{N-3},\,N-1,\,N+1|+|\widehat{N-2},\,N+2|\\
+                        &=|\widehat{N-4},\,N-2,\,N-1,\,N|+2\,|\widehat{N-3},\,N-1,\,N+1|+|\widehat{N-2},\,N+2|\\[2pt]
+                        \tau_{xxxx}
+                        &=|\widehat{N-5},\,N-3,\,N-2,\,N-1,\,N|+|\widehat{N-4},\,N-2,\,N-1,\,N+1|\\
+                        &\;\;\;\;\;+2\bigl(|\widehat{N-4},\,N-2,\,N-1,\,N+1|+|\widehat{N-3},\,N,\,N+1|+|\widehat{N-3},\,N-1,\,N+2|\\
+                        &\;\;\;\;\;\;\;\;\;\;\;\;+|\widehat{N-3},\,N-1,\,N+2|+|\widehat{N-2},\,N+3|\bigr)\\
+                        &\;\;\;\;\;+|\widehat{N-3},\,N-1,\,N+3|+|\widehat{N-2},\,N+3|\\
+                        &=|\widehat{N-5},\,N-3,\,N-2,\,N-1,\,N|+3|\widehat{N-4},\,N-2,\,N-1,\,N+1|\\
+                        &\;\;\;\;\;+2|\widehat{N-3},\,N,\,N+1|+4|\widehat{N-3},\,N-1,\,N+2|\\
+                        &\;\;\;\;\;+|\widehat{N-3},\,N-1,\,N+3|+|\widehat{N-2},\,N+3|
+                    \end{align*}
+                </div>
+                <div style="text-align: right;"><button id=close5>[閉じる]</button></div>
+            </details>
         </div>
     </div>
 
