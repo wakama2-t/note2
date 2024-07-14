@@ -497,7 +497,7 @@
 				\[
 					\begin{aligned}				
 						B_k\;&=\left(W\partial^{k}W^{-1}\right)_+\\
-						W_{x_k}&=-\left(W\partial^{k}W^{-1}\right)_-W
+						\bigl(W\bigr)_{x_k}&=-\left(W\partial^{k}W^{-1}\right)_-W
 					\end{aligned}
 					\;\;\;\;(k=2,\,3,\ldots)
 				\]
@@ -833,15 +833,15 @@
 						\]
 						より、
 						\begin{align*}
-							B_l&=\bigl(L^l\bigr)_+=L-\bigl(L^l\bigr)_-\\
+							B_l&=\bigl(L^l\bigr)_+=L^l-\bigl(L^l\bigr)_-\\
 							L^l&=\bigl(L^l\bigr)_++\bigl(L^l\bigr)_-=B_l+\bigl(L^l\bigr)_-
 						\end{align*}
 						となるため、
 						\begin{align*}
 							\bigl(B_k\bigr)_{x_l}-\bigl(B_l\bigr)_{x_k}
 							&=\Bigl([B_l,\,L^k]-[B_k,\,L^l]\Bigr)_+\\
-							&=\Bigl([L-\bigl(L^l\bigr)_-,\,L^k]-[B_k,\,B_l+\bigl(L^l\bigr)_-]\Bigr)_+\\
-							&=\Bigl([L,\,L^k]+[-\bigl(L^l\bigr)_-,\,L^k]-[B_k,\,B_l]-[B_k,\,\bigl(L^l\bigr)_-]\Bigr)_+\\
+							&=\Bigl([L^l-\bigl(L^l\bigr)_-,\,L^k]-[B_k,\,B_l+\bigl(L^l\bigr)_-]\Bigr)_+\\
+							&=\Bigl([L^l,\,L^k]+[-\bigl(L^l\bigr)_-,\,L^k]-[B_k,\,B_l]-[B_k,\,\bigl(L^l\bigr)_-]\Bigr)_+\\
 							&=\Bigl([B_k+\bigl(L^k\bigr)_-,\,\bigl(L^l\bigr)_-]-[B_k,\,B_l]-[B_k,\,\bigl(L^l\bigr)_-]\Bigr)_+\\
 							&=\Bigl([B_k,\,\bigl(L^l\bigr)_-]+[\bigl(L^k\bigr)_-,\,\bigl(L^l\bigr)_-]+[B_l,\,B_k]-[B_k,\,\bigl(L^l\bigr)_-]\Bigr)_+\\
 							&=[B_l,\,B_k]
@@ -873,6 +873,461 @@
 					<div style="text-align: right;"><button id=close7>[閉じる]</button></div>
 				</details>
 			</div>
+			<br><div style="line-height: 5pt;">&nbsp;</div>
+			<h3>KP階層の一般解</h3>
+			<div id="main_text">
+				KP階層の解は佐藤方程式
+				\[
+					\bigl(W\bigr)_{x_k}=-\left(W\partial^{k}W^{-1}\right)_-W
+				\]
+				の解 \(\displaystyle W=1+\sum_{n=1}^{\infty}a_n(\boldsymbol{x})\partial^{-n}\) から
+				\[
+					L=W\partial W^{-1}=\partial+u_1(\boldsymbol{x})\partial^{-1}+u_2(\boldsymbol{x})\partial^{-2}+\cdots
+				\]
+				によって求まる。また佐藤方程式の解を構成する \(a_1,\,a_2,\ldots,\,a_n,\ldots\) は \(N\) 階線型常微分方程式の基本解 \(f_1,\,f_2,\ldots,\,f_N\) で表現できる。
+				具体的には、
+				\[				
+					a_k=-\frac{
+					\begin{vmatrix}
+						f_1&\partial f_1&\cdots&\partial^{N-k-1}f_1&\partial^{N}f_1&\partial^{N-k+1}f_1&\cdots&\partial^{N-1}f_1\\
+						f_2&\partial f_2&\cdots&\partial^{N-k-1}f_2&\partial^{N}f_2&\partial^{N-k+1}f_2&\cdots&\partial^{N-1}f_2\\
+						\vdots&\vdots&&\vdots&\vdots&\vdots&&\vdots\\
+						f_N&\partial f_N&\cdots&\partial^{N-k-1}f_N&\partial^{N}f_N&\partial^{N-k+1}f_N&\cdots&\partial^{N-1}f_N\\
+					\end{vmatrix}
+					}{
+					\begin{vmatrix}
+						f_1&\partial f_1&\partial^2f_1&\cdots&\partial^{N-1}f_1\\
+						f_2&\partial f_2&\partial^2f_2&\cdots&\partial^{N-1}f_2\\
+						\vdots&\vdots&\vdots&\ddots&\vdots\\
+						f_N&\partial f_N&\partial^2f_N&\cdots&\partial^{N-1}f_N\\
+					\end{vmatrix}
+					}\;\;\;(1\leq{k}\leq{N})
+				\]
+				および \(a_k=0\;(N&lt;k)\) となる。これは \(N\) に依存しているが、より一般には佐藤方程式の解は
+				\[
+					W(\boldsymbol{x},\,\lambda)=\frac{\tau(\boldsymbol{x}-[\lambda^{-1}])}{\tau(\boldsymbol{x})}
+				\]
+				\[
+					(\boldsymbol{x}-[\lambda^{-1}]):=\left(x_1-\frac{1}{\lambda},\,x_2-\frac{1}{2\lambda^2},\,x_3-\frac{1}{3\lambda^2},\ldots\right)
+				\]
+				と表される。
+				<details id="white">
+					<summary>証明</summary>
+					<div id="main_text">
+						まず佐藤方程式を満たす \(\displaystyle W=1+\sum_{n=1}^{\infty}a_n\partial^{-n}\) は
+						\[
+							\left\{
+								\begin{aligned}
+									L\varphi\;&=\,\lambda\varphi\\
+									\partial_{x_k}\varphi&=\,B_k\varphi
+								\end{aligned}
+							\right.
+						\]
+						<details id="gray">
+							<summary>確認</summary>
+							<div id="main_text">
+								佐藤方程式から
+								\[
+									(L)_{x_k}=[B_k,\,L]
+								\]
+								が成り立つので、第1式の両辺を \(x_k\) で偏微分すると、
+								\begin{align*}
+									(左辺)
+									&=\bigl(L\bigr)_{x_k}\varphi+L\partial_{x_k}\varphi\\
+									&=[B_k,\,L]\varphi+LB_k\varphi\\
+									&=B_kL\varphi\\[5pt]
+									(右辺)
+									&=\lambda\partial_{x_k}\varphi\\
+									&=\lambda B_k\varphi\\
+									&=B_k\bigl(\lambda\varphi\bigr)\\
+									&=B_kL\varphi
+								\end{align*}
+								となる。
+							</div>
+							<div style="text-align: right;"><button id=close10>[閉じる]</button></div>
+						</details>
+						を満たす。いま
+						\[
+							\varphi:=W\varphi_0
+						\]
+						とすると、
+						\[
+							\bigl(W\bigr)_{x_k}=B_kW-W\partial^k
+						\]
+						より第2式は、
+						\begin{align*}
+							(左辺)
+							&=\bigl(W\bigr)_{x_k}\varphi_0+W\partial_{x_k}\varphi_0\\
+							&=\bigl(B_kW-W\partial^k\bigr)\varphi_0+W\partial_{x_k}\varphi_0\\
+							&=B_kW\varphi_0-W\partial^k\varphi_0+W\partial_{x_k}\varphi_0\\[5pt]
+							(右辺)
+							&=\partial_{x_k}\bigl(W\varphi_0\bigr)=\,B_kW\varphi_0
+						\end{align*}
+						となるため、
+						\[
+							\partial_{x_k}\varphi_0=\partial^k\varphi_0\;\;\;\;\;\cdots(\ast)
+						\]
+						となる。また \(L=W\partial{W^{-1}}\) より、
+						\[
+							W\partial{W^{-1}}\varphi=\lambda\varphi\;\Leftrightarrow\;\partial{W^{-1}}\varphi=\lambda{W^{-1}}\varphi
+							\;\Leftrightarrow\;\partial\varphi_0=\lambda\varphi_0
+						\]
+						となることから、\((\ast)\) と合わせて、
+						\[
+							\left\{
+								\begin{aligned}
+									\partial\varphi_0\;&=\,\lambda\varphi_0\\
+									\partial_{x_k}\varphi_0&=\,\partial^k\varphi_0\,=\lambda^k\varphi_0\
+								\end{aligned}
+							\right.
+						\]
+						となる。これより、
+						\[
+							\varphi_0(\boldsymbol{x};\,\lambda)=\exp\left[\sum_{n=1}^{\infty}\lambda^nx_n\right]
+						\]
+						とする。このとき \(W\) を有限次元で打ち切り、\(a_n\rightarrow-a_n\) とすると、
+						\[
+							\partial\varphi_0=\lambda\varphi_0\;\Leftrightarrow\;\frac{1}{\lambda}\varphi_0=\partial^{-1}\varphi_0\;\Leftrightarrow\;\frac{1}{\lambda^2}\varphi_0=\partial^{-2}\varphi_0\;\Leftrightarrow\cdots
+						\]
+						となることから、また \(W\) が佐藤方程式を満たすとき \(\hat{W}_N=W\partial^N\) も佐藤方程式を満たすので、
+						<details id="gray">
+							<summary>\(\hat{W}\) が佐藤方程式を満たすことの確認</summary>
+							<div id="main_text">
+								\[
+									\hat{W}^{-1}=\bigl(W\partial^N\bigr)^{-1}=\partial^{-N}W^{-1}
+								\]
+								より、
+								\begin{align*}
+									&\bigl(\hat{W}\bigr)_{x_k}\hat{W}^{-1}+\hat{W}\partial^k\hat{W}^{-1}\\
+									&=\bigl(W\bigr)_{x_k}\partial^N\,\partial^{-N}W^{-1}+W\partial^N\,\partial^k\,\partial^{-N}W^{-1}\\
+									&=\bigl(W\bigr)_{x_k}W^{-1}+W\partial^kW^{-1}\\
+									&=B_k
+								\end{align*}
+							</div>
+							<div style="text-align: right;"><button id=close11>[閉じる]</button></div>
+						</details>
+						\[
+							\left\{\begin{aligned}
+								\hat{W}_Nf&=0\\
+								\partial_{x_k}\,f&=\partial^kf
+							\end{aligned}\right.
+						\] 
+						の基本解系 \(\{f_1,\,f_2,\ldots,\,f_N\}\) を用いて、
+						\begin{align*}
+							\varphi
+							&=W\varphi_0\\
+							&=\Bigl(1-a_1\partial^{-1}-a_2\partial^{-2}-\cdots-a_N\partial^{-N}\Bigr)\varphi_0\\
+							&=\left(1-\frac{a_1}{\lambda}-\frac{a_2}{\lambda^2}-\cdots-\frac{a_N}{\lambda^N}\right)\varphi_0\\
+							&=\frac{\varphi_0}{\tau}
+							\begin{vmatrix}
+								f_1&f_1^{(1)}&\cdots&f_1^{(N)}\\
+								\vdots&\vdots&\ddots&\vdots\\
+								f_N&f_N^{(1)}&\cdots&f_N^{(N)}\\
+								\lambda^{-N}&\lambda^{-N+1}&\cdots&1
+							\end{vmatrix}
+						\end{align*}
+						<details id="gray">
+							<summary>確認(最後の等式)</summary>
+							<div id="main_text">
+								\[				
+									a_k=-\frac{
+									\begin{vmatrix}
+										f_1&\partial f_1&\cdots&\partial ^{N-k-1}f_1&\partial^{N}f_1&\partial^{N-k+1}f_1&\cdots&\partial^{N-1}f_1\\
+										f_2&\partial f_2&\cdots&\partial ^{N-k-1}f_2&\partial^{N}f_2&\partial^{N-k+1}f_2&\cdots&\partial^{N-1}f_2\\
+										\vdots&\vdots&&\vdots&\vdots&\vdots&&\vdots\\
+										f_N&\partial f_N&\cdots&\partial ^{N-k-1}f_N&\partial^{N}f_N&\partial^{N-k+1}f_N&\cdots&\partial^{N-1}f_N\\
+									\end{vmatrix}
+									}{
+									\begin{vmatrix}
+										f_1&\partial f_1&\partial^2f_1&\cdots&\partial^{N-1}f_1\\
+										f_2&\partial f_2&\partial^2f_2&\cdots&\partial^{N-1}f_2\\
+										\vdots&\vdots&\vdots&\ddots&\vdots\\
+										f_N&\partial f_N&\partial^2f_N&\cdots&\partial^{N-1}f_N\\
+									\end{vmatrix}
+									}
+								\]
+								なので、
+								\begin{align*}
+									-\frac{a_k}{\lambda^k}
+									&=\frac{1}{\tau}
+									\begin{vmatrix}
+										f_1&\partial f_1&\cdots&\partial ^{N-k-1}f_1&\partial^{N}f_1&\partial^{N-k+1}f_1&\cdots&\partial^{N-1}f_1\\
+										f_2&\partial f_2&\cdots&\partial ^{N-k-1}f_2&\partial^{N}f_2&\partial^{N-k+1}f_2&\cdots&\partial^{N-1}f_2\\
+										\vdots&\vdots&&\vdots&\vdots&\vdots&&\vdots\\
+										f_N&\partial f_N&\cdots&\partial ^{N-k-1}f_N&\partial^{N}f_N&\partial^{N-k+1}f_N&\cdots&\partial^{N-1}f_N\\
+									\end{vmatrix}\lambda^{-k}\\[5pt]
+									&=\frac{1}{\tau}
+									\begin{vmatrix}
+										f_1&\partial f_1&\cdots&\partial ^{N-k-1}f_1&\partial^{N}f_1&\partial^{N-k+1}f_1&\cdots&\partial^{N-1}f_1&\ast\\
+										f_2&\partial f_2&\cdots&\partial ^{N-k-1}f_2&\partial^{N}f_2&\partial^{N-k+1}f_2&\cdots&\partial^{N-1}f_2&\ast\\
+										\vdots&\vdots&&\vdots&\vdots&\vdots&&\vdots&\vdots\\
+										f_N&\partial f_N&\cdots&\partial ^{N-k-1}f_N&\partial^{N}f_N&\partial^{N-k+1}f_N&\cdots&\partial^{N-1}f_N&\ast\\
+										0&0&\cdots&0&0&0&\cdots&0&\lambda^{-k}
+									\end{vmatrix}\\[5pt]
+									&=\frac{(-1)^{N+k}}{\tau}
+									\begin{vmatrix}
+										f_1&\partial f_1&\cdots&\partial ^{N-k-1}f_1&\ast&\partial^{N-k+1}f_1&\cdots&\partial^{N-1}f_1&\partial^{N}f_1\\
+										f_2&\partial f_2&\cdots&\partial ^{N-k-1}f_2&\ast&\partial^{N-k+1}f_2&\cdots&\partial^{N-1}f_2&\partial^{N}f_2\\
+										\vdots&\vdots&&\vdots&\vdots&\vdots&&\vdots&\vdots\\
+										f_N&\partial f_N&\cdots&\partial ^{N-k-1}f_N&\ast&\partial^{N-k+1}f_N&\cdots&\partial^{N-1}f_N&\partial^{N}f_N\\
+										0&0&\cdots&0&\lambda^{-k}&0&\cdots&0&0
+									\end{vmatrix}\\
+								\end{align*}
+								となるため、\(\ast\) を \(\partial^{N-k}f_1,\,\partial^{N-k}f_2,\ldots,\,\partial^{N-k}f_N\) とすれば、
+								\[
+									\begin{vmatrix}
+										f_1&f_1^{(1)}&\cdots&f_1^{(N)}\\
+										\vdots&\vdots&\ddots&\vdots\\
+										f_N&f_N^{(1)}&\cdots&f_N^{(N)}\\
+										\lambda^{-N}&\lambda^{-N+1}&\cdots&1
+									\end{vmatrix}
+								\]
+								の第 \(N\) 行についての余因子展開の逆操作を行っていると考えられる。
+							</div>
+							<div style="text-align: right;"><button id=close12>[閉じる]</button></div>
+						</details><div style="line-height: 5pt;">&nbsp;</div>
+						となる。ただし \(\tau=\mathrm{Wr}(f_1,\,f_2,\ldots,\,f_N)\) である。また、
+						\begin{align*}						
+							\begin{vmatrix}
+								f_1&f_1^{(1)}&\cdots&f_1^{(N)}\\
+								\vdots&\vdots&\ddots&\vdots\\
+								f_N&f_N^{(1)}&\cdots&f_N^{(N)}\\
+								\lambda^{-N}&\lambda^{-N+1}&\cdots&1
+							\end{vmatrix}
+							&=
+							\begin{vmatrix}
+								f_1&f_1^{(1)}-\lambda f_1&\cdots&f_1^{(N)}-\lambda f_1^{(N-1)}\\
+								f_2&f_2^{(1)}-\lambda f_2&\cdots&f_2^{(N)}-\lambda f_2^{(N-1)}\\
+								\vdots&\vdots&\ddots&\vdots\\
+								f_N&f_N^{(1)}-\lambda f_N&\cdots&f_N^{(N)}-\lambda f_N^{(N-1)}\\
+								\lambda^{-N}&0&\cdots&0
+							\end{vmatrix}\\
+							&=\frac{(-1)^N}{\lambda^N}\det\left|\left(f_i^{(j)}-\lambda f_i^{(j-1)}\right)_{1\leq{i,\,j}\leq{N}}\right|
+						\end{align*}
+						となる。\(\partial_{x_k}f=\partial^kf\) より \(\partial{f}=\kappa{f}\) とすれば 適当な測度 \(d\mu(\kappa)\) を用いて、
+						\[
+							f_i(\boldsymbol{x})=\int_{C_i}\varphi_0(\boldsymbol{x};\,\kappa)d\mu_i(\kappa)
+						\]
+						となるので、
+						\begin{align*}
+							f_i^{(j)}(\boldsymbol{x})-\lambda f_i^{(j-1)}(\boldsymbol{x})
+							&=\int_{C_i}\Bigl(\partial^j\varphi_0(\boldsymbol{x};\,\kappa)-\lambda\partial^{j-1}\varphi_0(\boldsymbol{x};\,\kappa)\Bigr)d\mu_i(\kappa)\\
+							&=\int_{C_i}\Bigl(\kappa^j\varphi_0(\boldsymbol{x};\,\kappa)-\lambda\kappa^{j-1}\varphi_0(\boldsymbol{x};\,\kappa)\Bigr)d\mu_i(\kappa)\\
+							&=-\lambda\int_{C_i}\kappa^{j-1}\left(1-\frac{\kappa}{\lambda}\right)\varphi_0(\boldsymbol{x};\,\kappa)\,d\mu_i(\kappa)\\
+							&=-\lambda\int_{C_i}\kappa^{j-1}\exp\left[-\sum_{n=1}^{\infty}\frac{\kappa^n}{n\lambda^n}\right]\varphi_0(\boldsymbol{x};\,\kappa)\,d\mu_i(\kappa)\\
+							&=-\lambda\exp\left[-\sum_{n=1}^{\infty}\frac{\partial^n}{n\lambda^n}\right]\int_{C_i}\kappa^{j-1}\varphi_0(\boldsymbol{x};\,\kappa)\,d\mu_i(\kappa)\\
+							&=-\lambda\exp\left[-\sum_{n=1}^{\infty}\frac{\partial_{x_n}}{n\lambda^n}\right]f_i^{(j-1)}(\boldsymbol{x})\\
+							&=-\lambda f_i^{(j-1)}(\boldsymbol{x}-[\lambda^{-1}])
+						\end{align*}
+						と変形できる。よって、
+						\begin{align*}
+							W\varphi_0
+							&=\frac{\varphi_0}{\tau}
+							\begin{vmatrix}
+								f_1&f_1^{(1)}&\cdots&f_1^{(N)}\\
+								\vdots&\vdots&\ddots&\vdots\\
+								f_N&f_N^{(1)}&\cdots&f_N^{(N)}\\
+								\lambda^{-N}&\lambda^{-N+1}&\cdots&1
+							\end{vmatrix}\\[5pt]
+							&=\frac{(-1)^N}{\lambda^N}
+							\frac{
+							\begin{vmatrix}
+								-\lambda f_1(\boldsymbol{x}-[\lambda^{-1}])&\cdots&-\lambda f_1^{(N-1)}(\boldsymbol{x}-[\lambda^{-1}])\\
+								\vdots&\ddots&\vdots\\
+								-\lambda f_N(\boldsymbol{x}-[\lambda^{-1}])&\cdots&-\lambda f_N^{(N-1)}(\boldsymbol{x}-[\lambda^{-1}])\\
+							\end{vmatrix}}{\tau}\varphi_0\\[5pt]
+							&=\frac{\tau(\boldsymbol{x}-[\lambda^{-1}])}{\tau(\boldsymbol{x})}\varphi_0
+						\end{align*}
+						となり、
+						\[
+							W(\boldsymbol{x},\,\lambda)=\frac{\tau(\boldsymbol{x}-[\lambda^{-1}])}{\tau(\boldsymbol{x})}
+						\]
+					</div>
+					<div style="text-align: right;"><button id=close9>[閉じる]</button></div>
+				</details>
+				またこの \(\tau\) 関数は任意の \(\boldsymbol{x},\,\boldsymbol{x}'\in\mathbb{C}^N\) に対して、
+				\[
+					\oint_{z=\infty}\tau(\boldsymbol{x}-[\lambda^{-1}])\tau(\boldsymbol{x}'+[\lambda^{-1}])\;d\lambda=0
+				\]
+				を満たす。
+				<details id="white">
+					<summary>証明</summary>
+					<div id="main_text">
+						まず擬微分作用素 \(A,\,B\) に対して、
+						\begin{align*}
+							&\bigl(\partial^n\bigr)^*=(-1)^n\partial^n\\
+							&\bigl(A+B\bigr)^*=A^*+B^*\\
+							&\bigl(AB\bigr)^*=B^*A^*
+						\end{align*}
+						となる演算 \(\cdot^*\) を考える。佐藤方程式を満たす \(W\) が満たしていた
+						\[
+							\left\{\begin{aligned}
+								L\;\varphi&=\lambda\varphi\\
+								\partial_{x_k}\varphi&=B_k\varphi
+							\end{aligned}\right.
+						\]
+						の2式の両辺に \(\cdot^*\) を作用させると、
+						\[
+							\left\{\begin{aligned}
+								L^*\varphi^*&=\lambda\varphi^*\\
+								\partial_{x_k}\varphi^*&=-B_k^*\varphi^*
+							\end{aligned}\right.
+						\]
+						となり、(\(\varphi^*\) は \(\varphi\) に \(\cdot^*\) を作用させたものではない)
+						\begin{align*}
+							\varphi(\boldsymbol{x},\,\lambda)&=W\exp\left[\sum_{n=1}^\infty\lambda^nx_n\right]=We^{\theta(\boldsymbol{x},\,\lambda)}\\
+							\varphi^*(\boldsymbol{x},\,\lambda)&=\bigl(W^*\bigr)^{-1}\exp\left[-\sum_{n=1}^\infty\lambda^nx_n\right]=\bigl(W^*\bigr)^{-1}e^{-\theta(\boldsymbol{x},\,\lambda)}
+						\end{align*}
+						はそれぞれの2式を満たす。
+						<details id="gray">
+							<summary>確認</summary>
+							<div id="main_text">
+								\[
+									L^*=\bigl(W\partial W^{-1}\bigr)^*=-\bigl(W^{-1}\bigr)^*\partial W^*
+								\]
+								となるので、
+								\[
+									-\bigl(W^{-1}\bigr)^*\partial W^*\varphi^*=\lambda\varphi^*\;\Leftrightarrow\;\partial{W}^*\varphi^*=-\lambda W^*\varphi'
+								\]
+								となる。また、
+								\[
+									W^*\varphi^*=\varphi^*_0\;\Leftrightarrow\;\varphi^*=\bigl(W^*\bigr)^{-1}\varphi^*_0
+								\]
+								とおけば \(\partial\varphi^*_0=-\lambda\varphi^*_0\) となる。また
+								\[
+									\partial_{x_k}\varphi_0=\partial^k\varphi_0
+								\]
+								の両辺に \(\cdot^*\) を作用させると
+								\[
+									\partial_{x_k}\varphi^*_0=(-1)^{k+1}\partial^k\varphi^*_0=(-1)^{k+1}(-\lambda)^k\varphi^*_0=-\lambda^k\varphi^*_0
+								\]
+								となるため、
+								\[
+									\varphi^*(\boldsymbol{x},\,\lambda)=\bigl(W^*\bigr)^{-1}\exp\left[-\sum_{n=0}^\infty\lambda^nx_n\right]=\bigl(W^*\bigr)^{-1}e^{-\theta(\boldsymbol{x},\,\lambda)}
+								\]
+							</div>
+							<div style="text-align: right;"><button id=close14>[閉じる]</button></div>
+						</details><div style="line-height: 5pt;">&nbsp;</div>
+						そして
+						\begin{align*}
+							\varphi(\boldsymbol{x},\,\lambda)&=\frac{\tau(\boldsymbol{x}-[\lambda^{-1}])}{\tau(\boldsymbol{x})}e^{\theta(\boldsymbol{x},\,\lambda)}\\
+							\varphi^*(\boldsymbol{x},\,\lambda)&=\frac{\tau(\boldsymbol{x}+[\lambda^{-1}])}{\tau(\boldsymbol{x})}e^{-\theta(\boldsymbol{x},\,\lambda)}
+						\end{align*}
+						となる。
+						<details id="gray">
+							<summary>導出(の流れ)</summary>
+							<div id="main_text">
+								詳細は&#12302;可積分系の世界&#12303;p.89,226辺り (高崎金久先生) を参照。
+								<br>
+								\[
+									\bigl(W^*\bigr)^{-1}e^{-\theta(\boldsymbol{X},\,\lambda)}=W^*(\boldsymbol{x},\,\lambda)e^{-\theta(\boldsymbol{x},\,\lambda)}
+								\]
+								となる \(W^*(\boldsymbol{x},\,\lambda)\) に対して、
+								\[
+									W(\boldsymbol{x}+[\lambda^{-1}],\,\lambda)W^*(\boldsymbol{x},\,\lambda)=1
+								\]
+								となることから、(証明略)
+								\[
+									W(\boldsymbol{x},\,\lambda)=\frac{\tau(\boldsymbol{x}-[\lambda^{-1}])}{\tau(\boldsymbol{x})}
+								\]
+								と併せて、
+								\[								
+									W^*(\boldsymbol{x},\,\lambda)=\frac{1}{W(\boldsymbol{x}+[\lambda^{-1}],\,\lambda)}=\frac{\tau(\boldsymbol{x}+[\lambda^{-1}])}{\tau(\boldsymbol{x})}
+								\]
+								
+							</div>
+							<div style="text-align: right;"><button id=close15>[閉じる]</button></div>
+						</details><div style="line-height: 5pt;">&nbsp;</div>
+						また、擬微分作用素 \(A,\,B\) に対して以下の式が成り立つ。
+						\[
+							\oint\bigl(\partial_x^jAe^{x\lambda}\bigr)\bigl(Be^{-x\lambda}\bigr)\frac{d\lambda}{2\pi{i}}
+							=(-1)^{j+1}\bigl(BA^*\bigr)_{-j-1}\;\;\;(j\in\mathbb{N}_0)
+						\]
+						ただし \(\bigl(BA^*\bigr)_{-j-1}\) は \(BA^*\) の \(\partial^{-j-1}\) の係数を意味する。
+						<details id="gray">
+							<summary>証明</summary>
+							<div id="main_text">
+								\[
+									A=\sum_{n}a_n\partial_x^n,\;\;B=\sum_{n}b_n\partial_x^n
+								\] 
+								とすると、
+								\begin{align*}
+									\partial_x^jA
+									&=\sum_n\sum_{k\geq0}\begin{pmatrix}j\\k\end{pmatrix}a_n^{(k)}\partial_x^{n+j-k}\\
+									\partial_x^jAe^{\lambda{x}}
+									&=\sum_n\sum_{k\geq0}\begin{pmatrix}j\\k\end{pmatrix}a_n^{(k)}\lambda^{n+j-k}e^{\lambda{x}}\\
+									Be^{-\lambda{x}}
+									&=\sum_{n}b_n\partial_x^ne^{-\lambda{x}}\\
+									&=\sum_{n}b_n(-\lambda)^ne^{-\lambda{x}}
+								\end{align*}
+								より、
+								\begin{align*}
+									(左辺)
+									&=\oint\sum_{n,\,n'}\sum_{k\geq0}\begin{pmatrix}j\\k\end{pmatrix}a_n^{(k)}\lambda^{n+j-k}b_{n'}(-\lambda)^{n'}\frac{d\lambda}{2\pi{i}}\\
+									&=\oint\sum_{n,\,n'}\sum_{k\geq0}\begin{pmatrix}j\\k\end{pmatrix}(-1)^{n'}a_n^{(k)}b_{n'}\lambda^{n+n'+j-k}\frac{d\lambda}{2\pi{i}}\\
+									&=\sum_{j=k-n-n'-1\\\;\;\;\;\;k\geq0}\begin{pmatrix}j\\k\end{pmatrix}(-1)^{n'}a_n^{(k)}b_{n'}
+								\end{align*}
+								また、
+								\begin{align*}
+									A^*
+									&=\left(\sum_{n}a_n\partial_x^n\right)^*
+									=\sum_{n}(-\partial_x)^na_n\\
+									BA^*
+									&=\sum_{n,\,n'}b_{n'}\partial_x^{n'}(-\partial_x)^na_n\\
+									&=\sum_{n,\,n'}(-1)^nb_{n'}\partial_{x}^{n+n'}a_n\\
+									&=\sum_{n,\,n'}(-1)^nb_{n'}\sum_{k\geq0}\begin{pmatrix}n+n'\\k\end{pmatrix}a_n^{(k)}\partial_x^{n+n'-k}\\
+									&=\sum_{n,\,n'}\sum_{k\geq0}\begin{pmatrix}n+n'\\k\end{pmatrix}(-1)^na_n^{(k)}b_{n'}\partial_x^{n+n'-k}\\
+									&=\sum_{n,\,n'}\sum_{k\geq0}\begin{pmatrix}k-(n+n')-1\\k\end{pmatrix}(-1)^{n-k}a_n^{(k)}b_{n'}\partial_x^{n+n'-k}\\
+									&=\sum_{j\geq0}\sum_{j=k-n-n'-1\\\;\;\;\;\;k\geq0}\begin{pmatrix}j\\k\end{pmatrix}(-1)^{-n'-j-1}a_n^{(k)}b_{n'}\partial_x^{-j-1}\\
+									&=\sum_{j\geq0}\sum_{j=k-n-n'-1\\\;\;\;\;\;k\geq0}\begin{pmatrix}j\\k\end{pmatrix}(-1)^{n'}a_n^{(k)}b_{n'}(-1)^{j+1}\partial_x^{-j-1}
+								\end{align*}
+								より、
+								\begin{align*}								
+									(右辺)
+									&=(-1)^{j+1}\sum_{j=k-n-n'-1\\\;\;\;\;\;k\geq0}\begin{pmatrix}j\\k\end{pmatrix}(-1)^{n'}a_n^{(k)}b_{n'}(-1)^{j+1}\\
+									&=\sum_{j=k-n-n'-1\\\;\;\;\;\;k\geq0}\begin{pmatrix}j\\k\end{pmatrix}(-1)^{n'}a_n^{(k)}b_{n'}
+								\end{align*}
+							</div>
+							<div style="text-align: right;"><button id=close16>[閉じる]</button></div>
+						</details><div style="line-height: 5pt;">&nbsp;</div>
+						これより、
+						\[
+							A=W,\;B=\bigl(W^*\bigr)^{-1}=\bigl(W^{-1}\bigr)^*
+						\]
+						とすれば、
+						\begin{align*}
+							\oint\partial_x^j\bigl(We^{x\lambda}\bigr)\bigl(W^*\bigr)^{-1}e^{-\lambda{x}}\frac{d\lambda}{2\pi{i}}
+							&=(-1)^{j+1}\Bigl(\bigl(W^{-1}\bigr)^*W^*\Big)_{-j-1}\\
+							&=(-1)^{j+1}\hat{I}_{-j-1}=0
+						\end{align*}
+						となり、\(\partial_x^j\rightarrow\partial^j_{x_i},\;x\lambda\rightarrow\sum_{n=1}^\infty\lambda^nx_n\) とすれば、
+						\[
+							\oint\partial_{x_i}^j\varphi(\boldsymbol{x},\,\lambda)\varphi^*(\boldsymbol{x},\,\lambda)\;d\lambda=0
+						\]
+						が成り立ち、
+						\[
+							\oint\varphi(\boldsymbol{x}',\,\lambda)\varphi^*(\boldsymbol{x},\,\lambda)\;d\lambda=0
+						\]
+						も成り立つ。なぜなら \(\varphi(\boldsymbol{x}',\,\lambda)\) を \(\boldsymbol{x}\) の周りでテイラー展開すると、
+						\begin{align*}
+							\oint\varphi(\boldsymbol{x}',\,\lambda)\varphi^*(\boldsymbol{x},\,\lambda)\;d\lambda
+							&=\oint\left(\sum_{n=1}^{\infty}\frac{1}{n!}\left(\sum_{i=1}^\infty (x_i'-x_i)\frac{\partial}{\partial{x_i}}\right)^n\varphi(\boldsymbol{x},\,\lambda)\right)\varphi^*(\boldsymbol{x},\,\lambda)\;d\lambda\\
+							&=\sum_{n=1}^\infty\frac{1}{n!}\sum_{i=1}^\infty(x'_i-x_i)^n\oint\partial_{x_i}^n\varphi(\boldsymbol{x},\,\lambda)\varphi^*(\boldsymbol{x},\,\lambda)\;d\lambda=0
+						\end{align*}
+						となるからである。よってこれより、
+						\[
+							\oint\frac{\tau(\boldsymbol{x}'-[\lambda^{-1}])}{\tau(\boldsymbol{x}')}e^{\theta(\boldsymbol{x},\,\lambda)}\cdot\frac{\tau(\boldsymbol{x}+[\lambda^{-1}])}{\tau(\boldsymbol{x})}e^{-\theta(\boldsymbol{x},\,\lambda)}\;d\lambda=0
+						\]
+						および
+						\[
+							\oint\tau(\boldsymbol{x'}-[\lambda^{-1}])\tau(\boldsymbol{x}+[\lambda^{-1}])\;d\lambda=0
+						\]
+						が成り立つ。
+					</div>
+					<div style="text-align: right;"><button id=close13>[閉じる]</button></div>
+				</details><div style="line-height: 5pt;">&nbsp;</div>
+				a
+			</div>
 		</div>
 
 
@@ -887,4 +1342,4 @@
 	<script src="../js/details_close.js"></script>
 </html>
 
-<!-- close:8 -->
+<!-- close:16 -->

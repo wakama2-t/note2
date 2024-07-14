@@ -699,26 +699,46 @@
                         =|\widehat{N-2},\,N|
                     \end{align*}
                     のように簡略化する。
+                    <div id="long_mjx">
                     \begin{align*}
                         \tau
-                        &=|\widehat{N-1}|\\[2pt]
+                        &=|\widehat{N-1}|\\[5pt]
                         \tau_x
-                        &=|\widehat{N-2},\,N|\\[2pt]
+                        &=|\widehat{N-2},\,N|\\[5pt]
                         \tau_{xx}
-                        &=|\widehat{N-3},\,N-1,\,N|+|\widehat{N-2},\,N+1|\\[2pt]
+                        &=|\widehat{N-3},\,N-1,\,N|+|\widehat{N-2},\,N+1|\\[5pt]
                         \tau_{xxx}
                         &=|\widehat{N-4},\,N-2,\,N-1,\,N|+|\widehat{N-3},\,N-1,\,N+1|\\
                         &\;\;\;\;\;+|\widehat{N-3},\,N-1,\,N+1|+|\widehat{N-2},\,N+2|\\
-                        &=|\widehat{N-4},\,N-2,\,N-1,\,N|+2\,|\widehat{N-3},\,N-1,\,N+1|+|\widehat{N-2},\,N+2|\\[2pt]
+                        &=|\widehat{N-4},\,N-2,\,N-1,\,N|+2\,|\widehat{N-3},\,N-1,\,N+1|+|\widehat{N-2},\,N+2|\\[5pt]
                         \tau_{xxxx}
                         &=|\widehat{N-5},\,N-3,\,N-2,\,N-1,\,N|+|\widehat{N-4},\,N-2,\,N-1,\,N+1|\\
-                        &\;\;\;\;\;+2\bigl(|\widehat{N-4},\,N-2,\,N-1,\,N+1|+|\widehat{N-3},\,N,\,N+1|+|\widehat{N-3},\,N-1,\,N+2|\\
-                        &\;\;\;\;\;\;\;\;\;\;\;\;+|\widehat{N-3},\,N-1,\,N+2|+|\widehat{N-2},\,N+3|\bigr)\\
-                        &\;\;\;\;\;+|\widehat{N-3},\,N-1,\,N+3|+|\widehat{N-2},\,N+3|\\
+                        &\;\;\;\;\;+2\Bigl(|\widehat{N-4},\,N-2,\,N-1,\,N+1|+|\widehat{N-3},\,N,\,N+1|+|\widehat{N-3},\,N-1,\,N+2|\Bigr)\\
+                        &\;\;\;\;\;+|\widehat{N-3},\,N-1,\,N+2|+|\widehat{N-2},\,N+3|\\
                         &=|\widehat{N-5},\,N-3,\,N-2,\,N-1,\,N|+3|\widehat{N-4},\,N-2,\,N-1,\,N+1|\\
-                        &\;\;\;\;\;+2|\widehat{N-3},\,N,\,N+1|+4|\widehat{N-3},\,N-1,\,N+2|\\
-                        &\;\;\;\;\;+|\widehat{N-3},\,N-1,\,N+3|+|\widehat{N-2},\,N+3|
+                        &\;\;\;\;\;+2|\widehat{N-3},\,N,\,N+1|+3|\widehat{N-3},\,N-1,\,N+2|+|\widehat{N-2},\,N+3|\\[5pt]
+                        \tau_t
+                        &=-|\widehat{N-4},\,N,\,N-2,\,N-1|-|\widehat{N-3},\,N+1,\,N-1|-|\widehat{N-2},\,N+2|\\
+                        &=-|\widehat{N-4},\,N-2,\,N-1,\,N|+|\widehat{N-3},\,N-1,\,N+1|-|\widehat{N-2},\,N+2|\\[5pt]
+                        \tau_{xt}
+                        &=-|\widehat{N-5},\,N-1,\,N-3,\,N-2,\,N|-|\widehat{N-3},\,N+1,\,N|-|\widehat{N-2},\,N+3|\\
+                        &=-|\widehat{N-5},\,N-3,\,N-2,\,N-1,\,N|+|\widehat{N-3},\,N,\,N+1|-|\widehat{N-2},\,N+3|\\[5pt]
+                        \tau_y
+                        &=|\widehat{W-3},\,N,\,N-1|+|\widehat{N-2},\,N+1|\\
+                        &=-|\widehat{W-3},\,N-1,\,N|+|\widehat{N-2},\,N+1|\\[5pt]
+                        \tau_{yy}
+                        &=-\Bigl(|\widehat{N-5},\,N-2,\,N-3,\,N-1,\,N|+|\widehat{N-3},\,N+1,\,N|+|\widehat{N-3},\,N-1,\,N+2|\Bigr)\\
+                        &\;\;\;\;\;+|\widehat{N-4},\,N-1,\,N-2,\,N+1|+|\widehat{N-3},\,N,\,N+1|+|\widehat{N-2},\,N+3|\\
+                        &=|\widehat{N-5},\,N-3,\,N-2,\,N-1,\,N|+2|\widehat{N-3},\,N,\,N+1|-|\widehat{N-3},\,N-1,\,N+2|\\
+                        &\;\;\;\;\;-|\widehat{N-4},\,N-2,\,N-1,\,N+1|+|\widehat{N-2},\,N+3|
                     \end{align*}
+                    となり、
+                    <!-- \begin{align*}                    
+                        &(4D_xD_t+D_x^4+3D_y^2)\tau\cdot\tau\\
+                        &=24\Bigl(||\Bigr)
+                    \end{align*} -->
+                    
+                    </div>
                 </div>
                 <div style="text-align: right;"><button id=close5>[閉じる]</button></div>
             </details>
