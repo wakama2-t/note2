@@ -914,7 +914,7 @@
 				<details id="white">
 					<summary>証明</summary>
 					<div id="main_text">
-						まず佐藤方程式を満たす \(\displaystyle W=1+\sum_{n=1}^{\infty}a_n\partial^{-n}\) は
+						まず佐藤方程式を満たす \(L\) は
 						\[
 							\left\{
 								\begin{aligned}
@@ -923,30 +923,34 @@
 								\end{aligned}
 							\right.
 						\]
+						の両立条件となる。
 						<details id="gray">
 							<summary>確認</summary>
 							<div id="main_text">
-								佐藤方程式から
-								\[
-									(L)_{x_k}=[B_k,\,L]
-								\]
-								が成り立つので、第1式の両辺を \(x_k\) で偏微分すると、
+								第1式の両辺を \(x_k\) で偏微分すると、
 								\begin{align*}
 									(左辺)
 									&=\bigl(L\bigr)_{x_k}\varphi+L\partial_{x_k}\varphi\\
-									&=[B_k,\,L]\varphi+LB_k\varphi\\
-									&=B_kL\varphi\\[5pt]
+									&=\bigl(L\bigr)_{x_k}\varphi+LB_k\varphi\\[5pt]
 									(右辺)
 									&=\lambda\partial_{x_k}\varphi\\
 									&=\lambda B_k\varphi\\
 									&=B_k\bigl(\lambda\varphi\bigr)\\
 									&=B_kL\varphi
 								\end{align*}
+								より、
+								\[
+									\Bigl(\bigl(L\bigr)_{x_k}-[B_k,\,L]\Bigr)\varphi=0
+								\]
+								であり、
+								\[
+									(L)_{x_k}=[B_k,\,L]
+								\]
 								となる。
 							</div>
 							<div style="text-align: right;"><button id=close10>[閉じる]</button></div>
 						</details>
-						を満たす。いま
+						いま
 						\[
 							\varphi:=W\varphi_0
 						\]
@@ -1147,7 +1151,10 @@
 				</details>
 				またこの \(\tau\) 関数は任意の \(\boldsymbol{x},\,\boldsymbol{x}'\in\mathbb{C}^N\) に対して、
 				\[
-					\oint_{z=\infty}\tau(\boldsymbol{x}-[\lambda^{-1}])\tau(\boldsymbol{x}'+[\lambda^{-1}])\;d\lambda=0
+					\oint_{z=\infty}\tau(\boldsymbol{x}-[\lambda^{-1}])\tau(\boldsymbol{x}'+[\lambda^{-1}])e^{\theta(\boldsymbol{x}-\boldsymbol{x}',\,\lambda)}\;d\lambda=0
+				\]
+				\[
+					\theta(\boldsymbol{x},\,\lambda):=\sum_{n=1}^{\infty}\lambda^nx_n
 				\]
 				を満たす。
 				<details id="white">
@@ -1316,11 +1323,11 @@
 						\end{align*}
 						となるからである。よってこれより、
 						\[
-							\oint\frac{\tau(\boldsymbol{x}'-[\lambda^{-1}])}{\tau(\boldsymbol{x}')}e^{\theta(\boldsymbol{x},\,\lambda)}\cdot\frac{\tau(\boldsymbol{x}+[\lambda^{-1}])}{\tau(\boldsymbol{x})}e^{-\theta(\boldsymbol{x},\,\lambda)}\;d\lambda=0
+							\oint\frac{\tau(\boldsymbol{x}'-[\lambda^{-1}])}{\tau(\boldsymbol{x}')}e^{\theta(\boldsymbol{x}',\,\lambda)}\cdot\frac{\tau(\boldsymbol{x}+[\lambda^{-1}])}{\tau(\boldsymbol{x})}e^{-\theta(\boldsymbol{x},\,\lambda)}\;d\lambda=0
 						\]
 						および
 						\[
-							\oint\tau(\boldsymbol{x'}-[\lambda^{-1}])\tau(\boldsymbol{x}+[\lambda^{-1}])\;d\lambda=0
+							\oint\tau(\boldsymbol{x'}-[\lambda^{-1}])\tau(\boldsymbol{x}+[\lambda^{-1}])e^{\theta(\boldsymbol{x}'-\boldsymbol{x},\,\lambda)}\;d\lambda=0
 						\]
 						が成り立つ。
 					</div>
