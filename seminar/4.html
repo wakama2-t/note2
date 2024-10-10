@@ -489,7 +489,7 @@
 					P:=\sum_{n=0}^{\infty}a_n\partial^{M-n},\;
 					\left\{
 					\begin{aligned}
-						(P)_+&:=\sum_{n=0}^{M}a_n\partial^M\\
+						(P)_+&:=\sum_{n=0}^{M}a_n\partial^n\\
 						(P)_-&:=\sum_{n=M+1}^{\infty}a_{n}\partial^{M-n}
 					\end{aligned}\right.
 				\]
@@ -903,7 +903,7 @@
 					\end{vmatrix}
 					}\;\;\;(1\leq{k}\leq{N})
 				\]
-				および \(a_k=0\;(N&lt;k)\) となる。これは \(N\) に依存しているが、より一般には佐藤方程式の解は
+				および \(a_k=0\;(N&lt;k)\) となる。これは \(N\) に依存しているが、より一般には佐藤方程式の解は \(W(\boldsymbol{x},\,\partial^{-1})\) に対して、
 				\[
 					W(\boldsymbol{x},\,\lambda)=\frac{\tau(\boldsymbol{x}-[\lambda^{-1}])}{\tau(\boldsymbol{x})}
 				\]
@@ -965,7 +965,7 @@
 							&=\bigl(B_kW-W\partial^k\bigr)\varphi_0+W\partial_{x_k}\varphi_0\\
 							&=B_kW\varphi_0-W\partial^k\varphi_0+W\partial_{x_k}\varphi_0\\[5pt]
 							(右辺)
-							&=\partial_{x_k}\bigl(W\varphi_0\bigr)=\,B_kW\varphi_0
+							&=\,B_kW\varphi_0
 						\end{align*}
 						となるため、
 						\[
@@ -1156,7 +1156,7 @@
 				\[
 					\theta(\boldsymbol{x},\,\lambda):=\sum_{n=1}^{\infty}\lambda^nx_n
 				\]
-				を満たす。
+				を満たす。(この関係式を双線型恒等式という。)
 				<details id="white">
 					<summary>証明</summary>
 					<div id="main_text">
@@ -1166,7 +1166,7 @@
 							&\bigl(A+B\bigr)^*=A^*+B^*\\
 							&\bigl(AB\bigr)^*=B^*A^*
 						\end{align*}
-						となる演算 \(\cdot^*\) を考える。佐藤方程式を満たす \(W\) が満たしていた
+						となる演算 \(\cdot^*\) を考える。佐藤方程式を満たす \(L\) が満たしていた
 						\[
 							\left\{\begin{aligned}
 								L\;\varphi&=\lambda\varphi\\
@@ -1194,24 +1194,39 @@
 								\]
 								となるので、
 								\[
-									-\bigl(W^{-1}\bigr)^*\partial W^*\varphi^*=\lambda\varphi^*\;\Leftrightarrow\;\partial{W}^*\varphi^*=-\lambda W^*\varphi'
+									\varphi^*=\bigl(W^{-1}\bigr)^*\varphi_0^*
+								\]
+								とすれば、
+								\begin{align*}								
+									L^*\varphi^*
+									&=-\bigl(W^{-1}\bigr)^*\partial W^*\varphi^*\\
+									&=-\bigl(W^{-1}\bigr)^*\partial\varphi_0^*=\lambda\bigl(W^{-1}\bigr)^*\varphi_0^*
+								\end{align*}
+								\[
+									\partial\varphi_0^*=-\lambda
 								\]
 								となる。また、
-								\[
-									W^*\varphi^*=\varphi^*_0\;\Leftrightarrow\;\varphi^*=\bigl(W^*\bigr)^{-1}\varphi^*_0
-								\]
-								とおけば \(\partial\varphi^*_0=-\lambda\varphi^*_0\) となる。また
-								\[
-									\partial_{x_k}\varphi_0=\partial^k\varphi_0
-								\]
-								の両辺に \(\cdot^*\) を作用させると
-								\[
-									\partial_{x_k}\varphi^*_0=(-1)^{k+1}\partial^k\varphi^*_0=(-1)^{k+1}(-\lambda)^k\varphi^*_0=-\lambda^k\varphi^*_0
-								\]
+								\begin{align*}
+									B_k
+									&=\bigl(W\bigr)_{x_k}W^{-1}+W\partial^kW^{-1}\\
+									&=\bigl(\partial_{x_k}W\bigr)W^{-1}+W\partial^kW^{-1}\\[3pt]
+									B_k^*
+									&=\bigl(W^{-1}\bigr)^*\bigl(\partial_{x_k}W\bigr)^*+(-1)^k\bigl(W^{-1}\bigr)^*\partial^kW^*\\
+									&=-\bigl(W^{-1}\bigr)^*W^*\partial_{x_k}+(-1)^k\bigl(W^{-1}\bigr)^*\partial^kW^*\\
+									&=-\partial_{x_k}+(-1)^k\bigl(W^{-1}\bigr)^*\partial^kW^*
+								\end{align*}
 								となるため、
+								\begin{align*}
+									\partial_{x_k}\varphi^*
+									&=\partial_{x_k}\bigl(W^{-1}\bigr)^*\varphi_0^*+\bigl(W^{-1}\bigr)^*\partial_{x_k}\varphi_0^*\\[3pt]
+									-B_k\varphi^*
+									&=\partial_{x_k}\varphi^*+(-1)^{k+1}\bigl(W^{-1}\bigr)^*\partial^kW^*\varphi^*\\
+									&=\partial_{x_k}\bigl(W^{-1}\bigr)^*\varphi_0^*+(-1)^{k+1}\bigl(W^{-1}\bigr)^*\partial^k\varphi_0^*
+								\end{align*}
 								\[
-									\varphi^*(\boldsymbol{x},\,\lambda)=\bigl(W^*\bigr)^{-1}\exp\left[-\sum_{n=0}^\infty\lambda^nx_n\right]=\bigl(W^*\bigr)^{-1}e^{-\theta(\boldsymbol{x},\,\lambda)}
+									\partial_{x_k}\varphi_0^*=(-1)^{k+1}\partial^k\varphi_0^*=-\lambda^k\varphi_0^*
 								\]
+								となる。
 							</div>
 							<div style="text-align: right;"><button id=close14>[閉じる]</button></div>
 						</details><div style="line-height: 5pt;">&nbsp;</div>
@@ -1220,31 +1235,7 @@
 							\varphi(\boldsymbol{x},\,\lambda)&=\frac{\tau(\boldsymbol{x}-[\lambda^{-1}])}{\tau(\boldsymbol{x})}e^{\theta(\boldsymbol{x},\,\lambda)}\\
 							\varphi^*(\boldsymbol{x},\,\lambda)&=\frac{\tau(\boldsymbol{x}+[\lambda^{-1}])}{\tau(\boldsymbol{x})}e^{-\theta(\boldsymbol{x},\,\lambda)}
 						\end{align*}
-						となる。
-						<details id="gray">
-							<summary>導出(の流れ)</summary>
-							<div id="main_text">
-								詳細は&#12302;可積分系の世界&#12303;p.89,226辺り (高崎金久先生) を参照。
-								<br>
-								\[
-									\bigl(W^*\bigr)^{-1}e^{-\theta(\boldsymbol{X},\,\lambda)}=W^*(\boldsymbol{x},\,\lambda)e^{-\theta(\boldsymbol{x},\,\lambda)}
-								\]
-								となる \(W^*(\boldsymbol{x},\,\lambda)\) に対して、
-								\[
-									W(\boldsymbol{x}+[\lambda^{-1}],\,\lambda)W^*(\boldsymbol{x},\,\lambda)=1
-								\]
-								となることから、(証明略)
-								\[
-									W(\boldsymbol{x},\,\lambda)=\frac{\tau(\boldsymbol{x}-[\lambda^{-1}])}{\tau(\boldsymbol{x})}
-								\]
-								と併せて、
-								\[								
-									W^*(\boldsymbol{x},\,\lambda)=\frac{1}{W(\boldsymbol{x}+[\lambda^{-1}],\,\lambda)}=\frac{\tau(\boldsymbol{x}+[\lambda^{-1}])}{\tau(\boldsymbol{x})}
-								\]
-								
-							</div>
-							<div style="text-align: right;"><button id=close15>[閉じる]</button></div>
-						</details><div style="line-height: 5pt;">&nbsp;</div>
+						となる。(後で示す。)<br>
 						また、擬微分作用素 \(A,\,B\) に対して以下の式が成り立つ。
 						\[
 							\oint\bigl(\partial_x^jAe^{x\lambda}\bigr)\bigl(Be^{-x\lambda}\bigr)\frac{d\lambda}{2\pi{i}}
@@ -1255,17 +1246,17 @@
 							<summary>証明</summary>
 							<div id="main_text">
 								\[
-									A=\sum_{n}a_n\partial_x^n,\;\;B=\sum_{n}b_n\partial_x^n
+									A=\sum_{n\in{\mathbb{Z}}}a_n\partial_x^n,\;\;B=\sum_{n\in{\mathbb{Z}}}b_n\partial_x^n
 								\] 
 								とすると、
 								\begin{align*}
 									\partial_x^jA
-									&=\sum_n\sum_{k\geq0}\begin{pmatrix}j\\k\end{pmatrix}a_n^{(k)}\partial_x^{n+j-k}\\
+									&=\sum_{n\in{\mathbb{Z}}}\sum_{k\geq0}\begin{pmatrix}j\\k\end{pmatrix}a_n^{(k)}\partial_x^{n+j-k}\\
 									\partial_x^jAe^{\lambda{x}}
-									&=\sum_n\sum_{k\geq0}\begin{pmatrix}j\\k\end{pmatrix}a_n^{(k)}\lambda^{n+j-k}e^{\lambda{x}}\\
+									&=\sum_{n\in{\mathbb{Z}}}\sum_{k\geq0}\begin{pmatrix}j\\k\end{pmatrix}a_n^{(k)}\lambda^{n+j-k}e^{\lambda{x}}\\
 									Be^{-\lambda{x}}
-									&=\sum_{n}b_n\partial_x^ne^{-\lambda{x}}\\
-									&=\sum_{n}b_n(-\lambda)^ne^{-\lambda{x}}
+									&=\sum_{n\in{\mathbb{Z}}}b_n\partial_x^ne^{-\lambda{x}}\\
+									&=\sum_{n\in{\mathbb{Z}}}b_n(-\lambda)^ne^{-\lambda{x}}
 								\end{align*}
 								より、
 								\begin{align*}
@@ -1277,8 +1268,8 @@
 								また、
 								\begin{align*}
 									A^*
-									&=\left(\sum_{n}a_n\partial_x^n\right)^*
-									=\sum_{n}(-\partial_x)^na_n\\
+									&=\left(\sum_{n=1}a_n\partial_x^n\right)^*
+									=\sum_{n=1}(-\partial_x)^na_n\\
 									BA^*
 									&=\sum_{n,\,n'}b_{n'}\partial_x^{n'}(-\partial_x)^na_n\\
 									&=\sum_{n,\,n'}(-1)^nb_{n'}\partial_{x}^{n+n'}a_n\\
@@ -1295,7 +1286,7 @@
 									&=\sum_{j=k-n-n'-1\\\;\;\;\;\;k\geq0}\begin{pmatrix}j\\k\end{pmatrix}(-1)^{n'}a_n^{(k)}b_{n'}
 								\end{align*}
 							</div>
-							<div style="text-align: right;"><button id=close16>[閉じる]</button></div>
+							<div style="text-align: right;"><button id=close15>[閉じる]</button></div>
 						</details><div style="line-height: 5pt;">&nbsp;</div>
 						これより、
 						\[
@@ -1307,21 +1298,87 @@
 							&=(-1)^{j+1}\Bigl(\bigl(W^{-1}\bigr)^*W^*\Big)_{-j-1}\\
 							&=(-1)^{j+1}\hat{I}_{-j-1}=0
 						\end{align*}
-						となり、\(\partial_x^j\rightarrow\partial^j_{x_i},\;x\lambda\rightarrow\sum_{n=1}^\infty\lambda^nx_n\) とすれば、
+						となり、\(\partial_x^j\rightarrow\partial^j_{x_1},\;x\lambda\rightarrow\sum_{n=1}^\infty\lambda^nx_n\) とすれば、
 						\[
-							\oint\partial_{x_i}^j\varphi(\boldsymbol{x},\,\lambda)\varphi^*(\boldsymbol{x},\,\lambda)\;d\lambda=0
+							\oint\partial_{x_1}^j\varphi(\boldsymbol{x},\,\lambda)\varphi^*(\boldsymbol{x},\,\lambda)\;d\lambda=0
 						\]
-						が成り立ち、
+						が成り立つ。\(j=0\) として両辺に \(\partial_{x_m}^{k}\) を作用させれば、
+						\[
+							\oint\partial_{x_m}^k\varphi(\boldsymbol{x},\,\lambda)\varphi^*(\boldsymbol{x},\,\lambda)\;d\lambda=0
+						\]
+						となることがわかる。そしてこれより、
+						\begin{align*}
+							\oint\varphi(\boldsymbol{x}',\,\lambda)\varphi^*(\boldsymbol{x},\,\lambda)\;d\lambda
+							&=\oint\left(\sum_{n=0}^{\infty}\frac{1}{n!}\left(\sum_{i=1}^\infty (x_i'-x_i)\frac{\partial}{\partial{x_i}}\right)^n\varphi(\boldsymbol{x},\,\lambda)\right)\varphi^*(\boldsymbol{x},\,\lambda)\;d\lambda\\
+							&=\sum_{n=0}^\infty\sum_{i=1}^\infty F_{n}(x_i,\,x'_i)\oint\partial_{x_i}^n\varphi(\boldsymbol{x},\,\lambda)\varphi^*(\boldsymbol{x},\,\lambda)\;d\lambda=0
+						\end{align*}
+						となる。すなわち、
 						\[
 							\oint\varphi(\boldsymbol{x}',\,\lambda)\varphi^*(\boldsymbol{x},\,\lambda)\;d\lambda=0
 						\]
-						も成り立つ。なぜなら \(\varphi(\boldsymbol{x}',\,\lambda)\) を \(\boldsymbol{x}\) の周りでテイラー展開すると、
-						\begin{align*}
-							\oint\varphi(\boldsymbol{x}',\,\lambda)\varphi^*(\boldsymbol{x},\,\lambda)\;d\lambda
-							&=\oint\left(\sum_{n=1}^{\infty}\frac{1}{n!}\left(\sum_{i=1}^\infty (x_i'-x_i)\frac{\partial}{\partial{x_i}}\right)^n\varphi(\boldsymbol{x},\,\lambda)\right)\varphi^*(\boldsymbol{x},\,\lambda)\;d\lambda\\
-							&=\sum_{n=1}^\infty\frac{1}{n!}\sum_{i=1}^\infty(x'_i-x_i)^n\oint\partial_{x_i}^n\varphi(\boldsymbol{x},\,\lambda)\varphi^*(\boldsymbol{x},\,\lambda)\;d\lambda=0
-						\end{align*}
-						となるからである。よってこれより、
+						となる。そしてこの結果から、
+						\[
+							\varphi^*(\boldsymbol{x},\,\lambda)=\frac{\tau(\boldsymbol{x}+[\lambda^{-1}])}{\tau(\boldsymbol{x})}e^{-\theta(\boldsymbol{x},\,\lambda)}
+						\]
+						<details id="gray">
+							<summary>導出</summary>
+							<div id="main_text">
+								\[
+									\oint\varphi(\boldsymbol{x}',\,\lambda)\varphi^*(\boldsymbol{x},\,\lambda)\;d\lambda=0
+								\]
+								において、
+								\[
+									\boldsymbol{x}'\;\rightarrow\;\boldsymbol{x}+[\lambda_1^{-1}]+[\lambda_2^{-1}]
+								\]
+								とすると、
+								\begin{align*}								
+									\theta(\boldsymbol{x}',\,\lambda)
+									\;\rightarrow\;\;
+									&\theta(\boldsymbol{x}+[\lambda_1^{-1}]+[\lambda_2^{-1}],\,\lambda)\\
+									&=\sum_{n=1}^{\infty}\left(x_n+\frac{1}{n\lambda_1}+\frac{1}{n\lambda_2}\right)\lambda^n\\
+									&=\sum_{n=1}^{\infty}\left(\lambda^nx_n+\frac{\lambda^n}{n\lambda_1^n}+\frac{\lambda^n}{n\lambda_2^n}\right)
+								\end{align*}
+								\begin{align*}
+									e^{\theta(\boldsymbol{x}+[\lambda_1^{-1}]+[\lambda_2^{-1}],\,\lambda)-\theta(\boldsymbol{x},\,\lambda)}
+									&=\exp\left[\sum_{n=1}^{\infty}\left(\frac{\lambda^n}{n\lambda_1^n}+\frac{\lambda^n}{n\lambda_2^n}\right)\right]\\
+									&=\left(\Bigl(1-\frac{\lambda}{\lambda_1}\Bigr)\Bigl(1-\frac{\lambda}{\lambda_2}\Bigr)\right)^{-1}
+								\end{align*}
+								となることから、
+								\begin{align*}								
+									We^{\theta(\boldsymbol{x},\,\lambda)}&=\left(1+\sum_{n=1}^{\infty}a_n(\boldsymbol{x})\lambda^{-n}\right)e^{\theta(\boldsymbol{x},\,\lambda)}=w(\boldsymbol{x},\,\lambda)e^{\theta(\boldsymbol{x},\,\lambda)}\\
+									\bigl(W^*\bigr)^{-1}e^{-\theta(\boldsymbol{x},\,\lambda)}&=\left(1+\sum_{n=1}^{\infty}b_n(\boldsymbol{x})\lambda^{-n}\right)e^{-\theta(\boldsymbol{x},\,\lambda)}=w'(\boldsymbol{x},\,\lambda)e^{-\theta(\boldsymbol{x},\,\lambda)}
+								\end{align*}
+								と \(w,\,w'\) をおくと、
+								\begin{align*}
+									0\;&=\oint\varphi(\boldsymbol{x}+[\lambda_1^{-1}]+[\lambda_2^{-1}],\,\lambda)\varphi^*(\boldsymbol{x},\,\lambda)\;d\lambda\\
+									&=\oint \frac{w(\boldsymbol{x}+[\lambda_1^{-1}]+[\lambda_2^{-1}],\,\lambda)w'(\boldsymbol{x},\,\lambda)}{(1-\frac{\lambda}{\lambda_1})(1-\frac{\lambda}{\lambda_2})} \;d\lambda
+								\end{align*}
+								であり、\(\lambda=\lambda_1,\,\lambda_2\) にそれぞれ1位の極を持つため、
+								\begin{align*}
+									0&=\frac{w(\boldsymbol{x}+[\lambda_1^{-1}]+[\lambda_2^{-1}],\,\lambda_1)w'(\boldsymbol{x},\,\lambda_1)}{1-\frac{\lambda_1}{\lambda_2}}\\
+									&\;\;\;\;\;\;+\frac{w(\boldsymbol{x}+[\lambda_1^{-1}]+[\lambda_2^{-1}],\,\lambda_2)w'(\boldsymbol{x},\,\lambda_2)}{1-\frac{\lambda_2}{\lambda_1}}
+								\end{align*}
+								となる。両辺に \(\lambda_1\lambda_2\) をかけて整理すれば、
+								\[
+									w(\boldsymbol{x}+[\lambda_1^{-1}]+[\lambda_2^{-1}],\,\lambda_1)w'(\boldsymbol{x},\,\lambda_1)=w(\boldsymbol{x}+[\lambda_1^{-1}]+[\lambda_2^{-1}],\,\lambda_2)w'(\boldsymbol{x},\,\lambda_2)
+								\]
+								となる。\(\lambda_2\rightarrow\infty\) とすれば \(w,\,w'\) の定義より、
+								\[
+									w(\boldsymbol{x}+[\lambda_1^{-1}],\,\lambda_1)w'(\boldsymbol{x},\,\lambda_1)=1
+								\]
+								が成り立ち、\(\displaystyle w(\boldsymbol{x},\,\lambda)=\frac{\tau(\boldsymbol{x}-[\lambda^{-1}])}{\tau(\boldsymbol{x})}\) となることは先に示したため、
+								\begin{align*}
+									\varphi^*(\boldsymbol{x},\,\lambda)
+									&=\bigl(W^*\bigr)^{-1}e^{-\theta(\boldsymbol{x},\,\lambda)}\\
+									&=w'(\boldsymbol{x},\,\lambda)e^{-\theta(\boldsymbol{x},\,\lambda)}\\
+									&=\frac{1}{w(\boldsymbol{x}+[\lambda^{-1}],\,\lambda)}e^{-\theta(\boldsymbol{x},\,\lambda)}\\
+									&=\frac{\tau(\boldsymbol{x}+[\lambda^{-1}])}{\tau(\boldsymbol{x})}e^{-\theta(\boldsymbol{x},\,\lambda)}
+								\end{align*}
+								を得る。
+							</div>
+							<div style="text-align: right;"><button id=close16>[閉じる]</button></div>
+						</details><div style="line-height: 5pt;">&nbsp;</div>
+						となり、
 						\[
 							\oint\frac{\tau(\boldsymbol{x}'-[\lambda^{-1}])}{\tau(\boldsymbol{x}')}e^{\theta(\boldsymbol{x}',\,\lambda)}\cdot\frac{\tau(\boldsymbol{x}+[\lambda^{-1}])}{\tau(\boldsymbol{x})}e^{-\theta(\boldsymbol{x},\,\lambda)}\;d\lambda=0
 						\]
@@ -1330,11 +1387,319 @@
 							\oint\tau(\boldsymbol{x'}-[\lambda^{-1}])\tau(\boldsymbol{x}+[\lambda^{-1}])e^{\theta(\boldsymbol{x}'-\boldsymbol{x},\,\lambda)}\;d\lambda=0
 						\]
 						が成り立つ。
+
 					</div>
 					<div style="text-align: right;"><button id=close13>[閉じる]</button></div>
 				</details><div style="line-height: 5pt;">&nbsp;</div>
-				a
+				<!-- <details id="white">
+					<summary>証明(頂点作用素ver.) (途中)</summary>
+					<div id="main_text">
+						KP方程式から出発して考える。双線型形式
+						\[
+							(D_x^4+3D_y^2-4D_xD_t)\,\tau\cdot\tau=0
+						\]
+						から 1-ソリトン解
+						\[
+							\tau_1=1+e^{(p-q)x+(p^2-q^2)y+(p^3-q^3)t+\theta^{(0)}}
+						\]
+						や 2-ソリトン解
+						\[
+							\tau_2=e^{\eta_1}+e^{\eta_2}+e^{A_{12}\eta_1\eta_2}\\[5pt]
+							\left\{
+							\begin{aligned}
+								\eta_i\;&=(p_i-q_i)x+(p_i^2-q_i^2)y+(p_i^3-q_i^3)t+\theta_i^{(0)}\\
+								e^{A_{12}}&=\frac{(p_1-p_2)(q_1-q_2)}{(p_1-q_2)(q_1-p_2)}
+							\end{aligned}
+							\right.
+						\]
+						<details id="gray">
+							<summary>簡単な確認</summary>
+							<div id="main_text">
+								\[
+									F(D_x,\,D_y,\,D_t):=D_x^4+3D_y^2-4D_xD_t
+								\]
+								とすると、
+								\[
+									F(k_1,\,k_2,\,k_3)=k_1^4+3k_2^2-4k_1k_3=0
+								\]
+								となる \(k_1,\,k_2,\,k_3\) を考えると、任意の \(p,\,q\) に対して、
+								\begin{align*}
+									k_1&=p-q\\
+									k_2&=p^2-q^2\\
+									k_3&=p^3-q^3
+								\end{align*}
+								となり、1-ソリトン解は
+								\[
+									\tau=1+Ce^{(p-q)x+(p^2-q^2)y+(p^3-q^3)t}
+								\]
+								といった形で書ける。また
+								\begin{align*}
+									(k_1,\,k_2,\,k_3)&=(p_1-q_1,\,p_1^2-q_1^2,\,p_1^3-q_1^3)\\
+									(k'_1,\,k'_2,\,k'_3)&=(p_2-q_2,\,p_2^2-q_2^2,\,p_2^3-q_2^3)
+								\end{align*}
+								とすれば
+								\begin{align*}
+									e^{A_{12}}
+									&=-\frac{F(k_1-k'_1,\,k_2-k'_2,\,k_3-k'_3)}{F(k_1+k'_1,\,k_2+k'_2,\,k_3+k'_3)}\\
+									&=-\frac{(k_1-k'_1)^4+3(k_2-k'_2)^2-4(k_1-k'_1)(k_3-k'_3)}{(k_1+k'_1)^4+3(k_2+k'_2)^2-4(k_1+k'_1)(k_3+k'_3)}\\
+									&=\frac{(p_1-p_2)(q_1-q_2)}{(p_1-q_2)(q_1-p_2)}
+								\end{align*}
+								となる。
+							</div>
+							<div style="text-align: right;"><button id=close18>[閉じる]</button></div>
+						</details><div style="line-height: 5pt;">&nbsp;</div>
+						などが求められる。変数を \(\boldsymbol{x}=(x_1,\,x_2,\ldots,\,x_n,\ldots)\) と増やすと \(n\)-ソリトン解
+						\[
+							\tau_n=\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n}\exp\Bigl[\sum_{i=1}^{n}\mu_i\eta_i+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
+							\left\{
+							\begin{aligned}
+								\eta_i\;&=\sum_{n=1}^{\infty}(p_i^n-q_i^n)x_n\\
+								e^{A_{ij}}&=\frac{(p_i-p_j)(q_i-q_j)}{(p_i-q_j)(q_i-p_j)}
+							\end{aligned}
+							\right.
+						\]
+						となる。またここで
+						\[
+							X(p,\,q):=\exp\left[\sum_{n=1}^{\infty}(p^n-q^n)x_n\right]\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}(p^{-n}-q^{-n})\frac{\partial}{\partial{x_n}}\right]
+						\]
+						を考える。この \(X(p,\,q)\) は、
+						\[
+							\tau_{n+1}=e^{cX(p,\,q)}\tau_n
+						\]
+						を満たし、頂点作用素と呼ばれる。またこれを用いて \(n\)-ソリトン解は
+						\[
+							\tau=e^{c_1X(p_1,\,p_2)}e^{x_2X(p_2,\,q_2)}\cdots e^{c_nX(p_n,\,q_n)}1
+						\]
+						とかける。
+						<details id="gray">
+							<summary>確認</summary>
+							<div id="main_text">
+								<div id="long_mjx">
+								\begin{align*}
+									&X(p_1,\,q_1)X(p_2,\,q_2)\\
+									&=
+									\left(\exp\left[\sum_{n=1}^{\infty}(p_1^n-q_1^n)x_n\right]\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}(p_1^{-n}-q_1^{-n})\frac{\partial}{\partial{x_n}}\right]\right)
+									\left(\exp\left[\sum_{n=1}^{\infty}(p_2^n-q_2^n)x_n\right]\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}(p_2^{-n}-q_2^{-n})\frac{\partial}{\partial{x_n}}\right]\right)\\
+									&=\exp\left[\sum_{n=1}^{\infty}(p_1^n-q_1^n)x_n\right]\exp\left[\sum_{n=1}^{\infty}(p_2^n-q_2^n)\left(x_n-\frac{1}{n}(p_1^{-n}-q_1^{-n})\right)\right]\exp\left[-\sum_{i=1,\,2}\sum_{n=1}^{\infty}\frac{1}{n}(p_i^{-n}-q_i^{-n})\frac{\partial}{\partial{x_n}}\right]\\
+									&=\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}(p_2^n-q_2^n)(p_1^{-n}-q_1^{-n})\right]\exp\left[\sum_{i=1,\,2}\sum_{n=1}^{\infty}(p_i^n-q_i^n)x_n\right]\exp\left[-\sum_{i=1,\,2}\sum_{n=1}^{\infty}\frac{1}{n}(p_i^{-n}-q_i^{-n})\frac{\partial}{\partial{x_n}}\right]
+								\end{align*}
+								</div>
+								であり、
+								\begin{align*}
+									&\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}(p_2^n-q_2^n)(p_1^{-n}-q_1^{-n})\right]\\
+									&=\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}\left(\frac{p_1^n}{p_2^n}-\frac{p_1^n}{q_2^n}-\frac{q_1^n}{p_2^n}+\frac{q_1^n}{q_2^n}\right)\right]\\
+									&=\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}\frac{p_1^n}{p_2^n}\right]\exp\left[\sum_{n=1}^{\infty}\frac{1}{n}\frac{p_1^n}{q_2^n}\right]
+									  \exp\left[\sum_{n=1}^{\infty}\frac{1}{n}\frac{q_1^n}{p_2^n}\right]\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}\frac{q_1^n}{q_2^n}\right]\\
+									&=\frac{\left(1-\frac{p_1}{p_2}\right)\left(1-\frac{q_1}{q_2}\right)}{\left(1-\frac{p_1}{q_2}\right)\left(1-\frac{q_1}{p_2}\right)}\\
+									&=\frac{(p_1-p_2)(q_1-q_2)}{(p_1-q_2)(q_1-p_2)}
+								\end{align*}
+								となるため、<div id="long_mjx">
+								\[
+									X(p_1,\,q_1)X(p_2,\,q_2)=\frac{(p_1-p_2)(q_1-q_2)}{(p_1-q_2)(q_1-q_2)}\exp\left[\sum_{i=1,\,2}\sum_{n=1}^{\infty}(p_i^n-q_i^n)x_n\right]\exp\left[-\sum_{i=1,\,2}\sum_{n=1}^{\infty}\frac{1}{n}(p_i^{-n}-q_i^{-n})\frac{\partial}{\partial{x_n}}\right]
+								\]</div>
+								となることがわかった。
+								<br>
+								これより、\(X(p,\,q)X(p,\,q)=0\) となり、
+								\begin{align*}
+									e^{cX(p,\,q)}
+									&=1+cX(p,\,q)+\bigl(cX(p,\,q)\bigr)^2+\bigl(cX(p,\,q)\bigr)^3+\cdots\\
+									&=1+cX(p,\,q)
+								\end{align*}
+								となり、
+								\begin{align*}
+									X(p,\,q)1
+									&=\exp\left[\sum_{n=1}^{\infty}(p^n-q^n)x_n\right]\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}(p^{-n}-q^{-n})\frac{\partial}{\partial{x_n}}\right]1\\
+									&=\exp\left[\sum_{n=1}^{\infty}(p^n-q^n)x_n\right]
+								\end{align*}
+								となることから、\(n\)-ソリトン解は
+								\[
+									\tau=e^{c_1X(p_1,\,p_2)}e^{x_2X(p_2,\,q_2)}\cdots e^{c_nX(p_n,\,q_n)}1
+								\]
+								となる。
+							</div>
+							<div style="text-align: right;"><button id=close19>[閉じる]</button></div>
+						</details>
+						そしてKP方程式の変数を拡張して得たこの \(\tau\) がKP階層の解となることを示していく。
+						<br>
+						まずこの \(\tau\) について、双線型恒等式
+						\[
+							\oint_{\infty}\tau(\boldsymbol{x}-[\lambda^{-1}])\tau(\boldsymbol{x}'+[\lambda^{-1}])e^{\theta(\boldsymbol{x}-\boldsymbol{x}',\,\lambda)}\frac{d\lambda}{2\pi{i}}=0
+						\]
+						\[
+							\theta(\boldsymbol{x},\,\lambda)=\sum_{n=1}^{\infty}\lambda^nx_n
+						\]
+						が成り立つ。
+						<details id="gray">
+							<summary>証明</summary>
+							<div id="main_text">
+								\begin{align*}
+									e^{\eta_i(\boldsymbol{x}-[\lambda^{-1}])}
+									&=\exp\left[\sum_{n=1}^{\infty}(p_i^n-q_i^n)\left(x_n-\frac{1}{n\lambda^n}\right)\right]\\
+									&=\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}\left(\frac{p_i^n}{\lambda^n}-\frac{q_i^n}{\lambda^n}\right)\right]e^{\eta_i(\boldsymbol{x})}\\
+									&=\frac{1-\frac{p_i}{\lambda}}{1-\frac{q_i}{\lambda}}e^{\eta_i(\boldsymbol{x})}\\
+									&=\frac{\lambda-p_i}{\lambda-q_i}e^{\eta_i(\boldsymbol{x})}\\[5pt]
+									e^{\eta_i(\boldsymbol{x}'+[\lambda^{-1}])}
+									&=\frac{\lambda-q_i}{\lambda-p_i}e^{\eta_i(\boldsymbol{x}')}
+								\end{align*}
+								となるので \(\lambda=q_m,\,p_m\;(m\in\mathbb{N})\) のときの留数を考える。<br>
+								\(\lambda=q_m\) の留数は、
+								\begin{align*}
+									&\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=1}(q_m-p_m)\prod_{i\in\{i\mid{\mu_i=1,\,i\neq{m}}\}}\frac{q_m-p_i}{q_m-q_i}\exp\Bigl[\sum_{i=1}^{n}\mu_i\eta_i(\boldsymbol{x})+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
+									&\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=0}\prod_{i\in\{i\mid{\mu_i=1}\}}\frac{q_m-q_i}{q_m-p_i}\exp\Bigl[\sum_{i=1}^{n}\mu_i\eta_i(\boldsymbol{x}')+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]e^{\theta(\boldsymbol{x},\,q_m)-\theta(\boldsymbol{x}',\,q_m)}\\
+									&=(q_m-p_m)e^{\theta(\boldsymbol{x},\,q_m)-\theta(\boldsymbol{x}',\,q_m)}e^{\theta(\boldsymbol{x},\,p_m)-\theta(\boldsymbol{x},\,q_m)}\\
+									&\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=1}\prod_{i\in\{i\mid{\mu_i=1,\,i\neq{m}}\}}\frac{q_m-p_i}{q_m-q_i}\exp\Bigl[\sum_{\,i=1\\i\neq{m}}^{n}\mu_i\eta_i(\boldsymbol{x})+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
+									&\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=0}\prod_{i\in\{i\mid{\mu_i=1}\}}\frac{q_m-q_i}{q_m-p_i}\exp\Bigl[\sum_{i=1}^{n}\mu_i\eta_i(\boldsymbol{x}')+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
+									&=(q_m-p_m)e^{\theta(\boldsymbol{x},\,p_m)-\theta(\boldsymbol{x}',\,q_m)}\\
+									&\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=1}\prod_{i\in\{i\mid{\mu_i=1,\,i\neq{m}}\}}\frac{q_m-p_i}{q_m-q_i}\exp\Bigl[\sum_{\,i=1\\i\neq{m}}^{n}\mu_i\eta_i(\boldsymbol{x})+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
+									&\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=1}\prod_{i\in\{i\mid{\mu_i=1,\,i\neq{m}}\}}\frac{q_m-q_i}{q_m-p_i}\exp\Bigl[\sum_{\,i=1\\i\neq{m}}^{n}\mu_i\eta_i(\boldsymbol{x}')+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]
+								\end{align*}
+								\(\lambda=p_m\) の留数は、
+								\begin{align*}
+									&\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=0}\prod_{i\in\{i\mid{\mu_i=1}\}}\frac{p_m-p_i}{p_m-q_i}\exp\Bigl[\sum_{i=1}^{n}\mu_i\eta_i(\boldsymbol{x})+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
+									&\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=1}(p_m-q_m)\prod_{i\in\{i\mid{\mu_i=1,\,i\neq{m}}\}}\frac{p_m-q_i}{p_m-p_i}\exp\Bigl[\sum_{i=1}^{n}\mu_i\eta_i(\boldsymbol{x}')+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]e^{\theta(\boldsymbol{x},\,p_m)-\theta(\boldsymbol{x}',\,p_m)}\\
+									&=(p_m-q_m)e^{\theta(\boldsymbol{x},\,p_m)-\theta(\boldsymbol{x},\,p_m)}e^{\theta(\boldsymbol{x}',\,p_m)-\theta(\boldsymbol{x}',\,q_m)}\\
+									&\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=0}\prod_{i\in\{i\mid{\mu_i=1}\}}\frac{p_m-p_i}{p_m-q_i}\exp\Bigl[\sum_{i=1}^{n}\mu_i\eta_i(\boldsymbol{x})+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
+									&\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=1}\prod_{i\in\{i\mid{\mu_i=1,\,i\neq{m}}\}}\frac{p_m-q_i}{p_m-p_i}\exp\Bigl[\sum_{\,i=1\\i\neq{m}}^{n}\mu_i\eta_i(\boldsymbol{x}')+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
+									&=(p_m-q_m)e^{\theta(\boldsymbol{x},\,p_m)-\theta(\boldsymbol{x}',\,q_m)}\\
+									&\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=1}\prod_{i\in\{i\mid{\mu_i=1,\,i\neq{m}}\}}\frac{p_m-p_i}{p_m-q_i}\exp\Bigl[\sum_{\,i=1\\i\neq{m}}^{n}\mu_i\eta_i(\boldsymbol{x})+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
+									&\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=1}\prod_{i\in\{i\mid{\mu_i=1,\,i\neq{m}}\}}\frac{p_m-q_i}{p_m-p_i}\exp\Bigl[\sum_{\,i=1\\i\neq{m}}^{n}\mu_i\eta_i(\boldsymbol{x}')+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]
+								\end{align*}
+								よって互いに打ち消し合い、
+								\[
+									\oint_{\infty}\tau(\boldsymbol{x}-[\lambda^{-1}])\tau(\boldsymbol{x}'+[\lambda^{-1}])e^{\theta(\boldsymbol{x}-\boldsymbol{x}',\,\lambda)}\frac{d\lambda}{2\pi{i}}=0
+								\]
+								が示せた。
+							</div>
+							<div style="text-align: right;"><button id=close20>[閉じる]</button></div>
+						</details><div style="line-height: 5pt;">&nbsp;</div>
+						ここで、
+						\begin{align*}
+							\varphi(\boldsymbol{x},\,\lambda)&:=\frac{\tau(\boldsymbol{x}-[\lambda^{-1}])}{\tau(\boldsymbol{x})}e^{\theta(\boldsymbol{x},\,\lambda)}=e^{\theta(\boldsymbol{x},\,\lambda)}\left(1+\sum_{n=1}^{\infty}\frac{w_n}{\lambda^n}\right)\\
+							\varphi^*(\boldsymbol{x},\,\lambda)&:=\frac{\tau(\boldsymbol{x}+[\lambda^{-1}])}{\tau(\boldsymbol{x})}e^{-\theta(\boldsymbol{x},\,\lambda)}\\	
+						\end{align*}
+						とすれば、
+						\[
+							L\varphi=:\left(\partial+\sum_{n=1}^{\infty}w_i\partial^{-n}\right)\varphi=\lambda\varphi
+						\]
+						であり、\(\partial_{x_k}\varphi=B_k\varphi\) を示せばKP階層の解となることがわかるためこれを示す。
+						\[
+							Q:=\partial_{x_k}-B_k=\partial_{x_k}-\bigl(L^k\bigr)_+=\partial_{x_k}-L^k+\bigl(L^k\bigr)_-
+						\]
+						とすると双線型恒等式より
+						\[
+							\oint_{\infty}\bigl(Q\varphi(\boldsymbol{x},\,\lambda)\bigr)\varphi^*(\boldsymbol{x}',\,\lambda)\frac{d\lambda}{2\pi{i}}=0
+						\]
+					</div>
+					<div style="text-align: right;"><button id=close17>[閉じる]</button></div>
+				</details><div style="line-height: 5pt;">&nbsp;</div>
+				またこの双線型恒等式からKP方程式が導出できる。
+				<details id="white">
+					<summary>詳細</summary>
+						<div id="main_text">
+							\[
+								\boldsymbol{x}\,\rightarrow\,\boldsymbol{x}-\boldsymbol{y},\;\;
+								\boldsymbol{x'}\,\rightarrow\,\boldsymbol{x}+\boldsymbol{y}
+							\]
+							とすると、任意の \(\boldsymbol{x},\,\boldsymbol{y}\) に対して、
+							\[
+								\oint_{z=\infty}\tau(\boldsymbol{x}-\boldsymbol{y}-[\lambda^{-1}])\tau(\boldsymbol{x}+\boldsymbol{y}+[\lambda^{-1}])e^{\theta(-2\boldsymbol{y},\,\lambda)}\;d\lambda=0
+							\]
+							となる。 \(\displaystyle e^{\theta(\boldsymbol{x},\,\lambda)}=\exp\left[\sum_{n=1}^{\infty}\lambda^nx_n\right]=\sum_{n=0}^{\infty}P_n(\boldsymbol{x})\lambda^n\) を用いると、
+							\[				
+								e^{\theta(-2\boldsymbol{y},\,\lambda)}=\sum_{n=0}^{\infty}P_n(-2\boldsymbol{y})\lambda^n
+							\]
+							\begin{align*}
+								&\tau(\boldsymbol{x}-\boldsymbol{y}-[\lambda^{-1}])\tau(\boldsymbol{x}+\boldsymbol{y}+[\lambda^{-1}])\\
+								&=\exp\left[\sum_{n=1}^{\infty}\left(y_n+\frac{1}{n\lambda^n}\right)D_{x_n}\right]\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})\\
+								&=\left(\exp\left[\sum_{n=1}^{\infty}y_nD_{x_n}\right]\exp\left[\sum_{n=0}^\infty\lambda^{-n}\frac{D_{x_n}}{n}\right]\right)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})\\
+								&=\left(\exp\left[\sum_{n=1}^{\infty}y_nD_{x_n}\right]\sum_{n=0}^{\infty}P_n(\tilde{D})\lambda^{-n}\right)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})
+							\end{align*}
+							となることより、
+							\begin{align*}							
+								&\oint_{z=\infty}\tau(\boldsymbol{x}-\boldsymbol{y}-[\lambda^{-1}])\tau(\boldsymbol{x}+\boldsymbol{y}+[\lambda^{-1}])e^{\theta(-2\boldsymbol{y},\,\lambda)}\;d\lambda\\
+								&=\oint_{z=\infty}\left(\sum_{l=0}^{\infty}P_l(-2\boldsymbol{y})\lambda^l\sum_{m=0}^{\infty}P_m(\tilde{D})\lambda^{-m}\exp\left[\sum_{n=1}^{\infty}y_nD_{x_n}\right]\right)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})\;d\lambda\\
+								&=\oint_{z=\infty}\left(\sum_{l=0}^{\infty}\sum_{m=0}^{\infty}P_l(-2\boldsymbol{y})P_m(\tilde{D})\lambda^{l-m}\exp\left[\sum_{n=1}^{\infty}y_nD_{x_n}\right]\right)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})\;d\lambda\\
+								&=\left(\sum_{l=0}^{\infty}P_l(-2\boldsymbol{y})P_{l+1}(\tilde{D})\exp\left[\sum_{n=1}^{\infty}y_nD_{x_n}\right]\right)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})=0
+							\end{align*}
+							となる。(ただし、\(\tilde{D}:=(D_{x_1},\,\frac{1}{2}D_{x_2},\,\frac{1}{3}D_{x_3},\ldots)\))<br>
+							任意の \(\boldsymbol{y}\) に対して成り立つので、\(y_k\) の係数を考えれば、
+							\begin{align*}
+								\sum_{n=0}^{\infty}P_n(a\boldsymbol{x})\lambda^n
+								&=\exp\left[a\sum_{n=1}^{\infty}\lambda^nx_n\right]\\
+								&=\sum_{s=0}^{\infty}\frac{1}{s!}\left(a\sum_{n=1}^{\infty}\lambda^nx_n\right)^s\\
+								&=1+a\sum_{j=1}^{\infty}x_j\lambda^j+\frac{a^2}{2!}\sum_{1\leq{i,\,j}\leq{\infty}}x_ix_j\lambda^{i+j}+\cdots
+							\end{align*}
+							となることから、\(P_k(-2\boldsymbol{y})\) から \(-2y_k\) が出てくる。また、
+							\[
+								\exp\left[\sum_{n=1}^{\infty}y_nD_{x_n}\right]=1+y_kD_{x_k}+\cdots
+							\]
+							より \(y_k\) の係数から、
+							\begin{align*}
+								0&=\Bigl(P_0(-2\boldsymbol{y})P_1(\tilde{D})\times D_{x_k}+(-2)P_{k+1}(\tilde{D})\times1\Bigr)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})\\
+								&=\Bigl(1\,D_1\,D_{x_k}-2P_{k+1}(\tilde{D})\Bigr)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})\\
+								&=\Bigl(D_1D_{x_k}-2P_{k+1}(\tilde{D})\Bigr)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})
+							\end{align*}
+							となる。例えば \(k=3\) のとき、
+							\begin{align*}							
+								P_4(\tilde{D})
+								&=\frac{1}{4}D_{x_4}+\frac{1}{2!}D_{x_1}\frac{1}{3}D_{x_3}\times2+\frac{1}{2!}\left(\frac{1}{2}D_{x_2}\right)^2+\frac{1}{4!}D_{x_1}^4\\
+								&=\frac{1}{4}D_{x_4}+\frac{1}{3}D_{x_1}D_{x_3}+\frac{1}{8}D_{x_2}^2+\frac{1}{24}D_{x_1}^4
+							\end{align*}
+							となるため、
+							\begin{align*}
+								0&=\Bigl(D_1D_{x_3}-2P_{k+1}(\tilde{D})\Bigr)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})\\
+								&=\Bigl(D_1D_{x_3}-\frac{1}{2}D_{x_4}-\frac{2}{3}D_{x_1}D_{x_3}-\frac{1}{4}D_{x_2}^2-\frac{1}{12}D_{x_1}^4\Bigr)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})\\
+								&=\Bigl(\frac{1}{3}D_{x_1}D_{x_3}-\frac{1}{4}D_{x_2}^2-\frac{1}{12}D_{x_1}^4\Bigr)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})\\
+								&=-\frac{1}{12}\Bigl(D_{x_1}^4+3D_{x_2}^2-4D_{x_1}D_{x_3}\Bigr)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})\\
+							\end{align*}
+							とKP方程式の双線型形式が出てくる。
+						</div>
+					<div style="text-align: right;"><button id=close21>[閉じる]</button></div>
+				</details> -->
 			</div>
+			<br><div style="line-height: 5pt;">&nbsp;</div>
+			<!-- <h3>KdV方程式へのreduction</h3>
+			<div id="main_text">
+				双線型恒等式 を満たす \(\tau\) がさらに
+				\[
+					\partial_{x_{2n}}\tau(\boldsymbol{x})=C_{2n}\tau(\boldsymbol{x})\;\;\;(C_{2n}:定数)
+				\]
+				を満たすとする。このとき KP方程式の双線型形式
+				\[
+					\bigl(D_{x_1}^4+3D_{x_2}^2-4D_{x_1}D_{x_3}\bigr)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})=0
+				\]
+				は、
+				\[
+					\bigl(D_{x_1}^4-4D_{x_1}D_{x_3}\bigr)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})=0
+				\]
+				となり、\(\displaystyle x_1\rightarrow\frac{x}{2},\;x_3\rightarrow-\frac{t}{2}\) とすれば、
+				\[
+					16\bigl(D_{x}^4+D_{x}D_{t}\bigr)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})=0\;\Leftrightarrow\;D_x\bigl(D_x^3+D_t\bigr)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})=0
+				\] 
+				KdV方程式の双線型形式となる。<br>
+				また KP階層のロンスキアン解からもKdV方程式の \(N\)-ソリトン解が導出される。
+				<details open id ="white">
+					<summary>詳細</summary>
+					<div id="main_text">
+						KP階層の一般解
+						\[
+							\tau(\boldsymbol{x})=\det(\boldsymbol{f},\,\boldsymbol{f}_x,\ldots,\,\boldsymbol{f}_{(N-1)x})\\
+							f_i(\boldsymbol{x})=\alpha_ie^{\theta(\boldsymbol{x},\,p_i)}+\beta_ie^{\theta(\boldsymbol{x},\,q_i)}\\
+							\theta(\boldsymbol{x},\,\lambda)=\sum_{n=1}^{\infty}\lambda^nx_n
+						\]
+						において、\(q_i=-p_i\) となるとき、
+						\[
+							\partial_{x_{2n}}f_i(\boldsymbol{x})=p_i^{2n}\left(\alpha_ip_e^{\theta(\boldsymbol{x},\,p_i)}+\beta_ie^{\theta(\boldsymbol{x},\,-p_i)}\right)
+						\]
+						となるので、
+						\[
+							\partial_{x_{2n}}\tau(\boldsymbol{x})=\prod_{k=1}^{N}p_k^{2n}\tau(\boldsymbol{x})=C_{2n}\tau(\boldsymbol{x})
+						\]
+						がわかる。また
+					</div>
+					<div style="text-align: right;"><button id=close22>[閉じる]</button></div>
+				</details>
+			</div> -->
 		</div>
 
 
@@ -1349,4 +1714,4 @@
 	<script src="../js/details_close.js"></script>
 </html>
 
-<!-- close:16 -->
+<!-- close:22 -->
