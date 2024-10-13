@@ -1391,30 +1391,151 @@
 					</div>
 					<div style="text-align: right;"><button id=close13>[閉じる]</button></div>
 				</details><div style="line-height: 5pt;">&nbsp;</div>
-				<!-- <details id="white">
-					<summary>証明(頂点作用素ver.) (途中)</summary>
+				この双線型恒等式について、
+				\[
+					\tau(\boldsymbol{x})\;\rightarrow\;\tau(\boldsymbol{x})e^{A(\boldsymbol{x})}
+				\]
+				としても、(\(A(\boldsymbol{x})\) は \(x_1,\,x_2,\ldots,\,x_N\) についての一次多項式)
+				\begin{align*}
+					\tau(\boldsymbol{x}-[\lambda^{-1}])\tau(\boldsymbol{x}'+[\lambda^{-1}])
+					\;\rightarrow\;
+					&\tau(\boldsymbol{x}-[\lambda^{-1}])e^{A(\boldsymbol{x}-[\lambda^{-1}])}\tau(\boldsymbol{x}'+[\lambda^{-1}])e^{A(\boldsymbol{x}'+[\lambda^{-1}])}\\
+					&=\tau(\boldsymbol{x}-[\lambda^{-1}])\tau(\boldsymbol{x}'+[\lambda^{-1}])
+				\end{align*}
+				となるため、このような変換(ゲージ変換という)に対して不変性をもつ。
+				<br><div style="line-height: 5pt;">&nbsp;</div>
+				また \(N&lt;\infty\) のとき \(\tau(\boldsymbol{x})\) はロンスキアンであり、
+				\begin{gather*}
+					\tau(\boldsymbol{x})=\det(\boldsymbol{f},\,\boldsymbol{f}_x,\,\boldsymbol{f}_{2x},\ldots,\,\boldsymbol{f}_{(N-1)x)}\\
+					f_i(\boldsymbol{x})=c_ie^{\theta(\boldsymbol{x},\,p_i)}+d_ie^{\theta(\boldsymbol{x},\,q_i)}\\
+					\theta(\boldsymbol{x},\,\lambda):=\sum_{n=1}^{\infty}\lambda^nx_n
+				\end{gather*}
+				はKP階層のNソリトン解となる。適当なゲージ変換を用いた、
+				\[
+					\tau(\boldsymbol{x})=\det{}_{1\leq{i,\,j}\leq{N}}\left[\delta_{ij}+\frac{\gamma_i}{p_i-q_j}e^{\theta(\boldsymbol{x},\,p_i)-\theta(\boldsymbol{x},\,q_i)}\right]
+				\]
+				の形で表されることもある。
+				<details id="white">
+					<summary>導出</summary>
 					<div id="main_text">
-						KP方程式から出発して考える。双線型形式
 						\[
-							(D_x^4+3D_y^2-4D_xD_t)\,\tau\cdot\tau=0
+							\theta_i:=\theta(\boldsymbol{x},\,p_i),\;\;\;
+							\theta_i':=\theta(\boldsymbol{x},\,q_i)
 						\]
-						から 1-ソリトン解
+						とする。
 						\[
-							\tau_1=1+e^{(p-q)x+(p^2-q^2)y+(p^3-q^3)t+\theta^{(0)}}
+							\partial^nf_i(\boldsymbol{x})=c_ip_i^ne^{\theta(\boldsymbol{x},\,p_i)}+d_iq_i^ne^{\theta(\boldsymbol{x},\,q_i)}
 						\]
-						や 2-ソリトン解
+						となるので、\(\tau(\boldsymbol{x})\) の \(e^{\theta_1+\theta_2+\cdots+\theta_N}\) の係数を考えると、
+						\begin{align*}
+							\begin{vmatrix}
+								c_1&c_1p_1&c_1p_1^2&\cdots&c_1p_1^{N-1}\\
+								c_2&c_2p_2&c_2p_2^2&\cdots&c_2p_2^{N-1}\\
+								\vdots&\vdots&\vdots&&\vdots\\
+								c_N&c_Np_N&c_Np_N^2&\cdots&c_Np_N^{N-1}\\
+							\end{vmatrix}
+							&=\prod_{i=1}^Nc_i
+							\begin{vmatrix}
+								1&p_1&p_1^2&\cdots&p_1^{N-1}\\
+								1&p_2&p_2^2&\cdots&p_2^{N-1}\\
+								\vdots&\vdots&\vdots&&\vdots\\
+								1&p_N&p_N^2&\cdots&p_N^{N-1}\\
+							\end{vmatrix}\\
+							&=\prod_{i=1}^Nc_i\,\prod_{1\leq{i&lt;j}\leq{N}}(p_j-p_i)
+						\end{align*}
+						となる。\(e^{\theta_1+\cdots+\theta_n+\theta_{n+1}'+\cdots+\theta_N'}\) の係数は、
+						\begin{align*}
+							\begin{vmatrix}
+								c_1&c_1p_1&c_1p_1^2&\cdots&c_1p_1^{N-1}\\
+								\vdots&\vdots&\vdots&&\vdots\\
+								c_n&c_np_n&c_np_n^2&\cdots&c_np_n^{N-1}\\
+								d_n&d_{n+1}q_{n+1}&d_{n+1}q_{n+1}^2&\cdots&d_{n+1}q_{n+1}^{N-1}\\
+								\vdots&\vdots&\vdots&&\vdots\\
+								d_N&d_Nq_N&d_Nq_N^2&\cdots&d_Nq_N^{N-1}\\
+							\end{vmatrix}
+							&=\prod_{i=1}^nc_i\prod_{n+1}^{N}d_i
+							\begin{vmatrix}
+								1&p_1&p_1^2&\cdots&p_1^{N-1}\\
+								\vdots&\vdots&\vdots&&\vdots\\
+								1&p_n&p_n^2&\cdots&p_n^{N-1}\\
+								1&q_{n+1}&q_{n+1}^2&\cdots&q_{n+1}^{N-1}\\
+								\vdots&\vdots&\vdots&&\vdots\\
+								1&q_N&q_N^2&\cdots&q_N^{N-1}\\
+							\end{vmatrix}\\
+							&=\prod_{i=1}^nc_i\prod_{n+1}^{N}d_i\left.\prod_{1\leq{i&lt;j}\leq{N}}(p_j-p_i)\right|_{p_{n+1}=q_{n+1},\ldots,\,p_N=q_N}
+						\end{align*}
+						となる。これより、\(J\subset\{1,\,2,\ldots,\,N\}\) として、
+						\begin{align*}
+							\tau(\boldsymbol{x})
+							&=\sum_{l=0}^{N}\sum_{|J|=l}\left(\prod_{i\in{J}}c_i\prod_{i\not\in{J}}d_i\left.\prod_{1\leq{i&lt;j}\leq{N}}(p_j-p_i)\right|_{p_i=q_i\;(i\in{J})}\exp\left[\sum_{i\in{J}}\theta_i+\sum_{i\not\in{J}}\theta_i'\right]\right)\\
+							&=\exp\left[\sum_{i=1}^N\theta_i'\right]\sum_{l=0}^{N}\sum_{|J|=l}\left(\prod_{i\in{J}}c_i\prod_{i\not\in{J}}d_i\left.\prod_{1\leq{i&lt;j}\leq{N}}(p_j-p_i)\right|_{p_i=q_i\,(i\in{J})}\exp\left[\sum_{i\in{J}}(\theta_i-\theta_i')\right]\right)\\
+							&=\prod_{i=1}^Nd_i\prod_{1\leq{i&lt;j}\leq{N}}(q_j-q_i)\;\exp\left[\sum_{i=1}^N\theta_i'\right]\\
+							&\;\;\;\;\;\;\;\;\;\;\;\;\sum_{l=0}^{N}\sum_{|J|=l}\left(\prod_{i\in{J}}\frac{c_i}{d_i}\smash{\prod_{i,\,j\in{J}\\\;\,i&lt;j}}\frac{p_j-p_i}{q_j-q_i}\smash{\prod_{i\in{J},\;j\not\in{J}}}\frac{q_j-p_i}{q_j-q_i}\exp\left[\sum_{i\in{J}}(\theta_i-\theta_i')\right]\right)\\
+						\end{align*}
+						となる。またここで、\(J=\{\nu\},\,|J|=1\) のとき、
+						\begin{align*}
+							&\prod_{i\in{J}}\frac{c_i}{d_i}\prod_{i,\,j\in{J}\\\;\,i&lt;j}\frac{p_j-p_i}{q_j-q_i}\smash{\prod_{i\in{J},\;j\not\in{J}}}\frac{q_j-p_i}{q_j-q_i}\exp\left[\sum_{i\in{J}}(\theta_i-\theta_i')\right]\\
+							&=\frac{c_\nu}{d_\nu}\prod_{1\leq{j}\leq{N}\\\;\;j\neq{\nu}}\frac{q_j-p_\nu}{q_j-q_\nu}\;e^{\theta_\nu-\theta'_\nu}=e^{\theta_\nu-\theta'_\nu+\theta_\nu^{(0)}}
+						\end{align*}
+						となり、\(\theta_i^{(0)}\) を上のようにおく。すると、
+						\begin{align*}						
+							&\prod_{i\in{J}}\left(\frac{c_i}{d_i}\smash{\prod_{1\leq{j}\leq{N}\\\;\;j\neq{i}}}\frac{q_j-p_i}{q_j-q_i}\;e^{\theta_i-\theta'_i}\right)\;=\;\exp\left[\sum_{i\in{J}}(\theta_i-\theta'_i+\theta_i^{(0)})\right]\\[10pt]
+							&=\prod_{i\in{J}}\frac{c_i}{d_i}\prod_{i,\,j\in{J}\\\;\,i\neq{j}}\frac{q_j-p_i}{q_j-q_i}\prod_{i\in{J},\,j\not\in{J}}\frac{q_j-p_i}{q_j-q_i}\exp\left[\sum_{i\in{J}}(\theta_i-\theta_i')\right]\\
+							&=\prod_{i\in{J}}\frac{c_i}{d_i}\prod_{i,\,j\in{J}\\\;\,i&lt;{j}}\frac{(q_j-p_i)(p_j-q_i)}{(q_j-q_i)^2}\prod_{i\in{J},\,j\not\in{J}}\frac{q_j-p_i}{q_j-q_i}\exp\left[\sum_{i\in{J}}(\theta_i-\theta_i')\right]\\
+							&=\prod_{i\in{J}}\frac{c_i}{d_i}\prod_{i,\,j\in{J}\\\;\,i&lt;j}\frac{p_j-p_i}{q_j-q_i}\smash{\prod_{i\in{J},\;j\not\in{J}}}\frac{q_j-p_i}{q_j-q_i}\exp\left[\sum_{i\in{J}}(\theta_i-\theta_i')\right]\\
+							&\;\;\;\;\times\prod_{i,\,j\in{J}\\\;\,i&lt;j}\frac{(q_j-p_i)(p_j-q_i)}{(p_j-p_i)(q_j-q_i)}
+						\end{align*}
+						となるので、
+						\begin{align*}						
+							&\tau(\boldsymbol{x})=\prod_{i=1}^Nd_i\prod_{1\leq{i&lt;j}\leq{N}}(q_j-q_i)\;\exp\left[\sum_{i=1}^N\theta_i'\right]\\
+							&\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\times\sum_{l=0}^{N}\sum_{|J|=l}\left(\smash{\prod_{i,\,j\in{J}\\\;\,i&lt;j}}\frac{(p_j-p_i)(q_j-q_i)}{(q_j-p_i)(p_j-q_i)}\exp\left[\sum_{i\in{J}}(\theta_i-\theta'_i+\theta_i^{(0)})\right]\right)
+						\end{align*}
+						であり、ゲージ変換によって、
+						\begin{align*}						
+							\tau(\boldsymbol{x})\;\rightarrow\;
+							&\sum_{l=0}^{N}\sum_{|J|=l}\left(\smash{\prod_{i,\,j\in{J}\\\;\,i&lt;j}}\frac{(p_j-p_i)(q_j-q_i)}{(q_j-p_i)(p_j-q_i)}\exp\left[\sum_{i\in{J}}(\theta_i-\theta'_i+\theta_i^{(0)})\right]\right)\\[10pt]
+							&=1+\sum_{1\leq{i}\leq{N}}e^{\theta_i-\theta'_i+\theta_i^{(0)}}+\sum_{1\leq{i}&lt;j\leq{N}}\frac{(p_i-p_j)(q_i-q_j)}{(p_i-q_j)(q_i-p_j)}e^{(\theta_i-\theta'_i+\theta^{(0)})+(\theta_j-\theta'_j+\theta_j^{(0)})}+\cdots\\
+							&=\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n}\exp\Bigl[\sum_{i=1}^{n}\mu_i\eta_i+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
+							&\;\;\;\;\;\;\;\;\;\left\{
+							\begin{aligned}
+								\eta_i\;&=\theta(\boldsymbol{x},\,p_i)-\theta(\boldsymbol{x},\,q_i)+\eta_i^{(0)}\\
+								e^{A_{ij}}&=\frac{(p_i-p_j)(q_i-q_j)}{(p_i-q_j)(q_i-p_j)}
+							\end{aligned}
+							\right.
+						\end{align*}	
+						となる。これはKP方程式の \(n\)-ソリトン解
 						\[
-							\tau_2=e^{\eta_1}+e^{\eta_2}+e^{A_{12}\eta_1\eta_2}\\[5pt]
+							\tau_n(x,\,y,\,t)=\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n}\exp\Bigl[\sum_{i=1}^{n}\mu_i\eta_i+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
 							\left\{
 							\begin{aligned}
-								\eta_i\;&=(p_i-q_i)x+(p_i^2-q_i^2)y+(p_i^3-q_i^3)t+\theta_i^{(0)}\\
-								e^{A_{12}}&=\frac{(p_1-p_2)(q_1-q_2)}{(p_1-q_2)(q_1-p_2)}
+								\eta_i\;&=(p_i-q_i)x+(p_i^2-q_i^2)y+(p_i^3-q_i^3)t+\eta_i^{(0)}\\
+								e^{A_{ij}}&=\frac{(p_i-p_j)(q_i-q_j)}{(p_i-q_j)(q_i-p_j)}
 							\end{aligned}
 							\right.
 						\]
+						について、変数を増やして \(\displaystyle\eta_i\rightarrow\sum_{n=1}^{\infty}(p_i^n-q_i^n)x_n\) と拡張したものと一致する。
 						<details id="gray">
-							<summary>簡単な確認</summary>
+							<summary>KP方程式のソリトン解について簡単な補足</summary>
 							<div id="main_text">
+								KP方程式の双線型形式
+								\[
+									(D_x^4+3D_y^2-4D_xD_t)\,\tau\cdot\tau=0
+								\]
+								から 1-ソリトン解
+								\[
+									\tau_1=1+e^{(p-q)x+(p^2-q^2)y+(p^3-q^3)t+\theta^{(0)}}
+								\]
+								や 2-ソリトン解
+								\[
+									\tau_2=e^{\eta_1}+e^{\eta_2}+e^{A_{12}\eta_1\eta_2}\\[5pt]
+									\left\{
+									\begin{aligned}
+										\eta_i\;&=(p_i-q_i)x+(p_i^2-q_i^2)y+(p_i^3-q_i^3)t+\theta_i^{(0)}\\
+										e^{A_{12}}&=\frac{(p_1-p_2)(q_1-q_2)}{(p_1-q_2)(q_1-p_2)}
+									\end{aligned}
+									\right.
+								\]
+								が求まる。なぜなら、
 								\[
 									F(D_x,\,D_y,\,D_t):=D_x^4+3D_y^2-4D_xD_t
 								\]
@@ -1448,147 +1569,89 @@
 							</div>
 							<div style="text-align: right;"><button id=close18>[閉じる]</button></div>
 						</details><div style="line-height: 5pt;">&nbsp;</div>
-						などが求められる。変数を \(\boldsymbol{x}=(x_1,\,x_2,\ldots,\,x_n,\ldots)\) と増やすと \(n\)-ソリトン解
+						そしてこの式が
 						\[
-							\tau_n=\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n}\exp\Bigl[\sum_{i=1}^{n}\mu_i\eta_i+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
-							\left\{
-							\begin{aligned}
-								\eta_i\;&=\sum_{n=1}^{\infty}(p_i^n-q_i^n)x_n\\
-								e^{A_{ij}}&=\frac{(p_i-p_j)(q_i-q_j)}{(p_i-q_j)(q_i-p_j)}
-							\end{aligned}
-							\right.
+							\tau(\boldsymbol{x})=\det{}_{1\leq{i,\,j}\leq{N}}\left[\delta_{ij}+\frac{\gamma_i}{p_i-q_j}e^{\theta(\boldsymbol{x},\,p_i)-\theta(\boldsymbol{x},\,q_i)}\right]
 						\]
-						となる。またここで
-						\[
-							X(p,\,q):=\exp\left[\sum_{n=1}^{\infty}(p^n-q^n)x_n\right]\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}(p^{-n}-q^{-n})\frac{\partial}{\partial{x_n}}\right]
-						\]
-						を考える。この \(X(p,\,q)\) は、
-						\[
-							\tau_{n+1}=e^{cX(p,\,q)}\tau_n
-						\]
-						を満たし、頂点作用素と呼ばれる。またこれを用いて \(n\)-ソリトン解は
-						\[
-							\tau=e^{c_1X(p_1,\,p_2)}e^{x_2X(p_2,\,q_2)}\cdots e^{c_nX(p_n,\,q_n)}1
-						\]
-						とかける。
-						<details id="gray">
-							<summary>確認</summary>
-							<div id="main_text">
-								<div id="long_mjx">
-								\begin{align*}
-									&X(p_1,\,q_1)X(p_2,\,q_2)\\
-									&=
-									\left(\exp\left[\sum_{n=1}^{\infty}(p_1^n-q_1^n)x_n\right]\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}(p_1^{-n}-q_1^{-n})\frac{\partial}{\partial{x_n}}\right]\right)
-									\left(\exp\left[\sum_{n=1}^{\infty}(p_2^n-q_2^n)x_n\right]\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}(p_2^{-n}-q_2^{-n})\frac{\partial}{\partial{x_n}}\right]\right)\\
-									&=\exp\left[\sum_{n=1}^{\infty}(p_1^n-q_1^n)x_n\right]\exp\left[\sum_{n=1}^{\infty}(p_2^n-q_2^n)\left(x_n-\frac{1}{n}(p_1^{-n}-q_1^{-n})\right)\right]\exp\left[-\sum_{i=1,\,2}\sum_{n=1}^{\infty}\frac{1}{n}(p_i^{-n}-q_i^{-n})\frac{\partial}{\partial{x_n}}\right]\\
-									&=\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}(p_2^n-q_2^n)(p_1^{-n}-q_1^{-n})\right]\exp\left[\sum_{i=1,\,2}\sum_{n=1}^{\infty}(p_i^n-q_i^n)x_n\right]\exp\left[-\sum_{i=1,\,2}\sum_{n=1}^{\infty}\frac{1}{n}(p_i^{-n}-q_i^{-n})\frac{\partial}{\partial{x_n}}\right]
-								\end{align*}
-								</div>
-								であり、
-								\begin{align*}
-									&\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}(p_2^n-q_2^n)(p_1^{-n}-q_1^{-n})\right]\\
-									&=\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}\left(\frac{p_1^n}{p_2^n}-\frac{p_1^n}{q_2^n}-\frac{q_1^n}{p_2^n}+\frac{q_1^n}{q_2^n}\right)\right]\\
-									&=\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}\frac{p_1^n}{p_2^n}\right]\exp\left[\sum_{n=1}^{\infty}\frac{1}{n}\frac{p_1^n}{q_2^n}\right]
-									  \exp\left[\sum_{n=1}^{\infty}\frac{1}{n}\frac{q_1^n}{p_2^n}\right]\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}\frac{q_1^n}{q_2^n}\right]\\
-									&=\frac{\left(1-\frac{p_1}{p_2}\right)\left(1-\frac{q_1}{q_2}\right)}{\left(1-\frac{p_1}{q_2}\right)\left(1-\frac{q_1}{p_2}\right)}\\
-									&=\frac{(p_1-p_2)(q_1-q_2)}{(p_1-q_2)(q_1-p_2)}
-								\end{align*}
-								となるため、<div id="long_mjx">
-								\[
-									X(p_1,\,q_1)X(p_2,\,q_2)=\frac{(p_1-p_2)(q_1-q_2)}{(p_1-q_2)(q_1-q_2)}\exp\left[\sum_{i=1,\,2}\sum_{n=1}^{\infty}(p_i^n-q_i^n)x_n\right]\exp\left[-\sum_{i=1,\,2}\sum_{n=1}^{\infty}\frac{1}{n}(p_i^{-n}-q_i^{-n})\frac{\partial}{\partial{x_n}}\right]
-								\]</div>
-								となることがわかった。
-								<br>
-								これより、\(X(p,\,q)X(p,\,q)=0\) となり、
-								\begin{align*}
-									e^{cX(p,\,q)}
-									&=1+cX(p,\,q)+\bigl(cX(p,\,q)\bigr)^2+\bigl(cX(p,\,q)\bigr)^3+\cdots\\
-									&=1+cX(p,\,q)
-								\end{align*}
-								となり、
-								\begin{align*}
-									X(p,\,q)1
-									&=\exp\left[\sum_{n=1}^{\infty}(p^n-q^n)x_n\right]\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}(p^{-n}-q^{-n})\frac{\partial}{\partial{x_n}}\right]1\\
-									&=\exp\left[\sum_{n=1}^{\infty}(p^n-q^n)x_n\right]
-								\end{align*}
-								となることから、\(n\)-ソリトン解は
-								\[
-									\tau=e^{c_1X(p_1,\,p_2)}e^{x_2X(p_2,\,q_2)}\cdots e^{c_nX(p_n,\,q_n)}1
-								\]
-								となる。
-							</div>
-							<div style="text-align: right;"><button id=close19>[閉じる]</button></div>
-						</details>
-						そしてKP方程式の変数を拡張して得たこの \(\tau\) がKP階層の解となることを示していく。
+						といった形で表せることを示していく。
 						<br>
-						まずこの \(\tau\) について、双線型恒等式
-						\[
-							\oint_{\infty}\tau(\boldsymbol{x}-[\lambda^{-1}])\tau(\boldsymbol{x}'+[\lambda^{-1}])e^{\theta(\boldsymbol{x}-\boldsymbol{x}',\,\lambda)}\frac{d\lambda}{2\pi{i}}=0
-						\]
-						\[
-							\theta(\boldsymbol{x},\,\lambda)=\sum_{n=1}^{\infty}\lambda^nx_n
-						\]
-						が成り立つ。
-						<details id="gray">
-							<summary>証明</summary>
-							<div id="main_text">
-								\begin{align*}
-									e^{\eta_i(\boldsymbol{x}-[\lambda^{-1}])}
-									&=\exp\left[\sum_{n=1}^{\infty}(p_i^n-q_i^n)\left(x_n-\frac{1}{n\lambda^n}\right)\right]\\
-									&=\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}\left(\frac{p_i^n}{\lambda^n}-\frac{q_i^n}{\lambda^n}\right)\right]e^{\eta_i(\boldsymbol{x})}\\
-									&=\frac{1-\frac{p_i}{\lambda}}{1-\frac{q_i}{\lambda}}e^{\eta_i(\boldsymbol{x})}\\
-									&=\frac{\lambda-p_i}{\lambda-q_i}e^{\eta_i(\boldsymbol{x})}\\[5pt]
-									e^{\eta_i(\boldsymbol{x}'+[\lambda^{-1}])}
-									&=\frac{\lambda-q_i}{\lambda-p_i}e^{\eta_i(\boldsymbol{x}')}
-								\end{align*}
-								となるので \(\lambda=q_m,\,p_m\;(m\in\mathbb{N})\) のときの留数を考える。<br>
-								\(\lambda=q_m\) の留数は、
-								\begin{align*}
-									&\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=1}(q_m-p_m)\prod_{i\in\{i\mid{\mu_i=1,\,i\neq{m}}\}}\frac{q_m-p_i}{q_m-q_i}\exp\Bigl[\sum_{i=1}^{n}\mu_i\eta_i(\boldsymbol{x})+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
-									&\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=0}\prod_{i\in\{i\mid{\mu_i=1}\}}\frac{q_m-q_i}{q_m-p_i}\exp\Bigl[\sum_{i=1}^{n}\mu_i\eta_i(\boldsymbol{x}')+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]e^{\theta(\boldsymbol{x},\,q_m)-\theta(\boldsymbol{x}',\,q_m)}\\
-									&=(q_m-p_m)e^{\theta(\boldsymbol{x},\,q_m)-\theta(\boldsymbol{x}',\,q_m)}e^{\theta(\boldsymbol{x},\,p_m)-\theta(\boldsymbol{x},\,q_m)}\\
-									&\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=1}\prod_{i\in\{i\mid{\mu_i=1,\,i\neq{m}}\}}\frac{q_m-p_i}{q_m-q_i}\exp\Bigl[\sum_{\,i=1\\i\neq{m}}^{n}\mu_i\eta_i(\boldsymbol{x})+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
-									&\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=0}\prod_{i\in\{i\mid{\mu_i=1}\}}\frac{q_m-q_i}{q_m-p_i}\exp\Bigl[\sum_{i=1}^{n}\mu_i\eta_i(\boldsymbol{x}')+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
-									&=(q_m-p_m)e^{\theta(\boldsymbol{x},\,p_m)-\theta(\boldsymbol{x}',\,q_m)}\\
-									&\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=1}\prod_{i\in\{i\mid{\mu_i=1,\,i\neq{m}}\}}\frac{q_m-p_i}{q_m-q_i}\exp\Bigl[\sum_{\,i=1\\i\neq{m}}^{n}\mu_i\eta_i(\boldsymbol{x})+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
-									&\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=1}\prod_{i\in\{i\mid{\mu_i=1,\,i\neq{m}}\}}\frac{q_m-q_i}{q_m-p_i}\exp\Bigl[\sum_{\,i=1\\i\neq{m}}^{n}\mu_i\eta_i(\boldsymbol{x}')+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]
-								\end{align*}
-								\(\lambda=p_m\) の留数は、
-								\begin{align*}
-									&\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=0}\prod_{i\in\{i\mid{\mu_i=1}\}}\frac{p_m-p_i}{p_m-q_i}\exp\Bigl[\sum_{i=1}^{n}\mu_i\eta_i(\boldsymbol{x})+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
-									&\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=1}(p_m-q_m)\prod_{i\in\{i\mid{\mu_i=1,\,i\neq{m}}\}}\frac{p_m-q_i}{p_m-p_i}\exp\Bigl[\sum_{i=1}^{n}\mu_i\eta_i(\boldsymbol{x}')+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]e^{\theta(\boldsymbol{x},\,p_m)-\theta(\boldsymbol{x}',\,p_m)}\\
-									&=(p_m-q_m)e^{\theta(\boldsymbol{x},\,p_m)-\theta(\boldsymbol{x},\,p_m)}e^{\theta(\boldsymbol{x}',\,p_m)-\theta(\boldsymbol{x}',\,q_m)}\\
-									&\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=0}\prod_{i\in\{i\mid{\mu_i=1}\}}\frac{p_m-p_i}{p_m-q_i}\exp\Bigl[\sum_{i=1}^{n}\mu_i\eta_i(\boldsymbol{x})+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
-									&\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=1}\prod_{i\in\{i\mid{\mu_i=1,\,i\neq{m}}\}}\frac{p_m-q_i}{p_m-p_i}\exp\Bigl[\sum_{\,i=1\\i\neq{m}}^{n}\mu_i\eta_i(\boldsymbol{x}')+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
-									&=(p_m-q_m)e^{\theta(\boldsymbol{x},\,p_m)-\theta(\boldsymbol{x}',\,q_m)}\\
-									&\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=1}\prod_{i\in\{i\mid{\mu_i=1,\,i\neq{m}}\}}\frac{p_m-p_i}{p_m-q_i}\exp\Bigl[\sum_{\,i=1\\i\neq{m}}^{n}\mu_i\eta_i(\boldsymbol{x})+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
-									&\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=1}\prod_{i\in\{i\mid{\mu_i=1,\,i\neq{m}}\}}\frac{p_m-q_i}{p_m-p_i}\exp\Bigl[\sum_{\,i=1\\i\neq{m}}^{n}\mu_i\eta_i(\boldsymbol{x}')+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]
-								\end{align*}
-								よって互いに打ち消し合い、
-								\[
-									\oint_{\infty}\tau(\boldsymbol{x}-[\lambda^{-1}])\tau(\boldsymbol{x}'+[\lambda^{-1}])e^{\theta(\boldsymbol{x}-\boldsymbol{x}',\,\lambda)}\frac{d\lambda}{2\pi{i}}=0
-								\]
-								が示せた。
-							</div>
-							<div style="text-align: right;"><button id=close20>[閉じる]</button></div>
-						</details><div style="line-height: 5pt;">&nbsp;</div>
-						ここで、
-						\begin{align*}
-							\varphi(\boldsymbol{x},\,\lambda)&:=\frac{\tau(\boldsymbol{x}-[\lambda^{-1}])}{\tau(\boldsymbol{x})}e^{\theta(\boldsymbol{x},\,\lambda)}=e^{\theta(\boldsymbol{x},\,\lambda)}\left(1+\sum_{n=1}^{\infty}\frac{w_n}{\lambda^n}\right)\\
-							\varphi^*(\boldsymbol{x},\,\lambda)&:=\frac{\tau(\boldsymbol{x}+[\lambda^{-1}])}{\tau(\boldsymbol{x})}e^{-\theta(\boldsymbol{x},\,\lambda)}\\	
+						<h4>Fredholmの公式</h4>
+						<div id="main_text">
+							\(n\times{n}\) の正方行列 \(M=(m_{ij})_{1\leq{i,\,j}\leq{N}}\) に対して、
+							\begin{align*}							
+								\det(E+M)
+								&=1+\sum_{i=1}^{n}m_{ii}+\sum_{1\leq{i}&lt;j\leq{n}}
+								\begin{vmatrix}
+									m_{ii}&m_{ij}\\
+									m_{ji}&m_{jj}
+								\end{vmatrix}\\
+								&\;\;\;\;\;\;+\sum_{1\leq{i}&lt;j&lt;k\leq{n}}
+								\begin{vmatrix}
+									m_{ii}&m_{ij}&m_{ik}\\
+									m_{ji}&m_{jj}&m_{jk}\\
+									m_{ki}&m_{kj}&m_{kk}
+								\end{vmatrix}+\cdots+\det{M}
+							\end{align*}							
+							が成り立つ。
+							<details id="gray">
+								<summary>簡単な説明</summary>
+								<div id="main_text">
+									\(E+M\) は \(1\,\mathrm{or}\,m_{ii}\) の選択によって \(2^{n}\) 個の行列式に分解できる。<br>
+									つまり、1を \(m\) 回選んだものが、第 \(n-m+1\) 項になる。例えば \(2\) 回選ぶと、
+									\[
+										\begin{vmatrix}
+											m_{11}&&&&&&&&&&\\
+											&\ddots&&&&&&&&&\\
+											&&m_{a-1\,a-1}&&&&&&&&\\
+											0&\cdots&0&1&0&\cdots&0&\cdots&0&\cdots&0\\
+											&&&&m_{a+1\,a+1}&&&&&&\\
+											&&&&&\ddots&&&&&\\
+											&&&&&&m_{b-1\,b-1}&&&&\\
+											0&\cdots&0&\cdots&0&\cdots&0&1&0&\cdots&0\\
+											&&&&&&&&m_{b-1\,b-1}&&\\
+											&&&&&&&&&\ddots&\\
+											&&&&&&&&&&m_{nn}\\
+										\end{vmatrix}
+									\]
+									を計算することになる。
+								</div>
+								<div style="text-align: right;"><button id=close19>[閉じる]</button></div>
+							</details>
+						</div>
+						<h4>Cauchyの公式</h4>
+						<div id="main_text">
+							\(x_i,\,y_i\;(i=1,\,2,\ldots,\,n),\;x_i\neq{y_j}\) に対して、
+							\[
+								\det{}_{1\leq{i,\,j}\leq{n}}\left[\frac{1}{x_i-y_j}\right]=\prod_{1\leq{i&lt;j}\leq{n}}(x_j-x_i)\prod_{1\leq{i&lt;j}\leq{n}}(y_j-y_i)\prod_{1\leq{i,\,j}\leq{n}}\frac{1}{(x_i-y_j)}
+							\]
+							が成り立つ。
+							<details id="gray">
+								<summary>証明</summary>
+								<div id="main_text">
+								</div>
+								<div style="text-align: right;"><button id=close20>[閉じる]</button></div>
+							</details>
+						</div><div style="line-height: 20pt;">&nbsp;</div>
+						この2つの公式を用いると、
+						\begin{align*}						
+							&\det{}_{i,\,j\in{J}}\left[\frac{\gamma_i}{p_i-q_j}e^{\theta(\boldsymbol{x},\,p_i)-\theta(\boldsymbol{x},\,q_i)}\right]\\
+							&=\prod_{i\in{J}}\gamma_ie^{\theta(\boldsymbol{x},\,p_i)-\theta(\boldsymbol{x},\,q_i)}\prod_{i,\,j\in{J}\\\;\,i&lt;j}(p_j-p_i)\prod_{i,\,j\in{J}\\\;\,i&lt;j}(q_j-q_i)\prod_{i,\,j\in{J}}\frac{1}{(p_i-q_j)}\\
+							&=\prod_{i\in{J}}\frac{\gamma_i}{x_i-y_i}e^{\theta(\boldsymbol{x},\,p_i)-\theta(\boldsymbol{x},\,q_i)}\prod_{i,\,j\in{J}\\\;\,i&lt;j}\frac{(p_i-p_j)(q_i-q_j)}{(p_i-q_j)(q_i-p_j)}\\
+							&=\prod_{i\in{J}}e^{\theta(\boldsymbol{x},\,p_i)-\theta(\boldsymbol{x},\,q_i)+\theta_i^{(0)}}\prod_{i,\,j\in{J}\\\;\,i&lt;j}\frac{(p_i-p_j)(q_i-q_j)}{(p_i-q_j)(q_i-p_j)}
 						\end{align*}
-						とすれば、
-						\[
-							L\varphi=:\left(\partial+\sum_{n=1}^{\infty}w_i\partial^{-n}\right)\varphi=\lambda\varphi
-						\]
-						であり、\(\partial_{x_k}\varphi=B_k\varphi\) を示せばKP階層の解となることがわかるためこれを示す。
-						\[
-							Q:=\partial_{x_k}-B_k=\partial_{x_k}-\bigl(L^k\bigr)_+=\partial_{x_k}-L^k+\bigl(L^k\bigr)_-
-						\]
-						とすると双線型恒等式より
-						\[
-							\oint_{\infty}\bigl(Q\varphi(\boldsymbol{x},\,\lambda)\bigr)\varphi^*(\boldsymbol{x}',\,\lambda)\frac{d\lambda}{2\pi{i}}=0
-						\]
+						であり、(\(\theta_i^{(0)}=\log(\gamma_i/(p_i-q_i))\)
+						\begin{align*}
+							\tau(\boldsymbol{x})
+							&=\det{}_{1\leq{i,\,j}\leq{N}}\left[\delta_{ij}+\frac{\gamma_i}{p_i-q_j}e^{\theta(\boldsymbol{x},\,p_i)-\theta(\boldsymbol{x},\,q_i)}\right]\\
+							&=\det\left[E+\left(\frac{\gamma_i}{p_i-q_j}e^{\theta(\boldsymbol{x},\,p_i)-\theta(\boldsymbol{x},\,q_i)}\right)_{1\leq{i,\,j}\leq{N}}\right]\\
+							&=1+\sum_{i=1}^{N}\frac{\gamma_i}{p_i-p_j}e^{\theta(\boldsymbol{x},\,p_i)-\theta(\boldsymbol{x},\,q_i)}\\
+							&\;\;\;\;+\sum_{|J|=2}\left(\smash{\prod_{i,\,j\in{J}\\\;\,i&lt;j}}\frac{(p_j-p_i)(q_j-q_i)}{(q_j-p_i)(p_j-q_i)}\exp\left[\sum_{i\in{J}}(\theta_i-\theta'_i+\theta_i^{(0)})\right]\right)\\
+							&\;\;\;\;+\sum_{|J|=3}\left(\smash{\prod_{i,\,j\in{J}\\\;\,i&lt;j}}\frac{(p_j-p_i)(q_j-q_i)}{(q_j-p_i)(p_j-q_i)}\exp\left[\sum_{i\in{J}}(\theta_i-\theta'_i+\theta_i^{(0)})\right]\right)\\
+							&\;\;\;\;\;\,\vdots\\
+							&\;\;\;\;+\sum_{|J|=N}\left(\smash{\prod_{i,\,j\in{J}\\\;\,i&lt;j}}\frac{(p_j-p_i)(q_j-q_i)}{(q_j-p_i)(p_j-q_i)}\exp\left[\sum_{i\in{J}}(\theta_i-\theta'_i+\theta_i^{(0)})\right]\right)\\
+							&=\sum_{l=0}^{N}\sum_{|J|=l}\left(\smash{\prod_{i,\,j\in{J}\\\;\,i&lt;j}}\frac{(p_j-p_i)(q_j-q_i)}{(q_j-p_i)(p_j-q_i)}\exp\left[\sum_{i\in{J}}(\theta_i-\theta'_i+\theta_i^{(0)})\right]\right)
+						\end{align*}
+						となり形が一致した。
 					</div>
 					<div style="text-align: right;"><button id=close17>[閉じる]</button></div>
 				</details><div style="line-height: 5pt;">&nbsp;</div>
@@ -1636,8 +1699,8 @@
 							より \(y_k\) の係数から、
 							\begin{align*}
 								0&=\Bigl(P_0(-2\boldsymbol{y})P_1(\tilde{D})\times D_{x_k}+(-2)P_{k+1}(\tilde{D})\times1\Bigr)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})\\
-								&=\Bigl(1\,D_1\,D_{x_k}-2P_{k+1}(\tilde{D})\Bigr)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})\\
-								&=\Bigl(D_1D_{x_k}-2P_{k+1}(\tilde{D})\Bigr)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})
+								&=\Bigl(1\,D_{x_1}\,D_{x_k}-2P_{k+1}(\tilde{D})\Bigr)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})\\
+								&=\Bigl(D_{x_1}D_{x_k}-2P_{k+1}(\tilde{D})\Bigr)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})
 							\end{align*}
 							となる。例えば \(k=3\) のとき、
 							\begin{align*}							
@@ -1647,18 +1710,18 @@
 							\end{align*}
 							となるため、
 							\begin{align*}
-								0&=\Bigl(D_1D_{x_3}-2P_{k+1}(\tilde{D})\Bigr)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})\\
-								&=\Bigl(D_1D_{x_3}-\frac{1}{2}D_{x_4}-\frac{2}{3}D_{x_1}D_{x_3}-\frac{1}{4}D_{x_2}^2-\frac{1}{12}D_{x_1}^4\Bigr)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})\\
+								0&=\Bigl(D_{x_1}D_{x_3}-2P_{k+1}(\tilde{D})\Bigr)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})\\
+								&=\Bigl(D_{x_1}D_{x_3}-\frac{1}{2}D_{x_4}-\frac{2}{3}D_{x_1}D_{x_3}-\frac{1}{4}D_{x_2}^2-\frac{1}{12}D_{x_1}^4\Bigr)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})\\
 								&=\Bigl(\frac{1}{3}D_{x_1}D_{x_3}-\frac{1}{4}D_{x_2}^2-\frac{1}{12}D_{x_1}^4\Bigr)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})\\
 								&=-\frac{1}{12}\Bigl(D_{x_1}^4+3D_{x_2}^2-4D_{x_1}D_{x_3}\Bigr)\,\tau(\boldsymbol{x})\cdot\tau(\boldsymbol{x})\\
 							\end{align*}
 							とKP方程式の双線型形式が出てくる。
 						</div>
 					<div style="text-align: right;"><button id=close21>[閉じる]</button></div>
-				</details> -->
+				</details>
 			</div>
 			<br><div style="line-height: 5pt;">&nbsp;</div>
-			<!-- <h3>KdV方程式へのreduction</h3>
+			<h3>KdV方程式へのreduction</h3>
 			<div id="main_text">
 				双線型恒等式 を満たす \(\tau\) がさらに
 				\[
@@ -1678,28 +1741,43 @@
 				\] 
 				KdV方程式の双線型形式となる。<br>
 				また KP階層のロンスキアン解からもKdV方程式の \(N\)-ソリトン解が導出される。
-				<details open id ="white">
+				<details id ="white">
 					<summary>詳細</summary>
 					<div id="main_text">
-						KP階層の一般解
+						先に示したように、KP方程式のロンスキアン解はゲージ変換によって
 						\[
-							\tau(\boldsymbol{x})=\det(\boldsymbol{f},\,\boldsymbol{f}_x,\ldots,\,\boldsymbol{f}_{(N-1)x})\\
-							f_i(\boldsymbol{x})=\alpha_ie^{\theta(\boldsymbol{x},\,p_i)}+\beta_ie^{\theta(\boldsymbol{x},\,q_i)}\\
-							\theta(\boldsymbol{x},\,\lambda)=\sum_{n=1}^{\infty}\lambda^nx_n
+							\tau(\boldsymbol{x})=\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n}\exp\Bigl[\sum_{i=1}^{n}\mu_i\eta_i+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
+							\left\{
+							\begin{aligned}
+								\eta_i\;&=\theta(\boldsymbol{x},\,p_i)-\theta(\boldsymbol{x},\,q_i)+\eta_i^{(0)}\\
+								e^{A_{ij}}&=\frac{(p_i-p_j)(q_i-q_j)}{(p_i-q_j)(q_i-p_j)}
+							\end{aligned}
+							\right.
 						\]
-						において、\(q_i=-p_i\) となるとき、
+						となり、\(q_i=-p_i\) とすれば、
+						\begin{align*}
+							\eta_i\;
+							&=\theta(\boldsymbol{x},\,p_i)-\theta(\boldsymbol{x},\,q_i)+\eta_i^{(0)}\\
+							&=2(p_ix_1+p_i^3x_3+p_i^5x_5+\cdots)+\eta_i^{(0)}\\[5pt]
+							e^{A_{ij}}
+							&=\frac{(p_i-p_j)(q_i-q_j)}{(p_i-q_j)(q_i-p_j)}\\
+							&=\left(\frac{p_i-p_j}{p_i+p_j}\right)^2
+						\end{align*}
+						となり、さらに \(\displaystyle x_1=\frac{x}{2},\,x_3=-\frac{t}{2}\) とすれば、KdV方程式の \(N\)-ソリトン解
 						\[
-							\partial_{x_{2n}}f_i(\boldsymbol{x})=p_i^{2n}\left(\alpha_ip_e^{\theta(\boldsymbol{x},\,p_i)}+\beta_ie^{\theta(\boldsymbol{x},\,-p_i)}\right)
+							\tau(\boldsymbol{x})=\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n}\exp\Bigl[\sum_{i=1}^{n}\mu_i\eta_i+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
+							\left\{
+							\begin{aligned}
+								\eta_i\;&=p_ix-p_i^3t+\cdots+\eta_i^{(0)}\\
+								e^{A_{ij}}&=\left(\frac{p_i-p_j}{p_i+p_j}\right)^2
+							\end{aligned}
+							\right.
 						\]
-						となるので、
-						\[
-							\partial_{x_{2n}}\tau(\boldsymbol{x})=\prod_{k=1}^{N}p_k^{2n}\tau(\boldsymbol{x})=C_{2n}\tau(\boldsymbol{x})
-						\]
-						がわかる。また
+						を得る。
 					</div>
 					<div style="text-align: right;"><button id=close22>[閉じる]</button></div>
 				</details>
-			</div> -->
+			</div>
 		</div>
 
 

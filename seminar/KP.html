@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width"/>
+		<link href="../style.css" rel="stylesheet" />
+		<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+		<title>箱玉系の数理</title>
+	</head>
+
+	<body>
+    <harder>
+    <div style="text-align: center">
+    <a href="./home.html"><h1 id = "title">箱玉系の数理</h1></a>
+    </div>
+
+    <hr id="header">
+    <h2 id =subtitle>KP階層の頂点作用素</h2><hr id=header2>
+</header>		<div id="contents">
+            使わなかったけど一応残す。<br>
+            <div id="main_text">
+                \(n\)-ソリトン解
+                \[
+                    \tau_n=\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n}\exp\Bigl[\sum_{i=1}^{n}\mu_i\eta_i+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
+                    \left\{
+                    \begin{aligned}
+                        \eta_i\;&=\sum_{n=1}^{\infty}(p_i^n-q_i^n)x_n+\eta_i^{(0)}\\
+                        e^{A_{ij}}&=\frac{(p_i-p_j)(q_i-q_j)}{(p_i-q_j)(q_i-p_j)}
+                    \end{aligned}
+                    \right.
+                \]
+                について、
+                \[
+                    X(p,\,q):=\exp\left[\sum_{n=1}^{\infty}(p^n-q^n)x_n\right]\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}(p^{-n}-q^{-n})\frac{\partial}{\partial{x_n}}\right]
+                \]
+                を考える。この \(X(p,\,q)\) は、
+                \[
+                    \tau_{n+1}=e^{cX(p,\,q)}\tau_n
+                \]
+                を満たし、頂点作用素と呼ばれる。またこれを用いて \(n\)-ソリトン解は
+                \[
+                    \tau=e^{c_1X(p_1,\,p_2)}e^{x_2X(p_2,\,q_2)}\cdots e^{c_nX(p_n,\,q_n)}1
+                \]
+                とかける。
+                <h3>証明</h3>
+                <div id="main_text">
+                    <div id="long_mjx">
+                        \begin{align*}
+                            &X(p_1,\,q_1)X(p_2,\,q_2)\\
+                            &=
+                            \left(\exp\left[\sum_{n=1}^{\infty}(p_1^n-q_1^n)x_n\right]\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}(p_1^{-n}-q_1^{-n})\frac{\partial}{\partial{x_n}}\right]\right)
+                            \left(\exp\left[\sum_{n=1}^{\infty}(p_2^n-q_2^n)x_n\right]\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}(p_2^{-n}-q_2^{-n})\frac{\partial}{\partial{x_n}}\right]\right)\\
+                            &=\exp\left[\sum_{n=1}^{\infty}(p_1^n-q_1^n)x_n\right]\exp\left[\sum_{n=1}^{\infty}(p_2^n-q_2^n)\left(x_n-\frac{1}{n}(p_1^{-n}-q_1^{-n})\right)\right]\exp\left[-\sum_{i=1,\,2}\sum_{n=1}^{\infty}\frac{1}{n}(p_i^{-n}-q_i^{-n})\frac{\partial}{\partial{x_n}}\right]\\
+                            &=\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}(p_2^n-q_2^n)(p_1^{-n}-q_1^{-n})\right]\exp\left[\sum_{i=1,\,2}\sum_{n=1}^{\infty}(p_i^n-q_i^n)x_n\right]\exp\left[-\sum_{i=1,\,2}\sum_{n=1}^{\infty}\frac{1}{n}(p_i^{-n}-q_i^{-n})\frac{\partial}{\partial{x_n}}\right]
+                        \end{align*}
+                        </div>
+                        であり、
+                        \begin{align*}
+                            &\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}(p_2^n-q_2^n)(p_1^{-n}-q_1^{-n})\right]\\
+                            &=\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}\left(\frac{p_1^n}{p_2^n}-\frac{p_1^n}{q_2^n}-\frac{q_1^n}{p_2^n}+\frac{q_1^n}{q_2^n}\right)\right]\\
+                            &=\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}\frac{p_1^n}{p_2^n}\right]\exp\left[\sum_{n=1}^{\infty}\frac{1}{n}\frac{p_1^n}{q_2^n}\right]
+                              \exp\left[\sum_{n=1}^{\infty}\frac{1}{n}\frac{q_1^n}{p_2^n}\right]\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}\frac{q_1^n}{q_2^n}\right]\\
+                            &=\frac{\left(1-\frac{p_1}{p_2}\right)\left(1-\frac{q_1}{q_2}\right)}{\left(1-\frac{p_1}{q_2}\right)\left(1-\frac{q_1}{p_2}\right)}\\
+                            &=\frac{(p_1-p_2)(q_1-q_2)}{(p_1-q_2)(q_1-p_2)}
+                        \end{align*}
+                        となるため、<div id="long_mjx">
+                        \[
+                            X(p_1,\,q_1)X(p_2,\,q_2)=\frac{(p_1-p_2)(q_1-q_2)}{(p_1-q_2)(q_1-q_2)}\exp\left[\sum_{i=1,\,2}\sum_{n=1}^{\infty}(p_i^n-q_i^n)x_n\right]\exp\left[-\sum_{i=1,\,2}\sum_{n=1}^{\infty}\frac{1}{n}(p_i^{-n}-q_i^{-n})\frac{\partial}{\partial{x_n}}\right]
+                        \]</div>
+                        となる。
+                        <br>
+                        これより、\(X(p,\,q)X(p,\,q)=0\) となり、
+                        \begin{align*}
+                            e^{cX(p,\,q)}
+                            &=1+cX(p,\,q)+\bigl(cX(p,\,q)\bigr)^2+\bigl(cX(p,\,q)\bigr)^3+\cdots\\
+                            &=1+cX(p,\,q)
+                        \end{align*}
+                        となり、
+                        \begin{align*}
+                            X(p,\,q)1
+                            &=\exp\left[\sum_{n=1}^{\infty}(p^n-q^n)x_n\right]\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}(p^{-n}-q^{-n})\frac{\partial}{\partial{x_n}}\right]1\\
+                            &=\exp\left[\sum_{n=1}^{\infty}(p^n-q^n)x_n\right]
+                        \end{align*}
+                        となることから、\(n\)-ソリトン解は
+                        \[
+                            \tau=e^{c_1X(p_1,\,p_2)}e^{x_2X(p_2,\,q_2)}\cdots e^{c_nX(p_n,\,q_n)}1
+                        \]
+                        となる。
+                </div><div style="line-height: 20pt;">&nbsp;</div>
+                <h3>頂点作用素から示す双線型恒等式</h3>
+                <div id="main_text">
+                    \[
+                        \oint_{\infty}\tau(\boldsymbol{x}-[\lambda^{-1}])\tau(\boldsymbol{x}'+[\lambda^{-1}])e^{\theta(\boldsymbol{x}-\boldsymbol{x}',\,\lambda)}\frac{d\lambda}{2\pi{i}}=0
+                    \]
+                    \[
+                        \theta(\boldsymbol{x},\,\lambda)=\sum_{n=1}^{\infty}\lambda^nx_n
+                    \]
+                    を示す。
+                    \begin{align*}
+                        e^{\eta_i(\boldsymbol{x}-[\lambda^{-1}])}
+                        &=\exp\left[\sum_{n=1}^{\infty}(p_i^n-q_i^n)\left(x_n-\frac{1}{n\lambda^n}\right)\right]\\
+                        &=\exp\left[-\sum_{n=1}^{\infty}\frac{1}{n}\left(\frac{p_i^n}{\lambda^n}-\frac{q_i^n}{\lambda^n}\right)\right]e^{\eta_i(\boldsymbol{x})}\\
+                        &=\frac{1-\frac{p_i}{\lambda}}{1-\frac{q_i}{\lambda}}e^{\eta_i(\boldsymbol{x})}\\
+                        &=\frac{\lambda-p_i}{\lambda-q_i}e^{\eta_i(\boldsymbol{x})}\\[5pt]
+                        e^{\eta_i(\boldsymbol{x}'+[\lambda^{-1}])}
+                        &=\frac{\lambda-q_i}{\lambda-p_i}e^{\eta_i(\boldsymbol{x}')}
+                    \end{align*}
+                    となるので \(\lambda=q_m,\,p_m\;(m\in\mathbb{N})\) のときの留数を考える。<br>
+                    \(\lambda=q_m\) の留数は、
+                    \begin{align*}
+                        &\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=1}(q_m-p_m)\prod_{i\in\{i\mid{\mu_i=1,\,i\neq{m}}\}}\frac{q_m-p_i}{q_m-q_i}\exp\Bigl[\sum_{i=1}^{n}\mu_i\eta_i(\boldsymbol{x})+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
+                        &\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=0}\prod_{i\in\{i\mid{\mu_i=1}\}}\frac{q_m-q_i}{q_m-p_i}\exp\Bigl[\sum_{i=1}^{n}\mu_i\eta_i(\boldsymbol{x}')+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]e^{\theta(\boldsymbol{x},\,q_m)-\theta(\boldsymbol{x}',\,q_m)}\\
+                        &=(q_m-p_m)e^{\theta(\boldsymbol{x},\,q_m)-\theta(\boldsymbol{x}',\,q_m)}e^{\theta(\boldsymbol{x},\,p_m)-\theta(\boldsymbol{x},\,q_m)}\\
+                        &\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=1}\prod_{i\in\{i\mid{\mu_i=1,\,i\neq{m}}\}}\frac{q_m-p_i}{q_m-q_i}\exp\Bigl[\sum_{\,i=1\\i\neq{m}}^{n}\mu_i\eta_i(\boldsymbol{x})+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
+                        &\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=0}\prod_{i\in\{i\mid{\mu_i=1}\}}\frac{q_m-q_i}{q_m-p_i}\exp\Bigl[\sum_{i=1}^{n}\mu_i\eta_i(\boldsymbol{x}')+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
+                        &=(q_m-p_m)e^{\theta(\boldsymbol{x},\,p_m)-\theta(\boldsymbol{x}',\,q_m)}\\
+                        &\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=1}\prod_{i\in\{i\mid{\mu_i=1,\,i\neq{m}}\}}\frac{q_m-p_i}{q_m-q_i}\exp\Bigl[\sum_{\,i=1\\i\neq{m}}^{n}\mu_i\eta_i(\boldsymbol{x})+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
+                        &\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=1}\prod_{i\in\{i\mid{\mu_i=1,\,i\neq{m}}\}}\frac{q_m-q_i}{q_m-p_i}\exp\Bigl[\sum_{\,i=1\\i\neq{m}}^{n}\mu_i\eta_i(\boldsymbol{x}')+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]
+                    \end{align*}
+                    \(\lambda=p_m\) の留数は、
+                    \begin{align*}
+                        &\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=0}\prod_{i\in\{i\mid{\mu_i=1}\}}\frac{p_m-p_i}{p_m-q_i}\exp\Bigl[\sum_{i=1}^{n}\mu_i\eta_i(\boldsymbol{x})+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
+                        &\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=1}(p_m-q_m)\prod_{i\in\{i\mid{\mu_i=1,\,i\neq{m}}\}}\frac{p_m-q_i}{p_m-p_i}\exp\Bigl[\sum_{i=1}^{n}\mu_i\eta_i(\boldsymbol{x}')+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]e^{\theta(\boldsymbol{x},\,p_m)-\theta(\boldsymbol{x}',\,p_m)}\\
+                        &=(p_m-q_m)e^{\theta(\boldsymbol{x},\,p_m)-\theta(\boldsymbol{x},\,p_m)}e^{\theta(\boldsymbol{x}',\,p_m)-\theta(\boldsymbol{x}',\,q_m)}\\
+                        &\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=0}\prod_{i\in\{i\mid{\mu_i=1}\}}\frac{p_m-p_i}{p_m-q_i}\exp\Bigl[\sum_{i=1}^{n}\mu_i\eta_i(\boldsymbol{x})+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
+                        &\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=1}\prod_{i\in\{i\mid{\mu_i=1,\,i\neq{m}}\}}\frac{p_m-q_i}{p_m-p_i}\exp\Bigl[\sum_{\,i=1\\i\neq{m}}^{n}\mu_i\eta_i(\boldsymbol{x}')+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
+                        &=(p_m-q_m)e^{\theta(\boldsymbol{x},\,p_m)-\theta(\boldsymbol{x}',\,q_m)}\\
+                        &\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=1}\prod_{i\in\{i\mid{\mu_i=1,\,i\neq{m}}\}}\frac{p_m-p_i}{p_m-q_i}\exp\Bigl[\sum_{\,i=1\\i\neq{m}}^{n}\mu_i\eta_i(\boldsymbol{x})+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]\\
+                        &\;\;\;\;\times\sum_{\{\mu_k\}_{k=1}^{n}\in\,\{0,1\}^n\\\;\;\;\;\;\,\mu_m=1}\prod_{i\in\{i\mid{\mu_i=1,\,i\neq{m}}\}}\frac{p_m-q_i}{p_m-p_i}\exp\Bigl[\sum_{\,i=1\\i\neq{m}}^{n}\mu_i\eta_i(\boldsymbol{x}')+\sum_{1\leq{i}&lt;j\leq{n}}\mu_i\mu_jA_{ij}\Bigr]
+                    \end{align*}
+                    よって互いに打ち消し合い、
+                    \[
+                        \oint_{\infty}\tau(\boldsymbol{x}-[\lambda^{-1}])\tau(\boldsymbol{x}'+[\lambda^{-1}])e^{\theta(\boldsymbol{x}-\boldsymbol{x}',\,\lambda)}\frac{d\lambda}{2\pi{i}}=0
+                    \]
+                    が示せた。
+                </div>
+            </div>
+		</div>
+    <footer>
+    <hr id="header">
+    <div class="parent">
+        </div>
+    <div style="text-align: right">
+        <a href="../index.html">[homeに戻る]</a>
+    </div>
+</footer>	</body>
+</html>
