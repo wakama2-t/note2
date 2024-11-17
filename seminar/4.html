@@ -1445,14 +1445,14 @@
 						\end{align*}
 						となる。\(e^{\theta_1+\cdots+\theta_n+\theta_{n+1}'+\cdots+\theta_N'}\) の係数は、
 						\begin{align*}
-							\begin{vmatrix}
+							&\begin{vmatrix}
 								c_1&c_1p_1&c_1p_1^2&\cdots&c_1p_1^{N-1}\\
 								\vdots&\vdots&\vdots&&\vdots\\
 								c_n&c_np_n&c_np_n^2&\cdots&c_np_n^{N-1}\\
 								d_n&d_{n+1}q_{n+1}&d_{n+1}q_{n+1}^2&\cdots&d_{n+1}q_{n+1}^{N-1}\\
 								\vdots&\vdots&\vdots&&\vdots\\
 								d_N&d_Nq_N&d_Nq_N^2&\cdots&d_Nq_N^{N-1}\\
-							\end{vmatrix}
+							\end{vmatrix}\\[5pt]
 							&=\prod_{i=1}^nc_i\prod_{n+1}^{N}d_i
 							\begin{vmatrix}
 								1&p_1&p_1^2&\cdots&p_1^{N-1}\\
@@ -1622,12 +1622,81 @@
 						<div id="main_text">
 							\(x_i,\,y_i\;(i=1,\,2,\ldots,\,n),\;x_i\neq{y_j}\) に対して、
 							\[
-								\det{}_{1\leq{i,\,j}\leq{n}}\left[\frac{1}{x_i-y_j}\right]=\prod_{1\leq{i&lt;j}\leq{n}}(x_j-x_i)\prod_{1\leq{i&lt;j}\leq{n}}(y_j-y_i)\prod_{1\leq{i,\,j}\leq{n}}\frac{1}{(x_i-y_j)}
+								\det{}_{1\leq{i,\,j}\leq{n}}\left[\frac{1}{x_i-y_j}\right]=\prod_{1\leq{i&lt;j}\leq{n}}(x_i-x_j)(y_j-y_i)\prod_{1\leq{i,\,j}\leq{n}}\frac{1}{(x_i-y_j)}
 							\]
 							が成り立つ。
 							<details id="gray">
-								<summary>証明</summary>
+								<summary>導出</summary>
 								<div id="main_text">
+									\begin{align*}									
+										\frac{1}{x_i-y_j}-\frac{1}{x_i-y_k}
+										&=\frac{(x_i-y_k)-(x_i-y_j)}{(x_i-y_j)(x_i-y_k)}\\
+										&=\frac{1}{x_i-y_j}\cdot\frac{y_j-y_k}{x_i-y_k}\\[5pt]
+										\frac{1}{x_i-y_j}-\frac{1}{x_k-y_j}
+										&=\frac{(x_k-y_j)-(x_i-y_j)}{(x_i-y_j)(x_x-y_j)}\\
+										&=\frac{1}{x_i-y_j}\cdot\frac{x_k-x_i}{x_k-y_j}\\[5pt]
+									\end{align*}
+									となることから、
+									\begin{align*}
+										&\det{}_{1\leq{i,\,j}\leq{n}}\left[\frac{1}{x_i-y_j}\right]\\
+										&=
+										\begin{vmatrix}
+											\frac{1}{x_1-y_1}&\frac{1}{x_1-y_2}&\cdots&\frac{1}{x_1-y_n}\\
+											\frac{1}{x_2-y_1}&\frac{1}{x_2-y_2}&\cdots&\frac{1}{x_2-y_n}\\
+											\vdots           &\vdots           &      &\vdots           \\
+											\frac{1}{x_n-y_1}&\frac{1}{x_n-y_2}&\cdots&\frac{1}{x_n-y_n}\\
+										\end{vmatrix}\\[3pt]
+										&=
+										\begin{vmatrix}
+											\frac{1}{x_1-y_1}&\frac{1}{x_1-y_2}-\frac{1}{x_1-y_1}&\cdots&\frac{1}{x_1-y_n}-\frac{1}{x_1-y_1}\\
+											\frac{1}{x_2-y_1}&\frac{1}{x_2-y_2}-\frac{1}{x_2-y_1}&\cdots&\frac{1}{x_2-y_n}-\frac{1}{x_2-y_1}\\
+											\vdots           &\vdots           &      &\vdots           \\
+											\frac{1}{x_n-y_1}&\frac{1}{x_n-y_2}-\frac{1}{x_n-y_1}&\cdots&\frac{1}{x_n-y_n}-\frac{1}{x_n-y_1}\\
+										\end{vmatrix}\\[3pt]
+										&=
+										\begin{vmatrix}
+											\frac{1}{x_1-y_1}&\frac{1}{x_1-y_2}\cdot\frac{y_2-y_1}{x_1-y_1}&\cdots&\frac{1}{x_1-y_n}\cdot\frac{y_n-y_1}{x_1-y_1}\\
+											\frac{1}{x_2-y_1}&\frac{1}{x_2-y_2}\cdot\frac{y_2-y_1}{x_2-y_1}&\cdots&\frac{1}{x_2-y_n}\cdot\frac{y_n-y_1}{x_2-y_1}\\
+											\vdots           &\vdots           &      &\vdots           \\
+											\frac{1}{x_n-y_1}&\frac{1}{x_n-y_2}\cdot\frac{y_2-y_1}{x_n-y_1}&\cdots&\frac{1}{x_n-y_n}\cdot\frac{y_n-y_1}{x_n-y_1}\\
+										\end{vmatrix}\\[3pt]
+										&=\prod_{i=2}^n(y_i-y_1)\prod_{j=1}^n\frac{1}{x_j-y_1}
+										\begin{vmatrix}
+											1&\frac{1}{x_1-y_2}&\frac{1}{x_1-y_3}&\cdots&\frac{1}{x_1-y_n}\\
+											1&\frac{1}{x_2-y_2}&\frac{1}{x_2-y_3}&\cdots&\frac{1}{x_2-y_n}\\
+											\vdots&\vdots&\vdots&&\vdots\\
+											1&\frac{1}{x_n-y_2}&\frac{1}{x_n-y_3}&\cdots&\frac{1}{x_n-y_n}\\
+										\end{vmatrix}\\[3pt]
+										&=\prod_{i=2}^n(y_i-y_1)\prod_{j=1}^n\frac{1}{x_j-y_1}\\
+										&\;\;\;\;\;\;\;\times
+										\begin{vmatrix}
+											1&\frac{1}{x_1-y_2}&\frac{1}{x_1-y_3}&\cdots&\frac{1}{x_1-y_n}\\
+											0&\frac{1}{x_2-y_2}-\frac{1}{x_1-y_2}&\frac{1}{x_2-y_3}-\frac{1}{x_1-y_3}&\cdots&\frac{1}{x_2-y_n}-\frac{1}{x_1-y_n}\\
+											0&\frac{1}{x_3-y_2}-\frac{1}{x_1-y_2}&\frac{1}{x_3-y_3}-\frac{1}{x_1-y_3}&\cdots&\frac{1}{x_3-y_n}-\frac{1}{x_1-y_n}\\
+											\vdots&\vdots&\vdots&&\vdots\\
+											0&\frac{1}{x_n-y_2}-\frac{1}{x_1-y_2}&\frac{1}{x_n-y_3}-\frac{1}{x_1-y_3}&\cdots&\frac{1}{x_n-y_n}-\frac{1}{x_1-y_n}\\
+										\end{vmatrix}\\[3pt]
+										&=\prod_{i=2}^n(y_i-y_1)\prod_{j=1}^n\frac{1}{x_j-y_1}\\
+										&\;\;\;\;\;\;\;\times
+										\begin{vmatrix}	
+											\frac{1}{x_2-y_2}\cdot\frac{x_1-x_2}{x_1-y_2}&\frac{1}{x_2-y_3}\cdot\frac{x_1-x_2}{x_1-y_3}&\cdots&\frac{1}{x_2-y_n}\cdot\frac{x_1-x_2}{x_1-y_n}\\
+											\frac{1}{x_3-y_2}\cdot\frac{x_1-x_3}{x_1-y_2}&\frac{1}{x_3-y_3}\cdot\frac{x_1-x_3}{x_1-y_3}&\cdots&\frac{1}{x_3-y_n}\cdot\frac{x_1-x_3}{x_1-y_n}\\
+											\vdots&\vdots&&\vdots\\
+											\frac{1}{x_n-y_2}\cdot\frac{x_1-x_n}{x_1-y_2}&\frac{1}{x_n-y_3}\cdot\frac{x_1-x_n}{x_1-y_3}&\cdots&\frac{1}{x_n-y_n}\cdot\frac{x_1-x_n}{x_1-y_n}\\
+										\end{vmatrix}\\[3pt]
+										&=\prod_{i=2}^n(x_1-x_i)(y_i-y_1)\prod_{j=1}^n\frac{1}{(x_j-y_1)(x_1-y_j)}\\
+										&\;\;\;\;\;\;\;\times
+										\begin{vmatrix}
+											\frac{1}{x_2-y_2}&\frac{1}{x_2-y_3}&\cdots&\frac{1}{x_2-y_n}\\
+											\frac{1}{x_3-y_2}&\frac{1}{x_3-y_3}&\cdots&\frac{1}{x_3-y_n}\\
+											\vdots           &\vdots           &      &\vdots           \\
+											\frac{1}{x_n-y_2}&\frac{1}{x_n-y_3}&\cdots&\frac{1}{x_n-y_n}\\
+										\end{vmatrix}\\
+										&\;\;\vdots\\
+										&=\prod_{m=1}^n\left(\prod_{m&lt;i\leq{n}}(x_m-x_i)(y_i-y_m)\prod_{m\leq{j}\leq{n}}\frac{1}{(x_j-y_m)(x_m-y_j)}\right)\\
+										&=\prod_{1\leq{i&lt;j}\leq{n}}(x_i-x_j)(y_j-y_i)\prod_{1\leq{i}\leq{j}\leq{n}}\frac{1}{(x_i-y_j)(x_j-y_i)}\\
+										&=\prod_{1\leq{i&lt;j}\leq{n}}(x_i-x_j)(y_j-y_i)\prod_{1\leq{i,j}\leq{n}}\frac{1}{(x_i-y_j)}
+									\end{align*}
 								</div>
 								<div style="text-align: right;"><button id=close20>[閉じる]</button></div>
 							</details>
@@ -1635,8 +1704,8 @@
 						この2つの公式を用いると、
 						\begin{align*}						
 							&\det{}_{i,\,j\in{J}}\left[\frac{\gamma_i}{p_i-q_j}e^{\theta(\boldsymbol{x},\,p_i)-\theta(\boldsymbol{x},\,q_i)}\right]\\
-							&=\prod_{i\in{J}}\gamma_ie^{\theta(\boldsymbol{x},\,p_i)-\theta(\boldsymbol{x},\,q_i)}\prod_{i,\,j\in{J}\\\;\,i&lt;j}(p_j-p_i)\prod_{i,\,j\in{J}\\\;\,i&lt;j}(q_j-q_i)\prod_{i,\,j\in{J}}\frac{1}{(p_i-q_j)}\\
-							&=\prod_{i\in{J}}\frac{\gamma_i}{x_i-y_i}e^{\theta(\boldsymbol{x},\,p_i)-\theta(\boldsymbol{x},\,q_i)}\prod_{i,\,j\in{J}\\\;\,i&lt;j}\frac{(p_i-p_j)(q_i-q_j)}{(p_i-q_j)(q_i-p_j)}\\
+							&=\prod_{i\in{J}}\gamma_ie^{\theta(\boldsymbol{x},\,p_i)-\theta(\boldsymbol{x},\,q_i)}\prod_{i,\,j\in{J}\\\;\,i&lt;j}(p_i-p_j)(q_j-q_i)\prod_{i,\,j\in{J}}\frac{1}{(p_i-q_j)}\\
+							&=\prod_{i\in{J}}\frac{\gamma_i}{p_i-q_i}e^{\theta(\boldsymbol{x},\,p_i)-\theta(\boldsymbol{x},\,q_i)}\prod_{i,\,j\in{J}\\\;\,i&lt;j}\frac{(p_i-p_j)(q_i-q_j)}{(p_i-q_j)(q_i-p_j)}\\
 							&=\prod_{i\in{J}}e^{\theta(\boldsymbol{x},\,p_i)-\theta(\boldsymbol{x},\,q_i)+\theta_i^{(0)}}\prod_{i,\,j\in{J}\\\;\,i&lt;j}\frac{(p_i-p_j)(q_i-q_j)}{(p_i-q_j)(q_i-p_j)}
 						\end{align*}
 						であり、(\(\theta_i^{(0)}=\log(\gamma_i/(p_i-q_i))\)

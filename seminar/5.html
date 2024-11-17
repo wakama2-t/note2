@@ -17,8 +17,582 @@
     <hr id="header">
     <h2 id =subtitle>第5章 離散KP方程式</h2><hr id=header2>
 </header>		<div id="contents">
-
-			a
+			<h3>三輪変換</h3>
+			<div id="main_text">
+				相異なる \(a_1,\,a_2,\ldots\in{\mathbb{C}\setminus\{0\}}\) を固定し、
+				\[
+					\boldsymbol{x}=\sum_{i=1}^{\infty}m_i[a_i^{-1}]
+					\;\;
+					\left(x_n=\sum_{j=1}^{\infty}m_j\frac{1}{na_j^n}\;\;(n\in{\mathbb{N}})\right)
+				\]
+				となる変換 \(\boldsymbol{x}\rightarrow\boldsymbol{m}=(m_1,\,m_2,\ldots)\) を三輪変換という。
+			</div><div style="line-height: 20pt;">&nbsp;</div>
+			<h3>離散KP方程式</h3>
+			<div id="main_text">
+				<a href="./4.html" target="_blank" rel="noopener noreferrer">KP階層</a>における双線型恒等式
+				\[
+					\oint_{z=\infty}\tau(\boldsymbol{x}-[\lambda^{-1}])\tau(\boldsymbol{x}'+[\lambda^{-1}])e^{\theta(\boldsymbol{x}-\boldsymbol{x}',\,\lambda)}\;d\lambda=0
+				\]
+				\[
+					\theta(\boldsymbol{x},\,\lambda):=\sum_{n=1}^{\infty}\lambda^nx_n
+				\]
+				を満たす \(\tau(\boldsymbol{x})\) に対して三輪変換した関数 \(\tilde{\tau}(\boldsymbol{m})\) を考える。
+				<br><div style="line-height: 5pt;">&nbsp;</div>
+				この \(\tilde{\tau}(\boldsymbol{m})\) について、相異なる \(i,\,j,\,k\in{\mathbb{N}}\) に対して、
+				\[
+					(a_i-a_j)\tilde{\tau}_{ij}\tilde{\tau}_k+(a_j-a_k)\tilde{\tau}_{jk}\tilde{\tau}_i+(a_k-a_i)\tilde{\tau}_{ki}\tilde{\tau}_j=0\\[5pt]
+					\tilde{\tau}_{i_1\cdots{i_n}}:=\tilde{\tau}(\cdots,\,m_{i_1}+1,\ldots,\,m_{i_2}+1,\cdots)
+				\]
+				が成り立つ。ただし、\(m_i\in{\mathbb{Z}}\;(i\in{\mathbb{N}})\) とする。
+				<details id="white">
+					<summary>証明</summary>
+					<div id="main_text">
+						いま \(\boldsymbol{m}=(m_1,\,m_2,\ldots),\,(a_1,\,a_2,\ldots)\) の順番を変えても変換は変わらないので、
+						\[
+							(i,\,j,\,k)=(1,\,2,\,3)
+						\]
+						の場合を示せば十分である。
+						<br><div style="line-height: 5pt;">&nbsp;</div>
+						双線型恒等式において、
+						\[
+							\boldsymbol{x}=\sum_{i=1}^3(m_i+1)[a_i^{-1}],\;\;\boldsymbol{x}'=\sum_{i=1}^3m_i[a_i^{-1}]
+						\]
+						とすると、(この恒等式は任意の \(\boldsymbol{x},\,\boldsymbol{x}'\) に対して成り立っていた)
+						\begin{align*}
+							\theta(\boldsymbol{x}-\boldsymbol{x}',\,\lambda)
+							&=\theta\bigl(\sum_{i=1}^3[a_i^{-1}],\,\lambda\bigr)\\
+							&=\sum_{n=1}^\infty\lambda^n\sum_{i=1}^3\frac{1}{na_i^n}\\
+							&=\sum_{i=1}^3\left(\sum_{n=1}^{\infty}\frac{\lambda^n}{na_i^n}\right)\\
+							&=\sum_{i=1}^3\left(-\log\left[1-\frac{\lambda}{a_i}\right]\right)\;\;(|\lambda|&lt;|a_i|を仮定)
+						\end{align*}
+						となるため、\(|\lambda|&lt;|a_i|\) となるとき、
+						\[
+							e^{\theta(\boldsymbol{x}-\boldsymbol{x}',\,\lambda)}=\frac{1}{\prod_{i=1}^3\bigl(1-\frac{\lambda}{a_i}\bigr)}
+						\]
+						が成り立つ。また \(\tau(\boldsymbol{x}-[\lambda^{-1}])\tau(\boldsymbol{x}'+[\lambda^{-1}])\) は \(\displaystyle\frac{1}{\lambda}\) で展開可能なので無限遠点に特異点を持たず、
+						\[
+							\oint_{|\lambda|=R}\tau(\boldsymbol{x}-[\lambda^{-1}])\tau(\boldsymbol{x}'+[\lambda^{-1}])\frac{1}{\prod_{i=1}^3\bigl(1-\frac{\lambda}{a_i}\bigr)}\;d\lambda=0
+						\]
+						とできる。(\(0\ll{R}&lt;\infty\))<br>
+						また、
+						\begin{align*}
+							\tau(\boldsymbol{x}-[a_1^{-1}])
+							&=\tau\bigl(\sum_{i=1}^3(m_i+1)[a_i^{-1}]-[a_1^{-1}]\bigr)\\
+							&=\tau\bigl(m_1[a_1^{-1}]+(m_2+1)[a_2^{-1}]+(m_3+1)[a_3^{-1}]\bigr)\\
+							&=\tilde{\tau}_{23}\\[5pt]
+							\tau(\boldsymbol{x}'+[a_1^{-1}])
+							&=\tau\bigl(\sum_{i=1}^3m_i[a_i^{-1}]+[a_1^{-1}]\bigr)\\
+							&=\tau\bigl((m_1+1)[a_1^{-1}]+m_2[a_2^{-1}]+m_3[a_3^{-1}]\bigr)\\
+							&=\tilde{\tau}_1
+						\end{align*}
+						であり、留数定理より、
+						\begin{align*}
+							0
+							&=\mathrm{Res}\left[\tau(\boldsymbol{x}-[\lambda^{-1}])\tau(\boldsymbol{x}'+[\lambda^{-1}])\frac{1}{\prod_{i=1}^3\bigl(1-\frac{\lambda}{a_i}\bigr)}\right]\\
+							&=\tilde{\tau}_{23}\tilde{\tau}_1\frac{-a_1}{\bigl(1-\frac{a_1}{a_2}\bigr)\bigl(1-\frac{a_1}{a_2}\bigr)}+\tilde{\tau}_{31}\tilde{\tau}_2\frac{-a_2}{\bigl(1-\frac{a_2}{a_3}\bigr)\bigl(1-\frac{a_2}{a_1}\bigr)}+\tilde{\tau}_{12}\tilde{\tau}_3\frac{-a_3}{\bigl(1-\frac{a_3}{a_1}\bigr)\bigl(1-\frac{a_3}{a_2}\bigr)}\\[5pt]
+							&=\frac{a_1a_2a_3}{(a_1-a_2)(a_2-a_3)(a_3-a_1)}\bigl((a_1-a_2)\tilde{\tau}_{12}\tilde{\tau}_3+(a_3-a_1)\tilde{\tau}_{31}\tilde{\tau}_2+(a_2-a_3)\tilde{\tau}_{23}\tilde{\tau}_1\bigr)
+						\end{align*}
+						となる。
+					<div style="text-align: right;"><button id=close0>[閉じる]</button></div>
+				</details><div style="line-height: 5pt;">&nbsp;</div>
+				そして \((i,\,j,\,k)=(1,\,2,\,3)\) とした、
+				\[
+					(a_1-a_2)\tilde{\tau}_{12}\tilde{\tau}_3+(a_2-a_3)\tilde{\tau}_{23}\tilde{\tau}_1+(a_3-a_1)\tilde{\tau}_{31}\tilde{\tau}_2=0
+				\]
+				を離散KP方程式という。
+				またKP方程式同様、ロンスキアン解
+				\[
+					\tilde{\tau}(\boldsymbol{m})=\det(\boldsymbol{g},\,\boldsymbol{g}_{1\bar{k}},\,\boldsymbol{g}_{2\bar{k}},\ldots,\,\boldsymbol{g}_{(N-1)\bar{k}})
+				\]
+				\[
+					g_i(x;\boldsymbol{m})=\int e^{p_ix}\prod_{j=1}^{\infty}\left(1-\frac{p_i}{a_j}\right)^{-m_j}d\mu(p_i)
+				\]
+				を持つ。
+				<details id="white">
+					<summary>導出</summary>
+					<div id="main_text">
+						\(\boldsymbol{x}=(x_1,\,x_2,\ldots)\) を、
+						\[
+							\boldsymbol{x}=(x,\,0,\,0,\ldots)+\bar{x}\;\;\;\bigl(\bar{x}=(x_1,\,x_2,\ldots)\bigr)
+						\]
+						として、三輪変換の対象 \(\bar{x}\) とKP階層で重要な役割をもつ \(x=x_1\) を分離する。	
+						<br>
+						(この操作をしても \(\tau\) 関数は双線型恒等式を満たし、三輪変換によって離散KP方程式も満たす。)
+						<br>
+						このとき、
+						\[
+							e^{\theta(\boldsymbol{x},\,p)}=\exp\left[(x+x_1)p+x_2p^2+x_3p^3+\cdots\right]\;\;(p\in\mathbb{C})
+						\]
+						は \(\partial_{x_k}f(\boldsymbol{x})=\partial^kf(\boldsymbol{x})\;\;(k\in{\mathbb{N}})\) の解となり、一般解はその線型和
+						\[
+							f(\boldsymbol{x})=\int e^{\theta(\boldsymbol{x},\,p)}d\mu(p)
+						\]
+						として表される。これに対して三輪変換を行うと、
+						\begin{align*}
+							e^{\theta(\boldsymbol{x},\,p)}
+							&=\exp\left[px+\theta\bigl(\sum_{j=1}^{\infty}m_j[a_j^{-1}],\,p\bigr)\right]\\
+							&=e^{px}\exp\left[\theta\bigl(\sum_{j=1}^{\infty}m_j[a_j^{-1}],\,p\bigr)\right]\\
+							&=e^{px}\exp\left[\sum_{n=1}^\infty\sum_{j=1}^\infty\frac{m_j}{na_j^n}p^n\right]\\
+							&=e^{px}\prod_{j=1}^{\infty}\exp\left[m_j\sum_{n=1}^{\infty}\frac{p^n}{na_j^n}\right]\;\;\;(m_j\rightarrow0\;(j\gg1))\\
+							&=e^{px}\prod_{j=1}^{\infty}\exp\left[-m_j\log\Bigl[1-\frac{p}{a_j}\Bigr]\right]\;\;\;(|p|&lt;|a_j|)\\
+							&=e^{px}\prod_{j=1}^{\infty}\left(1-\frac{p}{a_j}\right)^{-m_j}
+						\end{align*}
+						\[
+							f(\boldsymbol{x})=\int e^{px}\prod_{j=1}^{\infty}\left(1-\frac{p}{a_j}\right)^{-m_j}d\mu(p)\;=:g(x;\boldsymbol{m})
+						\]
+						となる。つまり、KP階層のロンスキアン解
+						\begin{gather*}
+							\tau(\boldsymbol{x})=\det(\boldsymbol{f},\,\boldsymbol{f}_x,\,\boldsymbol{f}_{2x},\ldots,\,\boldsymbol{f}_{(N-1)x})\\
+							f_i(\boldsymbol{x})=c_ie^{\theta(\boldsymbol{x},\,p_i)}+d_ie^{\theta(\boldsymbol{x},\,q_i)}\\
+							\theta(\boldsymbol{x},\,\lambda):=\sum_{n=1}^{\infty}\lambda^nx_n
+						\end{gather*}
+						は三輪変換によって、
+						\begin{gather*}
+							\tilde{\tau}(\boldsymbol{m})=\det(\boldsymbol{g},\,\boldsymbol{g}_{1x},\,\boldsymbol{g}_{2x},\ldots,\,\boldsymbol{g}_{(N-1)x})\\
+							g_i(x;\boldsymbol{m})=\int e^{p_ix}\prod_{j=1}^{\infty}\left(1-\frac{p_i}{a_j}\right)^{-m_j}d\mu(p_i)
+						\end{gather*}
+						となり、これは離散KP方程式の解となる。
+						<br><div style="line-height: 5pt;">&nbsp;</div>
+						そして、(以下、\(g(x;\boldsymbol{m})_{n\bar{k}}=g(x;(\cdots,\,m_{k-1},\,m_k-n,\,m_{k+1},\cdots))\)と表す。)
+						\begin{align*}
+							\partial g(x;\boldsymbol{m})
+							&=\int pe^{px}\prod_{j=1}^{\infty}\left(1-\frac{p}{a_j}\right)^{-m_j}d\mu(p)\\
+							&=\int a_k\left(1-\Bigl(1-\frac{p}{a_k}\Bigr)\right)e^{px}\prod_{j=1}^{\infty}\left(1-\frac{p}{a_j}\right)^{-m_j}d\mu(p)\\
+							&=a_kg(x;\boldsymbol{m})-a_k\int\left(1-\frac{p}{a_k}\right)e^{px}\prod_{j=1}^{\infty}\left(1-\frac{p}{a_j}\right)^{-m_j}d\mu(p)\\
+							&=a_k\bigl(g(x;\boldsymbol{m})-g(x;\boldsymbol{m})_{1\bar{k}}\bigr)\\[5pt]
+							\partial^2 g(x;\boldsymbol{m})
+							&=a_k\bigl(\partial g(x;\boldsymbol{m})-\partial g(x;\boldsymbol{m})_{1\bar{k}}\bigr)\\
+							&=a_k^2\bigl(g(x;\boldsymbol{m})-g(x;\boldsymbol{m})_{1\bar{k}}-g(x;\boldsymbol{m})_{1\bar{k}}+g(x;\boldsymbol{m})_{2\bar{k}}\bigr)\\
+							&=a_k^2\bigl(g(x;\boldsymbol{m})-2g(x;\boldsymbol{m})_{1\bar{k}}+g(x;\boldsymbol{m})_{2\bar{k}}\bigr)\\
+							\vdots\;\;\;\;\;\;\;&\\[5pt]
+							\partial^n g(x;\boldsymbol{m})
+							&=a_k^n\sum_{s=0}^{n}\begin{pmatrix}n\\s\end{pmatrix}(-1)^sg(x;\boldsymbol{m})_{s\bar{k}}
+						\end{align*}
+						となることから、
+						\[
+							\tilde{\tau}(\boldsymbol{m})=(-1)^{[N/2]}a_k^{N(N-1)/2}\det(\boldsymbol{g},\,\boldsymbol{g}_{1\bar{k}},\,\boldsymbol{g}_{2\bar{k}},\ldots,\,\boldsymbol{g}_{(N-1)\bar{k}})
+						\]
+						を得る。
+						<details id="gray">
+							<summary>確認</summary>
+							<div id="main_text">
+								\begin{align*}								
+									\partial^n g(x;\boldsymbol{m})
+									&=a_k^n\sum_{s=0}^{n}\begin{pmatrix}n\\s\end{pmatrix}(-1)^sg(x;\boldsymbol{m})_{s\bar{k}}\\
+									&=a_k^n(-1)^ng(x;\boldsymbol{m})_{n\bar{k}}+a_k^n\sum_{s=0}^{n-1}\begin{pmatrix}n\\s\end{pmatrix}(-1)^sg(x;\boldsymbol{m})_{s\bar{k}}\\
+								\end{align*}
+								となることから、
+								\begin{align*}
+									&\det(\boldsymbol{g},\,\boldsymbol{g}_{1x},\,\boldsymbol{g}_{2x},\ldots,\,\boldsymbol{g}_{(N-1)x})\\
+									&=
+									\begin{vmatrix}
+										g_1&\partial g_1&\partial^2g_1&\cdots&\partial^{N-1}g_1\\
+										g_2&\partial g_2&\partial^2g_2&\cdots&\partial^{N-1}g_2\\
+										\vdots&\vdots&\vdots&&\vdots\\
+										g_N&\partial g_N&\partial^2g_N&\cdots&\partial^{N-1}g_N
+									\end{vmatrix}\\
+									&=-a_k
+									\begin{vmatrix}
+										g_1&{g_1}_{1\bar{k}}&\partial^2g_1&\cdots&\partial^{N-1}g_1\\
+										g_1&{g_2}_{1\bar{k}}&\partial^2g_2&\cdots&\partial^{N-1}g_2\\
+										\vdots&\vdots&\vdots&&\vdots\\
+										g_1&{g_N}_{1\bar{k}}&\partial^2g_N&\cdots&\partial^{N-1}g_N
+									\end{vmatrix}\\
+									&=(-a_k)(-a_k)^2
+									\begin{vmatrix}
+										g_1&{g_1}_{1\bar{k}}&{g_1}_{2\bar{k}}&\partial^3g_1&\cdots&\partial^{N-1}g_1\\
+										g_1&{g_2}_{1\bar{k}}&{g_2}_{2\bar{k}}&\partial^3g_2&\cdots&\partial^{N-1}g_2\\
+										\vdots&\vdots&\vdots&&&\vdots\\
+										g_1&{g_N}_{1\bar{k}}&{g_N}_{2\bar{k}}&\partial^3g_N&\cdots&\partial^{N-1}g_N
+									\end{vmatrix}\\[6pt]
+									&\;\;\;\;\;\vdots\\[6pt]
+									&=(-a_k)(-a_k)^2\cdots(-a_k)^{N-1}
+									\begin{vmatrix}
+										g_1&{g_1}_{1\bar{k}}&{g_1}_{2\bar{k}}&\cdots&{g_1}_{(N-1)\bar{k}}\\
+										g_1&{g_2}_{1\bar{k}}&{g_2}_{2\bar{k}}&\cdots&{g_2}_{(N-1)\bar{k}}\\
+										\vdots&\vdots&\vdots&&\vdots\\
+										g_1&{g_N}_{1\bar{k}}&{g_N}_{2\bar{k}}&\cdots&{g_N}_{(N-1)\bar{k}}
+									\end{vmatrix}\\[5pt]
+									&=(-1)^{[N/2]}a_k^{N(N-1)/2}\det(\boldsymbol{g},\,\boldsymbol{g}_{1\bar{k}},\,\boldsymbol{g}_{2\bar{k}},\ldots,\,\boldsymbol{g}_{(N-1)\bar{k}})
+								\end{align*}
+							</div>
+							<div style="text-align: right;"><button id="close2">[閉じる]</button></div>
+						</details>
+					</div>
+					<div style="text-align: right;"><button id="close1">[閉じる]</button></div>
+				</details>
+			</div><div style="line-height: 20pt;">&nbsp;</div>
+			<h3>離散KdV方程式</h3>
+			<div id="main_text">
+				離散KP方程式からのReduction
+				\[
+					\tilde{\tau}(m_1+1,\,m_2+1,\,m_3)=\tilde{\tau}(m_1,\,m_2,\,m_3)\\
+					\bigl(\Leftrightarrow\;\tilde{\tau}_{12}=\tilde{\tau}\bigr)
+				\]
+				によって得られる、
+				\[
+					(a_1-a_2)\tilde{\tau}\tilde{\tau}_3+(a_2-a_3)\tilde{\tau}_{\bar{1}3}\tilde{\tau}_1+(a_3-a_1)\tilde{\tau}_{31}\tilde{\tau}_{\bar{1}}=0\\
+					\tilde{\tau}_{\bar{i_1}\cdots{\bar{i_n}}}:=\tilde{\tau}(\cdots,\,m_{i_1}-1,\ldots,\,m_{i_2}-1,\cdots)
+				\]
+				について、
+				\[
+					\sigma_n^t:=\tilde{\tau}(t,\,0,\,n),\;\;\delta:=\frac{a_2-a_3}{a_1-a_2}
+				\]
+				とした、
+				\[
+					(1+\delta)\sigma_{n+1}^{t+1}\sigma_n^{t-1}=\delta\sigma_{n+1}^{t-1}\sigma_n^{t+1}+\sigma_n^t\sigma_{n+1}^t
+				\]
+				を離散KdV方程式(の双線型形式)という。
+				<details id="white">
+					<summary>確認</summary>
+					<div id="main_text">
+						\[
+							\tilde{\tau}(m_1+1,\,m_2+1,\,m_3)=\tilde{\tau}(m_1,\,m_2,\,m_3)
+						\]
+						より、
+						\begin{align*}
+							\tilde{\tau}_{12}
+							&=\tilde{\tau}(m_1+1,\,m_2+1,\,m_3)\\
+							&=\tilde{\tau}(m_1,\,m_2,\,m_3)=\tilde{\tau}\\[3pt]
+							\tilde{\tau}_{23}
+							&=\tilde{\tau}(m_1,\,m_2+1,\,m_3+1)\\
+							&=\tilde{\tau}(m_1-1,\,m_2,\,m_3+1)=\tilde{\tau}_{\bar{1}3}\\[3pt]
+							\tilde{\tau}_2
+							&=\tilde{\tau}(m_1,\,m_2+1,\,m_3)\\
+							&=\tilde{\tau}(m_1-1,\,m_2,\,m_3)=\tilde{\tau}_{\bar{1}}
+						\end{align*}
+						となるため、
+						\[
+							(a_1-a_2)\tilde{\tau}_{12}\tilde{\tau}_3+(a_2-a_3)\tilde{\tau}_{23}\tilde{\tau}_1+(a_3-a_1)\tilde{\tau}_{31}\tilde{\tau}_2=0\\
+							\rightarrow\;(a_1-a_2)\tilde{\tau}\tilde{\tau}_3+(a_2-a_3)\tilde{\tau}_{\bar{1}3}\tilde{\tau}_1+(a_3-a_1)\tilde{\tau}_{31}\tilde{\tau}_{\bar{1}}=0
+						\]
+						となる。また \(\displaystyle\sigma_n^t:=\tilde{\tau}(t,\,0,\,n),\;\delta:=\frac{a_2-a_3}{a_1-a_2}\) とすれば、
+						\begin{align*}
+							&(a_1-a_2)\sigma_n^t\sigma_{n+1}^t+(a_2-a_3)\sigma_{n+1}^{t-1}\sigma_n^{t+1}+(a_3-a_1)\sigma_{n+1}^{t+1}\sigma_n^{t-1}=0\\
+							&\Leftrightarrow\;\sigma_n^t\sigma_{n+1}^t+\frac{a_2-a_3}{a_1-a_2}\sigma_{n+1}^{t-1}\sigma_n^{t+1}+\frac{a_3-a_1}{a_1-a_2}\sigma_{n+1}^{t+1}\sigma_n^{t-1}=0\\
+							&\Leftrightarrow\;\sigma_n^t\sigma_{n+1}^t+\frac{a_2-a_3}{a_1-a_2}\sigma_{n+1}^{t-1}\sigma_n^{t+1}-\frac{a_2-a_3+a_1-a_2}{a_1-a_2}\sigma_{n+1}^{t+1}\sigma_n^{t-1}=0\\
+							&\Leftrightarrow\;\sigma_n^t\sigma_{n+1}^t+\delta\sigma_{n+1}^{t-1}\sigma_n^{t+1}-(\delta+1)\sigma_{n+1}^{t+1}\sigma_n^{t-1}=0\\
+							&\Leftrightarrow\;(\delta+1)\sigma_{n+1}^{t+1}\sigma_n^{t-1}=\delta\sigma_{n+1}^{t-1}\sigma_n^{t+1}+\sigma_n^t\sigma_{n+1}^t
+						\end{align*}
+						が成り立つ。						
+					</div>
+					<div style="text-align: right;"><button id="close3">[閉じる]</button></div>
+				</details><div style="line-height: 5pt;">&nbsp;</div>
+				また、
+				\[
+					w_n^t:=\frac{\sigma_n^t\sigma_{n+1}^{t-1}}{\sigma_{n+1}^t\sigma_n^{t-1}}
+				\]
+				とおいた、
+				\[
+					\frac{1}{w_{n+1}^{t+1}}-\frac{1}{w_n^t}+\frac{\delta}{1+\delta}\bigl(w_n^{t+1}-w_{n+1}^t\bigr)=0
+				\]
+				も離散KdV方程式と呼ばれる。
+				<details id="white">
+					<summary>確認</summary>
+					<div id="main_text">
+						<div id="long_mjx">
+						\begin{align*}
+							0
+							&=\frac{1}{w_{n+1}^{t+1}}-\frac{1}{w_n^t}+\frac{\delta}{1+\delta}\bigl(w_n^{t+1}-w_{n+1}^t\bigr)\\
+							&=\frac{\sigma_{n+2}^{t+1}\sigma_{n+1}^{t}}{\sigma_{n+1}^{t+1}\sigma_{n+2}^{t}}-\frac{\sigma_{n+1}^t\sigma_n^{t-1}}{\sigma_n^t\sigma_{n+1}^{t-1}}+\frac{\delta}{1+\delta}\left(\frac{\sigma_n^{t+1}\sigma_{n+1}^t}{\sigma_{n+1}^{t+1}\sigma_n^t}-\frac{\sigma_{n+1}^t\sigma_{n+2}^{t-1}}{\sigma_{n+2}^t\sigma_{n+1}^{t-1}}\right)\\
+							&=\sigma_{n+1}^t\left\{\frac{\sigma_{n+2}^{t+1}}{\sigma_{n+1}^{t+1}\sigma_{n+2}^{t}}-\frac{\sigma_n^{t-1}}{\sigma_n^t\sigma_{n+1}^{t-1}}+\frac{\delta}{1+\delta}\left(\frac{\sigma_n^{t+1}}{\sigma_{n+1}^{t+1}\sigma_n^t}-\frac{\sigma_{n+2}^{t-1}}{\sigma_{n+2}^t\sigma_{n+1}^{t-1}}\right)\right\}\\
+							&=\sigma_{n+1}^t\left\{\frac{\sigma_n^t\sigma_{n+1}^{t-1}\sigma_{n+2}^{t+1}-\sigma_n^{t-1}\sigma_{n+1}^{t+1}\sigma_{n+2}^{t}}{\sigma_n^t\sigma_{n+1}^{t-1}\sigma_{n+1}^{t+1}\sigma_{n+2}^{t}}+\frac{\delta}{1+\delta}\left(\frac{\sigma_n^{t+1}\sigma_{n+1}^{t-1}\sigma_{n+2}^t-\sigma_n^t\sigma_{n+1}^{t+1}\sigma_{n+2}^{t-1}}{\sigma_n^t\sigma_{n+1}^{t-1}\sigma_{n+1}^{t+1}\sigma_{n+2}^t}\right)\right\}\\
+							&=\frac{\sigma_{n+1}^t}{\sigma_n^t\sigma_{n+1}^{t-1}\sigma_{n+1}^{t+1}\sigma_{n+2}^{t}}\left\{\sigma_n^t\sigma_{n+1}^{t-1}\sigma_{n+2}^{t+1}-\sigma_n^{t-1}\sigma_{n+1}^{t+1}\sigma_{n+2}^{t}+\frac{\delta}{1+\delta}\bigl(\sigma_n^{t+1}\sigma_{n+1}^{t-1}\sigma_{n+2}^t-\sigma_n^t\sigma_{n+1}^{t+1}\sigma_{n+2}^{t-1}\bigr)\right\}
+						\end{align*}
+						</div>
+						より、
+						\[
+							\sigma_n^t\sigma_{n+1}^{t-1}\sigma_{n+2}^{t+1}-\sigma_n^{t-1}\sigma_{n+1}^{t+1}\sigma_{n+2}^{t}+\frac{\delta}{1+\delta}\bigl(\sigma_n^{t+1}\sigma_{n+1}^{t-1}\sigma_{n+2}^t-\sigma_n^t\sigma_{n+1}^{t+1}\sigma_{n+2}^{t-1}\bigr)=0\\
+							\Leftrightarrow\;\bigl(1+\delta\bigr)\bigl(\sigma_n^t\sigma_{n+1}^{t-1}\sigma_{n+2}^{t+1}-\sigma_n^{t-1}\sigma_{n+1}^{t+1}\sigma_{n+2}^{t}\bigr)+\delta\bigl(\sigma_n^{t+1}\sigma_{n+1}^{t-1}\sigma_{n+2}^t-\sigma_n^t\sigma_{n+1}^{t+1}\sigma_{n+2}^{t-1}\bigr)=0
+						\]
+						となり、更に変形していけば、
+						\begin{align*}
+							0
+							&=\bigl(1+\delta\bigr)\bigl(\sigma_n^t\sigma_{n+1}^{t-1}\sigma_{n+2}^{t+1}-\sigma_n^{t-1}\sigma_{n+1}^{t+1}\sigma_{n+2}^{t}\bigr)+\delta\bigl(\sigma_n^{t+1}\sigma_{n+1}^{t-1}\sigma_{n+2}^t-\sigma_n^t\sigma_{n+1}^{t+1}\sigma_{n+2}^{t-1}\bigr)\\
+							&=-\sigma_{n+2}^t\Bigl((1+\delta)\sigma_n^{t-1}\sigma_{n+1}^{t+1}-\delta\sigma_n^{t+1}\sigma_{n+1}^{t-1}\Bigr)
+							+\sigma_n^t\Bigl((1+\delta)\sigma_{n+1}^{t-1}\sigma_{n+2}^{t+1}-\delta\sigma_{n+1}^{t+1}\sigma_{n+2}^{t-1}\Bigr)\\[3pt]
+							&=-\sigma_{n+2}^t\Bigl((1+\delta)\sigma_n^{t-1}\sigma_{n+1}^{t+1}-\delta\sigma_n^{t+1}\sigma_{n+1}^{t-1}-\sigma_n^t\sigma_{n+1}^t\Bigr)\\
+							&\;\;\;\;\;+\sigma_n^t\Bigl((1+\delta)\sigma_{n+1}^{t-1}\sigma_{n+2}^{t+1}-\delta\sigma_{n+1}^{t+1}\sigma_{n+2}^{t-1}-\sigma_{n+1}^t\sigma_{n+2}^t\Bigr)
+						\end{align*}
+						となるため、
+						\[
+							(1+\delta)\sigma_{n+1}^{t+1}\sigma_n^{t-1}=\delta\sigma_{n+1}^{t-1}\sigma_n^{t+1}+\sigma_n^t\sigma_{n+1}^t\\
+							\Leftrightarrow\;\frac{1}{w_{n+1}^{t+1}}-\frac{1}{w_n^t}+\frac{\delta}{1+\delta}\bigl(w_n^{t+1}-w_{n+1}^t\bigr)=0
+						\]
+						がわかる。
+					</div>
+					<div style="text-align: right;"><button id="close4">[閉じる]</button></div>
+				</details><div style="line-height: 5pt;">&nbsp;</div>
+				また連続極限を考えれば、離散KdV方程式からKdV方程式
+				\[
+					U_t+6UU_x+U_{xxx}=0
+				\]
+				が導出される。
+				<details id="white">
+					<summary>確認(もっといい方法がありそう)</summary>
+					<div id="main_text">
+						\[
+							w_n^t=w(n,\,t),\;u_n^t:=w\left(\frac{1+n+t}{2},\,\frac{1+n-t}{2}\right)
+						\]
+						とすると、
+						\begin{alignat*}{5}
+							&w_{n+1}^{t+1}&=\;\;&u_{n+t+1}^{n-t}\\
+							&w_{n}^{t}&=\;\;&u_{n+t-1}^{n-t}\\
+							&w_{n}^{t+1}&=\;\;&u_{n+t}^{n-t-1}\\
+							&w_{n+1}^{t}&=\;\;&u_{n+t}^{n-t+1}	
+						\end{alignat*}
+						となるため、
+						\[
+						n':=n+t,\;\;t':=n-t
+						\]
+						とすれば離散KdV方程式は、
+						\[
+							\frac{1}{u_{n'+1}^{t'}}-\frac{1}{u_{n'-1}^{t'}}=\frac{\delta}{1+\delta}\bigl(u_{n'}^{t'+1}-u_{n'}^{t'-1}\bigr)
+						\]
+						となる。両辺に \((1+\delta)\) をかけて \(n',\,t'\) を再度 \(n,\,t\) とした、
+						\[
+							(1+\delta)\left(\frac{1}{u_{n+1}^{t}}-\frac{1}{u_{n-1}^{t}}\right)=\delta\bigl(u_{n}^{t+1}-u_{n}^{t-1}\bigr)
+						\]
+						を考える。
+						\[
+							u_n^t=1-\lambda W(x,\,t),\;\;x=\delta{n}
+						\]
+						とすると、
+						\begin{align*}
+							u_{n\pm1}^{t}
+							&=1-\lambda W(x\pm\delta,\,t)\\
+							&=1-\lambda\left[W\pm\delta W_x+\frac{\delta^2}{2!}W_{xx}\pm\frac{\delta^3}{3!}W_{xxx}+\mathcal{O}(\delta^4)\right]\\
+							\frac{1}{u_{n\pm1}^t}
+							&=1+\lambda W(x\pm\delta,\,t)+\lambda^2W^2(x\pm\delta,\,t)+\cdots\\
+							&=1+\lambda \left[W\pm\delta W_x+\frac{\delta^2}{2!}W_{xx}\pm\frac{\delta^3}{3!}W_{xxx}+\mathcal{O}(\delta_1^4)\right]\\
+							&\;\;\;+\lambda^2\left[W\pm\delta W_x+\frac{\delta^2}{2!}W_{xx}\pm\frac{\delta^3}{3!}W_{xxx}+\mathcal{O}(\delta_1^4)\right]^2+\cdots
+						\end{align*}
+						より、
+						\begin{align*}    
+							(左辺)
+							&=(1+\delta)\left(\frac{1}{u_{n+1}^{t}}-\frac{1}{u_{n-1}^{t}}\right)\\
+							&=2\delta\bigl(\lambda W_x+2\lambda^2WW_x+3\lambda^3WW_x+\cdots\bigr)+\mathcal{O}(\delta^2)\\
+							&=2\delta\sum_{n=1}^{\infty}\Bigl(n\lambda^nW^{n-1}W_x\Bigr)+\mathcal{O}(\delta^2)
+						\end{align*}
+						となる。また \(u_n^{t\pm1}=1-\lambda W(x,\,t\pm1)\) となるので、
+						\[
+							(右辺)=\delta\bigl(u_n^{t+1}-u_n^{t-1}\bigr)=-\delta\lambda\bigl(W(x,\,t+1)-W(X,\,t-1)\bigr)
+						\]
+						より、
+						\begin{gather*}    
+							2\delta\sum_{n=1}^{\infty}\Bigl(n\lambda^nW^{n-1}W_x\Bigr)+\mathcal{O}(\delta^2)=-\delta\lambda\bigl(W(x,\,t+1)-W(x,\,t-1)\bigr)\\
+							\Leftrightarrow\;2\sum_{n=1}^{\infty}\Bigl(n\lambda^nW^{n-1}W_x\Bigr)+\mathcal{O}(\delta)=-\lambda\bigl(W(x,\,t+1)-W(x,\,t-1)\bigr)
+						\end{gather*}
+						となるので \(\delta\rightarrow0\) として両辺 \(\lambda\) で割れば、
+						\[
+							2\sum_{n=1}^{\infty}n\lambda^{n-1}W^{n-1}W_x=-\bigl(W(x,\,t+1)-W(x,\,t-1)\bigr)
+						\]
+						となる。ここで、
+						\begin{gather*}    
+							W(x,\,t)=U(X,\,T),\;\;X=-\delta x+\delta{t},\;\;T=c\delta^3 t\\
+							\lambda=-\frac{1}{2}\delta^2
+						\end{gather*}
+						とすれば、
+						\[
+							(左辺)=2\bigl(-\delta U_X+\delta^3UU_X\bigr)+\mathcal{O}(\delta^5)
+						\]
+						となり、
+						\begin{align*}
+							W(x,\,t\pm1)
+							&=U(X\pm\delta,\,T\pm c\delta^3)\\
+							&=U(X,\,T)\pm\bigl(\delta U_X+c\delta^3 U_T\bigr)+\frac{1}{2!}\delta^2U_{XX}\pm\frac{1}{3!}\delta^3U_{XXX}+\mathcal{O}(\delta^4)\\[5pt]
+							(右辺)
+							&=-\delta\lambda\bigl(W(x,\,t+1)-W(x,\,t-1)\bigr)\\
+							&=-2\bigl(\delta U_X+c\delta^3U_T+\frac{1}{6}\delta^3U_{XXX}\bigr)+\mathcal{O}(\delta^4)
+						\end{align*}
+						となるため、
+						\begin{gather*}    
+							2\bigl(-\delta U_X+\delta^3UU_X\bigr)=-2\bigl(\delta U_X+c\delta^3U_T+\frac{1}{6}\delta^3U_{XXX}\bigr)+\mathcal{O}(\delta^4)\\
+							\Leftrightarrow\;\delta^3UU_X=-c\delta^3U_T-\frac{1}{6}\delta^3U_{XXX}+\mathcal{O}(\delta^4)\\
+							\Leftrightarrow\;UU_X=-cU_T-\frac{1}{6}U_{XXX}+\mathcal{O}(\delta)
+						\end{gather*}
+						を得る。よって \(\delta\rightarrow0\) とすれば、
+						\[
+							UU_X=-cU_T-\frac{1}{6}U_{XXX}
+						\]
+						\(c=\frac{1}{6}\) として整理すれば、
+						\[
+							U_T+6UU_X+U_{XXX}=0
+						\]
+						となる。
+					</div>
+					<div style="text-align: right;"><button id="close5">[閉じる]</button></div>
+				</details>
+			</div><div style="line-height: 20pt;">&nbsp;</div>
+			<h3>\(N\)-ソリトン解</h3>
+			<div id="main_text">
+				離散KP方程式
+				\[
+					(a_1-a_2)\tilde{\tau}_{12}\tilde{\tau}_3+(a_2-a_3)\tilde{\tau}_{23}\tilde{\tau}_1+(a_3-a_1)\tilde{\tau}_{31}\tilde{\tau}_2=0
+				\]
+				の\(N\)-ソリトン解は、
+				\[
+					\tilde{\tau}(m_1,\,m_2,\,m_3)
+					=\det_{1\leq{i,j}\leq{N}}\left[\delta_{ij}+\frac{\gamma_i}{p_i-q_j}\prod_{k=1}^3\left(\frac{q_i-a_k}{p_i-a_k}\right)^{m_k}\right]
+				\]
+				や、
+				\[
+					\tilde{\tau}(m_1,\,m_2,\,m_3)
+					=\sum_{J\subset\{1,2,\ldots,N\}}\prod_{i\in{J}}c_i\prod_{k=1}^3\left(\frac{q_i-a_k}{p_i-a_k}\right)^{m_k}\cdot\prod_{i,j\in{J}\\\;i&lt;j}\frac{(p_i-p_j)(q_i-q_j)}{(p_i-q_j)(q_i-p_j)}
+				\]
+				と表される。
+				<details id="white">
+					<summary>導出</summary>
+					<div id="main_text">
+						KP方程式のグラミアン解
+						\[
+							\tau(\boldsymbol{x})=\det{}_{1\leq{i,\,j}\leq{N}}\left[\delta_{ij}+\frac{\gamma_i}{p_i-q_j}e^{\theta(\boldsymbol{x},\,p_i)-\theta(\boldsymbol{x},\,q_i)}\right]
+						\]
+						において三輪変換
+						\[
+							\boldsymbol{x}=\sum_{i=1}^{3}m_i[a_i^{-1}]
+							\;\;
+							\left(x_n=\sum_{j=1}^{3}m_j\frac{1}{na_j^n}\;\;(n\in{\mathbb{N}})\right)
+						\]
+						を考えると、 
+						\begin{align*}
+							&\exp\Bigl[\theta(\boldsymbol{x},\,p_i)-\theta(\boldsymbol{x},\,q_i)\Bigr]\\
+							&=\exp\Bigl[\sum_{n=1}^{\infty}(p_i^n-q_i^n)x_n\Bigr]\\
+							&=\exp\Bigl[\sum_{n=1}^{\infty}(p_i^n-q_i^n)\sum_{j=1}^{3}m_j\frac{1}{na_j^n}\Bigr]\\
+							&=\prod_{j=1}^3\exp\Bigl[m_j\sum_{n=1}^{\infty}\frac{p_i^n-q_i^n}{na_j^n}\Bigr]\\
+							&=\prod_{j=1}^3\exp\left[m_j\Bigl(-\log\Bigl[1-\frac{p_i}{a_j}\Bigr]+\log\Bigl[1-\frac{q_i}{a_j}\Bigr]\Bigr)\right]\\
+							&=\prod_{j=1}^3\left(\frac{1-\frac{q_i}{a_j}}{1-\frac{p_i}{a_j}}\right)^{m_j}
+							=\prod_{j=1}^3\left(\frac{a_j-q_i}{a_j-p_i}\right)^{m_j}=\prod_{j=1}^3\left(\frac{q_i-a_j}{p_i-a_j}\right)^{m_j}\\
+						\end{align*}
+						となるため、
+						\[
+							\tilde{\tau}(m_1,\,m_2,\,m_3)
+							=\det_{1\leq{i,j}\leq{N}}\left[\delta_{ij}+\frac{\gamma_i}{p_i-q_j}\prod_{k=1}^3\left(\frac{q_i-a_k}{p_i-a_k}\right)^{m_k}\right]
+						\]
+						となる。
+						<br><div style="line-height: 10pt;">&nbsp;</div>
+						またロンスキアン解からグラミアン解への変形の途中で出てきた
+						\[
+							\tau(\boldsymbol{x})=\sum_{J\subset\{1,2,\ldots,N\}}\left(\smash{\prod_{i,\,j\in{J}\\\;\,i&lt;j}}\frac{(p_j-p_i)(q_j-q_i)}{(q_j-p_i)(p_j-q_i)}\exp\left[\sum_{i\in{J}}(\theta(\boldsymbol{x},\,p_i)-\theta(\boldsymbol{x},q_i)+\theta_i^{(0)})\right]\right)
+						\]
+						について同様に考えれば、指数部分は先の式と同じ形なので、
+						\begin{align*}						
+							&\tilde{\tau}(m_1,\,m_2,\,m_3)\\
+							&=\sum_{J\subset\{1,2,\ldots,N\}}\left(\smash{\prod_{i,\,j\in{J}\\\;\,i&lt;j}}\frac{(p_j-p_i)(q_j-q_i)}{(q_j-p_i)(p_j-q_i)}\cdot\prod_{i\in{J}}\left[e^{\theta_i^{(0)}}\prod_{k=1}^3\left(\frac{q_i-a_k}{p_i-a_k}\right)^{m_k}\right]\right)\\[5pt]
+							&=\sum_{J\subset\{1,2,\ldots,N\}}\prod_{i\in{J}}c_i\prod_{k=1}^3\left(\frac{q_i-a_k}{p_i-a_k}\right)^{m_k}\cdot\prod_{i,j\in{J}\\\;i&lt;j}\frac{(p_i-p_j)(q_i-q_j)}{(p_i-q_j)(q_i-p_j)}
+						\end{align*}
+						となる。(\(c_i=\exp[\theta_i^{(0)}]\) とした。)
+					</div>
+					<div style="text-align: right;"><button id="close6">[閉じる]</button></div>
+				</details><div style="line-height: 5pt;">&nbsp;</div>
+				またReductionによって、離散KdV方程式
+				\[
+					(1+\delta)\sigma_{n+1}^{t+1}\sigma_n^{t-1}=\delta\sigma_{n+1}^{t-1}\sigma_n^{t+1}+\sigma_n^t\sigma_{n+1}^t
+				\]
+				の\(N\)-ソリトン解は、
+				\[
+					\sigma_n^t
+					=\det_{1\leq{i,j}\leq{N}}\left[\delta_{ij}+\frac{\gamma_i}{p_i+p_j-1}\left(\frac{1-p_i}{p_i}\right)^t\left(\frac{p_i+\delta}{1-p_i+\delta}\right)^{n}\right]
+				\]
+				や、
+				\[
+					\sigma_n^t
+					=\sum_{J\subset\{1,2,\ldots,N\}}\prod_{i\in{J}}c_i\left(\frac{1-p_i}{p_i}\right)^t\left(\frac{p_i+\delta}{1-p_i+\delta}\right)^{n}\cdot\prod_{i,j\in{J}\\\;i&lt;j}\left(\frac{p_i-p_j}{1-p_i-p_j}\right)^2
+				\]
+				と表される。
+				<details id="white">
+					<summary>導出</summary>
+					<div id="main_text">
+						\[
+							\tilde{\tau}(m_1,\,m_2,\,m_3)
+							=\det_{1\leq{i,j}\leq{N}}\left[\delta_{ij}+\frac{\gamma_i}{p_i-p_j}\prod_{k=1}^3\left(\frac{q_i-a_k}{p_i-a_k}\right)^{m_k}\right]
+						\]
+						や、
+						\[
+							\tilde{\tau}(m_1,\,m_2,\,m_3)
+							=\sum_{J\subset\{1,2,\ldots,N\}}\prod_{i\in{J}}c_i\prod_{k=1}^3\left(\frac{q_i-a_k}{p_i-a_k}\right)^{m_k}\cdot\prod_{i,j\in{J}\\\;i&lt;j}\frac{(p_i-p_j)(q_i-q_j)}{(p_i-q_j)(q_i-p_j)}
+						\]
+						が、拘束条件
+						\[
+							\tilde{\tau}(m_1+1,\,m_2+1,\,m_3)=\tilde{\tau}(m_1,\,m_2,\,m_3)
+						\]
+						を満たすには、両式の
+						\[
+							\prod_{k=1}^3\left(\frac{q_i-a_k}{p_i-a_k}\right)^{m_k}
+						\]
+						の部分が関係しており、
+						\[
+							\left(\frac{q_i-a_1}{p_i-a_1}\right)^{m_1+1}\left(\frac{q_i-a_2}{p_i-a_2}\right)^{m_2+1}=\left(\frac{q_i-a_1}{p_i-a_1}\right)^{m_1}\left(\frac{q_i-a_2}{p_i-a_2}\right)^{m_2}\\[5pt]
+							\Leftrightarrow\;\frac{q_i-a_1}{p_i-a_1}\cdot\frac{q_i-a_2}{p_i-a_2}=1
+						\]
+						が任意の \(i\in\{1,\,2,\ldots,\,N\}\) に対して成り立てばよい。これより、
+						\[
+							q_i=a_1+a_2-p_i\;\;\;\bigl(i\in\{1,\,2,\ldots,\,N\}\bigr)
+						\]
+						とすれば拘束条件は満たされる。
+						<br><div style="line-height: 5pt;">&nbsp;</div>
+						上の解に代入する。後半部分は、
+						\begin{align*}
+							&\frac{\gamma_i}{p_i-q_j}\prod_{k=1}^3\left(\frac{q_i-a_k}{p_i-a_k}\right)^{m_k}\\
+							&=\frac{\gamma_i}{p_i+p_j-a_1-a_2}\prod_{k=1}^3\left(\frac{a_1+a_2-p_i-a_k}{p_i-a_k}\right)^{m_k}\\
+							&=\frac{\gamma_i}{p_i+p_j-a_1-a_2}\left(\frac{a_2-p_i}{p_i-a_1}\right)^{m_1}\left(\frac{a_1-p_i}{p_i-a_2}\right)^{m_2}\left(\frac{a_1+a_2-a_3-p_i}{p_i-a_3}\right)^{m_3}\\
+							&=\frac{\frac{\gamma_i}{a_2-a_1}}{\frac{p_i-a_1}{a_2-a_1}+\frac{p_j-a_2}{a_2-a_1}}\left(\frac{\frac{a_2-p_i}{a_2-a_1}}{\frac{p_i-a_1}{a_2-a_1}}\right)^{m_1}\left(\frac{\frac{p_i-a_1}{a_2-a_1}}{\frac{a_2-p_i}{a_2-a_1}}\right)^{m_2}\left(\frac{\frac{a_1-p_i}{a_2-a_1}+\frac{a_2-a_3}{a_2-a_1}}{\frac{p_i-a_3}{a_2-a_1}}\right)^{m_3}
+						\end{align*}
+						となる。ここで、
+						\[
+							\frac{p_i-a_1}{a_2-a_1}\;\rightarrow\;p_i,\;\;\frac{\gamma_i}{a_2-a_1}\;\rightarrow\;\gamma_i
+						\]
+						とおけば、(\(\delta=\frac{a_2-a_3}{a_1-a_2}\))
+						\[
+							\frac{p_i-a_2}{a_2-a_1}=\frac{(p_i-a_1)-(a_2-a_1)}{a_2-a_1}\;\rightarrow\;p_i-1
+						\]
+						\[	
+							\frac{p_i-a_3}{a_2-a_1}=\frac{(p_i-a_2)+(a_2-a_3)}{a_2-a_1}\;\rightarrow\;p_i-1-\delta
+						\]
+						となるので、
+						\begin{align*}
+							&\frac{\gamma_i}{p_i-q_j}\prod_{k=1}^3\left(\frac{q_i-a_k}{p_i-a_k}\right)^{m_k}\\
+							&=\frac{\gamma_i}{p_i+p_j-1}\left(\frac{1-p_i}{p_i}\right)^{m_1}\left(\frac{p_i}{1-p_i}\right)^{m_2}\left(\frac{-p_i-\delta}{p_i-1-\delta}\right)^{m_3}\\
+							&=\frac{\gamma_i}{p_i+p_j-1}\left(\frac{1-p_i}{p_i}\right)^{m_1-m_2}\left(\frac{p_i+\delta}{1-p_i+\delta}\right)^{m_3}
+						\end{align*}
+						より、
+						\[
+							\sigma_n^t
+							=\det_{1\leq{i,j}\leq{N}}\left[\delta_{ij}+\frac{\gamma_i}{p_i+p_j-1}\left(\frac{1-p_i}{p_i}\right)^t\left(\frac{p_i+\delta}{1-p_i+\delta}\right)^{n}\right]
+						\]
+						となる。
+						<br><div style="line-height: 5pt;">&nbsp;</div>
+						もう一方の解を考える。前半部分は先の形と同じなので後半部分を考える。
+						\begin{align*}
+							q_i-q_j
+							&=(a_1+a_2-p_i)-(a_1+a_2-p_j)\\
+							&=p_j-p_i\\[5pt]
+							p_i-q_j
+							&=p_i-(a_1+a_2-p_j)\\
+							&=(p_i-a_1)+(p_j-a_2)
+						\end{align*}
+						となるので、
+						\[
+							\frac{p_i-a_1}{a_2-a_1}\;\rightarrow\;p_i
+						\]
+						とおけば、
+						\begin{align*}
+							&\frac{(p_i-p_j)(q_i-q_j)}{(p_i-q_j)(q_i-p_j)}\\
+							&=\frac{(p_i-p_j)^2}{(p_i-q_j)(p_j-q_i)}\\
+							&=\frac{\bigl(\frac{p_i-a_1}{a_2-a_1}-\frac{p_j-a_1}{a_2-a_1}\bigr)^2}{\frac{(p_i-a_1)+(p_j-a_2)}{a_2-a_1}\frac{(p_j-a_1)+(p_i-a_2)}{a_2-a_1}}\\[5pt]
+							&\rightarrow\;\frac{(p_i-p_j)^2}{(p_i+p_j-1)(p_j+p_j-1)}\\
+							&=\left(\frac{p_i-p_j}{p_i+p_j-1}\right)^2
+						\end{align*}
+						となるため、
+						\[
+							\sigma_n^t
+							=\sum_{J\subset\{1,2,\ldots,N\}}\prod_{i\in{J}}c_i\left(\frac{1-p_i}{p_i}\right)^t\left(\frac{p_i+\delta}{1-p_i+\delta}\right)^{n}\cdot\prod_{i,j\in{J}\\\;i&lt;j}\left(\frac{p_i-p_j}{1-p_i-p_j}\right)^2
+						\]
+						となる。
+					</div>
+					<div style="text-align: right;"><button id=close7>[閉じる]</button></div>
+				</details>
+			</div>
 		</div>
 
 
